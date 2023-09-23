@@ -1,0 +1,11 @@
+
+library(tidyr)
+
+stud_data <- read.csv("../../../data/data_management/stud_data.csv", header = TRUE)
+stud_data
+
+gather(stud_data)
+
+long_format <- gather(stud_data, Subjects, Marks, Maths, Economics, Statistics)
+
+spread(long_format, Subjects, Marks, fill = 0)
