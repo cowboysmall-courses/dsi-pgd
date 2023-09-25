@@ -1,3 +1,3 @@
 # MSc in Data Science
 
-Coursework for the Data Science Institute's MSc Program.
+Coursework for the Data Science Institute's Data Science MSc Program
