@@ -43,5 +43,3 @@ sqldf("select Location, count(*) as no_of_employees from salary_data group by Lo
 
 aggregate_sd1 <- sqldf("select Location, sum(ts) as total_salary from subset_sd5 group by Location")
 sqldf("select Location, total_salary, (total_salary * 100 / (select sum(total_salary) from aggregate_sd1)) as percent_share from aggregate_sd1")
-
-

@@ -5,5 +5,3 @@ Y <- c(12, 23, 34)
 D <- data.frame(X, Y)
 
 dim(D)
-
-

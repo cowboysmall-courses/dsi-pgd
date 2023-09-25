@@ -21,6 +21,7 @@ dt1 <- data.table(
 )
 head(dt1)
 
+
 dt1[4:6, ]
 
 sr1 <- dt1[Code == "C" & State == "Alabama"]
@@ -28,6 +29,7 @@ head(sr1)
 
 sc1 <- dt1[, .(ID, Capacity)]
 head(sc1)
+
 
 setkey(dt1, Code, State)
 sk1 <- dt1[.("C", "Alabama")]
@@ -45,6 +47,3 @@ head(ot1)
 
 ot2 <- dt1[order(-Code, -Capacity)]
 head(ot2)
-
-
-

@@ -19,8 +19,5 @@ library(gmodels)
 CrossTable(retail_data$Zone, retail_data$NPS_Category)
 CrossTable(retail_data$Zone, retail_data$NPS_Category, prop.r = FALSE, prop.c = FALSE)
 
-
-
 t2 <- table(retail_data$Zone, retail_data$NPS_Category, retail_data$Retailer_Age)
 ftable(t2)
-

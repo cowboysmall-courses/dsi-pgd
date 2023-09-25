@@ -1,7 +1,9 @@
+
 # Jerry Kiely
 # Data Science Institute
 # Descriptive Statistics in R 
 # EDA T4 Assignment
+
 
 # 1
 # Premiums <- read.csv(file.choose(), header = TRUE)
@@ -47,6 +49,3 @@ plot(Premiums$Premium, Premiums$Vintage_Period, col = "red")
 cor(Premiums$Premium, Premiums$Vintage_Period)
 # The Correlation Coefficient of 0.3641487 is greater than zero, and hence implies a 
 # positive correlation, but the value is low, and hence would imply a low correlation.
-
-
-

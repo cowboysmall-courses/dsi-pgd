@@ -6,7 +6,6 @@ bonus_data <- read.csv("../../../data/data_management/bonus_data.csv", header = 
 head(bonus_data)
 
 
-
 left <- merge(salary_data, bonus_data, by = c("Employee_ID"), all.x = TRUE)
 head(left)
 
@@ -18,7 +17,6 @@ head(inner)
 
 outer <- merge(salary_data, bonus_data, by = c("Employee_ID"), all = TRUE)
 head(outer)
-
 
 
 salary_01 <- read.csv("../../../data/data_management/basic_salary - 1.csv", header = TRUE)
@@ -43,5 +41,3 @@ a4
 gb1 <- group_by(salary_data, Location)
 ag1 <- summarize(gb1, Total = sum(ms, na.rm = TRUE))
 ag1
-
-

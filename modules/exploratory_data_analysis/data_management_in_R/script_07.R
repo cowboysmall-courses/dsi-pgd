@@ -26,5 +26,3 @@ dcast(long_format, Student_ID + Names ~ Subjects, subset = .(Subjects == "Maths"
 
 dcast(long_format, Student_ID + Names ~ .)
 dcast(long_format, Student_ID + Names ~ ., fun.aggregate = sum, na.rm = TRUE)
-
-

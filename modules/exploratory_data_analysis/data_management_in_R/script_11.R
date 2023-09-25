@@ -20,4 +20,3 @@ sep_data3 <- separate(emp_data, address, into = c("Sector", "Area"), sep = " ", 
 sep_data3
 
 unite(sep_data1, date, c(Year, Month, Day), sep = "-")
-
