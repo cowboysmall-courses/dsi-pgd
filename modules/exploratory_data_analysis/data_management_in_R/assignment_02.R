@@ -1,7 +1,7 @@
 
 # Jerry Kiely
 # Data Science Institute
-# Descriptive Statistics in R
+# Data Management in R
 # EDA T4 Assignment
 
 

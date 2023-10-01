@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Sep 30 12:42:45 2023
+Created on Sun Oct  1 12:20:44 2023
 
 @author: jerry
 """
 
-import os
-
-os.getcwd()
-os.listdir(".")
-os.listdir("/")
+import math
+math.floor(12.3)
 
 
+a = 'I'
+b = "amin"
+c = "office"
 
-salary_data = pd.read_csv("../../../data/data_management/basic_salary.csv")
-salary_data.head()
-
-salary_data.to_csv("./basic_salary_local.csv")
-
+d = a + " " + b + " " + c
+d[1:4]

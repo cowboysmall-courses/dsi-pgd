@@ -1,7 +1,7 @@
 
 # Jerry Kiely
 # Data Science Institute
-# Descriptive Statistics in R
+# Programming Basics in R
 # EDA T2 Assignment
 
 
