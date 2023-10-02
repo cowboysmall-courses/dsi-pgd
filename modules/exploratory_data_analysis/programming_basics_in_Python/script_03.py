@@ -6,7 +6,9 @@ Created on Sun Oct  1 12:20:44 2023
 @author: jerry
 """
 
+
 import math
+
 math.floor(12.3)
 
 

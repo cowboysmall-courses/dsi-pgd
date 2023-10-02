@@ -6,6 +6,7 @@ Created on Sun Oct  1 11:58:23 2023
 @author: jerry
 """
 
+
 " ".join(["One", "Two", "Three"])
 "One Two Three".split()
 

@@ -74,6 +74,3 @@ df
 
 df['Date'] = pd.to_datetime(df[['year', 'month', 'day']])
 df
-
-
-

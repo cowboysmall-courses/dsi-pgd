@@ -7,9 +7,6 @@ Created on Sun Oct  1 13:01:09 2023
 """
 
 
-
-
-
 for i in range(1, 4):
     print(i)
     i = i + 2
