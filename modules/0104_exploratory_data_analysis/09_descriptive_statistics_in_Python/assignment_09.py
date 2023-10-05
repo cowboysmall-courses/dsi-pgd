@@ -136,5 +136,5 @@ plt.ylabel('Vintage Period')
 
 np.corrcoef(Premium['Premium'], Premium['Vintage_Period'])
 # 
-# The Correlation Coefficient of 0.3641487 is greater than zero, and hence implies a 
+# The Correlation Coefficient of 0.36414866 is greater than zero, and hence implies a 
 # positive correlation, but the value is low, and hence would imply a low correlation.
