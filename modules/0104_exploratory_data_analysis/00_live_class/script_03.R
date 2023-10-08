@@ -100,6 +100,11 @@ Geo_Dist <- bank_data %>%
   group_by(Geography) %>%
   summarise(Products = sum(NumOfProducts))
 
+# Geo_Dist <- bank_data %>%
+#   group_by(Geography) %>%
+#   summarise(Products = sum(NumOfProducts), Count = length(NumOfProducts), Average = sum(NumOfProducts) / length(NumOfProducts))
+# Geo_Dist
+
 barplot(
   Geo_Dist$Products,
   names.arg = Geo_Dist$Geography,
