@@ -17,7 +17,7 @@ os.listdir("/")
 
 
 
-salary_data = pd.read_csv("../../../data/data_management/basic_salary.csv")
+salary_data = pd.read_csv("../../../data/eda/data_management/basic_salary.csv")
 salary_data.head()
 
 salary_data.to_csv("./basic_salary_local.csv")

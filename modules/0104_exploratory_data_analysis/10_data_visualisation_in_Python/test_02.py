@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 
 
-telecom_data = pd.read_csv("../../../data/data_visualisation/telecom.csv")
+telecom_data = pd.read_csv("../../../data/eda/data_visualisation/telecom.csv")
 
 sns.set_theme(style="whitegrid")
 

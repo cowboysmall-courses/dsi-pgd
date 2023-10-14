@@ -13,7 +13,7 @@ import seaborn as sns
 import calendar
 
 
-telco_data = pd.read_csv("../../../data/data_visualisation/TelecomData_WeeklyData.csv")
+telco_data = pd.read_csv("../../../data/eda/data_visualisation/TelecomData_WeeklyData.csv")
 telco_data.info()
 
 

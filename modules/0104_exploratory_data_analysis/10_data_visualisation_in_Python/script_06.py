@@ -14,7 +14,7 @@ import plotly.express as px
 import calendar
 
 
-sales_data = pd.read_csv("../../../data/data_visualisation/Sales Data (Motion Chart).csv")
+sales_data = pd.read_csv("../../../data/eda/data_visualisation/Sales Data (Motion Chart).csv")
 sales_data.info()
 sales_data.describe(include = 'all')
 

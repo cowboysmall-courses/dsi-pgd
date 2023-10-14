@@ -1,8 +1,8 @@
 
 library(ggplot2)
 
-demo_data <- read.csv("../../../data/data_visualisation/TelecomData_CustDemo.csv", header = TRUE)
-tx_data <- read.csv("../../../data/data_visualisation/TelecomData_WeeklyData.csv", header = TRUE)
+demo_data <- read.csv("../../../data/eda/data_visualisation/TelecomData_CustDemo.csv", header = TRUE)
+tx_data <- read.csv("../../../data/eda/data_visualisation/TelecomData_WeeklyData.csv", header = TRUE)
 
 w_data <- merge(demo_data, tx_data, by = ("CustID"), all = TRUE)
 head(w_data)

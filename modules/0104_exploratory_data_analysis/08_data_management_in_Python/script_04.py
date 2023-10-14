@@ -9,7 +9,7 @@ Created on Mon Oct  2 16:56:50 2023
 
 import pandas as pd
 
-salary_data = pd.read_csv("../../../data/data_management/basic_salary.csv")
+salary_data = pd.read_csv("../../../data/eda/data_management/basic_salary.csv")
 salary_data.head()
 salary_data.isnull()
 salary_data.isnull().sum()

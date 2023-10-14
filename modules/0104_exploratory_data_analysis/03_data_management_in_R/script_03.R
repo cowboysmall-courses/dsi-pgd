@@ -1,8 +1,8 @@
 
-salary_data <- read.csv("../../../data/data_management/sal_data.csv", header = TRUE)
+salary_data <- read.csv("../../../data/eda/data_management/sal_data.csv", header = TRUE)
 head(salary_data)
 
-bonus_data <- read.csv("../../../data/data_management/bonus_data.csv", header = TRUE)
+bonus_data <- read.csv("../../../data/eda/data_management/bonus_data.csv", header = TRUE)
 head(bonus_data)
 
 
@@ -19,8 +19,8 @@ outer <- merge(salary_data, bonus_data, by = c("Employee_ID"), all = TRUE)
 head(outer)
 
 
-salary_01 <- read.csv("../../../data/data_management/basic_salary - 1.csv", header = TRUE)
-salary_02 <- read.csv("../../../data/data_management/basic_salary - 2.csv", header = TRUE)
+salary_01 <- read.csv("../../../data/eda/data_management/basic_salary - 1.csv", header = TRUE)
+salary_02 <- read.csv("../../../data/eda/data_management/basic_salary - 2.csv", header = TRUE)
 salary_rb <- rbind(salary_01, salary_02)
 salary_rb
 

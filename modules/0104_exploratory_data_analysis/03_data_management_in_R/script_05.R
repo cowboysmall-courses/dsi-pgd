@@ -1,7 +1,7 @@
 
 library(data.table)
 
-salary_data <- read.csv("../../../data/data_management/basic_salary.csv", header = TRUE)
+salary_data <- read.csv("../../../data/eda/data_management/basic_salary.csv", header = TRUE)
 
 
 dt1 <- data.table(salary_data)

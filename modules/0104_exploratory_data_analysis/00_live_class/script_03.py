@@ -10,7 +10,7 @@ Created on Sat Oct  7 10:14:26 2023
 import pandas as pd
 
 
-salary_data = pd.read_csv("../../../data/data_management/basic_salary.csv")
+salary_data = pd.read_csv("../../../data/eda/data_management/basic_salary.csv")
 
 
 sorted_ba = salary_data.sort_values(by = ['ba'])

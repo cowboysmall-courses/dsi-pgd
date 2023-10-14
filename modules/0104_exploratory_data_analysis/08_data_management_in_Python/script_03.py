@@ -9,8 +9,8 @@ Created on Mon Oct  2 16:39:01 2023
 
 import pandas as pd
 
-salary_data = pd.read_csv("../../../data/data_management/sal_data.csv")
-bonus_data = pd.read_csv("../../../data/data_management/bonus_data.csv")
+salary_data = pd.read_csv("../../../data/eda/data_management/sal_data.csv")
+bonus_data = pd.read_csv("../../../data/eda/data_management/bonus_data.csv")
 
 left_join = pd.merge(salary_data, bonus_data, how = 'left')
 left_join

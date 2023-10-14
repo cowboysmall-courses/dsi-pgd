@@ -1,5 +1,5 @@
 
-retail_data <- read.csv("../../../data/descriptive_statistics/Retail_Data.csv", header = TRUE)
+retail_data <- read.csv("../../../data/eda/descriptive_statistics/Retail_Data.csv", header = TRUE)
 
 library(e1071)
 

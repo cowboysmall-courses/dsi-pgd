@@ -1,5 +1,5 @@
 
-salary_data <- read.csv("../../../data/data_management/basic_salary.csv", header = TRUE)
+salary_data <- read.csv("../../../data/eda/data_management/basic_salary.csv", header = TRUE)
 head(salary_data)
 
 s1 <- salary_data[5:10, ]

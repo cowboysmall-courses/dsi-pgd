@@ -8,7 +8,7 @@
 # 1
 # Premiums <- read.csv(file.choose(), header = TRUE)
 # Premiums <- read.csv("./Premiums.csv", header = TRUE)
-Premiums <- read.csv("../../../data/exploratory_data_analysis_assignment/Premiums.csv", header = TRUE)
+Premiums <- read.csv("../../../data/eda/assignment/Premiums.csv", header = TRUE)
 head(Premiums)
 
 

@@ -9,10 +9,9 @@ Created on Thu Oct  5 13:16:16 2023
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 
-telecom_data = pd.read_csv("../../../data/data_visualisation/telecom.csv")
+telecom_data = pd.read_csv("../../../data/eda/data_visualisation/telecom.csv")
 telecom_data.info()
 
 

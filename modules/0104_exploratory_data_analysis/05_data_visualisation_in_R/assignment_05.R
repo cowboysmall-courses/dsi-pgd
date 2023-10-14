@@ -14,8 +14,8 @@ library(ggplot2)
 
 
 # 1 Import data and merge it by POLICY_NO
-Premiums <- read.csv("../../../data/exploratory_data_analysis_assignment/Premiums.csv", header = TRUE)
-Claims <- read.csv("../../../data/exploratory_data_analysis_assignment/Claims.csv", header = TRUE)
+Premiums <- read.csv("../../../data/eda/assignment/Premiums.csv", header = TRUE)
+Claims <- read.csv("../../../data/eda/assignment/Claims.csv", header = TRUE)
 Insurance <- merge(Premiums, Claims, by = ("POLICY_NO"), all = TRUE)
 
 head(Insurance)

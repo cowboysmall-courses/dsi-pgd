@@ -2,7 +2,7 @@
 library(tidyverse)
 
 
-emp_data <- read.csv("../../../data/live_class/EMPLOYEE\ ENGAGEMENT\ DATA.csv", header = TRUE)
+emp_data <- read.csv("../../../data/eda/live_class/EMPLOYEE\ ENGAGEMENT\ DATA.csv", header = TRUE)
 
 
 head(emp_data)

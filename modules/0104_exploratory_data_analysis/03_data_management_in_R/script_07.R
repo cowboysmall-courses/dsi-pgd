@@ -2,7 +2,7 @@
 library(reshape2)
 library(plyr)
 
-stud_data <- read.csv("../../../data/data_management/stud_data.csv", header = TRUE)
+stud_data <- read.csv("../../../data/eda/data_management/stud_data.csv", header = TRUE)
 stud_data
 
 

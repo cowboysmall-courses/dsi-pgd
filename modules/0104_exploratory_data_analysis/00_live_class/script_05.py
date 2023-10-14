@@ -11,8 +11,8 @@ Created on Sat Oct  7 10:42:06 2023
 import pandas as pd
 
 
-salary1 = pd.read_csv("../../../data/data_management/basic_salary - 1.csv")
-salary2 = pd.read_csv("../../../data/data_management/basic_salary - 2.csv")
+salary1 = pd.read_csv("../../../data/eda/data_management/basic_salary - 1.csv")
+salary2 = pd.read_csv("../../../data/eda/data_management/basic_salary - 2.csv")
 
 frames = [salary1, salary2]
 append1 = pd.concat(frames)

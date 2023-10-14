@@ -19,8 +19,8 @@ import seaborn as sns
 
 
 # 1 - Import Premium and Claim data and merge both data sets into one data
-Premium = pd.read_csv("../../../data/exploratory_data_analysis_assignment/Premiums.csv")
-Claim = pd.read_csv("../../../data/exploratory_data_analysis_assignment/Claims.csv")
+Premium = pd.read_csv("../../../data/eda/assignment/Premiums.csv")
+Claim = pd.read_csv("../../../data/eda/assignment/Claims.csv")
 
 Premium_join = pd.merge(Premium, Claim, how = 'outer')
 Premium_join.info()
