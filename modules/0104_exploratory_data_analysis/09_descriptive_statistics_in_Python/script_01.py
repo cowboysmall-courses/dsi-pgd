@@ -9,7 +9,7 @@ Created on Tue Oct  3 10:01:38 2023
 
 import pandas as pd
 
-retail_data = pd.read_csv("../../../data/descriptive_statistics/Retail_Data.csv")
+retail_data = pd.read_csv("../../../data/eda/descriptive_statistics/Retail_Data.csv")
 retail_data.describe(include = 'all')
 
 

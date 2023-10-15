@@ -1,5 +1,5 @@
 
-job_proficiency <- read.csv("../../../data/descriptive_statistics/Job_Proficiency.csv", header = TRUE)
+job_proficiency <- read.csv("../../../data/eda/descriptive_statistics/Job_Proficiency.csv", header = TRUE)
 
 plot(job_proficiency$aptitude, job_proficiency$job_prof, col = "red")
 cor(job_proficiency$aptitude, job_proficiency$job_prof)

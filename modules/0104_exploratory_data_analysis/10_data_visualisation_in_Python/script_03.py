@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-employee_data = pd.read_csv("../../../data/data_visualisation/JOB PROFICIENCY DATA.csv", index_col = 0)
+employee_data = pd.read_csv("../../../data/eda/data_visualisation/JOB PROFICIENCY DATA.csv", index_col = 0)
 employee_data.info()
 
 plt.figure()

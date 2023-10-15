@@ -14,7 +14,7 @@
 
 
 # 1 - import the data in R
-insurance_data <- read.csv("../../../data/live_class/Data Set for Insurance Claims.csv", header = TRUE)
+insurance_data <- read.csv("../../../data/eda/live_class/Data Set for Insurance Claims.csv", header = TRUE)
 
 
 # 2 - check the dimensions of the dataset

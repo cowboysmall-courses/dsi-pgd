@@ -1,8 +1,8 @@
 
 library(data.table)
 
-salary_data <- fread("../../../data/data_management/sal_data.csv")
-bonus_data <- fread("../../../data/data_management/bonus_data.csv")
+salary_data <- fread("../../../data/eda/data_management/sal_data.csv")
+bonus_data <- fread("../../../data/eda/data_management/bonus_data.csv")
 
 
 setkey(salary_data, Employee_ID)

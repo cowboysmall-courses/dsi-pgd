@@ -1,73 +1,54 @@
 
-library(ggplot2)
+library(tidyverse)
 
 
-
-# 1
-demo_data <- read.csv("../../../data/live_class/TelecomData_CustDemo.csv", header = TRUE)
-weekly_data <- read.csv("../../../data/live_class/TelecomData_WeeklyData.csv", header = TRUE)
+emp_data <- read.csv("../../../data/eda/live_class/EMPLOYEE\ ENGAGEMENT\ DATA.csv", header = TRUE)
 
 
-head(demo_data)
-head(weekly_data)
+head(emp_data)
+dim(emp_data)
 
 
-tx_data <- aggregate(Calls ~ CustID, data = weekly_data, FUN = sum)
-head(tx_data)
+boxplot(emp_data$EESCORE)
 
 
-work_data <- merge(demo_data, tx_data, by = ('CustID'), all = TRUE)
-head(work_data)
+ggplot(emp_data, aes(y = EESCORE)) +
+  geom_boxplot(fill = "skyblue") +
+  labs(title = "Boxplot of EESCORE Summary Statistics", y = "EESCORE")
 
 
-work_data$age_group <- cut(work_data$Age, breaks = c(0, 30, 45, Inf), labels = c("18-30", "30-45", ">45"))
-head(work_data)
+ggplot(emp_data, aes(x = GENDER, y = EESCORE)) +
+  geom_boxplot(fill = "skyblue") +
+  labs(title = "Boxplot of EESCORE Summary Statistics by GENDER", x = "GENDER", y = "EESCORE")
 
 
-ggplot(work_data, aes(x = age_group)) + geom_bar()
+ggplot(emp_data, aes(x = DEPT, y = EESCORE)) +
+  geom_boxplot(aes(fill = GENDER)) +
+  labs(title = "Boxplot of EESCORE Summary Statistics by GENDER & DEPT", x = "DEPT", y = "EESCORE")
 
 
-
-ggplot(work_data, aes(x = age_group, y = Calls)) + 
-  geom_bar(stat = "identity", fill = "orange") + 
-  labs(x = "Age Groups", y = "Total Calls", title = "Bar Chart") +
-  coord_flip()
+hist(emp_data$EESCORE, main = "Overall Distribution of EESCORE")
 
 
-ggplot(work_data, aes(x = age_group)) + 
-  geom_bar(aes(fill = Gender)) + 
-  labs(x = "Gender", y = "No. of Customers", title = "Stacked Bar Chart")
+mean_GD  <- aggregate(EESCORE ~ GENDER + DEPT, data = emp_data, FUN = mean)
+ggplot(mean_GD, aes(GENDER, DEPT, fill = EESCORE)) +
+  geom_tile() +
+  geom_text(aes(label = round(EESCORE, 2)), vjust = 1) +
+  scale_fill_gradient(low = "lightgreen", high = "darkgreen") +
+  labs(title = "")
 
 
-ggplot(work_data, aes(x = age_group)) + 
-  geom_bar(aes(fill = Gender), position = "dodge") + 
-  labs(x = "Gender", y = "No. of Customers", title = "Multiple Bar Chart")
+plot(emp_data$EESCORE, emp_data$EXP)
 
 
-ggplot(work_data, aes(x = "", y = Calls)) + 
-  geom_boxplot() + 
-  labs(y = "Total Calls", title = "Box Plot")
+ggplot(emp_data, aes(x = EXP, y = EESCORE)) + geom_point() + geom_smooth()
 
 
-ggplot(work_data, aes(x = age_group, y = Calls)) + 
-  geom_boxplot() + 
-  labs(x = "Age Group", y = "Total Calls", title = "Box Plot")
+qplot(EXP, EESCORE, data = emp_data, color = GENDER)
 
 
-ggplot(work_data, aes(x = age_group, y = Calls)) + 
-  geom_boxplot(fill = 5, outlier.color = "blue", outlier.size = 2.5) + 
-  labs(x = "Age Group", y = "Total Calls", title = "Box Plot")
+median_FB <- emp_data %>% group_by(DEPT) %>% summarise(FEEDBACK = median(FEEDBACK))
+ggplot(median_FB, aes(x = DEPT, y = FEEDBACK)) + geom_bar(stat = "identity", fill = "skyblue")
 
 
-ggplot(work_data, aes(x = age_group, y = Calls)) + 
-  geom_boxplot(aes(fill = Gender)) + 
-  labs(x = "Age Group", y = "Total Calls", title = "Box Plot")
-
-
-ggplot(work_data, aes(x = Calls)) + 
-  geom_histogram(binwidth = 40, fill = "maroon") + 
-  labs(x = "Total Calls", y = "No. of Customers", title = "Customer Usage")
-
-
-
-
+ggplot(median_FB, aes(x = DEPT, y = FEEDBACK)) + geom_col(fill = "skyblue")

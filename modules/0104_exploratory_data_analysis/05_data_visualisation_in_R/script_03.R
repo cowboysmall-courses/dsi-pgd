@@ -1,5 +1,5 @@
 
-jobs_data <- read.csv("../../../data/data_visualisation/JOB\ PROFICIENCY\ DATA.csv", header = TRUE)
+jobs_data <- read.csv("../../../data/eda/data_visualisation/JOB\ PROFICIENCY\ DATA.csv", header = TRUE)
 attach(jobs_data)
 head(jobs_data)
 

@@ -9,7 +9,7 @@ Created on Mon Oct  2 15:49:23 2023
 
 import pandas as pd
 
-salary_data = pd.read_csv("../../../data/data_management/basic_salary.csv")
+salary_data = pd.read_csv("../../../data/eda/data_management/basic_salary.csv")
 
 salary_data.loc[4:9]
 salary_data.loc[[0, 2, 4]]

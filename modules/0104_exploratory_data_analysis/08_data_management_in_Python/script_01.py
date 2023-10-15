@@ -9,7 +9,7 @@ Created on Sun Oct  1 15:11:40 2023
 
 import pandas as pd
 
-salary_data = pd.read_csv("../../../data/data_management/basic_salary.csv")
+salary_data = pd.read_csv("../../../data/eda/data_management/basic_salary.csv")
 
 salary_data.shape
 salary_data.columns

@@ -13,7 +13,7 @@ import seaborn as sns
 import calendar
 
 
-temp_data = pd.read_csv("../../../data/data_visualisation/Average Temperatures in NY.csv")
+temp_data = pd.read_csv("../../../data/eda/data_visualisation/Average Temperatures in NY.csv")
 temp_data.info()
 
 

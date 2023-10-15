@@ -17,7 +17,7 @@ import pandas as pd
 
 
 # 1 - Import Premiums data and name it as Premium.
-Premium = pd.read_csv("../../../data/exploratory_data_analysis_assignment/Premiums.csv")
+Premium = pd.read_csv("../../../data/eda/assignment/Premiums.csv")
 
 
 
