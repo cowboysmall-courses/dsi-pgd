@@ -4,8 +4,8 @@ library(ggplot2)
 
 
 # 1
-demo_data <- read.csv("../../../data/live_class/TelecomData_CustDemo.csv", header = TRUE)
-weekly_data <- read.csv("../../../data/live_class/TelecomData_WeeklyData.csv", header = TRUE)
+demo_data <- read.csv("../../../data/eda/live_class/TelecomData_CustDemo.csv", header = TRUE)
+weekly_data <- read.csv("../../../data/eda/live_class/TelecomData_WeeklyData.csv", header = TRUE)
 
 
 head(demo_data)
