@@ -2,8 +2,8 @@
 # BACKGROUND:
 #   In a randomized control trial, 32 patients were divided into
 #   two groups: A and B. Group A received test drug whereas group
-#   B received placebo. The variable of interest was ‘Change in
-#   pain level’ measured by visual analogue scale (VAS)’ before
+#   B received placebo. The variable of interest was 'Change in
+#   pain level' measured by visual analogue scale (VAS) before
 #   treatment and after 3 days of treatment.
 
 
