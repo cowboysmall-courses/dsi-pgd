@@ -140,9 +140,6 @@ lillie.test(pain_vas_B$VAS_after)
 # as p-value > 0.05, we fail to reject the null hypothesis
 # that the data was drawn from a normal distribution
 
-# there is some ambiguity - the Shapiro-Wilk test and the
-# Kolmogorov-Smirnov do not agree - the latter
-
 
 
 
