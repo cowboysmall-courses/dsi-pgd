@@ -5,28 +5,131 @@ date: "`r Sys.Date()`"
 output: 
   pdf_document:
     toc: true
-    number_sections: true
+    # number_sections: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-$$
-  f(k) = {n \choose k} p^{k} (1-p)^{n-k}
-$$
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+\newpage
+
+# Descriptive Statistics
+
+\vspace{1.5em}
+
+
+
+## Measures of Central Tendency and Variation
+
+\vspace{1.5em}
+
+
+
+### Sources and Types of Data
+
+\vspace{1.5em}
+
+
+
+#### Sources of Data
+
+1. Primary Data
+
+* the data is collected by the investigator himself / herself for a specific purpose
+* direct method of data collection
+* eg. data collected for research through questionnaires, interviews
+
+\vspace{1.5em}
+
+2. Secondary Data
+
+* the data is collected by someone else, but being used by the investigator for some other purpose
+* an indirect method of data collection
+* eg. census data being used to study the impact of education on income
+
+\vspace{1.5em}
+
+#### Types of Data
+
+1. Structured Data
+
+* information is stored with a high degree of organization
+* contains qualitative data, quantitative data, or a mixture of both
+* eg. data arranged in an excel file, in rows and columns
+
+\vspace{1.5em}
+
+2. Unstructured Data
+
+* information that either does not have a pre-defined data model and / or is not organized in a pre-defined manner
+* eq. emails, tweets, blogs, etc.
+
+\vspace{1.5em}
+
+### Measurement Scales
+
+1. Nominal Scale
+
+* the placing of data into categories without any order or structure
+* no numerical relationship between categories - even if numbers are used for representation
+* eg. gender, nationality, language, region, etc.
+
+\vspace{1.5em}
+
+2. Ordinal Scale
+
+* the placing of data into categories such that the order of values is meaningful, but relative degree of difference is not known
+* eg. ranking the features of a product on a scale of 1 to 5
+* the Likert scale - psychometric scale commonly used in questionnaires
+
+
+| Highly Satisfied | Dissatisfied | Neutral      | Satisfied    | Highly Satisfied | 
+|------------------|--------------|--------------|--------------|------------------|
+|        1         |       2      |      3       |       4      |         5        |
+
+\vspace{1.5em}
+
+3. Interval Scale
+
+* numeric scale in which the order as well as the relative difference between values is known
+* no "true zero"
+* eg. temperature can be below $0^\circ C$ 
+
+\vspace{1.5em}
+
+4. Ratio Scale
+
+* numeric scale with an absolute "zero"
+* addition, subtraction, multiplication, and division are all valid operations
+* eg. height, weight age, etc. - always measured from $0$ to a maximum value
+
+
+
+
+### Measures of Central Tendency
+
+a.k.a. Measures of Central Location
+
+* a single value that describes a set of data by identifying the central position within that set of data
+
+
+
+
+
+\newpage
 
 ```{r cars}
 summary(cars)
 ```
 
-## Including Plots
+## Beyond Mean and Variance
+
+
+
 
 You can also embed plots, for example:
 
