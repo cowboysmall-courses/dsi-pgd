@@ -116,7 +116,26 @@ a.k.a. Measures of Central Location
 
 * a single value that describes a set of data by identifying the central position within that set of data
 
+The most commonly used measures of central tendency are: 
 
+
+* Mean
+  * arithmetic mean, commonly known as average
+  * sum of all values divided by the number of values 
+
+
+* Median
+  * arrange N data elements in order
+  * if N is odd take the middle value
+  * if N is even take the average of the two middle values 
+
+
+* Mode
+  * the most frequently occuring value in a data set 
+
+
+The mean, median, and mode are all valid measures of central tendency, but under different conditions, some 
+measures are more appropriate than others. 
 
 
 
