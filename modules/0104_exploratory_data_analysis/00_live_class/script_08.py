@@ -37,39 +37,21 @@ sns.boxplot(x = 'Group', y = 'VAS_before', data = vas_data)
 
 plt.xlabel('Group')
 plt.ylabel('VAS_before')
-plt.title('Change by Group')
+plt.title('VAS_before by Group')
 
 plt.show()
-
-
-# vas_data_A = vas_data[vas_data['Group'] == 'A']
-# vas_data_B = vas_data[vas_data['Group'] == 'B']
-
-# plt.figure(figsize = (8, 6))
-
-# plt.subplot(1, 2, 1)
-# sns.boxplot(x = 'Group', y = 'VAS_before', data = vas_data_A)
-# plt.title('VAS_before for Group A')
-
-# plt.subplot(1, 2, 2)
-# sns.boxplot(x = 'Group', y = 'VAS_before', data = vas_data_B)
-# plt.title('VAS_before for Group B')
-
-# plt.tight_layout()
-
-# plt.show()
 
 
 
 
 # 3 - summarise VAS_before by treatment group using appropriate measure of central tendency
-vas_data_s = vas_data.groupby('Group')['VAS_before'].agg(['count', 'mean', 'median', 'std', 'var'])
-vas_data_s = vas_data_s.rename(columns = {'count': 'Count', 'mean': 'Mean', 'median': 'Median', 'std': 'Standard Deviation', 'var': 'Variance'})
-
+vas_data_s = vas_data.groupby('Group')['VAS_before'].agg(['count', 'mean', 'median', 'std'])
+vas_data_s = vas_data_s.rename(columns = {'count': 'Count', 'mean': 'Mean', 'median': 'Median', 'std': 'Std Dev'})
 vas_data_s.round(2)
 
 # vas_data_s = vas_data.groupby('Group')['VAS_before'].describe()[['count', 'mean', '50%', 'std']]
-# vas_data_s = 
+# vas_data_s = vas_data_s.rename(columns = {'count': 'Count', 'mean': 'Mean', '50%': 'Median', 'std': 'Std Dev'})
+# vas_data_s.round(2)
 
 
 
