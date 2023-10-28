@@ -127,7 +127,7 @@ bank_data_summary
 bank_data_summary = bank_data_summary.reset_index()
 bank_data_summary
 
-bank_data_summary = bank_data_summary.rename(columns = {'count': 'Count','mean': 'Mean','median': 'Median'})
+bank_data_summary = bank_data_summary.rename(columns = {'count': 'Count', 'mean': 'Mean', 'median': 'Median'})
 bank_data_summary
 
 
