@@ -32,7 +32,9 @@ vas_data.head(n = 6)
 # 2 - visualise baseline VAS score (VAS_before) by treatment group
 plt.figure(figsize = (8, 6))
 
-sns.set_theme(style = 'whitegrid')
+sns.set_style("darkgrid")
+sns.set_context("paper")
+
 sns.boxplot(x = 'Group', y = 'VAS_before', data = vas_data)
 
 plt.xlabel('Group')
@@ -66,7 +68,9 @@ vas_data.head()
 # 5 - visualise the change by group
 plt.figure(figsize = (8, 6))
 
-sns.set_theme(style = 'whitegrid')
+sns.set_style("darkgrid")
+sns.set_context("paper")
+
 sns.boxplot(x = 'Group', y = 'Change', data = vas_data)
 
 plt.xlabel('Group')
@@ -93,14 +97,16 @@ vas_data_c
 
 
 # 8 - visualise the relationship between Change and VAS_before
-plt.figure()
+plt.figure(figsize = (8, 6))
 
-# sns.scatterplot('Change', 'VAS_before', data = vas_data)
-sns.regplot('Change', 'VAS_before', data = vas_data)
+sns.set_style("darkgrid")
+sns.set_context("paper")
+
+# sns.scatterplot(x = 'Change', y = 'VAS_before', data = vas_data, s = 5)
+sns.regplot(x = 'Change', y = 'VAS_before', data = vas_data, scatter_kws = {'s': 5})
 
 plt.xlabel('Change')
 plt.ylabel('VAS_before')
-
 plt.title('Relationship between Change and VAS_before')
 
 plt.show()
