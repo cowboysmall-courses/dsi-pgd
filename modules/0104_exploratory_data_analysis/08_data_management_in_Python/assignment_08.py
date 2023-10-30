@@ -142,6 +142,14 @@ Premium_sub.to_excel("./Premiums_sub.xlsx")
 
 
 
+
+
+
+
+
+
+
+
 # 9 - Import Premiums and Claims data and name it as Premium and Claim respectively.
 Premium = pd.read_csv("../../../data/exploratory_data_analysis_assignment/Premiums.csv")
 Claim = pd.read_csv("../../../data/exploratory_data_analysis_assignment/Claims.csv")
