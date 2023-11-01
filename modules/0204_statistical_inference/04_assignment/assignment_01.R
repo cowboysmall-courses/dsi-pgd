@@ -21,12 +21,81 @@ head(pain_vas)
 summary(pain_vas)
 dim(pain_vas)
 
+
+
+
+# Check for normality of the VAS_before data
+qqnorm(pain_vas$VAS_before, col = "cadetblue")
+# the Q-Q plot looks linear, and hence would indicate
+# the data is drawn from a normal distribution
+
+shapiro.test(pain_vas$VAS_before)
+
+#         Shapiro-Wilk normality test
+# 
+# data:  pain_vas$VAS_before
+# W = 0.97941, p-value = 0.7822
+
+# as p-value > 0.05, we fail to reject the null hypothesis
+# that the data was drawn from a normal distribution
+
+lillie.test(pain_vas$VAS_before)
+
+#         Lilliefors (Kolmogorov-Smirnov) normality test
+# 
+# data:  pain_vas$VAS_before
+# D = 0.072356, p-value = 0.94
+
+# as p-value > 0.05, we fail to reject the null hypothesis
+# that the data was drawn from a normal distribution
+
+
+
+
+# Check for normality of the VAS_after data
+qqnorm(pain_vas$VAS_after, col = "cadetblue")
+# the Q-Q plot does not look perfectly linear, and hence
+# would indicate the data is not drawn from a normal
+# distribution
+
+shapiro.test(pain_vas$VAS_after)
+
+#         Shapiro-Wilk normality test
+# 
+# data:  pain_vas$VAS_after
+# W = 0.91045, p-value = 0.01155
+
+# as p-value < 0.05, we reject the null hypothesis
+# that the data was drawn from a normal distribution
+
+lillie.test(pain_vas$VAS_after)
+
+#         Lilliefors (Kolmogorov-Smirnov) normality test
+# 
+# data:  pain_vas$VAS_after
+# D = 0.14681, p-value = 0.07728
+
+# as p-value > 0.05, we fail to reject the null hypothesis
+# that the data was drawn from a normal distribution
+
+
+# there is some ambiguity - the Shapiro-Wilk test and the
+# Kolmogorov-Smirnov do not agree - the latter is usually
+# appropriate for large samples so I would tend to believe
+# that the former result is more reliable. Does this mean 
+# that we should not proceed?
+
+
+
+
 # Subset the data in groups A and B
 pain_vas_A = subset(pain_vas, Group == "A")
 head(pain_vas_A)
 
 pain_vas_B = subset(pain_vas, Group == "B")
 head(pain_vas_B)
+
+
 
 
 # Check group A for normality
@@ -86,6 +155,7 @@ lillie.test(pain_vas_A$VAS_after)
 # appropriate for large samples so I would tend to believe
 # that the former result is more reliable. Does this mean 
 # that we should not proceed?
+
 
 
 
