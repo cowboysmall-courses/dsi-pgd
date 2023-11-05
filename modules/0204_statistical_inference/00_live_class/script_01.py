@@ -28,7 +28,18 @@ sp.stats.shapiro(data.csi)
 sp.stats.shapiro(data.billamt)
 
 
-ttest_1samp(data.csi, popmean = 40, alternative = 'two-sided')
+# t = sp.stats.shapiro(data.csi)
+# t.statistic
+# t.pvalue
+
+# t = sp.stats.shapiro(data.billamt)
+# t.statistic
+# t.pvalue
+
+
+
+# ttest_1samp(data.csi, popmean = 40, alternative = 'two-sided')
+# 'two-sided' is the default alternative
 ttest_1samp(data.csi, popmean = 40)
 
 
