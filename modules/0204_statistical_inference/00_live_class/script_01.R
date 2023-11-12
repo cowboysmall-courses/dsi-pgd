@@ -17,4 +17,3 @@ lillie.test(data$Time)
 # one sample t-test
 t.test(data$Time, alternative = "greater", mu = 90)
 # as p-value < 0.05, we reject the null hypothesis
-
