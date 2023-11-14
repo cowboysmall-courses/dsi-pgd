@@ -31,11 +31,9 @@ data.describe(include = 'all')
 
 
 stats.shapiro(data.Growth)
-
 # ShapiroResult(statistic=0.926858127117157, pvalue=0.0829453244805336)
 
 sm.stats.diagnostic.lilliefors(data.Growth)
-
 # (0.13331963074112557, 0.33251566968178153)
 
 # in both tests the p-value > 0.05, and hence 

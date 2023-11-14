@@ -81,7 +81,6 @@ kruskal.test(satlevel ~ dept, data = ess_data)
 #     midlevel (greater than 2 years) and Junior (less than 
 #     or equal to 2 years). 
 ess_data$explevel <- ifelse(ess_data$exp <= 2, "junior", "midlevel")
-
 head(ess_data)
 
 CrossTable(ess_data$satlevel, ess_data$explevel, chisq = TRUE)

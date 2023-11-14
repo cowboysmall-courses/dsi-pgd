@@ -8,6 +8,10 @@
 #   indicates more pain)
 
 
+library(ggplot2)
+
+
+
 
 
 # 1 - Import NPRS DATA and name it as pain_nprs. Find 
@@ -39,7 +43,7 @@ wilcox.test(pain_nprs_A$NPRS_before, pain_nprs_A$NPRS_after, paired = TRUE, alte
 #         Wilcoxon signed rank test with continuity correction
 # 
 # data:  pain_nprs_A$NPRS_before and pain_nprs_A$NPRS_after
-# V = 105, p-value = 0.005199
+# V = 105, p-value = 0.0004507
 # alternative hypothesis: true location shift is greater than 0
 
 # as the p-value < 0.05 we reject the null hypothesis 
@@ -68,7 +72,7 @@ wilcox.test(pain_nprs_B$NPRS_before, pain_nprs_B$NPRS_after, paired = TRUE, alte
 
 # as the p-value < 0.05 we reject the null hypothesis 
 # that post treatment NPRS score is the same as before
-# treatment NPRS score for Group A
+# treatment NPRS score for Group B
 
 
 
@@ -96,10 +100,5 @@ wilcox.test(Delta ~ Group, data = pain_nprs)
 # 5 - Present change in NPRS for each group using 
 #     box-whisker plot.
 ggplot(pain_nprs, aes(x = Group, y = Delta)) + 
-  geom_boxplot(fill = "darkorange", outlier.color = "midnightblue", outlier.size = 2.5) +
-  labs(x = "Group", y = "Change in NPRS", title = "Box Plot")
-
-# Remove the extreme outlier at index 3
-ggplot(pain_nprs[-3, ], aes(x = Group, y = Delta)) + 
   geom_boxplot(fill = "darkorange", outlier.color = "midnightblue", outlier.size = 2.5) +
   labs(x = "Group", y = "Change in NPRS", title = "Box Plot")

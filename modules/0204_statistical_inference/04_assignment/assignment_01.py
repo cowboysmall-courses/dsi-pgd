@@ -32,27 +32,21 @@ data.info()
 data.describe(include = 'all')
 
 
-
 fig = sm.qqplot(data.VAS_before, line = '45', fit = True)
 
 stats.shapiro(data.VAS_before)
-
 # ShapiroResult(statistic=0.9794087409973145, pvalue=0.7822298407554626)
 
 sm.stats.diagnostic.lilliefors(data.VAS_before)
-
 # (0.07235615314781019, 0.9431115681520438)
-
 
 
 fig = sm.qqplot(data.VAS_after, line = '45', fit = True)
 
 stats.shapiro(data.VAS_after)
-
 # ShapiroResult(statistic=0.9104496240615845, pvalue=0.011548812501132488)
 
 sm.stats.diagnostic.lilliefors(data.VAS_after)
-
 # (0.14681083293269181, 0.0782606763533638)
 
 
@@ -73,7 +67,6 @@ sm.stats.diagnostic.lilliefors(data.VAS_after)
 data_A = data[data['Group'] == 'A']
 
 stats.ttest_rel(data_A.VAS_before, data_A.VAS_after, alternative = 'greater')
-
 # TtestResult(statistic=12.020636761607365, pvalue=2.111193574879611e-09, df=15)
 
 # as p-value < 0.05, we reject the null hypothesis
@@ -88,7 +81,6 @@ stats.ttest_rel(data_A.VAS_before, data_A.VAS_after, alternative = 'greater')
 data_B = data[data['Group'] == 'B']
 
 stats.ttest_rel(data_B.VAS_before, data_B.VAS_after, alternative = 'greater')
-
 # TtestResult(statistic=2.425215564365917, pvalue=0.014194417664315588, df=15)
 
 # as p-value < 0.05, we reject the null hypothesis 
@@ -101,12 +93,12 @@ stats.ttest_rel(data_B.VAS_before, data_B.VAS_after, alternative = 'greater')
 # 4 - Is the average change in pain level for group 
 #     ‘A’ significantly more than group ‘B’? 
 data['Delta'] = data.VAS_before - data.VAS_after
+data.head()
 
 data_A = data[data['Group'] == 'A']
 data_B = data[data['Group'] == 'B']
 
 stats.ttest_ind(data_A['Delta'], data_B['Delta'], nan_policy = 'omit', equal_var = False, alternative = 'greater')
-
 # TtestResult(statistic=11.120642756667216, pvalue=1.90301603209263e-09, df=16.7283983596526)
 
 # as p-value < 0.05, we reject the null hypothesis 
