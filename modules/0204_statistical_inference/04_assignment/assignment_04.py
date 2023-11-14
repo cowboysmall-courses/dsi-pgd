@@ -16,11 +16,8 @@ Created on Sun Nov 12 14:57:13 2023
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 from scipy import stats
-from statsmodels.formula.api import ols
 
 
 
