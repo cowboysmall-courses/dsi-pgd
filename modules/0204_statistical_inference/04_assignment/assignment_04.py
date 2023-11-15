@@ -40,8 +40,8 @@ stats.shapiro(data.satlevel)
 # as p-value < 0.05, we reject the null hypothesis
 # that the data was drawn from a normal distribution
 
-sm.stats.diagnostic.lilliefors(data.satlevel)
-# (0.24072017102693422, 0.0009999999999998899)
+sm.stats.diagnostic.lilliefors(data.satlevel, pvalmethod = 'approx')
+# (0.24072017102693422, 4.681597733242897e-08)
 
 # as p-value < 0.05, we reject the null hypothesis
 # that the data was drawn from a normal distribution

@@ -46,8 +46,8 @@ fig = sm.qqplot(data.VAS_after, line = '45', fit = True)
 stats.shapiro(data.VAS_after)
 # ShapiroResult(statistic=0.9104496240615845, pvalue=0.011548812501132488)
 
-sm.stats.diagnostic.lilliefors(data.VAS_after)
-# (0.14681083293269181, 0.0782606763533638)
+sm.stats.diagnostic.lilliefors(data.VAS_after, pvalmethod = 'approx')
+# (0.14681083293269181, 0.07728073958884116)
 
 
 
