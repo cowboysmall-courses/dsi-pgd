@@ -5,10 +5,10 @@ Created on Sun Nov 12 14:57:13 2023
 
 @author: jerry
 
- BACKGROUND: 
-   The survey is conducted within a large organization to 
-   assess satisfaction level of employees in various 
-   functions. The satisfaction level is measured on 1-5 
+ BACKGROUND:
+   The survey is conducted within a large organization to
+   assess satisfaction level of employees in various
+   functions. The satisfaction level is measured on 1-5
    scale where higher a number indicates more satisfaction.
 
 """
@@ -22,7 +22,7 @@ from scipy import stats
 
 
 
-# 1 - Import EMPLOYEE SATISFACTION SURVEY data. Check for 
+# 1 - Import EMPLOYEE SATISFACTION SURVEY data. Check for
 #     normality of the data.
 data = pd.read_csv("../../../data/si/assignment/EMPLOYEE SATISFACTION SURVEY.csv")
 
@@ -49,8 +49,8 @@ sm.stats.diagnostic.lilliefors(data.satlevel)
 
 
 
-# 2 - Find median satisfaction level for 'IT', 'Sales' and 
-#     'Finance'. Test whether the satisfaction level among 
+# 2 - Find median satisfaction level for 'IT', 'Sales' and
+#     'Finance'. Test whether the satisfaction level among
 #     three roles differ significantly.
 data_I = data[data['dept'] == 'IT']
 data_S = data[data['dept'] == 'SALES']
@@ -74,17 +74,17 @@ data.groupby('dept')['satlevel'].median()
 stats.kruskal(data_I.satlevel, data_S.satlevel, data_F.satlevel)
 # KruskalResult(statistic=25.51305974929314, pvalue=2.8834303621370563e-06)
 
-# since p < 0.05 we reject the null hypothesis that there is 
-# no significant difference between satisfaction levels and 
+# since p < 0.05 we reject the null hypothesis that there is
+# no significant difference between satisfaction levels and
 # department
 
 
 
 
-# 3 - Is there any association between satisfaction level 
-#     and experience level? Experience level is defined as 
-#     midlevel (greater than 2 years) and Junior (less than 
-#     or equal to 2 years). 
+# 3 - Is there any association between satisfaction level
+#     and experience level? Experience level is defined as
+#     midlevel (greater than 2 years) and Junior (less than
+#     or equal to 2 years).
 data['explevel'] = np.where(data['exp'] <= 2, 'junior', 'midlevel')
 data.head()
 
@@ -96,14 +96,14 @@ stats.chi2_contingency(table)
 #        [ 6.19230769,  7.80769231],
 #        [ 3.53846154,  4.46153846]]))
 
-# since p > 0.05 we fail to reject the null hypothesis that 
-# there is no association between satisfaction levels and 
-# experience level 
+# since p > 0.05 we fail to reject the null hypothesis that
+# there is no association between satisfaction levels and
+# experience level
 
 
 
 
-# 4 - Find number of employees with satisfaction score 
+# 4 - Find number of employees with satisfaction score
 #     greater than 3 in each department
 data_I[data_I.satlevel > 3].shape[0]
 # 4
@@ -118,4 +118,3 @@ data[data.satlevel > 3].shape[0]
 # alternative approach
 data[data.satlevel > 3].groupby('dept')['satlevel'].agg(['count'])
 data[data.satlevel > 3].groupby('dept')['satlevel'].count()
-
