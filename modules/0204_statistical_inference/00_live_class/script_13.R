@@ -1,8 +1,5 @@
 
-library(e1071)
 library(nortest)
-library(dplyr)
-library(ggplot2)
 library(gmodels)
 
 
