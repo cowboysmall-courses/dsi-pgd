@@ -14,6 +14,9 @@ Created on Sun Nov 12 14:55:57 2023
 
 """
 
+
+# %% 0 - Import libraries.
+
 import pandas as pd
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
@@ -24,7 +27,7 @@ from scipy import stats
 
 
 
-# 1 - Import VAS DATA and name it as pain_vas. Check for normality of the data.
+# %% 1 - Import VAS DATA and name it as pain_vas. Check for normality of the data.
 data = pd.read_csv("../../../data/si/assignment/VAS DATA.csv")
 
 data.head()
@@ -62,7 +65,7 @@ sm.stats.diagnostic.lilliefors(data.VAS_after, pvalmethod = 'approx')
 
 
 
-# 2 - Is post treatment VAS score significantly less as
+# %% 2 - Is post treatment VAS score significantly less as
 #     compared to ‘before treatment’ VAS score for Group A?
 data_A = data[data['Group'] == 'A']
 
@@ -76,7 +79,7 @@ stats.ttest_rel(data_A.VAS_before, data_A.VAS_after, alternative = 'greater')
 
 
 
-# 3 - Is post treatment VAS score significantly less as
+# %% 3 - Is post treatment VAS score significantly less as
 #     compared to ‘before treatment’ VAS score for Group B?
 data_B = data[data['Group'] == 'B']
 
@@ -90,7 +93,7 @@ stats.ttest_rel(data_B.VAS_before, data_B.VAS_after, alternative = 'greater')
 
 
 
-# 4 - Is the average change in pain level for group
+# %% 4 - Is the average change in pain level for group
 #     ‘A’ significantly more than group ‘B’?
 data['Delta'] = data.VAS_before - data.VAS_after
 data.head()
@@ -108,7 +111,7 @@ stats.ttest_ind(data_A['Delta'], data_B['Delta'], nan_policy = 'omit', equal_var
 
 
 
-# 5 - Present change in pain level for each group
+# %% 5 - Present change in pain level for each group
 #     using box-whisker plot.
 plt.figure(figsize = (8, 6))
 

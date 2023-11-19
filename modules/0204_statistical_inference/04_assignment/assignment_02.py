@@ -13,6 +13,9 @@ Created on Sun Nov 12 14:56:48 2023
 
 """
 
+
+# %% 0 - import libraries.
+
 import pandas as pd
 import statsmodels.api as sm
 
@@ -22,7 +25,7 @@ from statsmodels.formula.api import ols
 
 
 
-# 0 - read the data and test for normality
+# %% 0 - read the data and test for normality
 data = pd.read_csv("./assignment_02.csv")
 
 data.head()
@@ -43,7 +46,7 @@ sm.stats.diagnostic.lilliefors(data.Growth, pvalmethod = 'approx')
 
 
 
-# 1 - test the effect of campaign on growth
+# %% 1 - test the effect of campaign on growth
 model = ols('Growth ~ C(Campaign)', data = data).fit()
 sm.stats.anova_lm(model)
 
@@ -59,7 +62,7 @@ sm.stats.anova_lm(model)
 
 
 
-# 2 - test the effect of zone on growth
+# %% 2 - test the effect of zone on growth
 model = ols('Growth ~ C(Zone)', data = data).fit()
 sm.stats.anova_lm(model)
 
@@ -78,7 +81,7 @@ sm.stats.anova_lm(model)
 # with campaign
 
 
-# 3 - test the effect of the interaction of campaign and zone on growth
+# %% 3 - test the effect of the interaction of campaign and zone on growth
 model = ols('Growth ~ C(Campaign) + C(Zone) + C(Campaign):C(Zone)', data = data).fit()
 sm.stats.anova_lm(model)
 

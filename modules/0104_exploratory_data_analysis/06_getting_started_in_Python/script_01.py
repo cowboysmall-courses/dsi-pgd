@@ -8,7 +8,7 @@ Created on Sat Sep 30 09:46:34 2023
 
 
 
-# 1 - basic variables / references
+# %% 1 - basic variables / references
 
 x = 20
 x
@@ -21,7 +21,7 @@ x * y
 
 
 
-# 2 - strings and numbers
+# %% 2 - strings and numbers
 
 print("Welcome to Ask Analytics")
 
@@ -36,7 +36,7 @@ print("He is d years old" % x)
 
 
 
-# 3 types
+# %% 3 types
 
 x = 10
 x
@@ -58,7 +58,7 @@ type(y)
 
 
 
-# 4 - strings and slices
+# %% 4 - strings and slices
 
 x = 'welcome to the Python world'
 x
@@ -85,7 +85,7 @@ type(y)
 
 
 
-# 5 - lists
+# %% 5 - lists
 
 list1 = ['python', 1998, 'list', 12]
 list1
@@ -128,7 +128,7 @@ list2
 
 
 
-# 6 - tuples
+# %% 6 - tuples
 
 tuple1 = ('math', 'physics', 'chemistry')
 tuple1
@@ -146,7 +146,7 @@ del tuple1
 
 
 
-# 7 - dictionaries
+# %% 7 - dictionaries
 
 dict1 = {'name': 'Ruchi', 'age': '18', 'class': 'Twelfth'}
 dict1

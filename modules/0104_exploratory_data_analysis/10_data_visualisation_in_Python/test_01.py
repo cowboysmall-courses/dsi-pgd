@@ -6,14 +6,19 @@ Created on Thu Oct  5 15:50:33 2023
 @author: jerry
 """
 
+
+# %%
+
 import plotly.express as px
 # import plotly.io as pio
 
 # pio.renderers.default = "browser"
 
 
-df = px.data.gapminder()
 
+# %%
+
+df = px.data.gapminder()
 
 fig = px.scatter(
     df,

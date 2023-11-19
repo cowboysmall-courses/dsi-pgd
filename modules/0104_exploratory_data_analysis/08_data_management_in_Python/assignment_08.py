@@ -12,22 +12,25 @@ EDA T8 Assignment
 """
 
 
+
+# %%
+
 import pandas as pd
 
 
 
-# 1 - Import Premiums data and name it as Premium.
+# %% 1 - Import Premiums data and name it as Premium.
 Premium = pd.read_csv("../../../data/eda/assignment/Premiums.csv")
 
 
 
-# 2 - Check number of rows, columns in the data.
+# %% 2 - Check number of rows, columns in the data.
 Premium.shape
 # (4744, 10)
 
 
 
-# 3 - Display first 10 rows and last 5 rows.
+# %% 3 - Display first 10 rows and last 5 rows.
 Premium.head(10)
 #          POLICY_NO PRODUCT   BRANCH_NAME  ... Premium  Sub_Plan Vintage_Period
 # 0  A-2007073196522  TRAVEL          Pune  ...   525.0    Silver             14
@@ -51,7 +54,7 @@ Premium.tail(5)
 
 
 
-# 4 - Describe (summarize) all variables.
+# %% 4 - Describe (summarize) all variables.
 Premium.info()
 # <class 'pandas.core.frame.DataFrame'>
 # RangeIndex: 4744 entries, 0 to 4743
@@ -73,7 +76,7 @@ Premium.info()
 
 
 
-# 5 - Display top 5 and bottom 5 policies in terms of premium amount.
+# %% 5 - Display top 5 and bottom 5 policies in terms of premium amount.
 Premium_srt = Premium.sort_values(by = ['Premium'], ascending = [0])
 Premium_srt.head()
 #             POLICY_NO PRODUCT  ...  Sub_Plan Vintage_Period
@@ -93,7 +96,7 @@ Premium_srt.tail()
 
 
 
-# 6 - Calculate the sum for variable ‘Sum_Assured’ by ‘Region’ variable.
+# %% 6 - Calculate the sum for variable ‘Sum_Assured’ by ‘Region’ variable.
 Premium.groupby('REGION')['Sum_Assured'].sum()
 # REGION
 # Andhra Pradesh I                8.136750e+08
@@ -119,7 +122,7 @@ Premium.groupby('REGION')['Sum_Assured'].sum()
 
 
 
-# 7 - Create a subset of policies of Asia Standard Plan with Sum_Assured < = 50,000. 
+# %% 7 - Create a subset of policies of Asia Standard Plan with Sum_Assured < = 50,000.
 #     Keep variables Policy_No, Zone_name, Plan and Sum_Assured in the subset data.
 Premium_sub = Premium.loc[(Premium.Plan == 'Asia Standard Plan') & (Premium.Sum_Assured <= 50000), ['POLICY_NO', 'ZONE_NAME', 'Plan', 'Sum_Assured']]
 Premium_sub.head(10)
@@ -137,7 +140,7 @@ Premium_sub.head(10)
 
 
 
-# 8 - Export the subsetted data into an xlsx file.
+# %% 8 - Export the subsetted data into an xlsx file.
 Premium_sub.to_excel("./Premiums_sub.xlsx")
 
 
@@ -150,13 +153,13 @@ Premium_sub.to_excel("./Premiums_sub.xlsx")
 
 
 
-# 9 - Import Premiums and Claims data and name it as Premium and Claim respectively.
+# %% 9 - Import Premiums and Claims data and name it as Premium and Claim respectively.
 Premium = pd.read_csv("../../../data/exploratory_data_analysis_assignment/Premiums.csv")
 Claim = pd.read_csv("../../../data/exploratory_data_analysis_assignment/Claims.csv")
 
 
 
-# 10 - Merge ‘Premium’ data set with ‘Claims’ data set.
+# %% 10 - Merge ‘Premium’ data set with ‘Claims’ data set.
 Premium_join = pd.merge(Premium, Claim, how = 'outer')
 Premium_join.info()
 # <class 'pandas.core.frame.DataFrame'>
@@ -181,7 +184,7 @@ Premium_join.info()
 
 
 
-# 11 - Create a subset of Policy No., Region and Sub plan of the policy holders 
+# %% 11 - Create a subset of Policy No., Region and Sub plan of the policy holders
 #      whose claim status is Yes.
 Premium_join_sub = Premium_join.loc[(Premium_join.Claim_Status == 'Yes'), ['POLICY_NO', 'REGION', 'Sub_Plan']]
 Premium_join_sub.head(10)
@@ -199,7 +202,7 @@ Premium_join_sub.head(10)
 
 
 
-# 12 - Create a subset of data for all the regions in South zone except Mumbai 
+# %% 12 - Create a subset of data for all the regions in South zone except Mumbai
 #      with claim status “No”. Keep only Policy No, Zone, Region, Premium and 
 #      Claim status in the subset and sort the subsetted data by Premium descending. 
 Premium_join_sub = Premium_join.loc[(Premium_join.ZONE_NAME == 'South') & (Premium_join.REGION != 'Mumbai I') & (Premium_join.REGION != 'Mumbai II') & (Premium_join.Claim_Status == 'No'), ['POLICY_NO', 'ZONE_NAME', 'REGION', 'Premium', 'Claim_Status']].sort_values(by = ['Premium'], ascending = [0])
@@ -218,7 +221,7 @@ Premium_join_sub.head(10)
 
 
 
-# 13 - Calculate average Premium amount by sub plan. 
+# %% 13 - Calculate average Premium amount by sub plan.
 Premium_join.groupby('Sub_Plan')['Premium'].mean()
 # Sub_Plan
 # Gold        1426.193425
@@ -228,7 +231,7 @@ Premium_join.groupby('Sub_Plan')['Premium'].mean()
 # Name: Premium, dtype: float64
 
 
-# 14 - Derive a new column named ‘Premium type’ with 3 categories - 
+# %% 14 - Derive a new column named ‘Premium type’ with 3 categories -
 #      Low (Premium <5000), Medium (Premium between 5000 and 10000) and 
 #      High (Premium >10000).
 Premium_labels = ['Low', 'Medium', 'High']

@@ -12,6 +12,9 @@ EDA T9 Assignment
 """
 
 
+
+# %%
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -19,7 +22,7 @@ import matplotlib.pyplot as plt
 
 
 
-# 1 - Import Premiums data.
+# %% 1 - Import Premiums data.
 Premium = pd.read_csv("../../../data/eda/assignment/Premiums.csv")
 
 Premium.head()
@@ -36,18 +39,18 @@ Premium.info()
 # <class 'pandas.core.frame.DataFrame'>
 # RangeIndex: 4744 entries, 0 to 4743
 # Data columns (total 10 columns):
-#  #   Column          Non-Null Count  Dtype  
-# ---  ------          --------------  -----  
-#  0   POLICY_NO       4744 non-null   object 
-#  1   PRODUCT         4744 non-null   object 
-#  2   BRANCH_NAME     4744 non-null   object 
-#  3   REGION          4744 non-null   object 
-#  4   ZONE_NAME       4744 non-null   object 
-#  5   Plan            4744 non-null   object 
+#  #   Column          Non-Null Count  Dtype
+# ---  ------          --------------  -----
+#  0   POLICY_NO       4744 non-null   object
+#  1   PRODUCT         4744 non-null   object
+#  2   BRANCH_NAME     4744 non-null   object
+#  3   REGION          4744 non-null   object
+#  4   ZONE_NAME       4744 non-null   object
+#  5   Plan            4744 non-null   object
 #  6   Sum_Assured     4744 non-null   float64
 #  7   Premium         4744 non-null   float64
-#  8   Sub_Plan        4744 non-null   object 
-#  9   Vintage_Period  4744 non-null   int64  
+#  8   Sub_Plan        4744 non-null   object
+#  9   Vintage_Period  4744 non-null   int64
 # dtypes: float64(2), int64(1), object(7)
 # memory usage: 370.8+ KB
 
@@ -70,19 +73,19 @@ Premium.describe(include = 'all')
 
 
 
-# 2 - Obtain the Mode(max count) for the count of policies available across each Zone.
+# %% 2 - Obtain the Mode(max count) for the count of policies available across each Zone.
 Premium['ZONE_NAME'].value_counts()
 # South    2634
 # North    2011
 # East       99
 # Name: ZONE_NAME, dtype: int64
-# 
+
 # The mode is 'South' with frequency / count 2634
 
 
 
 
-# 3 - Obtain box-whisker plots for Vintage period. Detect outliers if present.
+# %% 3 - Obtain box-whisker plots for Vintage period. Detect outliers if present.
 Premium['Vintage_Period'].plot.box(label = 'Vintage Period', title = 'Box Plot')
 
 Premium_Q1 = Premium['Vintage_Period'].quantile(0.25)
@@ -106,7 +109,7 @@ Premium_oup
 
 Premium_oup.count()
 # 569
-# 
+
 # 569 outliers in the upper range
 
 
@@ -116,25 +119,25 @@ Premium_odn
 
 Premium_odn.count()
 # 0
-# 
+
 # 0 outliers in the lower range
 
 
 
 
-# 4 - Find skewness and kurtosis of Premium amount by Zone
+# %% 4 - Find skewness and kurtosis of Premium amount by Zone
 Premium.groupby('ZONE_NAME')['Premium'].skew()
 Premium.groupby('ZONE_NAME')['Premium'].apply(pd.DataFrame.kurt)
 
 
 
 
-# 5 - Draw a scatter plot of Premium and Vintage period. Find the correlation coefficient between Premium and Vintage period and interpret the value.
+# %% 5 - Draw a scatter plot of Premium and Vintage period. Find the correlation coefficient between Premium and Vintage period and interpret the value.
 plt.scatter(Premium['Premium'], Premium['Vintage_Period'], color = 'red')
 plt.xlabel('Premium')
 plt.ylabel('Vintage Period')
 
 np.corrcoef(Premium['Premium'], Premium['Vintage_Period'])
-# 
+
 # The Correlation Coefficient of 0.36414866 is greater than zero, and hence implies a 
 # positive correlation, but the value is low, and hence would imply a low correlation.

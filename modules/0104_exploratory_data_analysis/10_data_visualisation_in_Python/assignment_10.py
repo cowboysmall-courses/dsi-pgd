@@ -18,7 +18,7 @@ import seaborn as sns
 
 
 
-# 1 - Import Premium and Claim data and merge both data sets into one data
+# %% 1 - Import Premium and Claim data and merge both data sets into one data
 Premium = pd.read_csv("../../../data/eda/assignment/Premiums.csv")
 Claim = pd.read_csv("../../../data/eda/assignment/Claims.csv")
 
@@ -46,7 +46,7 @@ Premium_join.info()
 
 
 
-# 2 - For each zone, obtain the mean Premium and plot a bar chart showing the mean Premium over zone
+# %% 2 - For each zone, obtain the mean Premium and plot a bar chart showing the mean Premium over zone
 Premium_means = Premium_join.groupby('ZONE_NAME')['Premium'].mean()
 Premium_means
 # ZONE_NAME
@@ -60,7 +60,7 @@ Premium_means.plot.bar(title = 'Bar Chart - Mean Premiums by Zone', xlabel = 'Zo
 
 
 
-# 3 - Obtain a stacked bar chart for all the Zones over Sub plans by the Premium amount
+# %% 3 - Obtain a stacked bar chart for all the Zones over Sub plans by the Premium amount
 Premium_pt = pd.pivot_table(Premium_join, index = ['Sub_Plan'], columns = ['ZONE_NAME'], values = ['Premium'], aggfunc = 'count')
 Premium_pt
 #           Premium            
@@ -76,7 +76,7 @@ Premium_pt.plot.bar(title = 'Stacked Bar Chart - Zone over Sub Plan', stacked = 
 
 
 
-# 4 - Obtain a heat map of Plan and Zone with respective average Premium
+# %% 4 - Obtain a heat map of Plan and Zone with respective average Premium
 Premium_hm1 = pd.pivot_table(Premium_join, index = ['Plan'], columns = ['ZONE_NAME'], values = ['Premium'])
 Premium_hm1.columns = Premium_join['ZONE_NAME'].unique()
 Premium_hm1 = Premium_hm1.reindex(Premium_join['Plan'].unique())
@@ -117,7 +117,7 @@ ax.set(title = 'Heatmap', xlabel = 'Plan', ylabel = 'Zone')
 
 
 
-# 5 - Obtain a pie chart for Premium amount across different sub plans
+# %% 5 - Obtain a pie chart for Premium amount across different sub plans
 Premium_cts = Premium_join.groupby('Sub_Plan')['Premium'].count()
 Premium_cts
 # Sub_Plan

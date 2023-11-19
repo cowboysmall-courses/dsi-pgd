@@ -7,15 +7,21 @@ Created on Fri Oct  6 15:54:17 2023
 """
 
 
+# %%
+
 import numpy as np
 import pandas as pd
 import seaborn as sns
 
 
 
+# %%
+
 telecom_data = pd.read_csv("../../../data/eda/data_visualisation/telecom.csv")
 
 
+
+# %%
 
 sns.set_theme(style="whitegrid")
 
@@ -35,6 +41,8 @@ g.set_axis_labels("Age Groups", "Calls")
 g.legend.set_title("")
 
 
+
+# %%
 
 sns.set_theme()
 

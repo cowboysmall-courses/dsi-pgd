@@ -8,10 +8,13 @@ Created on Sat Sep 30 12:39:10 2023
 
 
 
-# 1 - get started
+# %% 1 - get started
 
 import pandas as pd
 
+
+
+# %%
 
 s = pd.Series([8, 'data', 5.36, -23455788675342648, 'structures'])
 s

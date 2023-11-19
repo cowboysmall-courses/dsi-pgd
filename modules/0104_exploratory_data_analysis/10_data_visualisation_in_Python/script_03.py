@@ -7,16 +7,22 @@ Created on Thu Oct  5 13:58:53 2023
 """
 
 
+# %%
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 
 
+# %%
+
 employee_data = pd.read_csv("../../../data/eda/data_visualisation/JOB PROFICIENCY DATA.csv", index_col = 0)
 employee_data.info()
 
 
+
+# %%
 
 plt.figure()
 sns.lmplot('aptitude', 'job_prof', data = employee_data)
@@ -26,11 +32,15 @@ plt.ylabel('Job Proficiency')
 
 
 
+# %%
+
 plt.figure()
 sns.pairplot(employee_data)
 plt.title('Scatter Plot Matrix')
 
 
+
+# %%
 
 plt.figure()
 sns.scatterplot('tech_', 'job_prof', data = employee_data, hue = 'aptitude', size = 'aptitude')

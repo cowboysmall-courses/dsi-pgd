@@ -13,11 +13,17 @@ EDA T7 Assignment
 
 
 
-
-# 1
+# %%
 
 import numpy as np
 import pandas as pd
+import math
+
+from datetime import datetime, date
+
+
+
+# %% 1
 
 M = pd.DataFrame(np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2]).reshape(3, 4), index = ("A", "B", "C"), columns = ("Q", "W", "E", "R"))
 M
@@ -37,7 +43,7 @@ M
 
 
 
-# 2
+# %% 2
 
 x = 24
 y = "Hello World"
@@ -64,9 +70,7 @@ f3.dtype
 
 
 
-# 3
-
-import math
+# %% 3
 
 q = 65.9836
 round(math.sqrt(q), 3)
@@ -79,7 +83,7 @@ math.log10(q) < 2
 
 
 
-# 4
+# %% 4
 
 x = ["Intelligence", "Knowledge", "Wisdom", "Comprehension"]
 y = "I am"
@@ -95,7 +99,7 @@ y + " " + z
 
 
 
-# 5
+# %% 5
 
 a = [3, 4, 14, 17, 3, 98, 66, 85, 44]
 
@@ -135,7 +139,7 @@ print(", ".join(["Yes" if i % 3 == 0 else "No" for i in a]))
 
 
 
-# 6
+# %% 6
 
 b = [36, 3, 5, 19, 2, 16, 18, 41, 35, 28, 30, 31]
 
@@ -170,9 +174,7 @@ print(", ".join(str(i) for i in filter(lambda v : v < 30, b)))
 
 
 
-# 7
-
-from datetime import datetime, date
+# %% 7
 
 Date = "01/06/2018"
 # as it is ambiguous whether the above date is formatted 

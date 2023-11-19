@@ -13,6 +13,9 @@ Created on Sun Nov 12 14:57:13 2023
 
 """
 
+
+# %% 0 - Import libraries.
+
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
@@ -22,7 +25,7 @@ from scipy import stats
 
 
 
-# 1 - Import EMPLOYEE SATISFACTION SURVEY data. Check for
+# %% 1 - Import EMPLOYEE SATISFACTION SURVEY data. Check for
 #     normality of the data.
 data = pd.read_csv("../../../data/si/assignment/EMPLOYEE SATISFACTION SURVEY.csv")
 
@@ -49,7 +52,7 @@ sm.stats.diagnostic.lilliefors(data.satlevel, pvalmethod = 'approx')
 
 
 
-# 2 - Find median satisfaction level for 'IT', 'Sales' and
+# %% 2 - Find median satisfaction level for 'IT', 'Sales' and
 #     'Finance'. Test whether the satisfaction level among
 #     three roles differ significantly.
 data_I = data[data['dept'] == 'IT']
@@ -81,7 +84,7 @@ stats.kruskal(data_I.satlevel, data_S.satlevel, data_F.satlevel)
 
 
 
-# 3 - Is there any association between satisfaction level
+# %% 3 - Is there any association between satisfaction level
 #     and experience level? Experience level is defined as
 #     midlevel (greater than 2 years) and Junior (less than
 #     or equal to 2 years).
@@ -103,7 +106,7 @@ stats.chi2_contingency(table)
 
 
 
-# 4 - Find number of employees with satisfaction score
+# %% 4 - Find number of employees with satisfaction score
 #     greater than 3 in each department
 data_I[data_I.satlevel > 3].shape[0]
 # 4

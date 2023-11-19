@@ -7,6 +7,8 @@ Created on Sat Nov  4 09:28:00 2023
 """
 
 
+# %%
+
 import pandas as pd
 import statsmodels.api as sm
 import statistics as st
@@ -15,13 +17,22 @@ import math
 from scipy import stats
 
 
+
+# %%
+
 data = pd.read_csv("../../../data/si/intro_and_parametric_tests/ONE SAMPLE t TEST.csv")
 data.info()
 
 
+
+# %%
+
 fig = sm.qqplot(data.Time, line = '45', fit = True)
 stats.shapiro(data.Time)
 
+
+
+# %%
 
 n = len(data.Time)
 m = st.mean(data.Time)
@@ -38,5 +49,7 @@ print(f'Test Statistic (t): {t:>10.4f}')
 print(f'           p-value: {p:>10.4f}')
 
 
-stats.ttest_1samp(data.Time, popmean = 90, alternative = 'greater')
 
+# %%
+
+stats.ttest_1samp(data.Time, popmean = 90, alternative = 'greater')

@@ -7,10 +7,17 @@ Created on Sun Oct  1 12:20:44 2023
 """
 
 
+# %%
+
 import math
+
+
+# %%
 
 math.floor(12.3)
 
+
+# %%
 
 a = 'I'
 b = "amin"

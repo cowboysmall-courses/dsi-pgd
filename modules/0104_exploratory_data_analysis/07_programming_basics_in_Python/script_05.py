@@ -7,6 +7,9 @@ Created on Sun Oct  1 13:01:37 2023
 """
 
 
+
+# %%
+
 import pandas as pd
 
 from datetime import datetime
@@ -14,10 +17,14 @@ from datetime import date
 
 
 
+# %%
+
 x = '5 jan 2010'
 type(x)
 
 
+
+# %%
 
 ndate1 = datetime.strftime(datetime.strptime(x, '%d %b %Y'), '%d %b %Y')
 ndate1
@@ -25,11 +32,15 @@ type(ndate1)
 
 
 
+# %%
+
 ndate2 = datetime.strptime(x, '%d %b %Y')
 ndate2
 type(ndate2)
 
 
+
+# %%
 
 datetime.strptime(x, '%d %b %Y').strftime('%Y%B')
 datetime.strptime(x, '%d %b %Y').strftime('%A')
@@ -37,13 +48,19 @@ datetime.strptime(x, '%d %b %Y').strftime('%B')
 
 
 
+# %%
+
 pd.Timestamp(x).quarter
 
 
 
+# %%
+
 datetime.strptime("12-01-2015", '%m-%d-%Y').strftime('%Y-%m-%d')
 
 
+
+# %%
 
 now = datetime.now()
 now
@@ -53,12 +70,14 @@ now.second
 
 
 
-
+# %%
 
 today = date.today()
 today
 
 
+
+# %%
 
 d1 = datetime.date(datetime.strptime("20101201", "%Y%m%d"))
 d2 = datetime.date(datetime.strptime("10/7/04", "%m/%d/%y"))
@@ -66,6 +85,7 @@ d1 - d2
 
 
 
+# %%
 
 d3 = {
     'EmpID': [101, 102, 103, 104, 105], 

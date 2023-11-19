@@ -7,6 +7,8 @@ Created on Sat Oct 14 09:04:02 2023
 """
 
 
+# %% 0 - import libraries
+
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
@@ -17,7 +19,7 @@ import seaborn as sns
 
 
 
-# 1 - import data, check dimensions...
+# %% 1 - import data, check dimensions...
 bank_data = pd.read_csv("../../../data/eda/live_class/Bank_Churn.csv")
 
 bank_data.info()
@@ -29,7 +31,7 @@ bank_data.tail()
 
 
 
-# 2 - check distribution of credit score for exited == 1 and exited == 0
+# %% 2 - check distribution of credit score for exited == 1 and exited == 0
 bank_exit_0 = bank_data[bank_data['Exited'] == 0]
 bank_exit_1 = bank_data[bank_data['Exited'] == 1]
 
@@ -57,7 +59,7 @@ print(f"Skewness for Exited = 0: {bank_skew_0:.2f}")
 
 
 
-# 3 - summarise credit score by exited using count and appropriate measure of central tendency
+# %% 3 - summarise credit score by exited using count and appropriate measure of central tendency
 bank_summary_cs = bank_data.groupby('Exited')['CreditScore'].agg(['count', 'mean'])
 bank_summary_cs = bank_summary_cs.rename(columns = {'count': 'Count', 'mean': 'Mean'})
 
@@ -66,23 +68,19 @@ bank_summary_cs.round(2)
 
 
 
-# 4 - obtain cross table of geography versus exited
+# %% 4 - obtain cross table of geography versus exited
 bank_ct = pd.crosstab(bank_data['Geography'], bank_data['Exited'], margins = True, margins_name = 'Total')
-bank_ct
-
-bank_ct_prop = bank_ct.div(bank_ct['Total'], axis = 0) * 100
-bank_ct_prop.round(2)
-
 bank_ct = bank_ct.rename(columns = {0: 'Not Exited', 1: 'Exited'})
 bank_ct
 
+bank_ct_prop = bank_ct.div(bank_ct['Total'], axis = 0) * 100
 bank_ct_prop = bank_ct_prop.rename(columns = {0: 'Not Exited (%)', 1: 'Exited (%)'})
 bank_ct_prop.round(2)
 
 
 
 
-# 5 - obtain correlation coefficients between credit score and estimated salary
+# %% 5 - obtain correlation coefficients between credit score and estimated salary
 bank_cses_corr = bank_data['CreditScore'].corr(bank_data['EstimatedSalary'])
 bank_cses_corr.round(4)
 # very weak / no correlation
@@ -90,29 +88,27 @@ bank_cses_corr.round(4)
 
 
 
-# 6 - derive a new variable Creditscore_Cat 1 if CreditScore >= 65- else 0
+# %% 6 - derive a new variable Creditscore_Cat 1 if CreditScore >= 65- else 0
 bank_data['CreditScore_Cat'] = np.where(bank_data['CreditScore'] >= 650, 1, 0)
 bank_data.head()
 # bank_data.loc[:, ['CreditScore', 'CreditScore_Cat']].head()
 
 
 
-# 7 - obtain cross table of CreditScore_Cat versus Exited
+# %% 7 - obtain cross table of CreditScore_Cat versus Exited
 bank_ct = pd.crosstab(bank_data['CreditScore_Cat'], bank_data['Exited'], margins = False)
+bank_ct.columns = ['Not Exited', 'Exited']
 
 bank_ct_prop = (bank_ct.div(bank_ct.sum(axis = 1), axis = 0) * 100).round(2)
-
-bank_ct.columns = ['Not Exited', 'Exited']
 bank_ct_prop.columns = ['Not Exited (%)', 'Exited (%)']
 
 bank_result_ct = pd.concat([bank_ct, bank_ct_prop], axis = 1)
-
 bank_result_ct
 
 
 
 
-# 8 - create subset of 500 customers with highest credit score
+# %% 8 - create subset of 500 customers with highest credit score
 top_300 = bank_data.sort_values(by = 'CreditScore', ascending = False).head(300)
 top_300_geo = pd.crosstab(top_300['Geography'], columns = ['Count'])
 top_300_geo
@@ -120,7 +116,7 @@ top_300_geo
 
 
 
-# 9 - group data by geography and gender and calculate statistics
+# %% 9 - group data by geography and gender and calculate statistics
 bank_data_summary = bank_data.groupby(['Geography', 'Gender'])['CreditScore'].agg(['count', 'mean', 'median'])
 bank_data_summary
 
@@ -133,7 +129,7 @@ bank_data_summary
 
 
 
-# 10 - count number of products for each combination of geography
+# %% 10 - count number of products for each combination of geography
 bank_data_pc = bank_data.groupby('Geography')['NumOfProducts'].sum().reset_index()
 bank_data_pc
 

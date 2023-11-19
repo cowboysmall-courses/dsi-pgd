@@ -15,6 +15,9 @@ Created on Sun Nov 12 14:57:00 2023
 
 """
 
+
+# %% 0 - Import libraries.
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -24,7 +27,7 @@ from scipy import stats
 
 
 
-# 1 - Import NPRS DATA and name it as pain_nprs. Find
+# %% 1 - Import NPRS DATA and name it as pain_nprs. Find
 #     median NPRS before and after treatment.
 data = pd.read_csv("../../../data/si/assignment/NPRS DATA.csv")
 
@@ -41,7 +44,7 @@ data.NPRS_after.median()
 
 
 
-# 2 - Is post treatment NPRS score significantly less
+# %% 2 - Is post treatment NPRS score significantly less
 #     as compared to 'before treatment' NPRS score for
 #     Group A?
 data_A = data[data['Group'] == 'A']
@@ -56,7 +59,7 @@ stats.wilcoxon(data_A.NPRS_before, data_A.NPRS_after, correction = True, alterna
 
 
 
-# 3 - Is post treatment NPRS score significantly less
+# %% 3 - Is post treatment NPRS score significantly less
 #     as compared to 'before treatment' NPRS score for
 #     Group B?
 data_B = data[data['Group'] == 'B']
@@ -71,7 +74,7 @@ stats.wilcoxon(data_B.NPRS_before, data_B.NPRS_after, correction = True, alterna
 
 
 
-# 4 - Is the change in NPRS for Group A significantly
+# %% 4 - Is the change in NPRS for Group A significantly
 #     different than Group B?
 data['Delta'] = data.NPRS_before - data.NPRS_after
 data.head()
@@ -89,7 +92,7 @@ stats.ranksums(data_A['Delta'], data_B['Delta'])
 
 
 
-# 5 - Present change in NPRS for each group using
+# %% 5 - Present change in NPRS for each group using
 #     box-whisker plot.
 plt.figure(figsize = (8, 6))
 
