@@ -19,12 +19,12 @@ left_join
 
 
 right_join = pd.merge(salary_data, bonus_data, how = 'right')
-right_join 
+right_join
 
 
 inner_join = pd.merge(salary_data, bonus_data)
-inner_join 
+inner_join
 
 
 outer_join = pd.merge(salary_data, bonus_data, how = 'outer')
-outer_join 
+outer_join

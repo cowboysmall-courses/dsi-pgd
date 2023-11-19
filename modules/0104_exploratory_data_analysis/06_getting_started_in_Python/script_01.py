@@ -142,7 +142,6 @@ t3 = t1 + t2
 t3
 
 del tuple1
-tuple1
 
 
 
@@ -166,4 +165,3 @@ dict1.clear()
 dict1
 
 del dict1
-dict1

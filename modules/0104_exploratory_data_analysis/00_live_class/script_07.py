@@ -165,9 +165,7 @@ bank_data_cp = bank_data_cp.rename(columns = {'NumOfProducts': 'Customer Count'}
 bank_data_cp
 
 bank_data_agg = bank_data.groupby('Geography')['NumOfProducts'].agg(['mean', 'median']).reset_index()
-bank_data_agg = bank_data_agg.rename(columns = {'mean': 'Average Products','median': 'Median Products'})
+bank_data_agg = bank_data_agg.rename(columns = {'mean': 'Average Products', 'median': 'Median Products'})
 bank_data_agg
 
-#pd.concat([bank_data_pp, bank_data_cp, bank_data_agg], axis = 1)
-
-
+# pd.concat([bank_data_pp, bank_data_cp, bank_data_agg], axis = 1)

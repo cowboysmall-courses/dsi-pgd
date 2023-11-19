@@ -9,7 +9,6 @@ Created on Sat Oct 21 09:05:26 2023
 
 import pandas as pd
 import numpy as np
-import scipy.stats as stats
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -118,7 +117,3 @@ plt.show()
 vas_data['VAS_before'].corr(vas_data['Change'])
 
 np.corrcoef(vas_data['Change'], vas_data['VAS_before'])
-
-
-
-

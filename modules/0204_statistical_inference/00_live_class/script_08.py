@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
+import seaborn as sns
 
 from statsmodels.stats.diagnostic import lilliefors
 from statsmodels.stats.proportion import proportions_ztest
@@ -49,12 +50,39 @@ merged_data.describe(include = 'all')
 merged_data.NPS.agg(['mean', 'median']).round(4)
 
 
+# plt.rcParams.update({'font.size': 8})
+# plt.rc('font', size = 8)
 
-plt.figure()
-# plt.boxplot(merged_data.NPS)
-merged_data.boxplot(column = 'NPS', grid = False)
+plt.figure(figsize = (8, 6))
+plt.boxplot(merged_data.NPS)
+# plt.xlabel('NPS')
+plt.ylabel('NPS')
 plt.title('Box Plot')
 plt.suptitle('')
+plt.show()
+
+
+
+plt.figure(figsize = (8, 6))
+merged_data.boxplot(column = 'NPS', grid = False)
+# plt.xlabel('NPS')
+plt.ylabel('NPS')
+plt.title('Box Plot')
+plt.suptitle('')
+plt.show()
+
+
+
+plt.figure(figsize = (8, 6))
+
+sns.set_style("darkgrid")
+sns.set_context("paper")
+sns.boxplot(y = 'NPS', data = merged_data, width = 0.15, fill = False)
+plt.xlabel('NPS')
+plt.ylabel('NPS')
+plt.title('Box Plot')
+plt.suptitle('')
+plt.show()
 
 
 

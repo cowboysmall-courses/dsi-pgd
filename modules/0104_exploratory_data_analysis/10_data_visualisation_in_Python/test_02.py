@@ -7,32 +7,32 @@ Created on Fri Oct  6 15:54:17 2023
 """
 
 
+import numpy as np
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
-
 
 
 
 telecom_data = pd.read_csv("../../../data/eda/data_visualisation/telecom.csv")
 
+
+
 sns.set_theme(style="whitegrid")
 
 g = sns.catplot(
-    data = telecom_data, 
+    data = telecom_data,
     kind = "bar",
-    x = "Age_Group", 
-    y = "Calls", 
+    x = "Age_Group",
+    y = "Calls",
     hue = "Gender",
-    # errorbar = "sd", 
-    palette = "dark", 
-    alpha = .6, 
+    # errorbar = "sd",
+    palette = "dark",
+    alpha = .6,
     height = 6
 )
 g.despine(left = True)
 g.set_axis_labels("Age Groups", "Calls")
 g.legend.set_title("")
-
 
 
 

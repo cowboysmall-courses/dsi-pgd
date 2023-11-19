@@ -8,15 +8,14 @@ Created on Thu Oct  5 14:36:10 2023
 
 
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import plotly.express as px
-import calendar
+
 
 
 sales_data = pd.read_csv("../../../data/eda/data_visualisation/Sales Data (Motion Chart).csv")
 sales_data.info()
 sales_data.describe(include = 'all')
+
 
 
 fig = px.scatter(

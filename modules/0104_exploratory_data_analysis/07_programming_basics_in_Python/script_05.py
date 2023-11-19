@@ -7,7 +7,12 @@ Created on Sun Oct  1 13:01:37 2023
 """
 
 
+import pandas as pd
+
 from datetime import datetime
+from datetime import date
+
+
 
 x = '5 jan 2010'
 type(x)
@@ -32,23 +37,23 @@ datetime.strptime(x, '%d %b %Y').strftime('%B')
 
 
 
-import pandas as pd
-
 pd.Timestamp(x).quarter
 
 
 
 datetime.strptime("12-01-2015", '%m-%d-%Y').strftime('%Y-%m-%d')
 
-date = datetime.now()
-date
-date.hour
-date.minute
-date.second
+
+
+now = datetime.now()
+now
+now.hour
+now.minute
+now.second
 
 
 
-from datetime import date
+
 
 today = date.today()
 today
@@ -62,7 +67,7 @@ d1 - d2
 
 
 
-d3 = { 
+d3 = {
     'EmpID': [101, 102, 103, 104, 105], 
     'year': [1977, 1989, 2000, 2012, 2015], 
     'month': [2, 5, 10, 1, 11], 

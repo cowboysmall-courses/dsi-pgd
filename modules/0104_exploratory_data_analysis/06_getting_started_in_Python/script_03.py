@@ -7,7 +7,6 @@ Created on Sat Sep 30 12:42:45 2023
 """
 
 import os
-
 import pandas as pd
 
 
@@ -21,4 +20,3 @@ salary_data = pd.read_csv("../../../data/eda/data_management/basic_salary.csv")
 salary_data.head()
 
 salary_data.to_csv("./basic_salary_local.csv")
-
