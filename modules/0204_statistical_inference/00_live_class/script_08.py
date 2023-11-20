@@ -156,6 +156,15 @@ plt.title('Median NPS by Region')
 
 # %%
 
+table = merged_data.groupby('REGION')['NPS'].mean()
+table.plot(kind = 'bar', color = 'skyblue')
+plt.xlabel('Region')
+plt.ylabel('Mean NPS')
+plt.title('Mean NPS by Region')
+
+
+# %%
+
 merged_data['DETRACTORS'] = np.where(merged_data['NPS'] <= 6, 'YES', 'NO')
 
 table = merged_data.groupby('DETRACTORS')['NPS'].agg(['count']) 

@@ -2,29 +2,513 @@
 title: "Statistical Inference"
 author: "Jerry Kiely"
 date: "`r Sys.Date()`"
-output: pdf_document
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
+
+library(nortest)
+
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+\newpage
 
-```{r cars}
-summary(cars)
+
+
+
+
+# Introduction
+
+\vspace{1.5em}
+
+
+
+
+
+## Basic terms
+
+\vspace{1.5em}
+
+* variable
+* population
+* sample
+* distribution
+* factor
+* descriptive statistics
+
+\vspace{1.5em}
+
+
+
+## What is Statistical Inference?
+
+\vspace{1.5em}
+
+* drawing conclusions about unknown population properties
+* based on samples drawn from the population
+* such as mean, proportion, variance, etc.
+* unknown population properties - known as parameters
+
+\vspace{1.5em}
+
+
+
+## Three branches
+
+\vspace{1.5em}
+
+* point estimation
+* interval estimation
+* testing of hypothesis
+
+\vspace{1.5em}
+
+
+
+## Parameter, Estimator, Estimate
+
+\vspace{1.5em}
+
+* parameter - unknown property or characteristic of population
+* estimator - rule / function based on sample observations used to estimate parameter
+* estimate  - value computed from estimator
+
+\vspace{1.5em}
+
+
+
+## Sampling distribution / error
+
+\vspace{1.5em}
+
+* sampling distribution of sample means
+* standard error is the standard deviation of the sample means
+
+\vspace{1.5em}
+
+
+
+## Hypothesis Testing
+
+\vspace{1.5em}
+
+* hypothesis - assertion of distribution / parameter of one or more random variables
+* null hypothesis ($H_{0}$) - assertion believed to be true until rejected
+* alternative hypothesis ($H_{1}$) - claim that contradicts $H_{0}$
+
+\vspace{1.5em}
+
+You test a hypothesis to decide if a statement / hypothesis about a population 
+parameter is true based on sample data.
+
+\vspace{1.5em}
+
+* test statistic - the statistic on which the decision to reject the null hypothesis is defined
+* critical / rejection region - the region within which, if the value of the test statistic falls, the null hypothesis is rejected
+
+\vspace{1.5em}
+
+
+
+## Types of Error
+
+\vspace{1.5em}
+
+* Type I Error
+* Type II Error
+
+\vspace{1.5em}
+
+|                        | $H_{0}$ is true | $H_{0}$ is false |
+|------------------------|-----------------|------------------|
+| reject $H_{0}$         | Type I Error    | Correct          |
+| fail to reject $H_{0}$ | Correct         | Type II Error    |
+
+\vspace{1.5em}
+
+* level of significance - probability of Type I Error ($\alpha$)
+* generally set at $5\%$ or $0.05$
+* p-value - smallest level of significance that would lead to rejection of $H_{0}$
+* $H_{0}$ rejected if observed risk (or p-value) is less than level of significance
+* $\alpha$ = Probability [Type I Error] = Probability [Reject $H_{0}$ | $H_{0}$ is True]
+* $\beta$  = Probability [Type II Error] = Probability [Do not reject $H_{0}$ | $H_{0}$ is not True]
+* power of the test - $1 - \beta$
+
+\vspace{1.5em}
+
+
+
+## One-tailed and two-tailed tests
+
+\vspace{1.5em}
+
+One-tailed test:
+
+$H_{0}: \mu = \mu_{0}$ 
+
+$H_{0}: \mu > \mu_{0}$ (right-tailed) or $H_{0}: \mu < \mu_{0}$ (left-tailed)
+
+\vspace{1.5em}
+
+Two-tailed test:
+
+$H_{0}: \mu = \mu_{0}$ 
+
+$H_{0}: \mu \neq \mu_{0}$
+
+\vspace{1.5em}
+
+
+
+
+
+# Parametric Tests
+
+\vspace{1.5em}
+
+
+
+
+
+## Normality Tests
+
+\vspace{1.5em}
+
+A prerequisite for many statistical tests - normal data is an underlying assumption in 
+parametric tests. Normality can be assessed using two approaches:
+
+* graphical
+  * Box-Whisker plot
+  * Q-Q plot
+* numerical
+  * Shapiro-Wilk test (small samples)
+  * Kolmogorov-Smirnov test (large samples)
+
+\vspace{1.5em}
+
+
+
+
+### Box-Whisker Plot
+
+\vspace{1.5em}
+
+Powerful visual method for assessing symmetry.
+
+\vspace{1.5em}
+
+```{r data1, echo = FALSE}
+
+data <- read.csv("../../../data/si/intro_and_parametric_tests/Normality\ Testing\ Data.csv", header = TRUE)
+
 ```
 
-## Including Plots
+```{r boxplot}
 
-You can also embed plots, for example:
+boxplot(data$csi, main = "Box Plot", ylab = "Length", col = "cadetblue")
 
-```{r pressure, echo=FALSE}
-plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+\vspace{1.5em}
+
+
+
+
+
+### Q-Q Plot
+
+\vspace{1.5em}
+
+Powerful visual method for assessing normality.
+
+\vspace{1.5em}
+
+```{r qqnorm}
+
+qqnorm(data$csi, pch = 1, frame = FALSE)
+qqline(data$csi, col = "cadetblue", lwd = 2)
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+### Shapiro-Wilk test
+
+\vspace{1.5em}
+
+A widely used test for assessing normality.
+
+\vspace{1.5em}
+
+```{r shapiro}
+
+shapiro.test(data$csi)
+
+```
+
+\vspace{1.5em}
+
+
+
+
+### Kolmogorov-Smirnov test
+
+\vspace{1.5em}
+
+Another widely used test for assessing normality.
+
+\vspace{1.5em}
+
+```{r kolmogorov}
+
+lillie.test(data$csi)
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+
+## t-distribution
+
+\vspace{1.5em}
+
+* symmetric
+* resembles bell shape of the normal distribution
+* as the sample size increases, as the degrees of freedom increases, it approaches the normal distribution with mean 0 and variance 1
+
+\vspace{1.5em}
+
+
+
+
+
+## Degrees of freedom
+
+\vspace{1.5em}
+
+* the number of independent terms
+* $n$ values would have $n - 1$ degrees of freedom
+* $S = x_{1} + x_{2} + x_{3} + x_{4} + x_{5} \implies x_{1} = S - (x_{2} + x_{3} + x_{4} + x_{5})$
+
+\vspace{1.5em}
+
+
+
+
+## One sample t-test
+
+\vspace{1.5em}
+
+* test a hypothesis about a single population mean
+* a single sample drawn from a defined population
+* compare sample statistic to hypothesized value of a population parameter
+
+\vspace{1.5em}
+
+The assumptions of the one sample t-tests:
+
+\vspace{1.5em}
+
+* random sampling from a defined population
+* population is normally distributed
+* variable under study is continuous
+
+\vspace{1.5em}
+
+Normality tests can be performed using any of the methods described previously. The 
+validity of the test is not significantly affected by moderate deviations from the 
+normality assumption.
+
+\vspace{1.5em}
+
+```{r data2, echo = FALSE}
+
+data <- read.csv("../../../data/si/intro_and_parametric_tests/ONE\ SAMPLE\ t\ TEST.csv", header = TRUE)
+
+```
+
+\vspace{1.5em}
+
+```{r one-sample-t-test}
+
+t.test(data$Time, alternative = "greater", mu = 90)
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+## Independent samples t-test
+
+\vspace{1.5em}
+
+* compares means of two independent groups on the same continuous variable
+* hypothesis tested
+  * $H_{0}$: $\mu_{1} = \mu_{2}$
+  * $H_{1}$: $\mu_{1} \neq \mu_{2}$
+
+\vspace{1.5em}
+
+The assumptions of the independent samples t-test:
+
+\vspace{1.5em}
+
+* samples drawn are random samples
+* populations from which samples are drawn have equal and unknown variances
+* populations follow normal distribution
+
+\vspace{1.5em}
+
+Normality tests can be performed using any of the methods described previously.
+
+\vspace{1.5em}
+
+```{r data3, echo = FALSE}
+
+data <- read.csv("../../../data/si/intro_and_parametric_tests/INDEPENDENT\ SAMPLES\ t\ TEST.csv", header = TRUE)
+
+```
+
+\vspace{1.5em}
+
+```{r independent-samples-t-test-var-equal}
+
+t.test(data$time_g1, data$time_g2, alternative = "two.sided", var.equal = TRUE)
+
+```
+
+\vspace{1.5em}
+
+```{r independent-samples-t-test-var-unequal}
+
+t.test(data$time_g1, data$time_g2, alternative = "two.sided", var.equal = FALSE)
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+
+
+
+
+
+
+
+## Paired sample t-test
+
+\vspace{1.5em}
+
+* used to determine if the mean difference between two sets of observations is $0$
+* each subject is measured twice - paired observations
+* typically before / after
+* hypothesis tested
+  * $H_{0}$: $\mu_{1} - \mu_{2} = 0$
+  * $H_{1}$: $\mu_{1} - \mu_{2} \neq 0$
+
+The assumptions of the paired sample t-test:
+
+\vspace{1.5em}
+
+* random sampling from a defined population
+* population is normally distributed
+
+\vspace{1.5em}
+
+A normality test can be performed using any of the methods described previously. The 
+validity of the test is not significantly affected by moderate deviations from the 
+normality assumption.
+
+\vspace{1.5em}
+
+```{r data4, echo = FALSE}
+
+data <- read.csv("../../../data/si/intro_and_parametric_tests/PAIRED\ t\ TEST.csv", header = TRUE)
+
+```
+
+\vspace{1.5em}
+
+```{r paired-sample-t-test}
+
+t.test(data$time_before, data$time_after, alternative = "greater", paired = TRUE)
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+
+
+
+
+
+
+
+## t-test for correlation
+
+\vspace{1.5em}
+
+* correlation coefficient summarizes the strength of a linear relationship between two variables
+* a t-test is used to test if there is a significant correlation between two variables
+* sample correlation coefficient is calculated using bivariate data
+* hypothesis tested
+  * $H_{0}$: there is no significant correlation between two variables under study ($\rho = 0$)
+  * $H_{1}$: there is correlation between two variables under study ($\rho \neq 0$)
+
+\vspace{1.5em}
+
+```{r data5, echo = FALSE}
+
+data <- read.csv("../../../data/si/intro_and_parametric_tests/Correlation\ test.csv", header = TRUE)
+
+```
+
+\vspace{1.5em}
+
+```{r correlation-t-test}
+
+cor.test(data$aptitude, data$job_prof, alternative = "two.sided", method = "pearson")
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\newpage
+
