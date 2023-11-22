@@ -168,6 +168,11 @@ $H_{0}: \mu \neq \mu_{0}$
 
 
 
+\newpage
+
+
+
+
 
 # Parametric Tests
 
@@ -342,8 +347,6 @@ data <- read.csv("../../../data/si/intro_and_parametric_tests/ONE\ SAMPLE\ t\ TE
 
 ```
 
-\vspace{1.5em}
-
 ```{r one-sample-t-test}
 
 t.test(data$Time, alternative = "greater", mu = 90)
@@ -387,8 +390,6 @@ data <- read.csv("../../../data/si/intro_and_parametric_tests/INDEPENDENT\ SAMPL
 
 ```
 
-\vspace{1.5em}
-
 ```{r independent-samples-t-test-var-equal}
 
 t.test(data$time_g1, data$time_g2, alternative = "two.sided", var.equal = TRUE)
@@ -427,6 +428,8 @@ t.test(data$time_g1, data$time_g2, alternative = "two.sided", var.equal = FALSE)
   * $H_{0}$: $\mu_{1} - \mu_{2} = 0$
   * $H_{1}$: $\mu_{1} - \mu_{2} \neq 0$
 
+\vspace{1.5em}
+
 The assumptions of the paired sample t-test:
 
 \vspace{1.5em}
@@ -447,8 +450,6 @@ normality assumption.
 data <- read.csv("../../../data/si/intro_and_parametric_tests/PAIRED\ t\ TEST.csv", header = TRUE)
 
 ```
-
-\vspace{1.5em}
 
 ```{r paired-sample-t-test}
 
@@ -488,8 +489,6 @@ data <- read.csv("../../../data/si/intro_and_parametric_tests/Correlation\ test.
 
 ```
 
-\vspace{1.5em}
-
 ```{r correlation-t-test}
 
 cor.test(data$aptitude, data$job_prof, alternative = "two.sided", method = "pearson")
@@ -497,6 +496,203 @@ cor.test(data$aptitude, data$job_prof, alternative = "two.sided", method = "pear
 ```
 
 \vspace{1.5em}
+
+
+
+
+
+\newpage
+
+
+
+
+
+# Tests for equality of Variances
+
+\vspace{1.5em}
+
+
+## F-test
+
+\vspace{1.5em}
+
+* used to test the equality of two population variances
+* a prerequisite for many statistical tests
+* hypothesis tested
+  * $H_{0}$: $\sigma_{1}^{2} = \sigma_{2}^{2}$
+  * $H_{1}$: $\sigma_{1}^{2} \neq \sigma_{2}^{2}$
+
+\vspace{1.5em}
+
+The assumptions of the F-test:
+
+\vspace{1.5em}
+
+* random sampling from a defined population
+* population is normally distributed
+
+\vspace{1.5em}
+
+The F-test is used to validate the assumption of the equality of variances. The parent 
+population is assumed to follow a normal distribution.
+
+\vspace{1.5em}
+
+```{r data6, echo = FALSE}
+
+data <- read.csv("../../../data/si/analysis_of_variance/F\ test\ for\ 2\ variances.csv", header = TRUE)
+
+```
+
+```{r f-test}
+
+var.test(data$time_g1, data$time_g2, alternative = "two.sided")
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+\newpage
+
+
+
+
+
+# Analysis of Variance
+
+\vspace{1.5em}
+
+## What is Analysis of Variance
+
+\vspace{1.5em}
+
+* a collection of statistical models used to analyze the difference among more than two group means
+* developed by Ronald Fisher
+* variance due to
+  * assignable causes
+  * chance causes
+* ANOVA is the separation of variance ascribable to one group of causes from the variance ascribable to another
+
+\vspace{1.5em}
+
+The assumptions of ANOVA:
+
+\vspace{1.5em}
+
+* samples drawn are random samples
+* populations from which samples are drawn have equal and unknown variances
+* populations follow normal distribution
+
+\vspace{1.5em}
+
+A normality test can be performed using any of the methods described previously.
+
+\vspace{1.5em}
+
+## One Way ANOVA
+
+\vspace{1.5em}
+
+* an extension of the t-test for independent samples
+* used to test equality of $K$ population means
+  * when $K = 2$ t-Test can be used
+  * when $K = 2$ t-Test and one way ANOVA provide identical results
+* hypothesis tested
+  * $H_{0}$: $\mu_{1} = \mu_{2} = ... = \mu_{K} = \mu$
+  * $H_{1}$: $\mu_{i} \neq \mu_{j},  i \neq j$
+
+\vspace{1.5em}
+
+```{r data7, echo = FALSE}
+
+data <- read.csv("../../../data/si/analysis_of_variance/One\ way\ anova.csv", header = TRUE)
+
+```
+
+```{r one-way-anova}
+
+anova <- aov(satindex ~ dept, data = data)
+summary(anova)
+
+```
+
+\vspace{1.5em}
+
+
+
+
+\newpage
+
+
+
+
+
+## Two Way ANOVA
+
+\vspace{1.5em}
+
+* used when there are 2 factors under study
+* each factor can have 2 or more levels
+* three hypothesis tested
+  * Factor A
+    * $H_{01}$: all group means are equal
+    * $H_{11}$: at least one mean is different from other means
+  * Factor B
+    * $H_{02}$: all group means are equal
+    * $H_{12}$: at least one mean is different from other means
+  * Interaction
+    * $H_{03}$: the interaction is not significant
+    * $H_{13}$: the interaction is significant
+
+\vspace{1.5em}
+
+```{r data8, echo = FALSE}
+
+data <- read.csv("../../../data/si/analysis_of_variance/Two\ way\ anova.csv", header = TRUE)
+
+```
+
+```{r two-way-anova}
+
+anova <- aov(satindex ~ dept*exp, data = data)
+summary(anova)
+
+```
+
+\vspace{1.5em}
+
+## Three Way ANOVA
+
+\vspace{1.5em}
+
+* two way ANOVA can be extended to assess the effects of three or more factors
+* with three factors A, B, and C we look at
+  * the effects of A, B, and C
+  * two way interactions - A\*B, A\*C, and B\*C
+  * three way interaction - A\*B\*C
+
+\vspace{1.5em}
+
+```{r data9, echo = FALSE}
+
+data <- read.csv("../../../data/si/analysis_of_variance/Three\ Way\ Anova.csv", header = TRUE)
+
+```
+
+```{r three-way-anova}
+
+anova <- aov(growth ~ campaign*region*size, data = data)
+summary(anova)
+
+```
+
+\vspace{1.5em}
+
+
 
 
 
