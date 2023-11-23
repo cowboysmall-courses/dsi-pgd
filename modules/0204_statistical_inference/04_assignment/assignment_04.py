@@ -62,10 +62,8 @@ data_F = data[data['dept'] == 'FINANCE']
 
 data_I.satlevel.median()
 # 3
-
 data_S.satlevel.median()
 # 3
-
 data_F.satlevel.median()
 # 4
 
