@@ -212,6 +212,128 @@ give a robust estimate if the underlying distribution is symmetric.
 
 
 
+### Measures of Variation
+
+\vspace{1.5em}
+
+a.k.a. Measures of Dispersion
+
+\vspace{1.5em}
+
+* an indication of the spread of measurements
+* two datasets can have similar mean but vastly different variability
+
+\vspace{1.5em}
+
+The most commonly used measures of variation are:
+
+\vspace{1.5em}
+
+* Range
+  * simple measure of variation
+  * difference between highest and lowest values
+  * crude measure as it does not take into account all values
+  * same units as the original values
+* Inter Quartile Range
+  * the range between the upper quartile and the lower quartile
+  * the quartiles are the values that divide the data into four equal parts
+  * the values that divide each part are the first, second, and third quantiles (Q1, Q2, and Q3)
+  * same units as the original values
+* Variance and Standard Deviation
+  * variance is the sum of the squared deviations from the mean divided by the number of data points
+  * standard deviation is the positive square root of the variance, and has the same units as the original values
+
+\vspace{1.5em}
+
+### Coefficient of Variation (CV)
+
+\vspace{1.5em}
+
+* relative measure of variation
+* used to compare the variability in two data sets
+* standard deviation divided by the mean, usually expressed as a percentage
+* higher the value of CV, the more variability
+* often referred to as the relative standard deviation
+
+\vspace{1.5em}
+
+
+
+
+
+## Beyond Mean and Variance
+
+\vspace{1.5em}
+
+### Skewness
+
+\vspace{1.5em}
+
+Describes the shape of the data. It is the lack of symmetry.
+
+\vspace{1.5em}
+
+* positively skewed
+  * longer right tail
+  * mass of distribution concentrated on the left
+  * mode < median < mean
+* symmetric
+  * both tails are equal
+  * mass of distribution distributed equally
+  * mode = median = mean
+* negatively skewed
+  * longer left tail
+  * mass of distribution concentrated on the right
+  * mode > median > mean
+
+\vspace{1.5em}
+
+* if skewness $> 1$ or $< -1$ the distribution is highly skewed
+* if skewness is between $1$ and $0.5$ or between $-0.5$ and $-1$ the distribution is moderately skewed
+* if skewness is between $0.5$ and $-0.5$ then the distribution is approximately symmetric
+
+\vspace{1.5em}
+
+### Kurtosis
+
+\vspace{1.5em}
+
+Defined as the measure of peakedness. Measured relative to Normal distribution.
+
+\vspace{1.5em}
+
+* mesokurtic
+  * Normal distribution
+* leptokurtic
+  * more acute peak than the Normal distribution
+* platykurtic
+  * flatter peak than the Normal distribution
+
+\vspace{1.5em}
+
+* kurtosis $= 3$ (excess $= 0$) is called mesokurtic
+* kurtosis $< 3$ (excess $< 0$) is called platykurtic
+* kurtosis $> 3$ (excess $> 0$) is called leptokurtic
+
+\vspace{1.5em}
+
+### Moments
+
+\vspace{1.5em}
+
+Constants which help us in knowing the characteristics and graphic shape of data.
+
+\vspace{1.5em}
+
+
+
+
+
+## Bivariate Relationships
+
+
+
+
 
 
 

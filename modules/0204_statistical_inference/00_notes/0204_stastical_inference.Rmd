@@ -887,6 +887,18 @@ kruskal.test(aptscore ~ Group, data = data)
 
 \vspace{1.5em}
 
+
+
+
+
+\newpage
+
+
+
+
+
+\vspace{1.5em}
+
 ```{r data14, echo = FALSE}
 
 data <- read.csv("../../../data/0204_statistical_inference/non_parametric_tests/chi\ square\ test\ of\ association.csv", header = TRUE)
@@ -921,8 +933,8 @@ CrossTable(data$performance, data$source, chisq = TRUE)
 
 | Parametric                 | Non-Parametric                            |
 |----------------------------|-------------------------------------------|
-| one sample t-Test          | Wilcoxon signed rank test                 |
-| independent samples t-Test | Mann-Whitney test                         |
+| one sample t-test          | Wilcoxon signed rank test                 |
+| independent samples t-test | Mann-Whitney test                         |
 | paired samples t-test      | Wilcoxon signed rank test for paired data |
 | one way ANOVA              | Kruskal Wallis test                       |
 | two way ANOVA              |                                           |
