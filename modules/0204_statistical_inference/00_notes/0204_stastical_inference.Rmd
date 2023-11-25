@@ -211,7 +211,7 @@ Powerful visual method for assessing symmetry.
 
 ```{r data1, echo = FALSE}
 
-data <- read.csv("../../../data/si/intro_and_parametric_tests/Normality\ Testing\ Data.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/Normality\ Testing\ Data.csv", header = TRUE)
 
 ```
 
@@ -343,7 +343,7 @@ normality assumption.
 
 ```{r data2, echo = FALSE}
 
-data <- read.csv("../../../data/si/intro_and_parametric_tests/ONE\ SAMPLE\ t\ TEST.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/ONE\ SAMPLE\ t\ TEST.csv", header = TRUE)
 
 ```
 
@@ -386,7 +386,7 @@ Normality tests can be performed using any of the methods described previously.
 
 ```{r data3, echo = FALSE}
 
-data <- read.csv("../../../data/si/intro_and_parametric_tests/INDEPENDENT\ SAMPLES\ t\ TEST.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/INDEPENDENT\ SAMPLES\ t\ TEST.csv", header = TRUE)
 
 ```
 
@@ -447,7 +447,7 @@ normality assumption.
 
 ```{r data4, echo = FALSE}
 
-data <- read.csv("../../../data/si/intro_and_parametric_tests/PAIRED\ t\ TEST.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/PAIRED\ t\ TEST.csv", header = TRUE)
 
 ```
 
@@ -485,7 +485,7 @@ t.test(data$time_before, data$time_after, alternative = "greater", paired = TRUE
 
 ```{r data5, echo = FALSE}
 
-data <- read.csv("../../../data/si/intro_and_parametric_tests/Correlation\ test.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/Correlation\ test.csv", header = TRUE)
 
 ```
 
@@ -540,7 +540,7 @@ population is assumed to follow a normal distribution.
 
 ```{r data6, echo = FALSE}
 
-data <- read.csv("../../../data/si/analysis_of_variance/F\ test\ for\ 2\ variances.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/analysis_of_variance/F\ test\ for\ 2\ variances.csv", header = TRUE)
 
 ```
 
@@ -609,7 +609,7 @@ A normality test can be performed using any of the methods described previously.
 
 ```{r data7, echo = FALSE}
 
-data <- read.csv("../../../data/si/analysis_of_variance/One\ way\ anova.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/analysis_of_variance/One\ way\ anova.csv", header = TRUE)
 
 ```
 
@@ -652,7 +652,7 @@ summary(anova)
 
 ```{r data8, echo = FALSE}
 
-data <- read.csv("../../../data/si/analysis_of_variance/Two\ way\ anova.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/analysis_of_variance/Two\ way\ anova.csv", header = TRUE)
 
 ```
 
@@ -679,7 +679,7 @@ summary(anova)
 
 ```{r data9, echo = FALSE}
 
-data <- read.csv("../../../data/si/analysis_of_variance/Three\ Way\ Anova.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/analysis_of_variance/Three\ Way\ Anova.csv", header = TRUE)
 
 ```
 

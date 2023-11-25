@@ -17,7 +17,7 @@ from scipy import stats
 
 # %%
 
-data = pd.read_csv("../../../data/si/intro_and_parametric_tests/Correlation test.csv")
+data = pd.read_csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/Correlation test.csv")
 data.info()
 
 

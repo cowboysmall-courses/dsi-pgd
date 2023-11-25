@@ -2,7 +2,7 @@
 library(nortest)
 
 
-test_data <- read.csv("../../../data/si/intro_and_parametric_tests/Normality\ Testing\ Data.csv", header = TRUE)
+test_data <- read.csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/Normality\ Testing\ Data.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)

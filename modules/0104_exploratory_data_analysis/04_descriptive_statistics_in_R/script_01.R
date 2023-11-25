@@ -1,5 +1,5 @@
 
-retail_data <- read.csv("../../../data/eda/descriptive_statistics/Retail_Data.csv", header = TRUE)
+retail_data <- read.csv("../../../data/0104_exploratory_data_analysis/descriptive_statistics/Retail_Data.csv", header = TRUE)
 summary(retail_data)
 
 boxplot(retail_data$Perindex, data = retail_data, main = "Boxplot (Perindex)", ylab = "Perindex", col = "red")

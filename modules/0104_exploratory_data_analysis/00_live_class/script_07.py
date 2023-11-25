@@ -20,7 +20,7 @@ import seaborn as sns
 
 
 # %% 1 - import data, check dimensions...
-bank_data = pd.read_csv("../../../data/eda/live_class/Bank_Churn.csv")
+bank_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/live_class/Bank_Churn.csv")
 
 bank_data.info()
 bank_data.shape

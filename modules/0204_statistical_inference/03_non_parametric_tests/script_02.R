@@ -1,5 +1,5 @@
 
-test_data <- read.csv("../../../data/si/non_parametric_tests/Wilcoxon\ Signed\ Rank\ test\ for\ paired\ data.csv", header = TRUE)
+test_data <- read.csv("../../../data/0204_statistical_inference/non_parametric_tests/Wilcoxon\ Signed\ Rank\ test\ for\ paired\ data.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)

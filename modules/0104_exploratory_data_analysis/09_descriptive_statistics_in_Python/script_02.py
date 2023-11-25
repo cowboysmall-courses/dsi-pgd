@@ -18,7 +18,7 @@ import statsmodels.formula.api as smf
 
 # %%
 
-job_data = pd.read_csv("../../../data/eda/descriptive_statistics/Job_Proficiency.csv")
+job_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/descriptive_statistics/Job_Proficiency.csv")
 job_data.describe(include = 'all')
 
 
@@ -47,7 +47,7 @@ model.summary()
 
 # %%
 
-retail_data = pd.read_csv("../../../data/eda/descriptive_statistics/Retail_Data.csv")
+retail_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/descriptive_statistics/Retail_Data.csv")
 retail_data.describe(include = 'all')
 
 

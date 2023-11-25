@@ -24,7 +24,7 @@ from scipy import stats
 
 # %% 1 - import data and check first 5 rows
 
-data = pd.read_csv("../../../data/si/live_class/Food Delivery App Survey Data.csv")
+data = pd.read_csv("../../../data/0204_statistical_inference/live_class/Food Delivery App Survey Data.csv")
 data.head(n = 5)
 #    CUSTID    AGE GENDER  Q1  Q2  Q3
 # 0       1   <=30   Male   7   9   6

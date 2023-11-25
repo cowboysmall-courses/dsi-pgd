@@ -25,7 +25,7 @@ os.listdir("/")
 
 # %%
 
-salary_data = pd.read_csv("../../../data/eda/data_management/basic_salary.csv")
+salary_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/data_management/basic_salary.csv")
 salary_data.head()
 
 

@@ -15,7 +15,7 @@ library(ggplot2)
 
 
 # 1 - Import VAS DATA and name it as pain_vas. Check for normality of the data.
-pain_vas <- read.csv("../../../data/si/assignment/VAS\ DATA.csv", header = TRUE)
+pain_vas <- read.csv("../../../data/0204_statistical_inference/assignment/VAS\ DATA.csv", header = TRUE)
 
 head(pain_vas)
 summary(pain_vas)

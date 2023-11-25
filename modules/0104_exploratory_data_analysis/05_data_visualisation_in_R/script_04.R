@@ -1,7 +1,7 @@
 
 library(plotly)
 
-heatmap_data <- read.csv("../../../data/eda/data_visualisation/Average\ Temperatures\ in\ NY.csv", header = TRUE)
+heatmap_data <- read.csv("../../../data/0104_exploratory_data_analysis/data_visualisation/Average\ Temperatures\ in\ NY.csv", header = TRUE)
 heatmap_data$Month <- factor(heatmap_data$Month, level = unique(heatmap_data$Month))
 
 plot_ly(

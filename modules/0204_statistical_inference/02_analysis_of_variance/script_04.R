@@ -1,5 +1,5 @@
 
-test_data <- read.csv("../../../data/si/analysis_of_variance/Three\ Way\ Anova.csv", header = TRUE)
+test_data <- read.csv("../../../data/0204_statistical_inference/analysis_of_variance/Three\ Way\ Anova.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)

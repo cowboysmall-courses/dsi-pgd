@@ -3,7 +3,7 @@ library(dplyr)
 
 
 # 1 - load the data
-data <- read.csv("../../../data/eda/live_class/Hospitality_Data.csv", header = TRUE)
+data <- read.csv("../../../data/0104_exploratory_data_analysis/live_class/Hospitality_Data.csv", header = TRUE)
 
 head(data)
 dim(data)

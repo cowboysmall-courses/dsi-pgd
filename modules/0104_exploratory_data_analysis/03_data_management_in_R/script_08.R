@@ -2,7 +2,7 @@
 library(sqldf)
 
 
-salary_data <- read.csv.sql("../../../data/eda/data_management/basic_salary.csv", sql = "select * from file", header = TRUE)
+salary_data <- read.csv.sql("../../../data/0104_exploratory_data_analysis/data_management/basic_salary.csv", sql = "select * from file", header = TRUE)
 salary_data
 
 sorted_sd1 <- sqldf("select * from salary_data order by ba desc")

@@ -2,7 +2,7 @@
 library(ggplot2)
 library(GGally)
 
-job_data_1 <- read.csv("../../../data/eda/live_class/JOB\ PROFICIENCY\ DATA.csv", header = TRUE)
+job_data_1 <- read.csv("../../../data/0104_exploratory_data_analysis/live_class/JOB\ PROFICIENCY\ DATA.csv", header = TRUE)
 head(job_data_1)
 
 
@@ -12,7 +12,7 @@ ggplot(job_data_1, aes(x = aptitude, y = job_prof)) +
 
 
 
-job_data_2 <- read.csv("../../../data/eda/live_class/JOB\ PROFICIENCY\ DATA\ for\ Bubble\ Chart.csv", header = TRUE)
+job_data_2 <- read.csv("../../../data/0104_exploratory_data_analysis/live_class/JOB\ PROFICIENCY\ DATA\ for\ Bubble\ Chart.csv", header = TRUE)
 head(job_data_2)
 
 

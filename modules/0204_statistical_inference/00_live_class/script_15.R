@@ -2,7 +2,7 @@
 library(boot)
 
 
-data <- read.csv("../../../data/si/live_class/boot\ data.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/live_class/boot\ data.csv", header = TRUE)
 
 head(data)
 summary(data)

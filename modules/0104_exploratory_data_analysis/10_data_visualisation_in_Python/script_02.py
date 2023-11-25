@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 # %%
 
-telecom_data = pd.read_csv("../../../data/eda/data_visualisation/telecom.csv")
+telecom_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/data_visualisation/telecom.csv")
 telecom_data.info()
 
 

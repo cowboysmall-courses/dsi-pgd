@@ -1,10 +1,10 @@
 
 library(dplyr)
 
-salary_data <- read.csv("../../../data/eda/data_management/sal_data.csv", header = TRUE)
+salary_data <- read.csv("../../../data/0104_exploratory_data_analysis/data_management/sal_data.csv", header = TRUE)
 head(salary_data)
 
-bonus_data <- read.csv("../../../data/eda/data_management/bonus_data.csv", header = TRUE)
+bonus_data <- read.csv("../../../data/0104_exploratory_data_analysis/data_management/bonus_data.csv", header = TRUE)
 head(bonus_data)
 
 

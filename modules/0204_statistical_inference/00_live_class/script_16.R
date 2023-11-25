@@ -8,7 +8,7 @@ library(gmodels)
 
 
 # 1 - import data and check first 5 rows
-data <- read.csv("../../../data/si/live_class/Food\ Delivery\ App\ Survey\ Data.csv", header = TRUE)
+data <- read.csv("../../../data/0204_statistical_inference/live_class/Food\ Delivery\ App\ Survey\ Data.csv", header = TRUE)
 head(data, 5)
 
 
