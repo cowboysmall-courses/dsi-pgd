@@ -1,5 +1,5 @@
 
-test_data <- read.csv("../../../data/si/non_parametric_tests/Performance\ Appraisal\ Feedback.csv", header = TRUE)
+test_data <- read.csv("../../../data/si/live_class/Performance\ Appraisal\ Feedback.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)

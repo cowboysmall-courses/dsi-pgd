@@ -2,7 +2,7 @@
 library(boot)
 
 
-data <- read.csv("../../../data/si/non_parametric_tests/boot\ data.csv", header = TRUE)
+data <- read.csv("../../../data/si/live_class/boot\ data.csv", header = TRUE)
 
 head(data)
 summary(data)

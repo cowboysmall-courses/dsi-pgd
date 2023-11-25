@@ -2,7 +2,7 @@
 library(gmodels)
 
 
-test_data <- read.csv("../../../data/si/non_parametric_tests/Recruitment\ Source.csv", header = TRUE)
+test_data <- read.csv("../../../data/si/live_class/Recruitment\ Source.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)

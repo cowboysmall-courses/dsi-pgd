@@ -1,5 +1,5 @@
 
-test_data <- read.csv("../../../data/si/case_study/EMPLOYEE\ ENGAGEMENT\ DATA.csv", header = TRUE)
+test_data <- read.csv("../../../data/si/live_class/EMPLOYEE\ ENGAGEMENT\ DATA.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)
