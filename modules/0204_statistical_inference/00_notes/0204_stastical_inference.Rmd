@@ -11,6 +11,7 @@ output:
 ```{r setup, include=FALSE}
 
 library(nortest)
+library(gmodels)
 
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -341,6 +342,18 @@ normality assumption.
 
 \vspace{1.5em}
 
+
+
+
+
+\newpage
+
+
+
+
+
+\vspace{1.5em}
+
 ```{r data2, echo = FALSE}
 
 data <- read.csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/ONE\ SAMPLE\ t\ TEST.csv", header = TRUE)
@@ -398,6 +411,18 @@ t.test(data$time_g1, data$time_g2, alternative = "two.sided", var.equal = TRUE)
 
 \vspace{1.5em}
 
+
+
+
+
+\newpage
+
+
+
+
+
+\vspace{1.5em}
+
 ```{r independent-samples-t-test-var-unequal}
 
 t.test(data$time_g1, data$time_g2, alternative = "two.sided", var.equal = FALSE)
@@ -417,7 +442,7 @@ t.test(data$time_g1, data$time_g2, alternative = "two.sided", var.equal = FALSE)
 
 
 
-## Paired sample t-test
+## Paired samples t-test
 
 \vspace{1.5em}
 
@@ -507,7 +532,7 @@ cor.test(data$aptitude, data$job_prof, alternative = "two.sided", method = "pear
 
 
 
-# Tests for equality of Variances
+# Tests for Equality of Variances
 
 \vspace{1.5em}
 
@@ -696,15 +721,224 @@ summary(anova)
 
 
 
+\newpage
 
 
 
 
 
+# Non-Parametric Tests
+
+\vspace{1.5em}
+
+* tests based on t and F distributions assume populations are normally distributed
+* large body of statistical methods which do not make assumptions about the population distribution
+* non-parametric or distribution-free tests
+* if underlying normality assumption is met then parametric test should be chosen
+
+\vspace{1.5em}
+
+
+
+
+## Wilcoxon Signed Rank Test
+
+\vspace{1.5em}
+
+* considered a non-parametric alternative to one sample t-test
+* used to determine if the mean / median of a sample is equal to a known value when the 
+variable is ordinal or continuous, but not normally distributed
+* hypothesis tested
+  * $H_{0}$: the mean / median of the population is $m_{0}$ 
+  * $H_{1}$: the mean / median of the population is not $m_{0}$ 
+
+\vspace{1.5em}
+
+```{r data11, echo = FALSE}
+
+data <- read.csv("../../../data/0204_statistical_inference/non_parametric_tests/Wilcoxon\ Signed\ Rank\ test\ for\ one\ sample.csv", header = TRUE)
+
+```
+
+```{r one-sample-wilcox-test}
+
+wilcox.test(data$Score, mu = 50, alternative = "less")
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+
+
+## Mann-Whitney Test
+
+\vspace{1.5em}
+
+* considered a non-parametric alternative to independent samples t-test
+* used to compare differences between two independent groups when the dependent variable is either ordinal 
+or continuous, but not normally distributed
+* equivalent to Wilcoxon rank-sum test (WRS)
+* hypothesis tested
+  * $H_{0}$: the distributions of both groups are identical 
+  * $H_{1}$: the distributions of both groups are not identical 
+
+\vspace{1.5em}
+
+```{r data10, echo = FALSE}
+
+data <- read.csv("../../../data/0204_statistical_inference/non_parametric_tests/Mann\ Whitney\ test.csv", header = TRUE)
+
+```
+
+```{r mann-whitney-test}
+
+wilcox.test(aptscore ~ Group, data = data)
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+
+
+
+
+
+## Wilcoxon Signed Rank Test For Paired Data
+
+\vspace{1.5em}
+
+* considered a non-parametric alternative to paired t-test
+* used to compare differences between two related or paired groups when the dependent variable is either 
+ordinal or continuous, but not normally distributed
+* hypothesis tested
+  * $H_{0}$: the median of difference in the population is $0$ 
+  * $H_{1}$: not $H_{0}$
+
+\vspace{1.5em}
+
+```{r data12, echo = FALSE}
+
+data <- read.csv("../../../data/0204_statistical_inference/non_parametric_tests/Wilcoxon\ Signed\ Rank\ test\ for\ paired\ data.csv", header = TRUE)
+
+```
+
+```{r paired-data-wilcox-test}
+
+wilcox.test(data$Before, data$After, paired = TRUE, alternative = "less")
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+## Kruskal Wallis Test
+
+\vspace{1.5em}
+
+* considered a non-parametric alternative to one way ANOVA
+* used to compare differences between more than two independent groups when the dependent variable is either 
+ordinal or continuous, but not normally distributed
+* hypothesis tested
+  * $H_{0}$: $K$ samples come from the same population 
+  * $H_{1}$: not $H_{0}$
+
+\vspace{1.5em}
+
+```{r data13, echo = FALSE}
+
+data <- read.csv("../../../data/0204_statistical_inference/non_parametric_tests/Kruskal\ Wallis\ Test.csv", header = TRUE)
+
+```
+
+```{r kruskal-test}
+
+kruskal.test(aptscore ~ Group, data = data)
+
+```
+
+\vspace{1.5em}
+
+
+
+
+
+
+## Chi-Square Test Of Association
+
+\vspace{1.5em}
+
+* also known as Pearson's Chi-Square Test
+* used to test if there is a relationship between two categorical variables
+* the two categorical variables can be nominal or ordinal 
+* hypothesis tested
+  * $H_{0}$: the two attributes are independent 
+  * $H_{1}$: not $H_{0}$
+
+\vspace{1.5em}
+
+```{r data14, echo = FALSE}
+
+data <- read.csv("../../../data/0204_statistical_inference/non_parametric_tests/chi\ square\ test\ of\ association.csv", header = TRUE)
+
+```
+
+```{r chi-square-test}
+
+CrossTable(data$performance, data$source, chisq = TRUE)
+
+```
+
+\vspace{1.5em}
 
 
 
 
 \newpage
+
+
+
+
+
+
+# Summary
+
+\vspace{1.5em}
+
+## Table
+
+\vspace{1.5em}
+
+| Parametric                 | Non-Parametric                            |
+|----------------------------|-------------------------------------------|
+| one sample t-Test          | Wilcoxon signed rank test                 |
+| independent samples t-Test | Mann-Whitney test                         |
+| paired samples t-test      | Wilcoxon signed rank test for paired data |
+| one way ANOVA              | Kruskal Wallis test                       |
+| two way ANOVA              |                                           |
+| three way ANOVA            |                                           |
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newpage
 
