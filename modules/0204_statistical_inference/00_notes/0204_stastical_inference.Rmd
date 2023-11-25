@@ -842,7 +842,7 @@ wilcox.test(data$Before, data$After, paired = TRUE, alternative = "less")
 
 
 
-## Kruskal Wallis Test
+## Kruskal-Wallis Test
 
 \vspace{1.5em}
 
