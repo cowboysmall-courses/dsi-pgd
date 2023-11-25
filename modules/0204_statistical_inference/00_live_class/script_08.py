@@ -25,11 +25,22 @@ from scipy import stats
 # %% read data
 
 cust_data = pd.read_csv("../../../data/0204_statistical_inference/live_class/CUST_PROFILE.csv")
-
 cust_data.head()
+
+# %%
+
 cust_data.shape
+
+# %%
+
 len(cust_data.CUSTID.unique())
+
+# %%
+
 cust_data.info()
+
+# %%
+
 cust_data.describe(include='all')
 
 
@@ -39,11 +50,22 @@ cust_data.describe(include='all')
 # %% read data
 
 nps_data = pd.read_csv("../../../data/0204_statistical_inference/live_class/NPSDATA.csv")
-
 nps_data.head()
+
+# %%
+
 nps_data.shape
+
+# %%
+
 len(nps_data.CUSTID.unique())
+
+# %%
+
 nps_data.info()
+
+# %%
+
 nps_data.describe(include = 'all')
 
 
@@ -54,9 +76,21 @@ nps_data.describe(include = 'all')
 
 merged_data = pd.merge(nps_data, cust_data, on = "CUSTID", how = "left")
 merged_data.head()
+
+# %%
+
 merged_data.shape
+
+# %%
+
 len(merged_data.CUSTID.unique())
+
+# %%
+
 merged_data.info()
+
+# %%
+
 merged_data.describe(include = 'all')
 
 
@@ -78,7 +112,6 @@ merged_data.NPS.agg(['mean', 'median']).round(4)
 
 plt.figure(figsize = (8, 6))
 plt.boxplot(merged_data.NPS)
-# plt.xlabel('NPS')
 plt.ylabel('NPS')
 plt.title('Box Plot')
 plt.suptitle('')
@@ -92,7 +125,6 @@ plt.show()
 
 plt.figure(figsize = (8, 6))
 merged_data.boxplot(column = 'NPS', grid = False)
-# plt.xlabel('NPS')
 plt.ylabel('NPS')
 plt.title('Box Plot')
 plt.suptitle('')
@@ -105,14 +137,12 @@ plt.show()
 # %% boxplot of NPS
 
 plt.figure(figsize = (8, 6))
-
 sns.set_style("darkgrid")
 sns.set_context("paper")
 sns.boxplot(y = 'NPS', data = merged_data, width = 0.15, fill = False)
 plt.xlabel(' ')
 plt.ylabel('NPS')
 plt.title('Box Plot')
-# plt.suptitle('')
 plt.show()
 
 
@@ -133,11 +163,7 @@ fig = sm.qqplot(merged_data.NPS, line = '45', fit = True)
 stats.shapiro(merged_data.NPS)
 # ShapiroResult(statistic=0.9470881223678589, pvalue=0.00032600521808490157)
 
-
-
-
-
-# %% test for normality of NPS
+# %%
 
 lilliefors(merged_data.NPS)
 # (0.12501168046619382, 0.0009999999999998899)
@@ -165,16 +191,25 @@ merged_data.groupby('REGION')['NPS'].agg(['mean', 'median']).round(4)
 
 # %%
 
-NPS_N = merged_data[merged_data['REGION'] == 'North'].NPS
-NPS_S = merged_data[merged_data['REGION'] == 'South'].NPS
-NPS_E = merged_data[merged_data['REGION'] == 'East'].NPS
-NPS_W = merged_data[merged_data['REGION'] == 'West'].NPS
-
+NPS_N = merged_data[merged_data.REGION == 'North']['NPS']
 NPS_N.head()
+
+# %%
+
+NPS_S = merged_data[merged_data.REGION == 'South']['NPS']
 NPS_S.head()
+
+# %%
+
+NPS_E = merged_data[merged_data.REGION == 'East']['NPS']
 NPS_E.head()
+
+# %%
+
+NPS_W = merged_data[merged_data.REGION == 'West']['NPS']
 NPS_W.head()
 
+# %%
 
 stats.kruskal(NPS_N, NPS_S, NPS_E, NPS_W)
 # KruskalResult(statistic=0.5233555345999821, pvalue=0.913731145150497)
