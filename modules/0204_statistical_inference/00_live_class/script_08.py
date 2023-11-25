@@ -19,6 +19,9 @@ from statsmodels.stats.proportion import proportions_ztest
 from scipy import stats
 
 
+
+
+
 # %% read data
 
 cust_data = pd.read_csv("../../../data/si/non_parametric_tests/CUST_PROFILE.csv")
@@ -28,6 +31,9 @@ cust_data.shape
 len(cust_data.CUSTID.unique())
 cust_data.info()
 cust_data.describe(include='all')
+
+
+
 
 
 # %% read data
@@ -41,6 +47,9 @@ nps_data.info()
 nps_data.describe(include = 'all')
 
 
+
+
+
 # %% merge data
 
 merged_data = pd.merge(nps_data, cust_data, on = "CUSTID", how = "left")
@@ -51,9 +60,15 @@ merged_data.info()
 merged_data.describe(include = 'all')
 
 
+
+
+
 # %% fin mean and median of NPS
 
 merged_data.NPS.agg(['mean', 'median']).round(4)
+
+
+
 
 
 # %% boxplot of NPS
@@ -70,6 +85,9 @@ plt.suptitle('')
 plt.show()
 
 
+
+
+
 # %% boxplot of NPS
 
 plt.figure(figsize = (8, 6))
@@ -79,6 +97,9 @@ plt.ylabel('NPS')
 plt.title('Box Plot')
 plt.suptitle('')
 plt.show()
+
+
+
 
 
 # %% boxplot of NPS
@@ -95,10 +116,16 @@ plt.title('Box Plot')
 plt.show()
 
 
+
+
+
 # %% qqplot of NPS
 
 fig = sm.qqplot(merged_data.NPS, line = '45', fit = True)
 # qqplot(merged_data.NPS)
+
+
+
 
 
 # %% test for normality of NPS
@@ -107,16 +134,25 @@ stats.shapiro(merged_data.NPS)
 # ShapiroResult(statistic=0.9470881223678589, pvalue=0.00032600521808490157)
 
 
+
+
+
 # %% test for normality of NPS
 
 lilliefors(merged_data.NPS)
 # (0.12501168046619382, 0.0009999999999998899)
 
 
-# %% 
+
+
+
+# %%
 
 stats.wilcoxon(merged_data.NPS - 6, correction = True, alternative = 'greater')
 # WilcoxonResult(statistic=2166.0, pvalue=0.09808922801666187)
+
+
+
 
 
 # %% calculate mean and median of NPS grouped by REGION 
@@ -124,7 +160,10 @@ stats.wilcoxon(merged_data.NPS - 6, correction = True, alternative = 'greater')
 merged_data.groupby('REGION')['NPS'].agg(['mean', 'median']).round(4)
 
 
-# %% 
+
+
+
+# %%
 
 NPS_N = merged_data[merged_data['REGION'] == 'North'].NPS
 NPS_S = merged_data[merged_data['REGION'] == 'South'].NPS
@@ -145,6 +184,9 @@ stats.kruskal(NPS_N, NPS_S, NPS_E, NPS_W)
 # stats.kruskal(*[nps_data[regions == region] for region in regions.unique()])
 
 
+
+
+
 # %%
 
 table = merged_data.groupby('REGION')['NPS'].median()
@@ -154,6 +196,9 @@ plt.ylabel('Median NPS')
 plt.title('Median NPS by Region')
 
 
+
+
+
 # %%
 
 table = merged_data.groupby('REGION')['NPS'].mean()
@@ -161,6 +206,9 @@ table.plot(kind = 'bar', color = 'skyblue')
 plt.xlabel('Region')
 plt.ylabel('Mean NPS')
 plt.title('Mean NPS by Region')
+
+
+
 
 
 # %%
@@ -177,13 +225,18 @@ table.round(4) * 100
 # YES              55.14
 
 
+
+
+
 # %%
 
-prop_table = merged_data['DETRACTORS'].value_counts(normalize = True)
-prop_table
+merged_data['DETRACTORS'].value_counts(normalize = True)
 # YES    0.551402
 # NO     0.448598
 # Name: DETRACTORS, dtype: float6
+
+
+
 
 
 # %%
@@ -195,10 +248,16 @@ count_table
 # Name: DETRACTORS, dtype: int64
 
 
+
+
+
 # %%
 
 proportions_ztest(count_table.get('YES'), sum(count_table), 0.4, alternative = 'larger')
 # (3.148910223112169, 0.000819402663085909)
+
+
+
 
 
 # %%
@@ -211,8 +270,6 @@ cont_table
 # North       11   13
 # South       15   20
 # West        15   13
-
-
 
 stats.chi2_contingency(cont_table)
 # Chi2ContingencyResult(statistic=1.711051839521119, pvalue=0.634479520420212, dof=3, expected_freq=array([[ 8.97196262, 11.02803738],
