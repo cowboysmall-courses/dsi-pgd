@@ -6,6 +6,8 @@ output:
   pdf_document:
     toc: true
     number_sections: true
+header-includes:
+  - \usepackage{amsmath}
 ---
 
 ```{r setup, include=FALSE}
@@ -37,12 +39,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \vspace{1.5em}
 
-* variable
-* population
-* sample
-* distribution
-* factor
-* descriptive statistics
+* variable - the characteristics under study
+* population - the set of all measurements
+* sample - subset of measurements
+* distribution - a function which defines frequencies and values of a variable
+* factor - subgroups under study
+* descriptive statistics - mean, median, variance, etc. of the variable under study
 
 \vspace{1.5em}
 
@@ -78,8 +80,10 @@ knitr::opts_chunk$set(echo = TRUE)
 \vspace{1.5em}
 
 * parameter - unknown property or characteristic of population
+  * such as population mean ($\mu$), variance ($\sigma^{2}$), proportion ($p$)
 * estimator - rule / function based on sample observations used to estimate parameter
-* estimate  - value computed from estimator
+  * sample mean, sample variance, sample proportion
+* estimate  - value computed from estimator using the sample observations
 
 \vspace{1.5em}
 
@@ -152,17 +156,19 @@ parameter is true based on sample data.
 
 One-tailed test:
 
-$H_{0}: \mu = \mu_{0}$ 
-
-$H_{0}: \mu > \mu_{0}$ (right-tailed) or $H_{0}: \mu < \mu_{0}$ (left-tailed)
+\begin{flalign*}
+  & H_{0}: \mu = \mu_{0} &\\
+  & H_{0}: \mu > \mu_{0} \text{ (right-tailed) or } H_{0}: \mu < \mu_{0} \text{ (left-tailed)}
+\end{flalign*}
 
 \vspace{1.5em}
 
 Two-tailed test:
 
-$H_{0}: \mu = \mu_{0}$ 
-
-$H_{0}: \mu \neq \mu_{0}$
+\begin{flalign*}
+  & H_{0}: \mu = \mu_{0} &\\
+  & H_{0}: \mu \neq \mu_{0}
+\end{flalign*}
 
 \vspace{1.5em}
 
@@ -939,6 +945,8 @@ CrossTable(data$performance, data$source, chisq = TRUE)
 | one way ANOVA              | Kruskal Wallis test                       |
 | two way ANOVA              |                                           |
 | three way ANOVA            |                                           |
+
+\vspace{1.5em}
 
 
 

@@ -18,6 +18,29 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
+
+\newpage
+
+# Data Management
+
+\vspace{1.5em}
+
+
+## Chapter 1
+
+\vspace{1.5em}
+
+To be completed...
+
+
+
+
+
+
+
+
+
+
 \newpage
 
 # Descriptive Statistics
@@ -331,7 +354,159 @@ Constants which help us in knowing the characteristics and graphic shape of data
 
 ## Bivariate Relationships
 
+\vspace{1.5em}
 
+### Describing a Bivariate Relationships
+
+\vspace{1.5em}
+
+* univariate data - data having one variable
+* bivariate data - data having two variables
+  * two numeric variables
+  * two categorical variables
+  * one numeric variable, one categorical variable
+
+\vspace{1.5em}
+
+can be described using:
+
+\vspace{1.5em}
+
+* scatter plot
+* correlation coefficient
+* simple linear regression
+
+\vspace{1.5em}
+
+### Scatter Plot
+
+\vspace{1.5em}
+
+A scatter plot consists of:
+
+* x-axis - the values of one variable
+* y-axis - the values of another variable
+* series of dots / observations
+* used with two numeric continuous variables
+
+\vspace{1.5em}
+
+interpreting a scatter plot:
+
+\vspace{1.5em}
+
+* positive correlation
+* negative correlation
+* no correlation
+
+
+\vspace{1.5em}
+
+```{r data1, echo = FALSE}
+
+data <- read.csv("../../../data/0104_exploratory_data_analysis/live_class/Normality_Assessment_Data.csv", header = TRUE)
+
+```
+
+```{r qqnorm, echo = FALSE}
+
+qqnorm(data$csi, pch = 1, frame = FALSE)
+qqline(data$csi, col = "cadetblue", lwd = 2)
+
+```
+
+
+\vspace{1.5em}
+
+### Pearson's Correlation Coefficient
+
+numerically measures the strength of a linear relation between two variables.
+
+\vspace{1.5em}
+
+\[
+-1 \leq r \leq 1
+\]
+
+|                      |         |
+|----------------------|---------|
+| Positive Correlation | $r > 0$ |
+| Negative Correlation | $r < 0$ |
+| No Correlation       | $r = 0$ |
+
+
+\vspace{1.5em}
+
+* the two variables can be measured in different units
+* not affected by change of origin / scale
+
+\vspace{1.5em}
+
+### Line of Best Fit
+
+\vspace{1.5em}
+
+* a straight line that best represents the data on a scatter plot
+* may pass through some, none, or all of the points
+
+\vspace{1.5em}
+
+### Simple Linear Regression
+
+\vspace{1.5em}
+
+The equation of line of best fit used to describe the relationship between two variables
+
+\vspace{1.5em}
+
+mathematical form:
+
+\vspace{1.5em}
+
+\[
+  \textbf{Y} = a \textbf{X} + b + e
+\]
+
+\vspace{1.5em}
+
+where:
+
+\vspace{1.5em}
+
+* $a$ - the slope
+* $b$ - the intercept
+* $e$ - the error
+
+\vspace{1.5em}
+
+$a$ and $b$ are population parameters which are estimated using samples.
+
+\vspace{1.5em}
+
+* $\textbf{Y}$ is the dependent variable
+* $\textbf{X}$ is the independent variable
+
+\vspace{1.5em}
+
+
+
+
+
+
+
+
+\newpage
+
+# Data Visualisation
+
+\vspace{1.5em}
+
+
+## Chapter 1
+
+\vspace{1.5em}
+
+To be completed...
 
 
 
