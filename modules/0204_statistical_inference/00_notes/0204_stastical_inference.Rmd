@@ -634,8 +634,8 @@ A normality test can be performed using any of the methods described previously.
 
 * an extension of the t-test for independent samples
 * used to test equality of $K$ population means
-  * when $K = 2$ t-Test can be used
-  * when $K = 2$ t-Test and one way ANOVA provide identical results
+  * when $K = 2$ t-test can be used
+  * when $K = 2$ t-test and one way ANOVA provide identical results
 * hypothesis tested
   * $H_{0}$: $\mu_{1} = \mu_{2} = ... = \mu_{K} = \mu$
   * $H_{1}$: $\mu_{i} \neq \mu_{j},  i \neq j$
@@ -946,7 +946,7 @@ CrossTable(data$performance, data$source, chisq = TRUE)
 | one sample t-test          | Wilcoxon signed rank test                 |
 | independent samples t-test | Mann-Whitney test                         |
 | paired samples t-test      | Wilcoxon signed rank test for paired data |
-| one way ANOVA              | Kruskal Wallis test                       |
+| one way ANOVA              | Kruskal-Wallis test                       |
 | two way ANOVA              |                                           |
 | three way ANOVA            |                                           |
 
