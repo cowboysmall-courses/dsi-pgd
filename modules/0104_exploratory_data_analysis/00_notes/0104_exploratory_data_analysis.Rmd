@@ -9,7 +9,9 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 
@@ -18,12 +20,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-
 \newpage
+
+
+
+
 
 # Data Management
 
 \vspace{1.5em}
+
+
+
 
 
 ## Chapter 1
@@ -32,10 +40,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 To be completed...
 
-
-
-
-
+\vspace{1.5em}
 
 
 
@@ -43,11 +48,13 @@ To be completed...
 
 \newpage
 
+
+
+
+
 # Descriptive Statistics
 
 \vspace{1.5em}
-
-
 
 
 
@@ -494,12 +501,22 @@ $a$ and $b$ are population parameters which are estimated using samples.
 
 
 
-
 \newpage
+
+
+
+
+
+
 
 # Data Visualisation
 
 \vspace{1.5em}
+
+
+
+
+
 
 
 ## Chapter 1
@@ -507,6 +524,8 @@ $a$ and $b$ are population parameters which are estimated using samples.
 \vspace{1.5em}
 
 To be completed...
+
+\vspace{1.5em}
 
 
 
