@@ -1,0 +1,218 @@
+---
+title: "Least Squares Regression"
+author: "Jerry Kiely"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+header-includes:
+  - \usepackage{amsmath}
+---
+
+```{r setup, include=FALSE}
+
+library(nortest)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+
+
+
+
+
+\newpage
+
+
+# Derivation
+
+\vspace{1.5em}
+
+the model can be described as follows:
+
+\vspace{1.5em}
+
+\[
+y = \beta_{0} + \beta_{1} x_{1} + \beta_{2} x_{2} + \cdots +  \beta_{k} x_{k} + \epsilon
+\]
+
+\vspace{1.5em}
+
+where $y$ is the dependent variable, $x_{1}, x_{2}, \cdots, x_{k}$ are the independent 
+variables, $\beta_{0}, \beta_{1}, \beta_{2}, \cdots, \beta_{k}$ are the parameters, and 
+$\epsilon$ is the error term. The object is to estimate the parameters. We can 
+arrange $n$ observations in matrix / vector form as follows:
+
+\vspace{1.5em}
+
+\[
+\begin{bmatrix}
+  y_1 \\ y_2 \\ \vdots \\ y_n 
+\end{bmatrix} = \
+\begin{bmatrix} 
+  1 & x_{11} & x_{12} & x_{13} & \cdots & x_{1k} \\ 
+  1 & x_{21} & x_{22} & x_{23} & \cdots & x_{2k} \\ 
+  \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ 
+  1 & x_{n1} & x_{n2} & x_{n3} & \cdots & x_{nk} 
+\end{bmatrix} \
+\begin{bmatrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_k \end{bmatrix} + \
+\begin{bmatrix} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{bmatrix}
+\]
+
+\vspace{1.5em}
+
+which can be simplified as follows:
+
+\vspace{1.5em}
+
+\[
+  Y = X \beta + \epsilon
+\]
+
+\vspace{1.5em}
+
+the vector of parameter estimates is denoted $\hat{\beta}$. To calculate the parameter 
+estimates we want to minimize the sum of the squared errors. The vector of errors is:
+
+\vspace{1.5em}
+
+\[
+  \epsilon = Y - X \hat{\beta}
+\]
+
+\vspace{1.5em}
+
+and hence the sum of the squared errors is:
+
+\vspace{1.5em}
+
+\[
+  \epsilon^T \epsilon = (Y - X \hat{\beta})^T (Y - X \hat{\beta})
+\]
+
+\vspace{1.5em}
+
+to find the minimum of the sum of the squared errors we differentiate the above expression 
+with respect to $\hat{\beta}$:
+
+\vspace{1.5em}
+
+\begin{align*}
+  \frac{\partial }{\partial \hat{\beta}} \epsilon^T \epsilon & = \frac{\partial }{\partial \hat{\beta}} (Y - X \hat{\beta})^T (Y - X \hat{\beta}) \\\\
+  & = \frac{\partial }{\partial \hat{\beta}} (Y^T - \hat{\beta}^T X^T) (Y - X \hat{\beta}) \\\\
+  & = \frac{\partial }{\partial \hat{\beta}} (Y^T Y - Y^T X \hat{\beta} - \hat{\beta}^T X^T Y + \hat{\beta}^T X^T X \hat{\beta}) \\\\
+  & = \frac{\partial }{\partial \hat{\beta}} (Y^T Y - 2 \hat{\beta}^T X^T Y + \hat{\beta}^T X^T X \hat{\beta}) \\\\
+  & = -2 X^T Y + 2 X^T X \hat{\beta}
+\end{align*}
+
+\vspace{1.5em}
+
+setting this equal to zero we get:
+
+\vspace{1.5em}
+
+\begin{align*}
+  -2 X^T Y + 2 X^T X \hat{\beta} & = 0 \\
+              2 X^T X \hat{\beta} & = 2 X^T Y \\
+                X^T X \hat{\beta} & = X^T Y \\
+                      \hat{\beta} & = (X^T X)^{-1} X^T Y
+\end{align*}
+
+\vspace{1.5em}
+
+
+
+
+
+# Estimation
+
+\vspace{1.5em}
+
+we can now estimate the parameters with real data using the previously derived equation:
+
+\vspace{1.5em}
+
+```{r data, echo = FALSE}
+
+data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
+
+```
+
+```{r head}
+
+head(data)
+
+```
+
+\vspace{1.5em}
+
+we construct our $X$ matrix using the independent variables with a column of $1$s for 
+the intercept: 
+
+\vspace{1.5em}
+
+
+```{r X}
+
+X <- cbind(rep(1, nrow(data)), as.matrix(data[, c("aptitude", "tol", "technical", "general")]))
+head(X)
+
+```
+
+\vspace{1.5em}
+
+next we construct our $Y$ vector from the dependent variable: 
+
+\vspace{1.5em}
+
+
+```{r Y}
+
+Y <- as.matrix(data[, "jpi"])
+head(Y)
+
+```
+
+\vspace{1.5em}
+
+and finally we solve for our $\hat{\beta}$ vector of estimated parameters using our 
+expression derived earlier: 
+
+\vspace{1.5em}
+
+\[
+  \hat{\beta} = (X^T X)^{-1} X^T Y
+\]
+
+\vspace{1.5em}
+
+```{r B}
+
+B <- solve(t(X) %*% X) %*% t(X) %*% Y
+round(B[, 1], 5)
+
+```
+
+\vspace{1.5em}
+
+here we use the \emph{solve} function to get the inverse of a matrix, and the \emph{t} 
+function to get the transpose of a vector or matrix. Lets compare our parameters with 
+the parameter estimates using the standard \emph{lm} function:
+
+\vspace{1.5em}
+
+```{r lm}
+
+lm(jpi ~ aptitude + tol + technical + general, data = data)
+
+```
+
+
+
+
+
+
+

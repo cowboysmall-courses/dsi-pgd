@@ -20,7 +20,6 @@ Y <- as.matrix(train_data1[, "jpi"])
 B <- solve(t(X) %*% X) %*% t(X) %*% Y
 round(B[, 1], 5)
 
-
 vif(model1)
 
 train_data1$pred <- fitted(model1)
@@ -48,6 +47,11 @@ head(train_data2)
 
 model2 <- lm(jpi ~ aptitude + technical + general, data = train_data2)
 summary(model2)
+
+X <- cbind(rep(1, nrow(train_data2)), as.matrix(train_data2[, c("aptitude", "technical", "general")]))
+Y <- as.matrix(train_data2[, "jpi"])
+B <- solve(t(X) %*% X) %*% t(X) %*% Y
+round(B[, 1], 5)
 
 vif(model2)
 
