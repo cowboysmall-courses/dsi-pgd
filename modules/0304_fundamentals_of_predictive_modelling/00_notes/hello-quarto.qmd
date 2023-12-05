@@ -1,5 +1,7 @@
 ---
 title: "Hello, Quarto"
+format: html
+editor: visual
 ---
 
 ```{r}
