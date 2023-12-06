@@ -9,6 +9,7 @@ Created on Mon Dec  4 18:37:41 2023
 
 # %% 0 - import libraries
 
+import numpy as np
 import pandas as pd
 import seaborn as sns
 
@@ -43,6 +44,16 @@ model.params
 # general       0.536834
 # dtype: float64
 
+
+
+# %% 3.5
+X = data[['tol', 'aptitude', 'technical', 'general']]
+X.insert(loc = 0, column = 'Intercept', value = pd.Series([1] * data.shape[0]))
+P = X.T.dot(X)
+
+Y = data['jpi']
+
+pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(Y))
 
 
 # %% 4 - model summary
@@ -90,6 +101,18 @@ model.params
 # technical     1.116627
 # general       0.543157
 # dtype: float64
+
+
+
+# %% 5.5
+X = data[['aptitude', 'technical', 'general']]
+X.insert(loc = 0, column = 'Intercept', value = pd.Series([1] * data.shape[0]))
+P = X.T.dot(X)
+
+Y = data['jpi']
+
+pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(Y))
+
 
 
 
