@@ -37,7 +37,7 @@ summary(model)
 # F-statistic: 700.3 on 4 and 995 DF,  p-value: < 2.2e-16
 
 vif(model)
-# Length       CC   vehage   Weight 
+#   Length       CC   vehage   Weight
 # 3.396171 5.881428 1.038357 6.552811
 
 model <- lm(claimamt ~ Length + CC + vehage, data = data)
