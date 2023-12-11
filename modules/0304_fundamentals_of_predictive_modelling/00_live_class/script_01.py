@@ -58,38 +58,38 @@ pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(Y))
 
 # %% 4 - model summary
 model.summary()
-"""
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                    jpi   R-squared:                       0.877
-Model:                            OLS   Adj. R-squared:                  0.859
-Method:                 Least Squares   F-statistic:                     49.81
-Date:                Mon, 04 Dec 2023   Prob (F-statistic):           2.47e-12
-Time:                        19:03:42   Log-Likelihood:                -85.916
-No. Observations:                  33   AIC:                             181.8
-Df Residuals:                      28   BIC:                             189.3
-Df Model:                           4                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P>|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-Intercept    -54.2822      7.395     -7.341      0.000     -69.429     -39.135
-tol            0.0334      0.071      0.468      0.643      -0.113       0.179
-aptitude       0.3236      0.068      4.774      0.000       0.185       0.462
-technical      1.0955      0.181      6.039      0.000       0.724       1.467
-general        0.5368      0.158      3.389      0.002       0.212       0.861
-==============================================================================
-Omnibus:                        2.124   Durbin-Watson:                   1.379
-Prob(Omnibus):                  0.346   Jarque-Bera (JB):                1.944
-Skew:                          -0.544   Prob(JB):                        0.378
-Kurtosis:                       2.518   Cond. No.                     1.25e+03
-==============================================================================
+# """
+#                             OLS Regression Results                            
+# ==============================================================================
+# Dep. Variable:                    jpi   R-squared:                       0.877
+# Model:                            OLS   Adj. R-squared:                  0.859
+# Method:                 Least Squares   F-statistic:                     49.81
+# Date:                Mon, 04 Dec 2023   Prob (F-statistic):           2.47e-12
+# Time:                        19:03:42   Log-Likelihood:                -85.916
+# No. Observations:                  33   AIC:                             181.8
+# Df Residuals:                      28   BIC:                             189.3
+# Df Model:                           4                                         
+# Covariance Type:            nonrobust                                         
+# ==============================================================================
+#                  coef    std err          t      P>|t|      [0.025      0.975]
+# ------------------------------------------------------------------------------
+# Intercept    -54.2822      7.395     -7.341      0.000     -69.429     -39.135
+# tol            0.0334      0.071      0.468      0.643      -0.113       0.179
+# aptitude       0.3236      0.068      4.774      0.000       0.185       0.462
+# technical      1.0955      0.181      6.039      0.000       0.724       1.467
+# general        0.5368      0.158      3.389      0.002       0.212       0.861
+# ==============================================================================
+# Omnibus:                        2.124   Durbin-Watson:                   1.379
+# Prob(Omnibus):                  0.346   Jarque-Bera (JB):                1.944
+# Skew:                          -0.544   Prob(JB):                        0.378
+# Kurtosis:                       2.518   Cond. No.                     1.25e+03
+# ==============================================================================
 
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 1.25e+03. This might indicate that there are
-strong multicollinearity or other numerical problems.
-"""
+# Notes:
+# [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+# [2] The condition number is large, 1.25e+03. This might indicate that there are
+# strong multicollinearity or other numerical problems.
+# """
 
 
 
@@ -118,37 +118,37 @@ pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(Y))
 
 # %% 6 - new model summary
 model.summary()
-"""
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                    jpi   R-squared:                       0.876
-Model:                            OLS   Adj. R-squared:                  0.863
-Method:                 Least Squares   F-statistic:                     68.18
-Date:                Mon, 04 Dec 2023   Prob (F-statistic):           3.03e-13
-Time:                        19:17:24   Log-Likelihood:                -86.045
-No. Observations:                  33   AIC:                             180.1
-Df Residuals:                      29   BIC:                             186.1
-Df Model:                           3                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P>|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-Intercept    -54.4064      7.290     -7.464      0.000     -69.315     -39.497
-aptitude       0.3333      0.064      5.241      0.000       0.203       0.463
-technical      1.1166      0.173      6.444      0.000       0.762       1.471
-general        0.5432      0.156      3.489      0.002       0.225       0.862
-==============================================================================
-Omnibus:                        2.163   Durbin-Watson:                   1.392
-Prob(Omnibus):                  0.339   Jarque-Bera (JB):                1.960
-Skew:                          -0.515   Prob(JB):                        0.375
-Kurtosis:                       2.396   Cond. No.                     1.07e+03
-==============================================================================
+# """
+#                             OLS Regression Results                            
+# ==============================================================================
+# Dep. Variable:                    jpi   R-squared:                       0.876
+# Model:                            OLS   Adj. R-squared:                  0.863
+# Method:                 Least Squares   F-statistic:                     68.18
+# Date:                Mon, 04 Dec 2023   Prob (F-statistic):           3.03e-13
+# Time:                        19:17:24   Log-Likelihood:                -86.045
+# No. Observations:                  33   AIC:                             180.1
+# Df Residuals:                      29   BIC:                             186.1
+# Df Model:                           3                                         
+# Covariance Type:            nonrobust                                         
+# ==============================================================================
+#                  coef    std err          t      P>|t|      [0.025      0.975]
+# ------------------------------------------------------------------------------
+# Intercept    -54.4064      7.290     -7.464      0.000     -69.315     -39.497
+# aptitude       0.3333      0.064      5.241      0.000       0.203       0.463
+# technical      1.1166      0.173      6.444      0.000       0.762       1.471
+# general        0.5432      0.156      3.489      0.002       0.225       0.862
+# ==============================================================================
+# Omnibus:                        2.163   Durbin-Watson:                   1.392
+# Prob(Omnibus):                  0.339   Jarque-Bera (JB):                1.960
+# Skew:                          -0.515   Prob(JB):                        0.375
+# Kurtosis:                       2.396   Cond. No.                     1.07e+03
+# ==============================================================================
 
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 1.07e+03. This might indicate that there are
-strong multicollinearity or other numerical problems.
-"""
+# Notes:
+# [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+# [2] The condition number is large, 1.07e+03. This might indicate that there are
+# strong multicollinearity or other numerical problems.
+# """
 
 
 
