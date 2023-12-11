@@ -42,4 +42,4 @@ Premiums_sub <- subset(Premiums, Plan == "Asia Standard Plan" & Sum_Assured <= 5
 
 # 8
 library(xlsx)
-write.xlsx(Premiums_sub, "./Premiums_sub.xlsx", row.names = FALSE)
+write.xlsx(Premiums_sub, "./Premiums_sub_R.xlsx", row.names = FALSE)

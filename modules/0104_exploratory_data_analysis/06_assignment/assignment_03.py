@@ -141,7 +141,7 @@ Premium_sub.head(10)
 
 
 # %% 8 - Export the subsetted data into an xlsx file.
-Premium_sub.to_excel("./Premiums_sub.xlsx")
+Premium_sub.to_excel("./Premiums_sub_Python.xlsx")
 
 
 
