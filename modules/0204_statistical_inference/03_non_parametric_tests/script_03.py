@@ -6,12 +6,12 @@ Created on Mon Dec 11 17:26:21 2023
 @author: jerry
 """
 
+
 # %% 0 - Import libraries.
 
 import pandas as pd
 
 from scipy.stats import kruskal
-
 
 
 
@@ -27,6 +27,6 @@ data.describe(include = 'all')
 group1 = data[data.Group == 'GroupI']['aptscore']
 group2 = data[data.Group == 'GroupII']['aptscore']
 group3 = data[data.Group == 'GroupIII']['aptscore']
-                                           
+
 kruskal(group1, group2, group3)
 # KruskalResult(statistic=2.230929090974231, pvalue=0.3277629827136111)

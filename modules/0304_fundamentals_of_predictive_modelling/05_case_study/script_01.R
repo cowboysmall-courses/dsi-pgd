@@ -154,6 +154,3 @@ data$resi <- data$MEDV - data$pred
 
 sqrt(mean(data$resi ** 2))
 # 4.79846
-
-
-
