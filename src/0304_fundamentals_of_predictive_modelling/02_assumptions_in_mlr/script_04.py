@@ -1,9 +1,8 @@
 
 import pandas as pd
 
-from patsy import dmatrices
 from statsmodels.formula.api import ols
-from statsmodels.stats.outliers_influence import variance_inflation_factor
+from statsmodels.graphics.regressionplots import influence_plot
 
 
 # %% 1 - import data and check the head
@@ -17,5 +16,9 @@ model.summary()
 
 
 # %% 3 -
-y, X = dmatrices('jpi ~ aptitude + tol + technical + general', data = data, return_type = "dataframe")
-pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], index = X.columns)
+influence = model.get_influence()
+influence.summary_frame()
+
+
+# %% 4 -
+influence_plot(model, criterion = 'Cooks')

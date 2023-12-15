@@ -1,9 +1,9 @@
 
 import pandas as pd
+import statsmodels.api as sm
+import scipy as sp
 
-from patsy import dmatrices
 from statsmodels.formula.api import ols
-from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
 # %% 1 - import data and check the head
@@ -17,5 +17,17 @@ model.summary()
 
 
 # %% 3 -
-y, X = dmatrices('jpi ~ aptitude + tol + technical + general', data = data, return_type = "dataframe")
-pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], index = X.columns)
+data = data.assign(pred = pd.Series(model.fittedvalues))
+data = data.assign(resi = pd.Series(model.resid))
+
+
+# %% 4 -
+data.plot.scatter(x = 'pred', y = 'resi')
+
+
+# %% 5 -
+fig = sm.graphics.qqplot(data.resi, line = '45', fit = True)
+
+
+# %% 6 -
+sp.stats.shapiro(data.resi)

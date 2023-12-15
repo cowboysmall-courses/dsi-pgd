@@ -35,11 +35,11 @@ sns.pairplot(data)
 
 
 # %% 3 - build model
-model = ols('jpi ~ tol + aptitude + technical + general', data = data).fit()
+model = ols('jpi ~ aptitude + tol + technical + general', data = data).fit()
 model.params
 # Intercept   -54.282247
-# tol           0.033372
 # aptitude      0.323562
+# tol           0.033372
 # technical     1.095467
 # general       0.536834
 # dtype: float64
@@ -47,7 +47,7 @@ model.params
 
 
 # %% 3.5
-X = data[['tol', 'aptitude', 'technical', 'general']]
+X = data[['aptitude', 'tol', 'technical', 'general']]
 X.insert(loc = 0, column = 'Intercept', value = pd.Series([1] * data.shape[0]))
 P = X.T.dot(X)
 
@@ -74,8 +74,8 @@ model.summary()
 #                  coef    std err          t      P>|t|      [0.025      0.975]
 # ------------------------------------------------------------------------------
 # Intercept    -54.2822      7.395     -7.341      0.000     -69.429     -39.135
-# tol            0.0334      0.071      0.468      0.643      -0.113       0.179
 # aptitude       0.3236      0.068      4.774      0.000       0.185       0.462
+# tol            0.0334      0.071      0.468      0.643      -0.113       0.179
 # technical      1.0955      0.181      6.039      0.000       0.724       1.467
 # general        0.5368      0.158      3.389      0.002       0.212       0.861
 # ==============================================================================
