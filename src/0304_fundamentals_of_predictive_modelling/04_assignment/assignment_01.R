@@ -10,7 +10,10 @@ library(caret)
 library(nortest)
 
 
+
 set.seed(1337)
+
+
 
 # 1 - Import House Price Data. Check the structure of the data.
 data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/assignment/House\ Price\ Data.csv", header = TRUE)
@@ -31,15 +34,6 @@ str(data)
 # $ Area    : int  1036 1030 1046 950 952 967 825 1162 1066 1084 ...
 # $ Distance: num  3.22 4.33 1.94 2.45 2.47 3.64 1.49 2.26 1.93 1.47 ...
 # $ Schools : int  2 3 3 2 2 2 2 3 3 2 ...
-
-summary(data)
-#    Houseid           Price            Area         Distance        Schools     
-# Min.   :  1.00   Min.   :16.30   Min.   : 825   Min.   :0.100   Min.   :1.000  
-# 1st Qu.: 50.25   1st Qu.:21.53   1st Qu.: 967   1st Qu.:1.930   1st Qu.:2.000  
-# Median : 99.50   Median :25.30   Median :1033   Median :2.260   Median :3.000  
-# Mean   : 99.50   Mean   :25.39   Mean   :1040   Mean   :2.335   Mean   :2.495  
-# 3rd Qu.:148.75   3rd Qu.:28.67   3rd Qu.:1094   3rd Qu.:3.040   3rd Qu.:3.000  
-# Max.   :198.00   Max.   :35.49   Max.   :1345   Max.   :4.330   Max.   :3.000  
 
 
 
@@ -197,6 +191,7 @@ lillie.test(train$resi)
 
 # 9 - Is there a Heteroscedasticity problem? Check using residual vs. predictor plots.
 plot(train$pred, train$resi, col = "cadetblue")
+
 # residuals appear to be reasonably randomly distributed, which would indicate 
 # homoscedasticity, and hence no heteroscedasticity problem.
 
@@ -209,6 +204,16 @@ RMSE_train
 
 test$pred <- predict(model, test)
 test$resi <- test$Price - test$pred
+
+head(test)
+#    Houseid Price Area Distance Schools     pred      resi
+# 2        2 20.15 1030     4.33       3 21.99497 -1.844969
+# 12      12 34.10 1138     0.88       3 31.75143  2.348570
+# 14      14 19.75  990     3.39       2 21.09592 -1.345918
+# 24      24 30.85 1160     2.80       3 29.14418  1.705819
+# 37      37 20.18  950     2.45       2 21.36760 -1.187597
+# 51      51 34.92 1072     0.10       3 30.84903  4.070965
+
 RMSE_test <- sqrt(mean(test$resi ** 2))
 RMSE_test
 # 2.17643
@@ -221,5 +226,5 @@ RMSE_test
 
 # the difference between the train and test RMSE is around 1% - 2% - which is acceptable 
 # (a difference of around 10% is usually the ideal). Also of note is that the test RMSE 
-# is less than the train RMSE, which would indicate that the 
-# error has decreased going from train to test.
+# is less than the train RMSE, which would indicate that the error has decreased going
+# from train to test.
