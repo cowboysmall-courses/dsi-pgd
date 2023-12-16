@@ -11,7 +11,7 @@ model <- lm(jpi ~ aptitude + tol + technical + general, data = data)
 summary(model)
 
 
-influ < -influence.measures(model)
+influ <- influence.measures(model)
 influ
 
 
