@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
+from patsy import dmatrices
 from statsmodels.formula.api import ols
 
 
@@ -47,13 +48,22 @@ model.params
 
 
 # %% 3.5
+y, X = dmatrices('jpi ~ aptitude + tol + technical + general', data = data, return_type = "dataframe")
+P = X.T.dot(X)
+
+pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(y['jpi']))
+
+
+
+# %% 3.6
 X = data[['aptitude', 'tol', 'technical', 'general']]
 X.insert(loc = 0, column = 'Intercept', value = pd.Series([1] * data.shape[0]))
 P = X.T.dot(X)
 
-Y = data['jpi']
+y = data['jpi']
 
-pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(Y))
+pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(y))
+
 
 
 # %% 4 - model summary
@@ -105,14 +115,21 @@ model.params
 
 
 # %% 5.5
+y, X = dmatrices('jpi ~ aptitude + technical + general', data = data, return_type = "dataframe")
+P = X.T.dot(X)
+
+pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(y['jpi']))
+
+
+
+# %% 5.6
 X = data[['aptitude', 'technical', 'general']]
 X.insert(loc = 0, column = 'Intercept', value = pd.Series([1] * data.shape[0]))
 P = X.T.dot(X)
 
-Y = data['jpi']
+y = data['jpi']
 
-pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(Y))
-
+pd.DataFrame(np.linalg.pinv(P.values), P.columns, P.index).dot(X.T.dot(y))
 
 
 

@@ -16,8 +16,8 @@ model1 <- lm(jpi ~ aptitude + tol + technical + general, data = train_data1)
 summary(model1)
 
 X <- cbind(rep(1, nrow(train_data1)), as.matrix(train_data1[, c("aptitude", "tol", "technical", "general")]))
-Y <- as.matrix(train_data1[, "jpi"])
-B <- solve(t(X) %*% X) %*% t(X) %*% Y
+y <- as.matrix(train_data1[, "jpi"])
+B <- solve(t(X) %*% X) %*% t(X) %*% y
 round(B[, 1], 5)
 
 vif(model1)
@@ -49,8 +49,8 @@ model2 <- lm(jpi ~ aptitude + technical + general, data = train_data2)
 summary(model2)
 
 X <- cbind(rep(1, nrow(train_data2)), as.matrix(train_data2[, c("aptitude", "technical", "general")]))
-Y <- as.matrix(train_data2[, "jpi"])
-B <- solve(t(X) %*% X) %*% t(X) %*% Y
+y <- as.matrix(train_data2[, "jpi"])
+B <- solve(t(X) %*% X) %*% t(X) %*% y
 round(B[, 1], 5)
 
 vif(model2)
@@ -92,13 +92,3 @@ qqline(test_data1$resi, col = "cadetblue", lwd = 2)
 
 shapiro.test(test_data1$resi)
 lillie.test(test_data1$resi)
-
-
-
-
-
-# 
-
-
-
-
