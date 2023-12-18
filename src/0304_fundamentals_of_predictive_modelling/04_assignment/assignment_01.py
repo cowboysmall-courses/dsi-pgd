@@ -162,8 +162,36 @@ influence.summary_frame()
 
 # [158 rows x 10 columns]
 
+
+
+# %% 7.1 - 
+
+influential = train[influence.cooks_distance[0] > (4 / train.shape[0])]
+influential.sort_index(inplace = True)
+influential
+#      Houseid  Price  Area  Distance  Schools
+# 16        17  26.75  1028      2.23        1
+# 17        18  34.97  1072      0.10        3
+# 31        32  17.73   929      0.70        2
+# 32        33  33.36  1345      2.07        3
+# 64        65  18.10   929      0.70        2
+# 65        66  33.20  1345      2.07        3
+# 83        84  34.75  1072      0.10        3
+# 97        98  17.53   929      0.70        2
+# 98        99  33.25  1345      2.07        3
+# 115      116  26.99  1028      2.23        1
+# 149      150  35.49  1072      0.10        3
+# 163      164  18.98   929      0.70        2
+# 164      165  33.46  1345      2.07        3
+# 182      183  34.93  1072      0.10        3
+# 196      197  17.76   929      0.70        2
+# 197      198  33.49  1345      2.07        3
+
 # We can see from the above summary that there are many influential observations in 
 # the data.
+
+
+# %% 7.2 - 
 
 fig = influence_plot(model, criterion = 'Cooks')
 
