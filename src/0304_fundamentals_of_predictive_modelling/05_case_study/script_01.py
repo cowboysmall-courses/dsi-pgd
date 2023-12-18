@@ -17,7 +17,7 @@ import statsmodels.api as sm
 from scipy import stats
 from patsy import dmatrices
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split, cross_val_score, KFold, RepeatedKFold
+from sklearn.model_selection import train_test_split, cross_val_score, KFold
 from sklearn.metrics import mean_squared_error, r2_score
 from statsmodels.formula.api import ols
 from statsmodels.stats.outliers_influence import variance_inflation_factor
