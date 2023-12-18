@@ -1,0 +1,385 @@
+Cohort,Gender,Year,Heard of HPV,Heard of HPV_V,ReceivedV,Influence,Benefits,Negatives,LikertV,LikertScience,LikertWorks,VaccineGeneral,CovidTrust
+A,Female,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,5,5,Unsure,Yes
+A,Male,Sixth year,Yes,Yes,No,,Yes,Yes,4,4,5,Yes,Yes
+A,Female,Sixth year,Yes,Yes,Yes,They decided for me,Yes,Yes,4,5,3,Yes,Yes
+A,Female,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,4,Yes,Yes
+A,Female,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,4,Yes,Yes
+A,Female,Sixth year,Yes,Yes,Yes,They decided for me,No,No,5,5,5,Yes,Yes
+A,Male,Sixth year,Yes,Yes,No,,Yes,Yes,3,4,4,Yes,Unsure
+A,Female,Sixth year,Yes,Yes,Yes,They decided for me,Yes,No,5,5,5,Yes,Yes
+A,Male,Sixth year,Yes,Yes,No,,Yes,Yes,4,3,4,No,No
+A,Male,Sixth year,Yes,No,Unsure,,No,No,4,4,4,Yes,Yes
+A,Female,Sixth year,Yes,Yes,No,,Vaguely,Yes,3,3,4,Unsure,Unsure
+A,Male,Sixth year,Yes,Yes,No,,Vaguely,Yes,5,5,3,Yes,Unsure
+A,Male,Sixth year,No,No,No,,No,Yes,5,5,4,Yes,Unsure
+A,Female,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,5,5,5,Yes,Yes
+A,Male,Sixth year,Yes,Yes,Unsure,,Vaguely,No,4,5,5,Yes,Yes
+A,Male,Sixth year,Yes,Yes,Unsure,,Vaguely,Yes,3,3,3,Unsure,No
+A,Male,Sixth year,Yes,No,Unsure,,No,No,5,4,4,Yes,Yes
+A,Male,Sixth year,Yes,Yes,Unsure,,Vaguely,No,3,3,3,Unsure,Unsure
+B,Female,Sixth year,Yes,Yes,Yes,They decided for me,Vaguely,No,3,3,3,Unsure,Unsure
+B,Female,Sixth year,Yes,Yes,No,,Yes,Yes,2,3,3,Yes,Yes
+B,Female,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Unsure,Unsure
+B,Male,Sixth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,5,Unsure,Unsure
+B,Female,Sixth year,Yes,Yes,No,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,2,1,3,No,No
+B,Female,Sixth year,Yes,Yes,Yes,They decided for me,No,No,4,4,4,Yes,Unsure
+B,Male,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,5,5,5,Yes,Unsure
+B,Male,Sixth year,Yes,Yes,Yes,They decided for me,No,Yes,4,5,5,Yes,Unsure
+B,Male,Sixth year,Yes,Yes,Yes,They decided for me,No,No,2,2,3,No,No
+B,Male,Sixth year,Yes,No,Yes,They decided for me,Vaguely,Yes,3,2,4,No,No
+B,Male,Sixth year,No,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,No,Yes,3,3,3,No,Unsure
+B,Male,Sixth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,5,Yes,No
+A,Male,First year,No,No,No,,No,No,4,4,3,Unsure,No
+A,Female,First year,No,Yes,Unsure,,No,No,4,4,3,Yes,Yes
+A,Female,First year,No,Yes,Unsure,,No,No,5,5,5,Yes,Yes
+A,Female,First year,Yes,Yes,No,,No,No,4,4,4,Yes,Unsure
+A,Female,First year,Yes,Yes,No,,Vaguely,No,4,4,4,Unsure,Unsure
+A,Male,First year,No,No,Unsure,,No,No,3,4,3,Yes,Yes
+A,Male,First year,Yes,Yes,Unsure,,Yes,No,5,5,4,No,No
+A,Female,First year,Yes,Yes,No,,Vaguely,Yes,4,4,3,Unsure,Unsure
+A,Female,First year,Yes,Yes,No,,Yes,No,4,4,4,Unsure,No
+A,Male,First year,No,No,Unsure,,Yes,Yes,3,3,3,Unsure,Unsure
+A,Female,First year,Yes,Yes,Unsure,They decided for me,No,No,4,3,4,Yes,Yes
+B,Male,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,4,4,4,Yes,Yes
+B,Female,Third year,Yes,Yes,Unsure,,Vaguely,Yes,2,3,2,Unsure,No
+B,Female,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,4,4,4,Yes,Unsure
+B,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,4,3,Yes,Yes
+B,Female,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,4,5,Yes,Yes
+B,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,5,5,4,Yes,Yes
+B,Female,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,5,4,3,Unsure,No
+B,Female,Third year,Yes,Yes,Yes,They decided for me,No,No,3,4,4,Yes,Yes
+B,Female,Third year,Yes,Yes,Yes,They decided for me,No,Yes,3,4,4,Yes,Yes
+B,Female,Third year,Yes,Yes,Yes,They decided for me,Yes,Yes,3,4,4,Yes,Yes
+B,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,3,3,3,Yes,Yes
+B,Female,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,4,3,Yes,No
+B,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,No,4,4,4,Yes,Yes
+B,Male,Third year,Yes,Yes,Yes,I alone decided,Yes,Yes,5,5,5,Yes,Yes
+B,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,4,4,Unsure,No
+B,Male,Third year,Yes,Yes,Yes,They decided for me,Vaguely,No,3,4,4,Yes,Yes
+B,Male,Third year,Yes,No,Unsure,They decided for me,Vaguely,No,4,3,2,Yes,Yes
+B,Male,Second year,Yes,Yes,Unsure,They decided for me,Yes,No,3,3,3,Yes,No
+B,Male,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,3,4,3,Yes,Yes
+B,Female,Third year,Yes,Yes,Unsure,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,3,2,2,No,No
+B,Female,Third year,Yes,Yes,Unsure,They decided for me,Vaguely,Yes,2,2,2,No,No
+B,Male,Third year,Yes,Yes,Unsure,They decided for me,Vaguely,Yes,4,4,3,Yes,Yes
+A,Male,First year,Yes,Yes,Unsure,,Vaguely,Yes,4,3,4,Yes,Yes
+A,Male,First year,Yes,Yes,Unsure,,Yes,Yes,5,5,4,Yes,Yes
+A,Female,First year,Yes,Yes,Unsure,,No,No,4,3,5,Unsure,Unsure
+A,Female,Third year,Yes,Yes,Yes,They decided for me,No,No,4,4,4,Yes,Unsure
+A,Male,Third year,Yes,Yes,Unsure,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,3,3,3,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,They decided for me,Yes,Yes,4,4,4,Yes,Yes
+A,Male,Third year,No,Yes,Unsure,,No,No,3,3,3,Unsure,Unsure
+A,Female,Third year,Yes,Yes,No,,No,No,4,3,4,Yes,No
+A,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,No,4,3,3,Unsure,Unsure
+A,Female,Third year,Yes,Yes,No,,Vaguely,Yes,3,1,3,Unsure,No
+A,Male,Third year,Yes,Yes,Unsure,,Yes,No,4,4,4,Yes,No
+A,Male,Third year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,5,5,4,Yes,Yes
+A,Male,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,4,3,4,Yes,Yes
+A,Male,Third year,No,Yes,Yes,They decided for me,Vaguely,Yes,3,3,3,Unsure,Yes
+B,Male,Third year,Yes,Yes,Unsure,They decided for me,Vaguely,No,4,4,4,Yes,Yes
+B,Female,First year,Yes,No,Unsure,,No,No,4,3,4,Unsure,Unsure
+A,Female,First year,Yes,Yes,Unsure,,Vaguely,No,4,4,4,Unsure,Unsure
+A,Male,First year,No,No,Unsure,,Vaguely,No,4,4,3,Yes,Yes
+A,Female,First year,Yes,Yes,Unsure,,No,No,4,3,5,Unsure,Unsure
+A,Female,First year,No,No,No,,No,No,2,2,2,No,No
+A,Female,First year,Yes,No,Unsure,,Vaguely,Yes,4,4,5,Yes,Unsure
+A,Female,First year,Yes,Yes,Unsure,,Yes,Yes,4,4,4,Yes,Unsure
+A,Male,First year,No,No,Unsure,,No,No,4,5,4,Yes,Unsure
+A,Male,First year,Yes,Yes,Unsure,,No,No,3,4,3,Yes,Yes
+A,Female,First year,No,No,Unsure,,No,No,5,5,5,Yes,Yes
+B,Female,First year,No,No,Unsure,,No,No,3,3,3,Unsure,Unsure
+B,Male,First year,Yes,No,No,,No,No,4,4,4,Yes,Yes
+B,Male,First year,Yes,Yes,Unsure,,Vaguely,No,3,3,4,Unsure,Unsure
+B,Female,First year,No,No,No,,No,No,3,3,4,Yes,Yes
+B,Female,First year,Yes,Yes,No,,Yes,Yes,4,5,5,Yes,Unsure
+B,Female,First year,No,No,Unsure,,Vaguely,Yes,4,4,3,Unsure,No
+B,Male,First year,Yes,No,Unsure,,Vaguely,No,3,4,3,Yes,Yes
+B,Female,First year,Yes,Yes,Unsure,,Vaguely,No,4,3,2,Yes,Yes
+B,Male,First year,No,No,Unsure,,No,No,5,5,4,Unsure,Yes
+B,Male,First year,No,No,Unsure,,No,No,3,3,3,Unsure,Yes
+B,Male,First year,Yes,No,Unsure,,Vaguely,Yes,4,4,4,Yes,Yes
+B,Female,First year,No,No,Unsure,,No,No,3,4,4,Unsure,Unsure
+B,Male,First year,Yes,No,Unsure,,No,Yes,1,1,2,No,No
+B,Female,First year,No,No,Unsure,,No,No,3,4,4,Yes,Unsure
+B,Male,First year,No,No,Unsure,,No,No,4,4,4,Yes,Yes
+B,Female,First year,No,No,Unsure,,Vaguely,No,3,4,3,Unsure,Yes
+B,Male,First year,No,No,Unsure,,Vaguely,No,4,3,3,Yes,Yes
+B,Male,First year,No,No,Unsure,Both myself and my parent(s)/guardian(s) decided together,No,No,4,3,3,Unsure,Yes
+B,Male,First year,No,No,Unsure,,Yes,No,3,5,2,Yes,Yes
+B,Female,First year,Yes,No,No,,Vaguely,No,2,2,3,Unsure,Unsure
+B,Male,First year,No,No,No,,No,No,2,3,3,Unsure,Unsure
+B,Female,First year,No,No,No,,No,No,2,2,3,Unsure,Yes
+B,Female,Second year,Yes,Yes,Yes,They decided for me,No,No,3,3,4,Yes,Yes
+B,Male,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,4,4,3,Yes,Yes
+B,Male,Second year,No,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,3,4,Unsure,Yes
+B,Male,Second year,No,No,Yes,They decided for me,No,No,3,3,3,Unsure,Unsure
+B,Male,Second year,No,Yes,Yes,They decided for me,Vaguely,Yes,4,4,3,Yes,Yes
+B,Female,Second year,Yes,Yes,Yes,They decided for me,No,Yes,3,4,4,Yes,No
+B,Male,Second year,Yes,Yes,Unsure,,Yes,Yes,4,4,4,Yes,Yes
+B,Male,Second year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,3,5,4,Yes,Yes
+B,Male,Second year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,5,Yes,Yes
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,5,4,Yes,Yes
+B,Female,Second year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,4,4,4,Yes,Yes
+B,Female,Second year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,5,5,Unsure,Yes
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,3,3,4,Unsure,Yes
+B,Female,Second year,Yes,Yes,Yes,I alone decided,Vaguely,No,3,3,4,Unsure,Yes
+B,Female,Second year,Yes,Yes,No,They decided for me,Vaguely,Yes,3,1,3,Yes,Yes
+B,Male,Second year,Yes,Yes,Yes,They decided for me,No,No,5,5,4,Yes,Yes
+B,Female,Second year,Yes,Yes,No,,Vaguely,Yes,3,3,3,Unsure,Unsure
+B,Male,Second year,No,Yes,Yes,They decided for me,Vaguely,No,1,3,4,Yes,No
+B,Female,Second year,Yes,Yes,Unsure,,Vaguely,No,3,3,3,Unsure,Unsure
+B,Male,Second year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,4,4,4,Yes,Unsure
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Yes,Yes,3,3,4,Unsure,No
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,4,4,Yes,Unsure
+B,Female,Second year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,4,4,4,Yes,Yes
+B,Male,Second year,No,No,No,They decided for me,No,No,1,1,2,No,Yes
+B,Female,Second year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,No,No,2,2,3,Unsure,No
+B,Male,Second year,No,Yes,Yes,They decided for me,Yes,Yes,3,4,3,No,No
+B,Male,Second year,No,No,Unsure,They decided for me,No,No,2,5,5,Yes,Yes
+A,Female,Second year,No,No,Unsure,,No,Yes,4,4,4,Unsure,Unsure
+A,Female,Second year,Yes,Yes,Unsure,,No,No,3,4,3,Unsure,Unsure
+A,Male,Second year,No,No,Unsure,I alone decided,Yes,Yes,5,4,4,Yes,Unsure
+A,Male,Second year,Yes,Yes,Yes,They decided for me,No,No,4,4,3,Yes,Yes
+A,Male,Second year,No,Yes,Unsure,,Vaguely,Yes,3,3,3,Yes,Yes
+A,Female,Second year,Yes,Yes,Unsure,,Vaguely,No,3,3,3,Yes,Yes
+A,Female,Second year,Yes,Yes,Yes,I alone decided,Yes,Yes,5,5,5,Yes,No
+A,Male,Second year,Yes,No,Yes,They decided for me,No,No,4,5,5,Yes,No
+A,Male,Second year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,3,4,Unsure,No
+A,Female,Second year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,5,4,4,Yes,Yes
+A,Female,Second year,Yes,Yes,Unsure,They decided for me,Yes,Yes,4,4,4,Yes,Unsure
+A,Female,Second year,Yes,No,No,,Vaguely,No,5,5,4,Yes,Unsure
+A,Male,Second year,Yes,No,Unsure,,No,No,5,4,5,Yes,Yes
+A,Male,Second year,Yes,No,No,,No,No,5,5,5,Unsure,Unsure
+A,Male,Second year,Yes,Yes,Yes,,No,No,5,4,4,Unsure,Unsure
+A,Male,First year,No,No,Unsure,,No,No,4,3,3,Unsure,No
+B,Female,Fourth year,Yes,Yes,Yes,They decided for me,Yes,No,5,4,4,Yes,Yes
+B,Female,Fourth year,Yes,No,Unsure,,Vaguely,No,4,4,5,Yes,Unsure
+B,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,4,4,Yes,Unsure
+B,Female,Fourth year,No,No,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,2,3,3,Unsure,Yes
+B,Male,Fourth year,Yes,Yes,No,They decided for me,Vaguely,Yes,3,4,2,Unsure,Yes
+B,Male,Fourth year,Yes,Yes,Unsure,They decided for me,Vaguely,Yes,2,2,2,Unsure,No
+A,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,4,4,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,5,5,5,Unsure,Unsure
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,5,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,5,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,5,Yes,Yes
+B,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,4,3,3,Yes,Unsure
+B,Male,Fourth year,Yes,Yes,Unsure,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,4,4,Yes,Yes
+B,Male,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,2,2,3,Yes,Unsure
+B,Female,Fourth year,Yes,Yes,Yes,They decided for me,Yes,Yes,4,3,3,Unsure,Yes
+B,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,5,4,5,Yes,Yes
+B,Female,Fourth year,Yes,Yes,Yes,They decided for me,No,No,4,4,5,Yes,Yes
+B,Female,Fourth year,No,Yes,Yes,They decided for me,No,No,5,5,5,No,Yes
+B,Female,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,5,4,Yes,No
+B,Male,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Yes,Yes
+B,Female,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,No,4,4,4,Yes,Yes
+B,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,5,5,5,Yes,Yes
+B,Female,Fourth year,Yes,Yes,Yes,They decided for me,No,No,5,5,4,Yes,Unsure
+B,Female,Fourth year,Yes,Yes,Yes,They decided for me,No,No,3,3,4,Unsure,Unsure
+B,Male,Fourth year,Yes,Yes,Unsure,They decided for me,Vaguely,No,5,3,2,Yes,No
+B,Female,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,2,4,2,No,Yes
+B,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,4,4,Yes,Yes
+B,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,4,Yes,Yes
+B,Male,Fourth year,Yes,Yes,Yes,They decided for me,Yes,No,4,5,5,Yes,No
+B,Other,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,5,5,5,Unsure,Yes
+B,Male,Fourth year,Yes,Yes,Yes,They decided for me,No,No,5,5,5,Yes,Yes
+B,Male,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,2,2,4,No,No
+A,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,No,No,4,4,4,Unsure,Unsure
+A,Female,Sixth year,Yes,Yes,Unsure,,Vaguely,No,4,1,5,Yes,Yes
+A,Male,Sixth year,Yes,Yes,Unsure,,Yes,Yes,4,5,4,Yes,Yes
+A,Female,Sixth year,Yes,No,Unsure,,No,No,4,4,4,Unsure,Yes
+A,Male,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Yes,Yes
+A,Male,Sixth year,No,No,Unsure,They decided for me,Vaguely,No,5,4,4,Unsure,No
+A,Male,Sixth year,No,No,No,,No,No,5,5,5,Yes,Yes
+A,Male,Sixth year,No,No,Yes,,No,No,4,3,4,Yes,Unsure
+A,Male,First year,No,No,No,,No,No,3,4,4,No,No
+A,Female,First year,No,No,No,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,3,4,4,Yes,Unsure
+A,Male,First year,Yes,Yes,No,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,4,5,Yes,Yes
+A,Female,First year,Yes,No,Unsure,Both myself and my parent(s)/guardian(s) decided together,No,No,4,4,3,Unsure,Unsure
+A,Male,First year,Yes,Yes,Unsure,They decided for me,Yes,Yes,4,3,4,No,No
+A,Male,First year,No,No,Unsure,,Yes,No,3,4,4,Yes,Yes
+A,Female,First year,Yes,Yes,Unsure,,Yes,No,4,4,5,Unsure,Unsure
+A,Male,First year,No,No,Unsure,They decided for me,No,Yes,4,4,4,Unsure,Yes
+A,Male,First year,No,No,Unsure,I alone decided,Vaguely,No,4,4,4,Yes,Yes
+A,Female,First year,Yes,Yes,Unsure,Both myself and my parent(s)/guardian(s) decided together,Yes,No,4,5,5,Yes,Yes
+A,Female,First year,Yes,Yes,No,Both myself and my parent(s)/guardian(s) decided together,Yes,No,3,4,4,Yes,Yes
+A,Male,First year,No,No,No,I alone decided,No,No,4,4,5,Yes,No
+B,Male,First year,No,No,No,Both myself and my parent(s)/guardian(s) decided together,No,No,4,3,3,Unsure,Unsure
+A,Male,First year,No,No,Yes,They decided for me,No,No,3,4,4,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,5,4,3,Yes,Yes
+A,Female,Third year,No,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,No,No,3,3,3,Yes,Unsure
+A,Female,Third year,No,Yes,Yes,They decided for me,No,No,4,2,3,No,No
+A,Female,Third year,No,No,Yes,They decided for me,No,No,3,3,2,Unsure,Unsure
+A,Female,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,4,4,3,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,They decided for me,Yes,Yes,4,4,4,Yes,Unsure
+A,Male,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Yes,Yes
+A,Male,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,4,Yes,Yes
+A,Male,Third year,Yes,Yes,Yes,,Vaguely,No,4,4,4,Yes,Yes
+A,Male,Third year,Yes,Yes,Unsure,,No,No,3,3,4,Yes,No
+A,Male,Third year,No,No,No,,No,No,3,2,2,No,No
+A,Female,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,5,5,4,Yes,Unsure
+A,Female,Third year,No,No,Yes,They decided for me,No,No,5,5,3,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,4,4,Yes,Unsure
+A,Female,Third year,No,Yes,Yes,They decided for me,Vaguely,No,4,3,3,No,No
+A,Female,Third year,No,Yes,No,,No,No,3,3,3,Unsure,Unsure
+A,Male,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,4,3,4,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,They decided for me,No,No,3,3,3,Unsure,Unsure
+A,Other,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,4,4,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,No,4,4,4,Unsure,No
+A,Male,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,5,4,3,Yes,Yes
+A,Male,Fifth year,No,No,No,,No,No,5,5,5,Unsure,Unsure
+A,Female,Fifth year,Yes,Yes,Unsure,,Vaguely,No,5,5,5,Yes,Yes
+A,Female,Fifth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,4,Yes,Yes
+A,Male,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,5,5,Yes,Yes
+A,Male,Fifth year,Yes,Yes,Unsure,,Vaguely,No,4,4,4,Yes,Unsure
+A,Male,Fifth year,Yes,Yes,Unsure,,Yes,No,5,5,5,Yes,Yes
+A,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,4,4,4,Unsure,Unsure
+A,Male,Fifth year,Yes,Yes,Unsure,They decided for me,Yes,No,4,4,4,Unsure,No
+A,Male,Fifth year,Yes,Yes,Yes,I alone decided,Yes,Yes,5,5,5,Yes,Yes
+A,Male,Fifth year,No,No,No,,No,No,4,4,4,Unsure,Unsure
+A,Male,Fifth year,Yes,Yes,No,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,3,3,3,Unsure,No
+A,Female,Fifth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,4,Yes,Yes
+A,Male,Fifth year,Yes,Yes,Yes,They decided for me,Yes,Yes,4,5,4,Yes,Yes
+A,Female,Fifth year,Yes,Yes,Unsure,,Vaguely,No,2,2,3,No,No
+A,Male,Fifth year,No,No,No,,No,No,3,1,1,Unsure,Unsure
+A,Female,Fifth year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,5,5,Yes,Yes
+A,Female,Fifth year,Yes,Yes,Yes,They decided for me,Vaguely,No,4,5,5,Yes,Yes
+A,Female,Fifth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,4,Yes,Unsure
+A,Male,Fifth year,Yes,Yes,No,,No,No,4,4,4,Yes,Yes
+A,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,5,5,5,Yes,Yes
+A,Male,Fifth year,No,Yes,Yes,They decided for me,No,No,3,3,3,Unsure,Unsure
+A,Male,Fifth year,Yes,Yes,Unsure,,Vaguely,No,5,5,4,Yes,Yes
+A,Male,Fifth year,Yes,No,No,,No,No,4,4,4,Yes,Yes
+A,Male,Fifth year,Yes,Yes,Yes,They decided for me,No,No,4,4,4,Yes,Yes
+A,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,4,4,4,Unsure,Unsure
+B,Male,Fifth year,Yes,No,No,I alone decided,Yes,Yes,3,3,3,Unsure,No
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,4,4,Yes,Yes
+B,Male,Second year,Yes,Yes,Unsure,They decided for me,Yes,Yes,5,5,5,Yes,Yes
+B,Female,Second year,Yes,Yes,No,,Vaguely,Yes,4,4,4,Yes,Yes
+B,Male,Second year,Yes,Yes,Unsure,,Yes,No,4,4,4,Yes,Yes
+B,Male,Second year,No,No,No,,No,No,4,4,4,Yes,Yes
+B,Male,Second year,Yes,Yes,Unsure,,Vaguely,No,5,4,4,Yes,Yes
+B,Male,Second year,No,Yes,Yes,They decided for me,Vaguely,Yes,4,4,4,Yes,Yes
+B,Male,Second year,Yes,Yes,Unsure,,Yes,Yes,4,4,4,Yes,Yes
+B,Male,Second year,No,No,Unsure,,No,No,4,3,4,Yes,No
+B,Female,Second year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Yes,Yes
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,3,2,3,Yes,Yes
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,3,3,3,Yes,Yes
+B,Male,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,4,3,3,Yes,Unsure
+B,Male,Second year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,3,3,Yes,Yes
+B,Female,Second year,No,Yes,Unsure,,No,No,3,2,2,No,No
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,3,3,3,Yes,Yes
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,3,3,2,Yes,Yes
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Vaguely,No,3,3,3,Yes,Yes
+B,Female,Second year,No,Yes,Yes,They decided for me,No,No,4,4,4,Yes,Unsure
+B,Female,Second year,Yes,Yes,Yes,They decided for me,No,No,3,3,3,Unsure,Unsure
+B,Male,Second year,Yes,Yes,Unsure,,Vaguely,No,3,2,3,Yes,Yes
+B,Female,Second year,Yes,Yes,Yes,They decided for me,Yes,Yes,3,3,3,Yes,Unsure
+B,Female,Second year,Yes,Yes,Yes,They decided for me,No,No,4,4,3,Unsure,Unsure
+B,Male,Second year,Yes,Yes,Yes,They decided for me,No,No,4,4,3,Unsure,Unsure
+B,Male,Second year,Yes,Yes,Yes,They decided for me,No,No,3,3,3,Unsure,Yes
+B,Female,Second year,Yes,Yes,No,,Yes,Yes,2,2,3,Yes,Yes
+B,Female,Second year,Yes,Yes,No,,No,Yes,3,2,3,Unsure,Unsure
+B,Male,Second year,Yes,Yes,No,,Yes,Yes,4,4,3,Yes,Unsure
+A,Male,Third year,No,Yes,Unsure,,No,No,4,4,5,Yes,Yes
+A,Male,Third year,Yes,Yes,No,,Yes,Yes,4,5,4,Yes,Yes
+A,Male,Third year,No,No,Unsure,,No,No,4,4,4,Yes,Yes
+A,Male,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,5,5,4,Yes,Yes
+A,Male,Third year,Yes,No,No,,Vaguely,Yes,4,4,5,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,4,4,5,Yes,Unsure
+A,Female,Third year,Yes,Yes,Yes,They decided for me,No,No,4,5,4,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,4,5,4,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,They decided for me,No,No,4,5,4,Yes,No
+A,Female,Third year,Yes,Yes,Yes,They decided for me,No,No,4,5,4,Yes,No
+A,Female,Third year,Yes,Yes,No,They decided for me,Vaguely,Yes,4,4,4,Yes,Yes
+A,Female,Third year,Yes,Yes,Yes,They decided for me,Vaguely,No,4,5,5,Yes,Yes
+A,Male,Third year,Yes,Yes,Yes,They decided for me,No,No,4,4,5,Yes,Unsure
+A,Male,Fourth year,Yes,Yes,Yes,They decided for me,Yes,No,5,5,4,Yes,Yes
+A,Male,Fourth year,Yes,No,Yes,They decided for me,No,No,5,5,5,Yes,Yes
+A,Male,Fourth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,5,Yes,Yes
+A,Male,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,5,4,4,Yes,Yes
+A,Male,Fourth year,No,Yes,Unsure,,No,No,4,4,5,Yes,Yes
+A,Male,Fourth year,No,No,Unsure,They decided for me,Vaguely,Yes,5,4,5,Yes,Yes
+A,Male,Fourth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,5,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,4,5,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,5,4,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,No,No,4,5,4,Yes,Unsure
+A,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,No,No,4,5,4,Yes,Yes
+A,Male,Fourth year,Yes,No,Yes,They decided for me,Vaguely,No,4,4,4,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,No,No,4,4,4,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,5,4,Yes,Yes
+A,Male,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,4,4,Unsure,Unsure
+A,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,4,4,Yes,Yes
+A,Male,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,Yes,Yes,4,4,4,Yes,No
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,No,No,4,4,4,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,4,5,Yes,No
+A,Male,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,5,5,5,Yes,Yes
+A,Male,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,4,5,Yes,Unsure
+B,Male,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Unsure,Unsure
+B,Female,Fifth year,Yes,Yes,Yes,They decided for me,Yes,No,4,4,4,Yes,Yes
+B,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Yes,Yes
+B,Male,Fifth year,Yes,Yes,No,,Vaguely,Yes,4,3,3,Yes,Yes
+B,Female,Fifth year,Yes,No,Unsure,,Vaguely,No,4,4,3,Yes,Yes
+B,Female,Fifth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,4,Yes,Yes
+B,Male,Fifth year,Yes,No,No,,No,No,3,4,3,Yes,Yes
+B,Male,Fifth year,Yes,No,No,,No,Yes,4,4,3,Yes,Yes
+B,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Yes,Yes
+B,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,4,Yes,Unsure
+B,Female,Fifth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,4,4,Yes,Yes
+B,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,4,4,4,Unsure,Unsure
+B,Female,Fifth year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,5,5,Yes,Yes
+B,Female,Fifth year,Yes,Yes,Unsure,,Vaguely,Yes,5,4,4,Yes,Yes
+B,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,4,5,5,Yes,Yes
+A,Female,Fifth year,Yes,Yes,Yes,They decided for me,Yes,Yes,4,4,4,Yes,Unsure
+B,Female,Fifth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,4,4,Yes,Unsure
+B,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,No,No,4,4,4,Yes,Unsure
+A,Female,Fifth year,Yes,Yes,Yes,They decided for me,Yes,No,5,4,4,Yes,Unsure
+B,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,4,4,4,Yes,Yes
+B,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,No,No,4,4,4,Yes,Unsure
+B,Female,Fifth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,4,4,5,Unsure,Unsure
+A,Male,Fourth year,No,No,Unsure,They decided for me,Vaguely,No,3,4,4,Unsure,Unsure
+A,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,4,3,3,Yes,Yes
+A,Male,Fourth year,Yes,Yes,Unsure,,Vaguely,No,3,4,4,Yes,Unsure
+A,Male,Fourth year,Yes,Yes,Unsure,,Vaguely,No,3,3,4,Yes,No
+A,Male,Fourth year,No,No,Unsure,,Yes,No,4,4,4,Yes,Unsure
+A,Male,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,4,5,Yes,Unsure
+A,Male,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,Yes,3,4,4,Unsure,No
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,4,4,Unsure,Unsure
+A,Male,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,4,4,Yes,Yes
+B,Male,Sixth year,Yes,Yes,No,,No,No,4,3,3,Unsure,No
+B,Male,Sixth year,Yes,No,Unsure,,No,No,3,4,4,Yes,Yes
+B,Male,Sixth year,Yes,Yes,No,,No,No,2,1,3,Unsure,No
+B,Male,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,5,4,3,No,No
+B,Male,Sixth year,Yes,Yes,No,,Yes,No,5,5,4,Yes,Yes
+B,Male,Sixth year,No,No,No,,No,No,4,4,4,Yes,Yes
+B,Female,Fourth year,No,No,Yes,They decided for me,Vaguely,No,2,3,2,Unsure,Unsure
+B,Female,Fourth year,Yes,Yes,Yes,They decided for me,Yes,No,3,4,3,Unsure,Yes
+B,Female,Sixth year,Yes,Yes,No,,Yes,Yes,3,3,3,Yes,Yes
+B,Female,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,4,4,4,Yes,Unsure
+B,Female,Sixth year,Yes,Yes,Yes,They decided for me,No,No,4,3,3,Yes,Unsure
+B,Male,Sixth year,No,Yes,Yes,They decided for me,No,No,3,5,5,Unsure,Unsure
+B,Male,Sixth year,Yes,Yes,Yes,They decided for me,No,No,5,2,2,Yes,Yes
+B,Male,Sixth year,Yes,Yes,Yes,They decided for me,Vaguely,Yes,4,3,3,Unsure,Unsure
+B,Female,Sixth year,Yes,Yes,Yes,They decided for me,Yes,Yes,4,3,2,No,No
+B,Male,Sixth year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,5,5,Yes,Yes
+B,Male,Sixth year,Yes,Yes,Yes,I alone decided,Vaguely,No,4,4,4,Yes,Yes
+A,Female,Sixth year,Yes,Yes,Yes,They decided for me,No,No,5,5,3,Yes,Unsure
+A,Female,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,4,4,4,Yes,Unsure
+A,Female,Sixth year,Yes,Yes,Yes,They decided for me,Vaguely,No,4,4,4,Yes,Unsure
+A,Female,Sixth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,3,5,Yes,No
+A,Female,Sixth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,4,3,Yes,No
+A,Female,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,No,4,5,5,Yes,Yes
+A,Female,Sixth year,Yes,Yes,Yes,They decided for me,Yes,Yes,3,2,2,No,No
+A,Male,Sixth year,No,No,Yes,They decided for me,No,No,3,3,3,No,No
+A,Male,Sixth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Yes,Yes,5,5,5,Yes,Yes
+A,Male,Sixth year,Yes,Yes,Yes,They decided for me,Yes,Yes,5,5,5,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,5,5,5,Yes,Yes
+A,Female,Fourth year,Yes,Yes,Yes,They decided for me,Vaguely,No,5,5,5,Yes,Yes
+B,Female,Fourth year,No,No,No,,No,No,1,1,1,No,No
+B,Male,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,2,2,2,Unsure,Unsure
+B,Male,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,3,2,2,Unsure,Yes
+B,Female,Fourth year,Yes,Yes,Yes,Both myself and my parent(s)/guardian(s) decided together,Vaguely,No,2,3,3,Unsure,Unsure
+B,Male,Fourth year,No,Yes,Yes,They decided for me,Vaguely,No,2,2,2,Unsure,Yes
+B,Male,Fourth year,Yes,Yes,Yes,They decided for me,No,No,2,2,2,Unsure,Unsure
