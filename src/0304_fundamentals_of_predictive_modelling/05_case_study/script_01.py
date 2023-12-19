@@ -20,6 +20,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split, cross_val_score, KFold
 from sklearn.metrics import mean_squared_error, r2_score
 from statsmodels.formula.api import ols
+from statsmodels.stats.diagnostic import lilliefors
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
@@ -86,14 +87,15 @@ pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], i
 # %% 4 - split into train and test data
 train, test = train_test_split(data, test_size = 0.2, random_state = 42)
 train.shape
+# (404, 13)
 test.shape
+# (102, 13)
 
 
 
 # %% 5 - build the model
 model = ols('MEDV ~ CRIM + ZN + INDUS + CHAS + NOX + RM + AGE + DIS + RAD + PTRATIO + LSTAT', data = train).fit()
-model.summary()
-# """
+print(model.summary())
 #                             OLS Regression Results                            
 # ==============================================================================
 # Dep. Variable:                   MEDV   R-squared:                       0.735
@@ -131,14 +133,12 @@ model.summary()
 # [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 # [2] The condition number is large, 2.06e+03. This might indicate that there are
 # strong multicollinearity or other numerical problems.
-# """
 
 
 
 # %% 6 - rebuild the model dropping insignificant predictors
 model = ols('MEDV ~ CRIM + CHAS + NOX + RM + DIS + PTRATIO + LSTAT', data = train).fit()
-model.summary()
-# """
+print(model.summary())
 #                             OLS Regression Results                            
 # ==============================================================================
 # Dep. Variable:                   MEDV   R-squared:                       0.732
@@ -170,11 +170,10 @@ model.summary()
 
 # Notes:
 # [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-# """
+
 
 
 # %% 7 - predicted and residual values
-# train = train.assign(pre2 = pd.Series(model.predict(train)))
 train = train.assign(pred = pd.Series(model.fittedvalues))
 train = train.assign(resi = pd.Series(model.resid))
 train.head()
@@ -187,7 +186,7 @@ train.head()
 # 
 # [5 rows x 15 columns]
 
-# model.predict()      # returns some NaN
+# model.predict()      # returns NaNs
 # model.predict(train) # works as expected
 # model.fittedvalues   # works as expected
 
@@ -201,12 +200,16 @@ fig = sm.graphics.qqplot(train.resi, line = '45', fit = True)
 stats.shapiro(train.resi)
 # ShapiroResult(statistic=0.9116807579994202, pvalue=1.2912867356060145e-14)
 
+lilliefors(train.resi)
+# (0.10330391317988474, 0.0009999999999998899)
+
 
 
 # %% 9 - model validation
 rmse = np.sqrt(mean_squared_error(train.MEDV, train.pred))
 r2   = r2_score(train.MEDV, train.pred)
 
+print('Train')
 print('RMSE: {}'.format(rmse))
 # RMSE: 4.828905476132975
 print('  R2: {}'.format(r2))
@@ -224,6 +227,7 @@ pred.head()
 rmse = np.sqrt(mean_squared_error(test.MEDV, pred))
 r2   = r2_score(test.MEDV, pred)
 
+print('Test')
 print('RMSE: {}'.format(rmse))
 # RMSE: 5.104988833926639
 print('  R2: {}'.format(r2))
@@ -241,6 +245,7 @@ folds = KFold(n_splits = 4, shuffle = True, random_state = 100)
 rmse = cross_val_score(model, X, Y, cv = folds, scoring = 'neg_mean_squared_error')
 r2   = cross_val_score(model, X, Y, cv = folds, scoring = 'r2')
 
+print('K-Fold')
 print('RMSE: {}'.format(np.sqrt(-(np.mean(rmse)))))
 # 4-Fold RMSE: 5.017099097638693
 print('  R2: {}'.format(np.mean(r2)))
@@ -250,8 +255,7 @@ print('  R2: {}'.format(np.mean(r2)))
 
 # %% 11 - final model validation
 model = ols('MEDV ~ CRIM + CHAS + NOX + RM + DIS + PTRATIO + LSTAT', data = data).fit()
-model.summary()
-# """
+print(model.summary())
 #                             OLS Regression Results                            
 # ==============================================================================
 # Dep. Variable:                   MEDV   R-squared:                       0.718
@@ -283,7 +287,6 @@ model.summary()
 
 # Notes:
 # [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-# """
 
 y, X = dmatrices('MEDV ~ CRIM + CHAS + NOX + RM + DIS + PTRATIO + LSTAT', data = data, return_type = "dataframe")
 pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], index = X.columns)
@@ -309,6 +312,7 @@ pred.head()
 rmse = np.sqrt(mean_squared_error(data.MEDV, pred))
 r2   = r2_score(data.MEDV, pred)
 
+print('Data')
 print('RMSE: {}'.format(rmse))
 # RMSE: 4.874865477341117
 print('  R2: {}'.format(r2))
