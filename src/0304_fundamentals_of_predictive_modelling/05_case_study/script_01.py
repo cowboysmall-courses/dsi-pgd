@@ -65,8 +65,6 @@ pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], i
 
 
 # %% 4 - drop TAX and re-run test for multicollinearity
-# data = data.drop(['TAX'], axis = 1)
-
 y, X = dmatrices('MEDV ~ CRIM + ZN + INDUS + CHAS + NOX + RM + AGE + DIS + RAD + PTRATIO + LSTAT', data = data, return_type = "dataframe")
 pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], index = X.columns)
 # Intercept    529.480235
@@ -247,3 +245,71 @@ print('RMSE: {}'.format(np.sqrt(-(np.mean(rmse)))))
 # 4-Fold RMSE: 5.017099097638693
 print('  R2: {}'.format(np.mean(r2)))
 # 4-Fold R2: 0.7017401987251717
+
+
+
+# %% 11 - final model validation
+model = ols('MEDV ~ CRIM + CHAS + NOX + RM + DIS + PTRATIO + LSTAT', data = data).fit()
+model.summary()
+# """
+#                             OLS Regression Results                            
+# ==============================================================================
+# Dep. Variable:                   MEDV   R-squared:                       0.718
+# Model:                            OLS   Adj. R-squared:                  0.715
+# Method:                 Least Squares   F-statistic:                     181.6
+# Date:                Tue, 19 Dec 2023   Prob (F-statistic):          1.10e-132
+# Time:                        13:29:20   Log-Likelihood:                -1519.5
+# No. Observations:                 506   AIC:                             3055.
+# Df Residuals:                     498   BIC:                             3089.
+# Df Model:                           7                                         
+# Covariance Type:            nonrobust                                         
+# ==============================================================================
+#                  coef    std err          t      P>|t|      [0.025      0.975]
+# ------------------------------------------------------------------------------
+# Intercept     35.1688      4.611      7.626      0.000      26.108      44.229
+# CRIM          -0.0654      0.030     -2.195      0.029      -0.124      -0.007
+# CHAS           3.1238      0.882      3.543      0.000       1.392       4.856
+# NOX          -17.8133      3.243     -5.493      0.000     -24.184     -11.442
+# RM             4.1943      0.407     10.295      0.000       3.394       4.995
+# DIS           -1.1631      0.166     -6.994      0.000      -1.490      -0.836
+# PTRATIO       -0.9635      0.114     -8.472      0.000      -1.187      -0.740
+# LSTAT         -0.5452      0.049    -11.223      0.000      -0.641      -0.450
+# ==============================================================================
+# Omnibus:                      188.076   Durbin-Watson:                   1.037
+# Prob(Omnibus):                  0.000   Jarque-Bera (JB):              879.882
+# Skew:                           1.594   Prob(JB):                    8.63e-192
+# Kurtosis:                       8.619   Cond. No.                         564.
+# ==============================================================================
+
+# Notes:
+# [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+# """
+
+y, X = dmatrices('MEDV ~ CRIM + CHAS + NOX + RM + DIS + PTRATIO + LSTAT', data = data, return_type = "dataframe")
+pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], index = X.columns)
+# Intercept    445.644176
+# CRIM           1.375716
+# CHAS           1.048660
+# NOX            2.952924
+# RM             1.713693
+# DIS            2.564486
+# PTRATIO        1.267771
+# LSTAT          2.517101
+# dtype: float64
+
+pred = model.predict(data)
+pred.head()
+# 0    30.948872
+# 1    25.833746
+# 2    31.824281
+# 3    29.689071
+# 4    29.008530
+# dtype: float64
+
+rmse = np.sqrt(mean_squared_error(data.MEDV, pred))
+r2   = r2_score(data.MEDV, pred)
+
+print('RMSE: {}'.format(rmse))
+# RMSE: 4.874865477341117
+print('  R2: {}'.format(r2))
+#   R2: 0.7184975318016213

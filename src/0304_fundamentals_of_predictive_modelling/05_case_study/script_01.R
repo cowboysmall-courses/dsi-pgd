@@ -6,6 +6,8 @@ library(car)
 library(nortest)
 
 
+
+# 1 - import data and check the head
 data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/case_study/Housing\ Prices.csv", header = TRUE)
 head(data)
 #      CRIM ZN INDUS CHAS   NOX    RM  AGE    DIS RAD TAX PTRATIO LSTAT MEDV
@@ -17,9 +19,10 @@ head(data)
 # 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7  5.21 28.7
 
 
+
+# 2 - construct a heatmap of correlations
 cormat <- round(cor(data), 2)
 melted_cormat <- melt(cormat)
-
 
 ggplot(data = melted_cormat, aes(x = Var1, y = Var2, fill = value)) + 
   geom_tile() +
@@ -27,11 +30,15 @@ ggplot(data = melted_cormat, aes(x = Var1, y = Var2, fill = value)) +
   scale_fill_gradient2(low = "red", mid = "white" ,high = "blue")
 
 
+
+# 3 - split into train and test data
 index <- createDataPartition(data$MEDV, p = 0.8, list = FALSE)
 train <- data[index, ]
 test <- data[-index, ]
 
 
+
+# 4 - build the model
 model <- lm(MEDV ~ CRIM + ZN + INDUS + CHAS + NOX + RM + AGE + DIS + RAD + TAX + PTRATIO + LSTAT, data = train)
 summary(model)
 # Call:
@@ -65,11 +72,15 @@ summary(model)
 # F-statistic:  98.2 on 12 and 394 DF,  p-value: < 2.2e-16
 
 
+
+# 5 - test for multicollinearity
 vif(model)
 #     CRIM       ZN    INDUS     CHAS      NOX       RM      AGE      DIS      RAD      TAX  PTRATIO    LSTAT 
 # 1.872416 2.327431 3.866056 1.074323 4.361276 2.034520 3.068716 4.019971 7.187934 8.608008 1.739792 3.186220
 
 
+
+# 6 - rebuild the model
 model <- lm(MEDV ~ CRIM + ZN + INDUS + CHAS + NOX + RM + AGE + DIS + RAD + PTRATIO + LSTAT, data = train)
 summary(model)
 # Call:
@@ -102,14 +113,21 @@ summary(model)
 # F-statistic: 104.3 on 11 and 395 DF,  p-value: < 2.2e-16
 
 
+
+# 7 - test again for multicollinearity
 vif(model)
 #     CRIM       ZN    INDUS     CHAS      NOX       RM      AGE      DIS      RAD  PTRATIO    LSTAT 
 # 1.872414 2.247560 3.146984 1.057412 4.310962 2.024289 3.066493 4.007515 2.756502 1.726527 3.182476
 
 
+
+# 8 - predicted and residual values
 train$pred <- fitted(model)
 train$resi <- residuals(model)
 
+
+
+# 9 - residual analysis
 plot(train$pred, train$resi)
 
 qqnorm(train$resi)
@@ -130,6 +148,8 @@ lillie.test(train$resi)
 # D = 0.10857, p-value = 1.757e-12
 
 
+
+# 10 - rebuild the model
 model <- lm(MEDV ~ CRIM + ZN + CHAS + NOX + RM + DIS + RAD + PTRATIO + LSTAT, data = train)
 summary(model)
 # Call:
@@ -160,18 +180,20 @@ summary(model)
 # F-statistic: 127.6 on 9 and 397 DF,  p-value: < 2.2e-16
 
 
+
+# 11 - test again for multicollinearity
 vif(model)
 #     CRIM       ZN     CHAS      NOX       RM      DIS      RAD  PTRATIO    LSTAT 
 # 1.863808 2.227534 1.053661 3.515177 1.912751 3.496360 2.668532 1.660783 2.786358
 
 
+
+# 12 - model validation
 train$pred <- fitted(model)
 train$resi <- residuals(model)
 
 sqrt(mean(train$resi ** 2))
 # 4.612932
-
-
 
 test$pred <- predict(model, test)
 test$resi <- test$MEDV - test$pred
@@ -181,6 +203,7 @@ sqrt(mean(test$resi ** 2))
 
 
 
+# 13 - k-fold cross validation
 kfolds <- trainControl(method = "cv", number = 4)
 kmodel <- train(MEDV ~ CRIM + ZN + CHAS + NOX + RM + DIS + RAD + PTRATIO + LSTAT, data = data, method = "lm", trControl = kfolds)
 kmodel
@@ -220,8 +243,7 @@ kmodel
 
 
 
-
-
+# 14 - final model validation
 model <- lm(MEDV ~ CRIM + ZN + CHAS + NOX + RM + DIS + RAD + PTRATIO + LSTAT, data = data)
 summary(model)
 # Call:
@@ -251,11 +273,9 @@ summary(model)
 # Multiple R-squared:  0.7273,	Adjusted R-squared:  0.7223 
 # F-statistic: 146.9 on 9 and 496 DF,  p-value: < 2.2e-16
 
-
 vif(model)
 #     CRIM       ZN     CHAS      NOX       RM      DIS      RAD  PTRATIO    LSTAT 
 # 1.764257 2.154051 1.049185 3.538215 1.793239 3.407113 2.701027 1.715836 2.523246
-
 
 data$pred <- predict(model, data)
 data$resi <- data$MEDV - data$pred
