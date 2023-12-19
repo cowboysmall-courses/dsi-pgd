@@ -165,10 +165,7 @@ influence.summary_frame()
 
 
 # %% 7.1 - 
-
-influential = train[influence.cooks_distance[0] > (4 / train.shape[0])]
-influential.sort_index(inplace = True)
-influential
+train[influence.cooks_distance[0] > (4 / train.shape[0])].sort_index()
 #      Houseid  Price  Area  Distance  Schools
 # 16        17  26.75  1028      2.23        1
 # 17        18  34.97  1072      0.10        3
@@ -192,7 +189,6 @@ influential
 
 
 # %% 7.2 - 
-
 fig = influence_plot(model, criterion = 'Cooks')
 
 

@@ -132,8 +132,26 @@ summary(influence.measures(model))
 # 134 -0.05   0.12     0.12    -0.22     0.28    1.10_*  0.02   0.09_*
 # 198  0.38  -0.40     0.06     0.15    -0.44    1.05    0.05   0.08_*
 
-# We can see from the above summary that there are as many as 13 influential 
-# observations in the data.
+train[cooks.distance(model) > (4 / nrow(train)), ]
+#     Houseid Price Area Distance Schools
+# 17       17 26.75 1028     2.23       1
+# 18       18 34.97 1072     0.10       3
+# 32       32 17.73  929     0.70       2
+# 33       33 33.36 1345     2.07       3
+# 65       65 18.10  929     0.70       2
+# 66       66 33.20 1345     2.07       3
+# 98       98 17.53  929     0.70       2
+# 99       99 33.25 1345     2.07       3
+# 116     116 26.99 1028     2.23       1
+# 131     131 18.35  929     0.70       2
+# 132     132 33.41 1345     2.07       3
+# 150     150 35.49 1072     0.10       3
+# 164     164 18.98  929     0.70       2
+# 183     183 34.93 1072     0.10       3
+# 198     198 33.49 1345     2.07       3
+
+# We can see from the above summary that there are as many as 15 influential 
+# observations in the training data.
 
 influencePlot(model, main = "Influence Plot", sub = "Circle size is proportioal to Cook's Distance")
 #        StudRes        Hat      CookD
