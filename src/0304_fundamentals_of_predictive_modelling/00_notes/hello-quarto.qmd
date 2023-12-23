@@ -1,6 +1,6 @@
 ---
 title: "Hello, Quarto"
-format: html
+format: pdf
 editor: visual
 ---
 
