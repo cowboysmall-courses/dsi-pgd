@@ -5,7 +5,7 @@ library(gmodels)
 data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/misc/basic_recovery_data.csv", header = TRUE)
 
 head(data)
-# Gender Resting.HR X2.mins X4.mins X6.mins X8.mins X10.mins
+#   Gender Resting.HR X2.mins X4.mins X6.mins X8.mins X10.mins
 # 1   Male         65      90      83      80      70       65
 # 2   Male         80     120     110     100      90       80
 # 3   Male         62      90      86      79      69       62

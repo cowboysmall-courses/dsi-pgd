@@ -5,6 +5,6 @@ head(test_data)
 summary(test_data)
 
 
-anova <- aov(satindex~dept, data = test_data)
+anova <- aov(satindex ~ dept, data = test_data)
 summary(anova)
 # since p > 0.05, we fail to reject the null hypothesis
