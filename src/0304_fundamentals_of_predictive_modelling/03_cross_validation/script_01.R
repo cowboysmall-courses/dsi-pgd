@@ -4,6 +4,7 @@ library(GGally)
 
 
 
+
 data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/cross_validation/Motor_Claims.csv", header = TRUE)
 head(data)
 #   vehage   CC Length Weight claimamt
@@ -16,11 +17,13 @@ head(data)
 
 
 
+
 ggpairs(
   data[, c("vehage", "CC", "Length", "Weight", "claimamt")],
   title = "Scatter Plot Matrix",
   columnLabels = c("vehage", "CC", "Length", "Weight", "claimamt")
 )
+
 
 
 
@@ -49,9 +52,11 @@ summary(model)
 
 
 
+
 vif(model)
 #   Length       CC   vehage   Weight
 # 3.396171 5.881428 1.038357 6.552811
+
 
 
 
@@ -79,13 +84,14 @@ summary(model)
 
 
 
+
 vif(model)
 #   Length       CC   vehage 
 # 2.889718 2.833931 1.038355
 
 
 
+
 data$resi <- residuals(model)
-RMSE <- sqrt(mean(data$resi ** 2))
-RMSE
+sqrt(mean(data$resi ** 2))
 # [1] 11444.51

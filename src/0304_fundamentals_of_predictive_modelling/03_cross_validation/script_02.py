@@ -7,6 +7,8 @@ Created on Fri Dec 29 14:43:49 2023
 """
 
 
+
+
 # %% 0 - import libraries
 
 import pandas as pd
@@ -14,6 +16,7 @@ import numpy as np
 
 from sklearn.model_selection import train_test_split
 from statsmodels.formula.api import ols
+
 
 
 
@@ -29,6 +32,7 @@ data.head()
 
 
 
+
 # %% 2 - train test split
 train, test = train_test_split(data, test_size = 0.2, random_state = 0)
 train.shape
@@ -38,16 +42,20 @@ test.shape
 
 
 
+
 # %% 3 - RMSE for training data
 model = ols('claimamt ~ Length + CC + vehage', data = train).fit()
 train = train.assign(resi = pd.Series(model.resid))
+
 np.sqrt((train.resi ** 2).mean())
 # 11569.182885388027
+
 
 
 
 # %% 4 - RMSE for testing data
 test = test.assign(pred = pd.Series(model.predict(test)))
 test = test.assign(resi = pd.Series(test.claimamt - test.pred))
+
 np.sqrt((test.resi ** 2).mean())
 # 10949.77556791181

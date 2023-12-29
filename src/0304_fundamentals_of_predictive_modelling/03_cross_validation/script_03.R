@@ -4,6 +4,7 @@ library(caret)
 
 
 
+
 data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/cross_validation/Motor_Claims.csv", header = TRUE)
 head(data)
 #   vehage   CC Length Weight claimamt
@@ -13,6 +14,8 @@ head(data)
 # 4      7 1298   4090    930  39960.0
 # 5      2 1495   4250   1023 106800.0
 # 6      1 1086   3565    854  69592.8
+
+
 
 
 kfolds <- trainControl(method = "cv", number = 4)
@@ -31,6 +34,7 @@ train(claimamt ~ Length + CC + vehage, data = data, method = "lm", trControl = k
 #   11528.79  0.7289759  9051.445
 # 
 # Tuning parameter 'intercept' was held constant at a value of TRUE
+
 
 
 
@@ -53,6 +57,7 @@ train(claimamt ~ Length + CC + vehage, data = data, method = "lm", trControl = k
 
 
 
+
 kfolds <- trainControl(method = "LOOCV")
 train(claimamt ~ Length + CC + vehage, data = data, method = "lm", trControl = kfolds)
 # Linear Regression 
@@ -69,6 +74,7 @@ train(claimamt ~ Length + CC + vehage, data = data, method = "lm", trControl = k
 #   11515.85  0.7294088  9039.582
 # 
 # Tuning parameter 'intercept' was held constant at a value of TRU
+
 
 
 

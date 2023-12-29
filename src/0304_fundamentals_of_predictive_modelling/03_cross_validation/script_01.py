@@ -7,16 +7,19 @@ Created on Fri Dec 29 14:43:49 2023
 """
 
 
+
+
 # %% 0 - import libraries
 
 import pandas as pd
+import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from math import sqrt
 from patsy import dmatrices
 from statsmodels.formula.api import ols
 from statsmodels.stats.outliers_influence import variance_inflation_factor
+
 
 
 
@@ -32,9 +35,11 @@ data.head()
 
 
 
+
 # %% 2 - construct a scatter plot matrix
 sns.pairplot(data)
 plt.title('Scatter Plot Matrix')
+
 
 
 
@@ -76,6 +81,7 @@ model.summary()
 
 
 
+
 # %% 4 - split dependent and independent variables
 y, X = dmatrices('claimamt ~ Length + CC + vehage + Weight', data = data, return_type = "dataframe")
 X.head()
@@ -88,6 +94,7 @@ X.head()
 
 
 
+
 # %% 5 - calculate vif for the independent variables
 pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], index = X.columns)
 # Intercept    240.261728
@@ -96,6 +103,7 @@ pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], i
 # vehage         1.038357
 # Weight         6.552811
 # dtype: float64
+
 
 
 
@@ -136,6 +144,7 @@ model.summary()
 
 
 
+
 # %% 7 - split dependent and independent variables
 y, X = dmatrices('claimamt ~ Length + CC + vehage', data = data, return_type = "dataframe")
 X.head()
@@ -145,6 +154,7 @@ X.head()
 # 2        1.0  3675.0  1405.0     2.0
 # 3        1.0  4090.0  1298.0     7.0
 # 4        1.0  4250.0  1495.0     2.0
+
 
 
 
@@ -158,7 +168,9 @@ pd.Series([variance_inflation_factor(X.values, i) for i in range(X.shape[1])], i
 
 
 
+
 # %% 9 - calculate RMSE
 data = data.assign(resi = pd.Series(model.resid))
-sqrt((data.resi ** 2).mean())
+
+np.sqrt((data.resi ** 2).mean())
 # 11444.512861029949

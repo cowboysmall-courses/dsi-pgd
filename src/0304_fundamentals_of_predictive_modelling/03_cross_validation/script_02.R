@@ -4,6 +4,7 @@ library(caret)
 
 
 
+
 data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/cross_validation/Motor_Claims.csv", header = TRUE)
 head(data)
 #   vehage   CC Length Weight claimamt
@@ -18,7 +19,6 @@ head(data)
 
 
 index <- createDataPartition(data$claimamt, p = 0.8, list = FALSE)
-
 head(index)
 #      Resample1
 # [1,]         1
@@ -27,7 +27,6 @@ head(index)
 # [4,]         4
 # [5,]         5
 # [6,]         6
-
 dim(index)
 # [1] 800   1
 
@@ -36,17 +35,15 @@ dim(index)
 
 train <- data[index, ]
 test  <- data[-index, ]
-
 dim(train)
 # [1] 800   5
-
 dim(test)
 # [1] 200   5
 
 
 
-train_model <- lm(claimamt ~ Length + CC + vehage, data = train)
 
+train_model <- lm(claimamt ~ Length + CC + vehage, data = train)
 train$resi  <- residuals(train_model)
 head(train)
 #   vehage   CC Length Weight claimamt       resi
@@ -59,9 +56,10 @@ head(train)
 
 
 
-RMSETrain <- sqrt(mean(train$resi ** 2))
-RMSETrain
+
+sqrt(mean(train$resi ** 2))
 # [1] 11165.62
+
 
 
 
@@ -78,8 +76,6 @@ head(test)
 
 
 
-RMSETest  <- sqrt(mean(test$resi ** 2))
-RMSETest
+
+sqrt(mean(test$resi ** 2))
 # [1] 12530.66
-
-
