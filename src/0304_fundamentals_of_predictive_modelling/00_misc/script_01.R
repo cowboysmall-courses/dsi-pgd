@@ -29,7 +29,7 @@ data$Recovery_Time <- ifelse(
     data$X4.mins <= data$Resting.HR, 4, ifelse(
       data$X6.mins <= data$Resting.HR, 6, ifelse(
         data$X8.mins <= data$Resting.HR, 8, ifelse(
-          data$X10.mins <= data$Resting.HR, 10, 999)
+          data$X10.mins <= data$Resting.HR, 10, 12)
         )
       )
     )
