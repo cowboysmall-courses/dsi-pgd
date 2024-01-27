@@ -38,18 +38,36 @@ data.head()
 
 # %% 0 - convert Gender to factor
 data['Gender'] = data['Gender'].astype('category')
+data['AGE'] = data['AGE'].astype('category')
+data['Success'] = data['Success'].astype('category')
 data.dtypes
 # SN                    int64
 # Gender             category
-# AGE                  object
+# AGE                category
 # Recency_Service       int64
 # Recency_Product       int64
 # Bill_Service        float64
 # Bill_Product        float64
-# Success               int64
+# Success            category
 # dtype: object
 
 
+
+
+# %% 1 - summarize Bill_Service by Success
+data.groupby('Success')['Bill_Service'].agg(['count', 'mean', 'median', 'std'])
+#          count       mean  median       std
+# Success                                    
+# 0          503   9.188807   7.880  5.644067
+# 1          180  15.287111  14.675  7.925569
+
+
+# %% 1 - summarize Bill_Product by Success
+data.groupby('Success')['Bill_Product'].agg(['count', 'mean', 'median', 'std'])
+#          count      mean  median       std
+# Success                                   
+# 0          503  1.746740   1.310  1.465931
+# 1          180  2.956167   1.965  3.282115
 
 
 # %% 1 - summarize Bill_Service by Success
@@ -74,6 +92,14 @@ data.groupby('Success')['Bill_Product'].describe()
 plt.figure(figsize = (8, 6))
 sns.set_style("darkgrid")
 sns.set_context("paper")
+
+
+# %% 2 - Box Plot of Bill_Service by Success
+sns.boxplot(data = data, x = 'Success', y = 'Bill_Service')
+
+
+# %% 2 - Box Plot of Bill_Product by Success
+sns.boxplot(data = data, x = 'Success', y = 'Bill_Product')
 
 
 # %% 2 - Box Plot of Bill_Service by Success
