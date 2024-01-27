@@ -16,10 +16,8 @@ head(data)
 
 
 
-str(data)
 data$Gender <- as.factor(data$Gender)
 data$AGE <- as.factor(data$AGE)
-data$Success <- as.factor(data$Success)
 str(data)
 
 
@@ -78,11 +76,11 @@ boxplot(Bill_Product ~ Success, data = data, col = "cadetblue")
 
 
 
-ggplot(data, aes(x = Success, y = Bill_Service)) +
+ggplot(data, aes(x = factor(Success), y = Bill_Service)) +
   geom_boxplot(fill = "skyblue") +
   labs(title = "Boxplot of Bill Service by Success", y = "Bill_Service")
 
-ggplot(data, aes(x = Success, y = Bill_Product)) +
+ggplot(data, aes(x = factor(Success), y = Bill_Product)) +
   geom_boxplot(fill = "skyblue") +
   labs(title = "Boxplot of Bill Product by Success", y = "Bill_Product")
 
@@ -168,7 +166,7 @@ head(data)
 # 6  6      2 <=30               1               2        18.99         0.44       1 0.60744675
 
 
-data$pred <- as.factor(ifelse(data$pred_prob <= 0.5, 0, 1))
+data$pred <- ifelse(data$pred_prob <= 0.5, 0, 1)
 head(data)
 #   SN Gender  AGE Recency_Service Recency_Product Bill_Service Bill_Product Success  pred_prob pred
 # 1  1      1 <=45              12              11        11.82         2.68       0 0.09504185    0
@@ -180,20 +178,18 @@ head(data)
 
 
 
-table <- table(data$pred, data$Success)
-table
+table(data$pred, data$Success)
 #     0   1
 # 0 467  88
 # 1  36  92
 
-p <- prop.table(table)
-p
-#            0          1
-# 0 0.68374817 0.12884334
-# 1 0.05270864 0.13469985
+round(prop.table(table(data$pred, data$Success)) * 100, 2)
+#       0     1
+# 0 68.37 12.88
+# 1  5.27 13.47
 
-round(sum(data$pred == data$Success) / nrow(data), 4) * 100
+round((sum(data$pred == data$Success) / nrow(data)) * 100, 2)
 # 81.84
 
-round(sum(data$pred != data$Success) / nrow(data), 4) * 100
+round((sum(data$pred != data$Success) / nrow(data)) * 100, 2)
 # 18.16

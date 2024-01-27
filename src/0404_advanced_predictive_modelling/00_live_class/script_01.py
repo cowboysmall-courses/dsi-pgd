@@ -39,7 +39,6 @@ data.head()
 # %% 0 - convert Gender to factor
 data['Gender'] = data['Gender'].astype('category')
 data['AGE'] = data['AGE'].astype('category')
-data['Success'] = data['Success'].astype('category')
 data.dtypes
 # SN                    int64
 # Gender             category
@@ -118,7 +117,6 @@ plt.title('Box Plot')
 plt.suptitle('')
 
 
-
 # %% 2 - Box Plot of Bill_Service by Success
 sns.boxplot(data = data, x = 'Success', y = 'Bill_Service', width = 0.15)
 plt.xlabel('Success')
@@ -135,13 +133,13 @@ plt.title('Box Plot')
 
 
 
-# %% 3 - test association between Success and Gender
-chi2_contingency(pd.crosstab(data.Success, data.Gender))
+# %% 3 - test association between Gender and Success
+chi2_contingency(pd.crosstab(data.Gender, data.Success))
 # Chi2ContingencyResult(statistic=0.3807592682933615, 
 #        pvalue=0.5371971687062078, 
 #        dof=1, 
-#        expected_freq=array([[229.03806735, 273.96193265],
-#        [ 81.96193265,  98.03806735]]))
+#        expected_freq=array([[229.03806735,  81.96193265],
+#        [273.96193265,  98.03806735]]))
 
 # we fail to reject the null hypothesis that the two attributes under test are 
 # independent, or are not associated
@@ -221,8 +219,7 @@ data.head()
 
 
 # %% 7 - 
-data['pred'] = np.where(data['pred_prob'] <= 0.5, 0, 1)
-data['pred'] = data['pred'].astype('category')
+data['pred'] = np.where(data.pred_prob <= 0.5, 0, 1)
 data.head()
 #    SN Gender   AGE  Recency_Service  ...  Bill_Product  Success  pred_prob  pred
 # 0   1      1  <=45               12  ...          2.68        0   0.095042     0
@@ -237,20 +234,23 @@ data.head()
 
 
 # %% 8 - Calculate Accuracy + 
-pd.crosstab(data['pred'], data['Success'])
+pd.crosstab(data.pred, data.Success)
 # Success    0   1
 # pred            
 # 0        467  88
 # 1         36  92
 
-round(pd.crosstab(data['pred'], data['Success'], normalize = "all") * 100, 2)
+# %% 8 - Calculate Accuracy + 
+round(pd.crosstab(data.pred, data.Success, normalize = "all") * 100, 2)
 # Success      0      1
 # pred                 
 # 0        68.37  12.88
 # 1         5.27  13.47
 
-round((sum(data['pred'] == data['Success']) / data.shape[0]) * 100, 2)
+# %% 8 - Calculate Accuracy + 
+round((sum(data.pred == data.Success) / data.shape[0]) * 100, 2)
 # 81.84
 
-round((sum(data['pred'] != data['Success']) / data.shape[0]) * 100, 2)
+# %% 8 - Calculate Accuracy + 
+round((sum(data.pred != data.Success) / data.shape[0]) * 100, 2)
 # 18.16
