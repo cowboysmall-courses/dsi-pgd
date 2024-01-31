@@ -4,6 +4,8 @@ library(ggplot2)
 library(gmodels)
 
 
+
+# 0 - import data and check the head
 data <- read.csv("../../../data/0404_advanced_predictive_modelling/live_class/Email\ Campaign.csv", header = TRUE)
 head(data)
 #   SN Gender  AGE Recency_Service Recency_Product Bill_Service Bill_Product Success
@@ -16,12 +18,14 @@ head(data)
 
 
 
+# 0 - convert Gender to factor
 data$Gender <- as.factor(data$Gender)
 data$AGE <- as.factor(data$AGE)
 str(data)
 
 
 
+# 1 - Summarize Bill amounts by "Success" (descriptive statistics like n, min, max, mean and sd)
 func <- function(x) {
   c(
     n = length(x),
@@ -70,6 +74,7 @@ data %>%
 
 
 
+# 2 - Visualize bill amounts by "Success"
 boxplot(Bill_Service ~ Success, data = data, col = "cadetblue")
 
 boxplot(Bill_Product ~ Success, data = data, col = "cadetblue")
@@ -86,6 +91,7 @@ ggplot(data, aes(x = factor(Success), y = Bill_Product)) +
 
 
 
+# 3 - Analyze association between Gender and Success
 CrossTable(data$Gender, data$Success, chisq = TRUE)
 # Statistics for All Table Factors
 # 
@@ -100,6 +106,7 @@ CrossTable(data$Gender, data$Success, chisq = TRUE)
 
 
 
+# 4 - Develop a statistical model to estimate probability of success
 model <- glm(Success ~ Gender + AGE + Recency_Service + Recency_Product + Bill_Service + Bill_Product, data = data, family = "binomial")
 summary(model)
 # Call:
@@ -129,6 +136,7 @@ summary(model)
 
 
 
+# 5 - Finalize the model by excluding insignificant variables
 model <- glm(Success ~ Recency_Service + Recency_Product + Bill_Service + Bill_Product, data = data, family = "binomial")
 summary(model)
 # Call:
@@ -155,6 +163,7 @@ summary(model)
 
 
 
+# 6 - Estimate predicted probabilities and add a column in the original data
 data$pred_prob <- fitted(model)
 head(data)
 #   SN Gender  AGE Recency_Service Recency_Product Bill_Service Bill_Product Success  pred_prob
@@ -166,6 +175,8 @@ head(data)
 # 6  6      2 <=30               1               2        18.99         0.44       1 0.60744675
 
 
+
+# 7 - Use 0.5 as a threshold, estimate Success = 0 / 1
 data$pred <- ifelse(data$pred_prob <= 0.5, 0, 1)
 head(data)
 #   SN Gender  AGE Recency_Service Recency_Product Bill_Service Bill_Product Success  pred_prob pred
@@ -178,6 +189,8 @@ head(data)
 
 
 
+
+# 8 - Analyze model accuracy and misclassification rate
 table(data$pred, data$Success)
 #     0   1
 # 0 467  88
