@@ -53,7 +53,7 @@ data.dtypes
 
 
 
-# %% 1 - summarize Bill_Service by Success
+# %% 1 - Summarize Bill amounts by "Success" (descriptive statistics like n, min, max, mean and sd)
 data.groupby('Success')['Bill_Service'].agg(['count', 'mean', 'median', 'std'])
 #          count       mean  median       std
 # Success                                    
@@ -87,7 +87,7 @@ data.groupby('Success')['Bill_Product'].describe()
 
 
 
-# %% 2 - set up plot environment
+# %% 2 - Visualize bill amounts by "Success"
 plt.figure(figsize = (8, 6))
 sns.set_style("darkgrid")
 sns.set_context("paper")
@@ -133,7 +133,7 @@ plt.title('Box Plot')
 
 
 
-# %% 3 - test association between Gender and Success
+# %% 3 - Analyze association between Gender and Success
 chi2_contingency(pd.crosstab(data.Gender, data.Success))
 # Chi2ContingencyResult(statistic=0.3807592682933615, 
 #        pvalue=0.5371971687062078, 
@@ -146,7 +146,7 @@ chi2_contingency(pd.crosstab(data.Gender, data.Success))
 
 
 
-# %% 4 - Fit model using all predictors
+# %% 4 - Develop a statistical model to estimate probability of success
 model = logit(formula = 'Success ~ Gender + AGE + Recency_Service + Recency_Product + Bill_Service + Bill_Product', data = data).fit()
 model.summary()
 # """
@@ -176,7 +176,7 @@ model.summary()
 
 
 
-# %% 5 - Fit model using only the significant predictors
+# %% 5 - Finalize the model by excluding insignificant variables
 model = logit(formula = 'Success ~ Recency_Service + Recency_Product + Bill_Service + Bill_Product', data = data).fit()
 model.summary()
 # """
@@ -203,7 +203,7 @@ model.summary()
 
 
 
-# %% 6 - 
+# %% 6 - Estimate predicted probabilities and add a column in the original data
 data['pred_prob'] = model.predict()
 data.head()
 #    SN Gender   AGE  ...  Bill_Product  Success  pred_prob
@@ -218,7 +218,7 @@ data.head()
 
 
 
-# %% 7 - 
+# %% 7 - Use 0.5 as a threshold, estimate Success = 0 / 1
 data['pred'] = np.where(data.pred_prob <= 0.5, 0, 1)
 data.head()
 #    SN Gender   AGE  Recency_Service  ...  Bill_Product  Success  pred_prob  pred
@@ -233,24 +233,24 @@ data.head()
 
 
 
-# %% 8 - Calculate Accuracy + 
+# %% 8 - Analyze model accuracy and misclassification rate
 pd.crosstab(data.pred, data.Success)
 # Success    0   1
 # pred            
 # 0        467  88
 # 1         36  92
 
-# %% 8 - Calculate Accuracy + 
+# %% 8 - Calculate Accuracy + Misclassification Rate
 round(pd.crosstab(data.pred, data.Success, normalize = "all") * 100, 2)
 # Success      0      1
 # pred                 
 # 0        68.37  12.88
 # 1         5.27  13.47
 
-# %% 8 - Calculate Accuracy + 
+# %% 8 - Calculate Accuracy + Misclassification Rate
 round((sum(data.pred == data.Success) / data.shape[0]) * 100, 2)
 # 81.84
 
-# %% 8 - Calculate Accuracy + 
+# %% 8 - Calculate Accuracy + Misclassification Rate
 round((sum(data.pred != data.Success) / data.shape[0]) * 100, 2)
 # 18.16
