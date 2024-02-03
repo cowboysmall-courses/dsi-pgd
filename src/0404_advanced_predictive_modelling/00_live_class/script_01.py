@@ -240,6 +240,7 @@ pd.crosstab(data.pred, data.Success)
 # 0        467  88
 # 1         36  92
 
+
 # %% 8 - Calculate Accuracy + Misclassification Rate
 round(pd.crosstab(data.pred, data.Success, normalize = "all") * 100, 2)
 # Success      0      1
@@ -247,9 +248,11 @@ round(pd.crosstab(data.pred, data.Success, normalize = "all") * 100, 2)
 # 0        68.37  12.88
 # 1         5.27  13.47
 
+
 # %% 8 - Calculate Accuracy + Misclassification Rate
 round((sum(data.pred == data.Success) / data.shape[0]) * 100, 2)
 # 81.84
+
 
 # %% 8 - Calculate Accuracy + Misclassification Rate
 round((sum(data.pred != data.Success) / data.shape[0]) * 100, 2)
