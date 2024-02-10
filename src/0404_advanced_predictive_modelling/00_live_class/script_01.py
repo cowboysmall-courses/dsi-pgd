@@ -147,7 +147,7 @@ chi2_contingency(pd.crosstab(data.Gender, data.Success))
 
 
 # %% 4 - Develop a statistical model to estimate probability of success
-model = logit(formula = 'Success ~ Gender + AGE + Recency_Service + Recency_Product + Bill_Service + Bill_Product', data = data).fit()
+model = logit('Success ~ Gender + AGE + Recency_Service + Recency_Product + Bill_Service + Bill_Product', data = data).fit()
 model.summary()
 # """
 #                            Logit Regression Results                           
@@ -177,7 +177,7 @@ model.summary()
 
 
 # %% 5 - Finalize the model by excluding insignificant variables
-model = logit(formula = 'Success ~ Recency_Service + Recency_Product + Bill_Service + Bill_Product', data = data).fit()
+model = logit('Success ~ Recency_Service + Recency_Product + Bill_Service + Bill_Product', data = data).fit()
 model.summary()
 # """
 #                            Logit Regression Results                           
