@@ -18,11 +18,11 @@ head(r_data_1)
 
 data<-Reduce(function(data1, data2) merge(data1, data2, by = "Custid", all.x = TRUE), list(r_data_1, p_data_1, p_data_2))
 
-data$Age <- as.factor(data$Age)
-data$Gender <- as.factor(data$Gender)
-data$MS <- as.factor(data$MS)
+data$Age       <- as.factor(data$Age)
+data$Gender    <- as.factor(data$Gender)
+data$MS        <- as.factor(data$MS)
 data$Pre_Month <- as.factor(data$Pre_Month)
-data$Response <- as.factor(data$Response)
+data$Response  <- as.factor(data$Response)
 
 head(data)
 
@@ -143,21 +143,20 @@ abline(0, 1)
 auctrain <- performance(predtrain, "auc")
 auctrain@y.values 
 
-auctest <- performance(predtest, "auc")
+auctest  <- performance(predtest, "auc")
 auctest@y.values 
 
 
-sstrain <- performance(predtrain, "sens", "spec")
-best_threshold <- sstrain@alpha.values[[1]][which.max(sstrain@x.values[[1]]+sstrain@y.values[[1]])]
+sstrain        <- performance(predtrain, "sens", "spec")
+best_threshold <- sstrain@alpha.values[[1]][which.max(sstrain@x.values[[1]] + sstrain@y.values[[1]])]
 best_threshold
 
 
 train$Response <- as.factor(train$Response)
-train$predY <- as.factor(ifelse(train$predprob > best_threshold, 1, 0))
+train$predY    <- as.factor(ifelse(train$predprob > best_threshold, 1, 0))
 confusionMatrix(train$predY, train$Response, positive = "1")
 
 
 test$Response <- as.factor(test$Response)
-test$predY <- as.factor(ifelse(test$predprob > best_threshold, 1, 0))
+test$predY    <- as.factor(ifelse(test$predprob > best_threshold, 1, 0))
 confusionMatrix(test$predY, test$Response, positive = "1")
-

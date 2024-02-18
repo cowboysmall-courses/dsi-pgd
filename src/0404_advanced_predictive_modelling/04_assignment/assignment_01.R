@@ -54,13 +54,11 @@ str(data)
 # $ UI   : int  0 0 0 1 1 0 0 0 0 0 ...
 # $ FTV  : int  0 3 1 2 0 0 1 1 1 0 ...
 
-
 data$LOW   <- as.factor(data$LOW)
 data$RACE  <- as.factor(data$RACE)
 data$SMOKE <- as.factor(data$SMOKE)
 data$HT    <- as.factor(data$HT)
 data$UI    <- as.factor(data$UI)
-
 
 str(data)
 # 'data.frame':	189 obs. of  11 variables:
@@ -128,7 +126,8 @@ CrossTable(data$LOW, data$RACE, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 # Chi^2 =  5.004813     d.f. =  2     p =  0.0818877
 
 
-# p-value ~= 0.08 => an insignificant relationship
+# p-value ~= 0.08
+# fail to reject the null hypothesis that LOW and RACE are not associated
 
 
 
@@ -176,7 +175,8 @@ CrossTable(data$LOW, data$SMOKE, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 # Chi^2 =  4.235929     d.f. =  1     p =  0.03957697
 
 
-# p-value ~= 0.03 => a significant relationship
+# p-value ~= 0.03
+# reject the null hypothesis that LOW and SMOKE are not associated
 
 
 
@@ -224,7 +224,8 @@ CrossTable(data$LOW, data$HT, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 # Chi^2 =  3.143065     d.f. =  1     p =  0.07625038
 
 
-# p-value ~= 0.04 => a possible significant relationship
+# p-value ~= 0.04
+# reject the null hypothesis that LOW and HT are not associated
 
 
 
@@ -272,7 +273,8 @@ CrossTable(data$LOW, data$UI, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 # Chi^2 =  5.175733     d.f. =  1     p =  0.0229045
 
 
-# p-value ~= 0.01 => a significant relationship
+# p-value ~= 0.01
+# reject the null hypothesis that LOW and UI are not associated
 
 
 
@@ -335,25 +337,22 @@ summary(model)
 # 4 - Generate three classification tables with cut-off values 0.4, 0.3 and 0.55.
 data$pred_prob <- fitted(model)
 
-pred1 <- ifelse(data$pred_prob <= 0.4,  0, 1)
-pred2 <- ifelse(data$pred_prob <= 0.3,  0, 1)
-pred3 <- ifelse(data$pred_prob <= 0.55, 0, 1)
-
-
+pred1  <- ifelse(data$pred_prob <= 0.4,  0, 1)
+pred2  <- ifelse(data$pred_prob <= 0.3,  0, 1)
+pred3  <- ifelse(data$pred_prob <= 0.55, 0, 1)
 
 table1 <- table(pred1, data$LOW)
+table2 <- table(pred2, data$LOW)
+table3 <- table(pred3, data$LOW)
+
 table1
 # pred1   0   1
 #     0 107  31
 #     1  23  28
-
-table2 <- table(pred2, data$LOW)
 table2
 # pred2  0  1
 #     0 87 19
 #     1 43 40
-
-table3 <- table(pred3, data$LOW)
 table3
 # pred3   0   1
 #     0 120  42
@@ -367,88 +366,80 @@ table3
 # 5 - Calculate sensitivity,specificity and misclassification rate for all 
 #     three tables above. What is the recommended cut-off value?
 sensitivity1 <- (table1[2, 2] / (table1[2, 1] + table1[2, 2])) * 100
+specificity1 <- (table1[1, 1] / (table1[1, 1] + table1[1, 2])) * 100
+accuracy1    <- ((table1[1, 1] + table1[2, 2]) / nrow(data)) * 100
+misclass1    <- ((table1[1, 2] + table1[2, 1]) / nrow(data)) * 100
+
 paste("Sensitivity for cut-off 0.4 is :", round(sensitivity1, 2))
 # "Sensitivity for cut-off 0.4 is : 54.9"
-
-specificity1 <- (table1[1, 1] / (table1[1, 1] + table1[1, 2])) * 100
 paste("Specificity for cut-off 0.4 is :", round(specificity1, 2))
 # "Specificity for cut-off 0.4 is : 77.54"
-
-accuracy1    <- ((table1[1, 1] + table1[2, 2]) / nrow(data)) * 100
 paste("Accuracy for cut-off 0.4 is :", round(accuracy1, 2))
 # "Accuracy for cut-off 0.4 is : 71.43"
-
-misclass1    <- ((table1[1, 2] + table1[2, 1]) / nrow(data)) * 100
 paste("Mis-Classification for cut-off 0.4 is :", round(misclass1, 2))
 # "Mis-Classification for cut-off 0.4 is : 28.57"
 
 
 
 sensitivity2 <- (table2[2, 2] / (table2[2, 1] + table2[2, 2])) * 100
+specificity2 <- (table2[1, 1] / (table2[1, 1] + table2[1, 2])) * 100
+accuracy2    <- ((table2[1, 1] + table2[2, 2]) / nrow(data)) * 100
+misclass2    <- ((table2[1, 2] + table2[2, 1]) / nrow(data)) * 100
+
 paste("Sensitivity for cut-off 0.3 is :", round(sensitivity2, 2))
 # "Sensitivity for cut-off 0.3 is : 48.19"
-
-specificity2 <- (table2[1, 1] / (table2[1, 1] + table2[1, 2])) * 100
 paste("Specificity for cut-off 0.3 is :", round(specificity2, 2))
 # "Specificity for cut-off 0.3 is : 82.08"
-
-accuracy2    <- ((table2[1, 1] + table2[2, 2]) / nrow(data)) * 100
 paste("Accuracy for cut-off 0.3 is :", round(accuracy2, 2))
 # "Accuracy for cut-off 0.3 is : 67.2"
-
-misclass2    <- ((table2[1, 2] + table2[2, 1]) / nrow(data)) * 100
 paste("Mis-Classification for cut-off 0.3 is :", round(misclass2, 2))
 # "Mis-Classification for cut-off 0.3 is : 32.8"
 
 
 
 sensitivity3 <- (table3[2, 2] / (table3[2, 1] + table3[2, 2])) * 100
+specificity3 <- (table3[1, 1] / (table3[1, 1] + table3[1, 2])) * 100
+accuracy3    <- ((table3[1, 1] + table3[2, 2]) / nrow(data)) * 100
+misclass3    <- ((table3[1, 2] + table3[2, 1]) / nrow(data)) * 100
+
 paste("Sensitivity for cut-off 0.55 is :", round(sensitivity3, 2))
 # "Sensitivity for cut-off 0.55 is : 62.96"
-
-specificity3 <- (table3[1, 1] / (table3[1, 1] + table3[1, 2])) * 100
 paste("Specificity for cut-off 0.55 is :", round(specificity3, 2))
 # "Specificity for cut-off 0.55 is : 74.07"
-
-accuracy3    <- ((table3[1, 1] + table3[2, 2]) / nrow(data)) * 100
 paste("Accuracy for cut-off 0.55 is :", round(accuracy3, 2))
 # "Accuracy for cut-off 0.55 is : 72.49"
-
-misclass3    <- ((table3[1, 2] + table3[2, 1]) / nrow(data)) * 100
 paste("Mis-Classification for cut-off 0.55 is :", round(misclass3, 2))
 # "Mis-Classification for cut-off 0.55 is : 27.51"
 
 
-pred      <- prediction(data$pred_prob, data$LOW)
+prediction1 <- prediction(data$pred_prob, data$LOW)
 
 
-perf1     <- performance(pred, "sens", "spec")
-threshold <- perf1@alpha.values[[1]][which.max(perf1@x.values[[1]] + perf1@y.values[[1]])]
-paste("Best Threshold is :", round(threshold, 2))
-# "Best Threshold is : 0.31"
+perf1       <- performance(prediction1, "sens", "spec")
+threshold   <- perf1@alpha.values[[1]][which.max(perf1@x.values[[1]] + perf1@y.values[[1]])]
+threshold   <- round(threshold, 2)
+paste("Best Threshold maximizing sensitivity and specificity is :", threshold)
+# "Best Threshold maximizing sensitivity and specificity is : 0.31"
 
-
-pred4  <- ifelse(data$pred_prob <= 0.31, 0, 1)
-table4 <- table(pred4, data$LOW)
+pred4       <- ifelse(data$pred_prob <= threshold, 0, 1)
+table4      <- table(pred4, data$LOW)
 table4
 # pred4  0  1
 #     0 93 19
 #     1 37 40
 
 sensitivity4 <- (table4[2, 2] / (table4[2, 1] + table4[2, 2])) * 100
-paste("Sensitivity for cut-off 0.31 is :", round(sensitivity4, 2))
-# "Sensitivity for cut-off 0.31 is : 51.95"
-
 specificity4 <- (table4[1, 1] / (table4[1, 1] + table4[1, 2])) * 100
-paste("Specificity for cut-off 0.31 is :", round(specificity4, 2))
-# "Specificity for cut-off 0.31 is : 83.04"
-
 accuracy4    <- ((table4[1, 1] + table4[2, 2]) / nrow(data)) * 100
-paste("Accuracy for cut-off 0.31 is :", round(accuracy4, 2))
-# "Accuracy for cut-off 0.31 is : 70.37"
-
 misclass4    <- ((table4[1, 2] + table4[2, 1]) / nrow(data)) * 100
-paste("Mis-Classification for cut-off 0.31 is :", round(misclass4, 2))
+
+paste("Sensitivity for cut-off", threshold, "is :", round(sensitivity4, 2))
+# "Sensitivity for cut-off 0.31 is : 51.95"
+paste("Specificity for cut-off", threshold, "is :", round(specificity4, 2))
+# "Specificity for cut-off 0.31 is : 83.04"
+paste("Accuracy for cut-off", threshold, "is :", round(accuracy4, 2))
+# "Accuracy for cut-off 0.31 is : 70.37"
+paste("Mis-Classification for cut-off", threshold, "is :", round(misclass4, 2))
 # "Mis-Classification for cut-off 0.31 is : 29.63"
 
 
@@ -457,12 +448,10 @@ paste("Mis-Classification for cut-off 0.31 is :", round(misclass4, 2))
 
 
 # 6 - Obtain ROC curve and report area under curve.
-perf2 <- performance(pred, "tpr", "fpr")
+perf2 <- performance(prediction1, "tpr", "fpr")
 plot(perf2)
 abline(0, 1)
 
-perf3 <- performance(pred, "auc")
+perf3 <- performance(prediction1, "auc")
 paste("AOC is :", perf3@y.values)
 # "Area under the curve is : 0.749022164276402"
-
-

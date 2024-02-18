@@ -153,7 +153,7 @@ auc@y.values
 
 
 
-ss <- performance(pred, "sens", "spec")
+ss             <- performance(pred, "sens", "spec")
 best_threshold <- ss@alpha.values[[1]][which.max(ss@x.values[[1]] + ss@y.values[[1]])]
 paste("Best Threshold is :", round(best_threshold, 2))
 # "Best Threshold is : 0.28"
