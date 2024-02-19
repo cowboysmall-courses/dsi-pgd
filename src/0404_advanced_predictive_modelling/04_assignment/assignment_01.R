@@ -54,27 +54,6 @@ str(data)
 # $ UI   : int  0 0 0 1 1 0 0 0 0 0 ...
 # $ FTV  : int  0 3 1 2 0 0 1 1 1 0 ...
 
-data$LOW   <- as.factor(data$LOW)
-data$RACE  <- as.factor(data$RACE)
-data$SMOKE <- as.factor(data$SMOKE)
-data$HT    <- as.factor(data$HT)
-data$UI    <- as.factor(data$UI)
-
-str(data)
-# 'data.frame':	189 obs. of  11 variables:
-# $ SR.NO: int  1 2 3 4 5 6 7 8 9 10 ...
-# $ ID   : int  85 86 87 88 89 91 92 93 94 95 ...
-# $ LOW  : Factor w/ 2 levels "0","1": 1 1 1 1 1 1 1 1 1 1 ...
-# $ AGE  : int  19 33 20 21 18 21 22 17 29 26 ...
-# $ LWT  : int  182 155 105 108 107 124 118 103 123 113 ...
-# $ RACE : Factor w/ 3 levels "1","2","3": 2 3 1 1 1 3 1 3 1 1 ...
-# $ SMOKE: Factor w/ 2 levels "0","1": 1 1 2 2 2 1 1 1 2 2 ...
-# $ PTL  : int  0 0 0 0 0 0 0 0 0 0 ...
-# $ HT   : Factor w/ 2 levels "0","1": 1 1 1 1 1 1 1 1 1 1 ...
-# $ UI   : Factor w/ 2 levels "0","1": 1 1 1 2 2 1 1 1 1 1 ...
-# $ FTV  : int  0 3 1 2 0 0 1 1 1 0 ...
-
-
 
 # we engineer some features - converting numerical and other data into
 # categorical data with two levels - where the new value is 0 or 1 if
@@ -113,10 +92,20 @@ data$FTV_F <- as.factor(ifelse(data$FTV == 0, 0, 1))
 
 
 summary(data$RACE)
-
+#  Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 1.000   1.000   1.000   1.847   3.000   3.000
 
 # construct a factor (0, 1) -> equal to / not equal to median RACE
 data$RACE_F <- as.factor(ifelse(data$RACE == 1, 0, 1))
+
+
+
+data$LOW   <- as.factor(data$LOW)
+data$RACE  <- as.factor(data$RACE)
+data$SMOKE <- as.factor(data$SMOKE)
+data$HT    <- as.factor(data$HT)
+data$UI    <- as.factor(data$UI)
+
 
 
 str(data)
@@ -143,6 +132,10 @@ str(data)
 # 2 - Cross tabulate dependent variable with each independent variable.
 #     (below I use the symbols '~=' to denote 'approximately equal to')
 
+table(data$LOW, data$AGE)
+#   14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 45
+# 0  1  1  6  7  8 13 10  7 11  8  8  9  4  1  7  6  6  4  5  3  0  2  2  1
+# 1  2  2  1  5  2  3  8  5  2  5  5  6  4  2  2  1  1  1  1  0  1  0  0  0
 
 table(data$LOW, data$AGE_F)
 #    0  1
@@ -192,11 +185,10 @@ CrossTable(data$LOW, data$AGE_F, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 
 
 
-
 table(data$LOW, data$LWT_F)
 #    0  1
-# 0 72 58
-# 1 38 21
+# 0 61 69
+# 1 35 24
 
 CrossTable(data$LOW, data$LWT_F, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 #    Cell Contents
@@ -205,11 +197,11 @@ CrossTable(data$LOW, data$LWT_F, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 # | Chi-square contribution |
 # |         N / Table Total |
 # |-------------------------|
-
-
+# 
+# 
 # Total Observations in Table:  189
-
-
+# 
+# 
 #              | data$LWT_F
 #     data$LOW |         0 |         1 | Row Total |
 # -------------|-----------|-----------|-----------|
@@ -223,15 +215,15 @@ CrossTable(data$LOW, data$LWT_F, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 # -------------|-----------|-----------|-----------|
 # Column Total |        96 |        93 |       189 |
 # -------------|-----------|-----------|-----------|
-
-
+# 
+# 
 # Statistics for All Table Factors
-
-
+# 
+# 
 # Pearson's Chi-squared test
 # ------------------------------------------------------------
 # Chi^2 =  2.496165     d.f. =  1     p =  0.1141239
-
+# 
 # Pearson's Chi-squared test with Yates' continuity correction
 # ------------------------------------------------------------
 # Chi^2 =  2.024729     d.f. =  1     p =  0.1547565
@@ -241,6 +233,10 @@ CrossTable(data$LOW, data$LWT_F, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 
 
 
+table(data$LOW, data$PTL)
+#     0   1   2   3
+# 0 118   8   3   1
+# 1  41  16   2   0
 
 table(data$LOW, data$PTL_F)
 #     0   1
@@ -291,6 +287,11 @@ CrossTable(data$LOW, data$PTL_F, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 
 
 
+table(data$LOW, data$FTV)
+#    0  1  2  3  4  6
+# 0 64 36 23  3  3  1
+# 1 36 11  7  4  1  0
+
 table(data$LOW, data$FTV_F)
 #    0  1
 # 0 64 66
@@ -339,6 +340,11 @@ CrossTable(data$LOW, data$FTV_F, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 
 
 
+
+table(data$LOW, data$RACE)
+#    1  2  3
+# 0 73 15 42
+# 1 23 11 25
 
 table(data$LOW, data$RACE_F)
 #    0  1
