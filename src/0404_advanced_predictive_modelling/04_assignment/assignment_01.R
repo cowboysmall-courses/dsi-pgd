@@ -56,8 +56,8 @@ str(data)
 
 
 # we engineer some features - converting numerical and other data into
-# categorical data with two levels - where the new value is 0 or 1 if
-# below or above the  mean / median
+# categorical data with two or more levels - for example, in the case of two 
+# levels, the new value is 0 if below the mean / median or 1 if above 
 
 summary(data$AGE)
 #  Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
@@ -184,6 +184,15 @@ CrossTable(data$LOW, data$AGE_F, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 # fail to reject the null hypothesis that LOW and AGE_F are not associated
 
 
+
+table(data$LOW, data$LWT)
+#   80 85 89 90 91 92 94 95 96 97 98 100 101 102 103 105 107 108 109 110 112 113 115 116 117 118 119 120 121 122 123 124 125 127 128 129 130 131 132 133 134 135
+# 0  0  1  0  3  0  0  0  5  0  0  1   3   0   0   2   2   2   1   1   7   3   3   5   1   1   2   3  12   3   1   3   2   2   1   1   1   6   1   2   2   3   4
+# 1  1  1  1  0  1  1  1  1  1  1  0   2   1   2   1   5   0   0   1   4   1   0   2   0   1   0   0   5   1   1   0   0   1   0   1   0   7   0   1   0   0   0
+
+#   137 138 140 141 142 147 148 150 153 154 155 158 160 165 167 168 169 170 175 182 184 185 186 187 189 190 200 202 215 229 235 241 250
+# 0   1   1   3   1   0   2   0   3   1   1   2   2   2   0   1   1   2   4   1   1   1   1   1   0   1   1   0   1   1   1   1   1   1
+# 1   0   1   0   0   2   0   1   2   0   1   1   0   0   1   0   0   0   0   0   0   0   0   0   2   0   1   1   0   0   0   0   0   0
 
 table(data$LOW, data$LWT_F)
 #    0  1
@@ -552,7 +561,10 @@ CrossTable(data$LOW, data$UI, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 # - PTL_F
 # - HT
 # - UI
-
+# While this is a good first step, and can help with understanding the data, it 
+# should not incline us to exclude features from a model - we need to build a 
+# model with all independent variables to get a  better understanding of which 
+# features are actually important with respect to prediction.
 
 
 
@@ -560,8 +572,11 @@ CrossTable(data$LOW, data$UI, chisq = TRUE, prop.r = FALSE, prop.c = FALSE)
 
 # 3 - Develop a model to predict if birth weight is low or not using the given
 #     variables.
-model <- glm(LOW ~ AGE + AGE_F + LWT + LWT_F + RACE + SMOKE + PTL + PTL_F + HT + UI + FTV + FTV_F, data = data, family = "binomial")
-summary(model)
+
+# we start with the basic independent variables:
+
+model1 <- glm(LOW ~ AGE + LWT + RACE + SMOKE + PTL + HT + UI + FTV, data = data, family = "binomial")
+summary(model1)
 # Call:
 # glm(formula = LOW ~ AGE + LWT + RACE + SMOKE + PTL + HT + UI + 
 #     FTV, family = "binomial", data = data)
@@ -590,47 +605,78 @@ summary(model)
 # Number of Fisher Scoring iterations: 4
 
 
-model <- glm(LOW ~ LWT + RACE + SMOKE + PTL_F + HT + UI, data = data, family = "binomial")
-summary(model)
+# now we build a model with the engineered features replacing the numeric 
+# features:
 
-
-
-# from looking at the model summary, it appears that the independent 
-# variables / features of significance are:
-# - LWT
-# - RACE
-# - SMOKE
-# - HT
-# - UI (at the 0.1 level of significance)
-#
-# the independent variables AGE and LWT negatively influence the outcome,
-# while all other independent variables positively influence the outcome
-
-# rebuilding the model, omitting the insignificant features:
-
-model <- glm(LOW ~ LWT + RACE + SMOKE + HT + UI, data = data, family = "binomial")
-summary(model)
+model2 <- glm(LOW ~ AGE_F + LWT_F + RACE_F + SMOKE + PTL_F + HT + UI + FTV_F, data = data, family = "binomial")
+summary(model2)
 # Call:
-# glm(formula = LOW ~ LWT + RACE + SMOKE + HT + UI, family = "binomial",
-#     data = data)
-#
+# glm(formula = LOW ~ AGE_F + LWT_F + RACE_F + SMOKE + PTL_F +
+#     HT + UI + FTV_F, family = "binomial", data = data)
+
 # Coefficients:
-#              Estimate Std. Error z value Pr(>|z|)
-# (Intercept)  0.001967   0.939760   0.002  0.99833
-# LWT         -0.016334   0.006805  -2.400  0.01638 *
-# RACE2        1.351239   0.522848   2.584  0.00976 **
-# RACE3        0.923378   0.430433   2.145  0.03193 *
-# SMOKE1       1.025284   0.392803   2.610  0.00905 **
-# HT1          1.861851   0.689137   2.702  0.00690 **
-# UI1          0.970088   0.455893   2.128  0.03335 *
+#             Estimate Std. Error z value Pr(>|z|)
+# (Intercept) -1.84198    0.51924  -3.547 0.000389 ***
+# AGE_F1      -0.05878    0.36810  -0.160 0.873138
+# LWT_F1      -0.33126    0.36089  -0.918 0.358673
+# RACE_F1      0.94788    0.40000   2.370 0.017803 *
+# SMOKE1       0.84747    0.40065   2.115 0.034413 *
+# PTL_F1       1.21193    0.45970   2.636 0.008380 **
+# HT1          1.45554    0.65402   2.226 0.026047 *
+# UI1          0.83835    0.47060   1.781 0.074841 .
+# FTV_F1      -0.21589    0.35995  -0.600 0.548655
 # ---
 # Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #
 # (Dispersion parameter for binomial family taken to be 1)
 #
 #     Null deviance: 234.67  on 188  degrees of freedom
-# Residual deviance: 203.77  on 182  degrees of freedom
-# AIC: 217.77
+# Residual deviance: 201.93  on 180  degrees of freedom
+# AIC: 219.93
+#
+# Number of Fisher Scoring iterations: 4
+
+
+
+# from looking at the above model summaries, it appears that the independent
+# variables / features of significance are:
+# - LWT
+# - RACE_F
+# - SMOKE
+# - PTL_F
+# - HT
+# - UI (at the 0.1 level of significance)
+#
+# while insignificant, the independent variables AGE and LWT negatively 
+# influence the outcome, while all other independent variables positively 
+# influence the outcome
+
+
+# rebuilding the model, omitting the insignificant features:
+
+model <- glm(LOW ~ LWT + RACE_F + SMOKE + PTL_F + HT + UI, data = data, family = "binomial")
+summary(model)
+# Call:
+# glm(formula = LOW ~ LWT + RACE_F + SMOKE + PTL_F + HT + UI, family = "binomial",
+#     data = data)
+#
+# Coefficients:
+#              Estimate Std. Error z value Pr(>|z|)
+# (Intercept) -0.421523   0.920637  -0.458  0.64705
+# LWT         -0.013900   0.006607  -2.104  0.03541 *
+# RACE_F1      1.019043   0.396234   2.572  0.01012 *
+# SMOKE1       0.925499   0.398583   2.322  0.02023 *
+# PTL_F1       1.112016   0.451218   2.464  0.01372 *
+# HT1          1.844487   0.704375   2.619  0.00883 **
+# UI1          0.784326   0.468810   1.673  0.09432 .
+# ---
+# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#
+# (Dispersion parameter for binomial family taken to be 1)
+#
+#     Null deviance: 234.67  on 188  degrees of freedom
+# Residual deviance: 198.25  on 182  degrees of freedom
+# AIC: 212.25
 #
 # Number of Fisher Scoring iterations: 4
 
@@ -638,13 +684,50 @@ summary(model)
 # from looking at the improved model summary, it appears that all the
 # independent variables / features are significant.
 # - LWT
-# - RACE
+# - RACE_F
 # - SMOKE
+# - PTL_F
 # - HT
 # - UI
 #
 # the independent variable LWT continues to negatively influence the outcome,
 # while all other independent variables positively influence the outcome
+
+
+# comparing with a model that uses all of the significant features, but the
+# non-engineered versions:
+
+model3 <- glm(LOW ~ LWT + RACE + SMOKE + PTL + HT + UI, data = data, family = "binomial")
+summary(model3)
+# Call:
+# glm(formula = LOW ~ LWT + RACE + SMOKE + PTL + HT + UI, family = "binomial",
+#     data = data)
+#
+# Coefficients:
+#              Estimate Std. Error z value Pr(>|z|)
+# (Intercept) -0.131977   0.953211  -0.138  0.88988
+# LWT         -0.015578   0.006855  -2.272  0.02307 *
+# RACE2        1.348875   0.523560   2.576  0.00998 **
+# RACE3        0.895039   0.433928   2.063  0.03915 *
+# SMOKE1       0.931606   0.398795   2.336  0.01949 *
+# PTL          0.495238   0.341447   1.450  0.14694
+# HT1          1.847825   0.693427   2.665  0.00770 **
+# UI1          0.848401   0.464632   1.826  0.06786 .
+# ---
+# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#
+# (Dispersion parameter for binomial family taken to be 1)
+#
+#     Null deviance: 234.67  on 188  degrees of freedom
+# Residual deviance: 201.61  on 181  degrees of freedom
+# AIC: 217.61
+#
+# Number of Fisher Scoring iterations: 4
+
+
+# because the model that uses the engineered features seems to have more
+# significant features I will retain it for the purpose of this assignment.
+
 
 
 
@@ -664,16 +747,16 @@ table3 <- table(pred3, data$LOW)
 
 table1
 # pred1   0   1
-#     0 110  34
-#     1  20  25
+#     0 107  27
+#     1  23  32
 table2
 # pred2  0  1
-#     0 88 18
-#     1 42 41
+#     0 97 20
+#     1 33 39
 table3
 # pred3   0   1
-#     0 120  41
-#     1  10  18
+#     0 122  41
+#     1   8  18
 
 
 
@@ -689,19 +772,19 @@ misclass1    <- ((table1[1, 2] + table1[2, 1]) / nrow(data)) * 100
 falsepos1    <- (table1[1, 2] / (table1[1, 2] + table1[2, 2])) * 100
 
 paste("Sensitivity for cut-off 0.4 is :", round(sensitivity1, 2))
-# "Sensitivity for cut-off 0.4 is : 55.56"
+# "Sensitivity for cut-off 0.4 is : 58.18"
 paste("Specificity for cut-off 0.4 is :", round(specificity1, 2))
-# "Specificity for cut-off 0.4 is : 76.39"
+# "Specificity for cut-off 0.4 is : 79.85"
 paste("Accuracy for cut-off 0.4 is :", round(accuracy1, 2))
-# "Accuracy for cut-off 0.4 is : 71.43"
+# "Accuracy for cut-off 0.4 is : 73.54"
 paste("Mis-Classification for cut-off 0.4 is :", round(misclass1, 2))
-# "Mis-Classification for cut-off 0.4 is : 28.57"
+# "Mis-Classification for cut-off 0.4 is : 26.46"
 paste("The sum of Sensitivity and Specificity for cut-off 0.4 is :", round(sensitivity1 + specificity1, 2))
-# "The sum of Sensitivity and Specificity for cut-off 0.4 is : 131.94"
+# "The sum of Sensitivity and Specificity for cut-off 0.4 is : 138.03"
 paste("The difference of Sensitivity and Specificity for cut-off 0.4 is :", abs(round(sensitivity1 - specificity1, 2)))
-# "The difference of Sensitivity and Specificity for cut-off 0.4 is : 20.83"
+# "The difference of Sensitivity and Specificity for cut-off 0.4 is : 21.67"
 paste("False Positive Rate for cut-off 0.4 is :", round(falsepos1, 2))
-# "False Positive Rate for cut-off 0.4 is : 57.63"
+# "False Positive Rate for cut-off 0.4 is : 45.76"
 
 
 
@@ -712,19 +795,19 @@ misclass2    <- ((table2[1, 2] + table2[2, 1]) / nrow(data)) * 100
 falsepos2    <- (table2[1, 2] / (table2[1, 2] + table2[2, 2])) * 100
 
 paste("Sensitivity for cut-off 0.3 is :", round(sensitivity2, 2))
-# "Sensitivity for cut-off 0.3 is : 49.4"
+# "Sensitivity for cut-off 0.3 is : 54.17"
 paste("Specificity for cut-off 0.3 is :", round(specificity2, 2))
-# "Specificity for cut-off 0.3 is : 83.02"
+# "Specificity for cut-off 0.3 is : 82.91"
 paste("Accuracy for cut-off 0.3 is :", round(accuracy2, 2))
-# "Accuracy for cut-off 0.3 is : 68.25"
+# "Accuracy for cut-off 0.3 is : 71.96"
 paste("Mis-Classification for cut-off 0.3 is :", round(misclass2, 2))
-# "Mis-Classification for cut-off 0.3 is : 31.75"
+# "Mis-Classification for cut-off 0.3 is : 28.04"
 paste("The sum of Sensitivity and Specificity for cut-off 0.3 is :", round(sensitivity2 + specificity2, 2))
-# "The sum of Sensitivity and Specificity for cut-off 0.3 is : 132.42"
+# "The sum of Sensitivity and Specificity for cut-off 0.3 is : 137.07"
 paste("The difference of Sensitivity and Specificity for cut-off 0.3 is :", abs(round(sensitivity2 - specificity2, 2)))
-# "The difference of Sensitivity and Specificity for cut-off 0.3 is : 33.62"
+# "The difference of Sensitivity and Specificity for cut-off 0.3 is : 28.74"
 paste("False Positive Rate for cut-off 0.3 is :", round(falsepos2, 2))
-# "False Positive Rate for cut-off 0.3 is : 30.51"
+# "False Positive Rate for cut-off 0.3 is : 33.9"
 
 
 
@@ -735,17 +818,17 @@ misclass3    <- ((table3[1, 2] + table3[2, 1]) / nrow(data)) * 100
 falsepos3    <- (table3[1, 2] / (table3[1, 2] + table3[2, 2])) * 100
 
 paste("Sensitivity for cut-off 0.55 is :", round(sensitivity3, 2))
-# "Sensitivity for cut-off 0.55 is : 64.29"
+# "Sensitivity for cut-off 0.55 is : 69.23"
 paste("Specificity for cut-off 0.55 is :", round(specificity3, 2))
-# "Specificity for cut-off 0.55 is : 74.53"
+# "Specificity for cut-off 0.55 is : 74.85"
 paste("Accuracy for cut-off 0.55 is :", round(accuracy3, 2))
-# "Accuracy for cut-off 0.55 is : 73.02"
+# "Accuracy for cut-off 0.55 is : 74.07"
 paste("Mis-Classification for cut-off 0.55 is :", round(misclass3, 2))
-# "Mis-Classification for cut-off 0.55 is : 26.98"
+# "Mis-Classification for cut-off 0.55 is : 25.93"
 paste("The sum of Sensitivity and Specificity for cut-off 0.55 is :", round(sensitivity3 + specificity3, 2))
-# "The sum of Sensitivity and Specificity for cut-off 0.55 is : 138.82"
+# "The sum of Sensitivity and Specificity for cut-off 0.55 is : 144.08"
 paste("The difference of Sensitivity and Specificity for cut-off 0.55 is :", abs(round(sensitivity3 - specificity3, 2)))
-# "The difference of Sensitivity and Specificity for cut-off 0.55 is : 10.25"
+# "The difference of Sensitivity and Specificity for cut-off 0.55 is : 5.62"
 paste("False Positive Rate for cut-off 0.55 is :", round(falsepos3, 2))
 # "False Positive Rate for cut-off 0.55 is : 69.49"
 
@@ -770,6 +853,7 @@ threshold   <- round(threshold, 2)
 paste("Best Threshold maximizing sensitivity and specificity is :", threshold)
 # "Best Threshold maximizing sensitivity and specificity is : 0.3"
 
+# see image_01.png
 plot(perf1@alpha.values[[1]], perf1@x.values[[1]], xlab = "Cut-off", ylab = "", type = "n")
 lines(perf1@alpha.values[[1]], perf1@x.values[[1]], type = "l", col = "red")
 lines(perf1@alpha.values[[1]], perf1@y.values[[1]], type = "l", col = "blue")
@@ -780,8 +864,8 @@ pred4       <- ifelse(data$pred_prob <= threshold, 0, 1)
 table4      <- table(pred4, data$LOW)
 table4
 # pred4  0  1
-#     0 88 18
-#     1 42 41
+#     0 97 20
+#     1 33 39
 
 sensitivity4 <- (table4[2, 2] / (table4[2, 1] + table4[2, 2])) * 100
 specificity4 <- (table4[1, 1] / (table4[1, 1] + table4[1, 2])) * 100
@@ -790,19 +874,19 @@ misclass4    <- ((table4[1, 2] + table4[2, 1]) / nrow(data)) * 100
 falsepos4    <- (table4[1, 2] / (table4[1, 2] + table4[2, 2])) * 100
 
 paste("Sensitivity for cut-off", threshold, "is :", round(sensitivity4, 2))
-# "Sensitivity for cut-off 0.3 is : 49.4"
+# "Sensitivity for cut-off 0.3 is : 54.17"
 paste("Specificity for cut-off", threshold, "is :", round(specificity4, 2))
-# "Specificity for cut-off 0.3 is : 83.02"
+# "Specificity for cut-off 0.3 is : 82.91"
 paste("Accuracy for cut-off", threshold, "is :", round(accuracy4, 2))
-# "Accuracy for cut-off 0.3 is : 68.25"
+# "Accuracy for cut-off 0.3 is : 71.96"
 paste("Mis-Classification for cut-off", threshold, "is :", round(misclass4, 2))
-# "Mis-Classification for cut-off 0.3 is : 31.75"
+# "Mis-Classification for cut-off 0.3 is : 28.04"
 paste("The sum of Sensitivity and Specificity for cut-off", threshold, "is :", round(sensitivity4 + specificity4, 2))
-# "The sum of Sensitivity and Specificity for cut-off 0.3 is : 132.42"
+# "The sum of Sensitivity and Specificity for cut-off 0.3 is : 137.07"
 paste("The difference of Sensitivity and Specificity for cut-off", threshold, "is :", abs(round(sensitivity4 - specificity4, 2)))
-# "The difference of Sensitivity and Specificity for cut-off 0.3 is : 33.62"
+# "The difference of Sensitivity and Specificity for cut-off 0.3 is : 28.74"
 paste("False Positive Rate for cut-off", threshold, "is :", round(falsepos4, 2))
-# "False Positive Rate for cut-off 0.3 is : 30.51"
+# "False Positive Rate for cut-off 0.3 is : 33.9"
 
 
 
@@ -815,6 +899,7 @@ perf2
 #   'False positive rate' vs. 'True positive rate' (alpha: 'Cutoff')
 #   with 148 data points
 
+# see image_02.png
 plot(perf2)
 abline(0, 1)
 
@@ -824,4 +909,4 @@ perf3
 #   'Area under the ROC curve'
 
 paste("Area under the curve is :", perf3@y.values)
-# "Area under the curve is : 0.73754889178618"
+# "Area under the curve is : 0.757105606258149"
