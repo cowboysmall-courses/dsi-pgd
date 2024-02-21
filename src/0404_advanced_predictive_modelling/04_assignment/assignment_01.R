@@ -765,79 +765,79 @@ table3
 
 # 5 - Calculate sensitivity,specificity and mis-classification rate for all
 #     three tables above. What is the recommended cut-off value?
-sensitivity1 <- (table1[2, 2] / (table1[2, 1] + table1[2, 2])) * 100
-specificity1 <- (table1[1, 1] / (table1[1, 1] + table1[1, 2])) * 100
+sensitivity1 <- (table1[2, 2] / (table1[1, 2] + table1[2, 2])) * 100
+specificity1 <- (table1[1, 1] / (table1[1, 1] + table1[2, 1])) * 100
 accuracy1    <- ((table1[1, 1] + table1[2, 2]) / nrow(data)) * 100
 misclass1    <- ((table1[1, 2] + table1[2, 1]) / nrow(data)) * 100
-falsepos1    <- (table1[1, 2] / (table1[1, 2] + table1[2, 2])) * 100
+falsepos1    <- (table1[2, 1] / (table1[1, 1] + table1[2, 1])) * 100
 
 paste("Sensitivity for cut-off 0.4 is :", round(sensitivity1, 2))
-# "Sensitivity for cut-off 0.4 is : 58.18"
+# "Sensitivity for cut-off 0.4 is : 54.24"
 paste("Specificity for cut-off 0.4 is :", round(specificity1, 2))
-# "Specificity for cut-off 0.4 is : 79.85"
+# "Specificity for cut-off 0.4 is : 82.31"
 paste("Accuracy for cut-off 0.4 is :", round(accuracy1, 2))
 # "Accuracy for cut-off 0.4 is : 73.54"
 paste("Mis-Classification for cut-off 0.4 is :", round(misclass1, 2))
 # "Mis-Classification for cut-off 0.4 is : 26.46"
 paste("The sum of Sensitivity and Specificity for cut-off 0.4 is :", round(sensitivity1 + specificity1, 2))
-# "The sum of Sensitivity and Specificity for cut-off 0.4 is : 138.03"
+# "The sum of Sensitivity and Specificity for cut-off 0.4 is : 136.54"
 paste("The difference of Sensitivity and Specificity for cut-off 0.4 is :", abs(round(sensitivity1 - specificity1, 2)))
-# "The difference of Sensitivity and Specificity for cut-off 0.4 is : 21.67"
+# "The difference of Sensitivity and Specificity for cut-off 0.4 is : 28.07"
 paste("False Positive Rate for cut-off 0.4 is :", round(falsepos1, 2))
-# "False Positive Rate for cut-off 0.4 is : 45.76"
+# "False Positive Rate for cut-off 0.4 is : 17.69"
 
 
 
-sensitivity2 <- (table2[2, 2] / (table2[2, 1] + table2[2, 2])) * 100
-specificity2 <- (table2[1, 1] / (table2[1, 1] + table2[1, 2])) * 100
+sensitivity2 <- (table2[2, 2] / (table2[1, 2] + table2[2, 2])) * 100
+specificity2 <- (table2[1, 1] / (table2[1, 1] + table2[2, 1])) * 100
 accuracy2    <- ((table2[1, 1] + table2[2, 2]) / nrow(data)) * 100
 misclass2    <- ((table2[1, 2] + table2[2, 1]) / nrow(data)) * 100
-falsepos2    <- (table2[1, 2] / (table2[1, 2] + table2[2, 2])) * 100
+falsepos2    <- (table2[2, 1] / (table2[1, 1] + table2[2, 1])) * 100
 
 paste("Sensitivity for cut-off 0.3 is :", round(sensitivity2, 2))
-# "Sensitivity for cut-off 0.3 is : 54.17"
+# "Sensitivity for cut-off 0.3 is : 66.1"
 paste("Specificity for cut-off 0.3 is :", round(specificity2, 2))
-# "Specificity for cut-off 0.3 is : 82.91"
+# "Specificity for cut-off 0.3 is : 74.62"
 paste("Accuracy for cut-off 0.3 is :", round(accuracy2, 2))
 # "Accuracy for cut-off 0.3 is : 71.96"
 paste("Mis-Classification for cut-off 0.3 is :", round(misclass2, 2))
 # "Mis-Classification for cut-off 0.3 is : 28.04"
 paste("The sum of Sensitivity and Specificity for cut-off 0.3 is :", round(sensitivity2 + specificity2, 2))
-# "The sum of Sensitivity and Specificity for cut-off 0.3 is : 137.07"
+# "The sum of Sensitivity and Specificity for cut-off 0.3 is : 140.72"
 paste("The difference of Sensitivity and Specificity for cut-off 0.3 is :", abs(round(sensitivity2 - specificity2, 2)))
-# "The difference of Sensitivity and Specificity for cut-off 0.3 is : 28.74"
+# "The difference of Sensitivity and Specificity for cut-off 0.3 is : 8.51"
 paste("False Positive Rate for cut-off 0.3 is :", round(falsepos2, 2))
-# "False Positive Rate for cut-off 0.3 is : 33.9"
+# "False Positive Rate for cut-off 0.3 is : 25.38"
 
 
 
-sensitivity3 <- (table3[2, 2] / (table3[2, 1] + table3[2, 2])) * 100
-specificity3 <- (table3[1, 1] / (table3[1, 1] + table3[1, 2])) * 100
+sensitivity3 <- (table3[2, 2] / (table3[1, 2] + table3[2, 2])) * 100
+specificity3 <- (table3[1, 1] / (table3[1, 1] + table3[2, 1])) * 100
 accuracy3    <- ((table3[1, 1] + table3[2, 2]) / nrow(data)) * 100
 misclass3    <- ((table3[1, 2] + table3[2, 1]) / nrow(data)) * 100
-falsepos3    <- (table3[1, 2] / (table3[1, 2] + table3[2, 2])) * 100
+falsepos3    <- (table3[2, 1] / (table3[1, 1] + table3[2, 1])) * 100
 
 paste("Sensitivity for cut-off 0.55 is :", round(sensitivity3, 2))
-# "Sensitivity for cut-off 0.55 is : 69.23"
+# "Sensitivity for cut-off 0.55 is : 30.51"
 paste("Specificity for cut-off 0.55 is :", round(specificity3, 2))
-# "Specificity for cut-off 0.55 is : 74.85"
+# "Specificity for cut-off 0.55 is : 93.85"
 paste("Accuracy for cut-off 0.55 is :", round(accuracy3, 2))
 # "Accuracy for cut-off 0.55 is : 74.07"
 paste("Mis-Classification for cut-off 0.55 is :", round(misclass3, 2))
 # "Mis-Classification for cut-off 0.55 is : 25.93"
 paste("The sum of Sensitivity and Specificity for cut-off 0.55 is :", round(sensitivity3 + specificity3, 2))
-# "The sum of Sensitivity and Specificity for cut-off 0.55 is : 144.08"
+# "The sum of Sensitivity and Specificity for cut-off 0.55 is : 124.35"
 paste("The difference of Sensitivity and Specificity for cut-off 0.55 is :", abs(round(sensitivity3 - specificity3, 2)))
-# "The difference of Sensitivity and Specificity for cut-off 0.55 is : 5.62"
+# "The difference of Sensitivity and Specificity for cut-off 0.55 is : 63.34"
 paste("False Positive Rate for cut-off 0.55 is :", round(falsepos3, 2))
-# "False Positive Rate for cut-off 0.55 is : 69.49"
+# "False Positive Rate for cut-off 0.55 is : 6.15"
 
 
 
 # of the three cut-off values above, and based on the criteria of maximizing
-# both sensitivity and specificity, it looks as if the cut-off value of 0.55
-# is the best choice. But we can be more precise by using the below approach
-# to calculate the optimal cut-off value:
+# both sensitivity and specificity, it looks as if the cut-off value of 0.3
+# is the best choice. But we can be more precise by calculating the optimal 
+# cut-off value in code:
 
 prediction1 <- prediction(data$pred_prob, data$LOW)
 
@@ -867,26 +867,26 @@ table4
 #     0 97 20
 #     1 33 39
 
-sensitivity4 <- (table4[2, 2] / (table4[2, 1] + table4[2, 2])) * 100
-specificity4 <- (table4[1, 1] / (table4[1, 1] + table4[1, 2])) * 100
+sensitivity4 <- (table4[2, 2] / (table4[1, 2] + table4[2, 2])) * 100
+specificity4 <- (table4[1, 1] / (table4[1, 1] + table4[2, 1])) * 100
 accuracy4    <- ((table4[1, 1] + table4[2, 2]) / nrow(data)) * 100
 misclass4    <- ((table4[1, 2] + table4[2, 1]) / nrow(data)) * 100
-falsepos4    <- (table4[1, 2] / (table4[1, 2] + table4[2, 2])) * 100
+falsepos4    <- (table4[2, 1] / (table4[1, 1] + table4[2, 1])) * 100
 
 paste("Sensitivity for cut-off", threshold, "is :", round(sensitivity4, 2))
-# "Sensitivity for cut-off 0.3 is : 54.17"
+# "Sensitivity for cut-off 0.3 is : 66.1"
 paste("Specificity for cut-off", threshold, "is :", round(specificity4, 2))
-# "Specificity for cut-off 0.3 is : 82.91"
+# "Specificity for cut-off 0.3 is : 74.62"
 paste("Accuracy for cut-off", threshold, "is :", round(accuracy4, 2))
 # "Accuracy for cut-off 0.3 is : 71.96"
 paste("Mis-Classification for cut-off", threshold, "is :", round(misclass4, 2))
 # "Mis-Classification for cut-off 0.3 is : 28.04"
 paste("The sum of Sensitivity and Specificity for cut-off", threshold, "is :", round(sensitivity4 + specificity4, 2))
-# "The sum of Sensitivity and Specificity for cut-off 0.3 is : 137.07"
+# "The sum of Sensitivity and Specificity for cut-off 0.3 is : 140.72"
 paste("The difference of Sensitivity and Specificity for cut-off", threshold, "is :", abs(round(sensitivity4 - specificity4, 2)))
-# "The difference of Sensitivity and Specificity for cut-off 0.3 is : 28.74"
+# "The difference of Sensitivity and Specificity for cut-off 0.3 is : 8.51"
 paste("False Positive Rate for cut-off", threshold, "is :", round(falsepos4, 2))
-# "False Positive Rate for cut-off 0.3 is : 33.9"
+# "False Positive Rate for cut-off 0.3 is : 25.38"
 
 
 
