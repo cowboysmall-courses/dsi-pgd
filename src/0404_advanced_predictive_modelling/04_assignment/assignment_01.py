@@ -42,6 +42,7 @@ from sklearn.metrics import roc_curve, roc_auc_score
 
 # %% 1 - Import BIRTH WEIGHT data.
 data = pd.read_csv("../../../data/0404_advanced_predictive_modelling/assignment/BIRTH WEIGHT.csv")
+
 data.head()
 #    SR NO  ID  LOW  AGE  LWT  RACE  SMOKE  PTL  HT  UI  FTV
 # 0      1  85    0   19  182     2      0    0   0   0    0
@@ -51,19 +52,24 @@ data.head()
 # 4      5  89    0   18  107     1      1    0   0   1    0
 
 
-data.dtypes
-# SR NO    int64
-# ID       int64
-# LOW      int64
-# AGE      int64
-# LWT      int64
-# RACE     int64
-# SMOKE    int64
-# PTL      int64
-# HT       int64
-# UI       int64
-# FTV      int64
-# dtype: object
+data.info()
+# RangeIndex: 189 entries, 0 to 188
+# Data columns (total 11 columns):
+#  #   Column  Non-Null Count  Dtype
+# ---  ------  --------------  -----
+#  0   SR NO   189 non-null    int64
+#  1   ID      189 non-null    int64
+#  2   LOW     189 non-null    int64
+#  3   AGE     189 non-null    int64
+#  4   LWT     189 non-null    int64
+#  5   RACE    189 non-null    int64
+#  6   SMOKE   189 non-null    int64
+#  7   PTL     189 non-null    int64
+#  8   HT      189 non-null    int64
+#  9   UI      189 non-null    int64
+#  10  FTV     189 non-null    int64
+# dtypes: int64(11)
+# memory usage: 16.4 KB
 
 
 # we engineer some features - converting numerical and other data into
@@ -155,24 +161,29 @@ data['HT']     = data['HT'].astype('category')
 data['UI']     = data['UI'].astype('category')
 
 
-data.dtypes
-# SR NO        int64
-# ID           int64
-# LOW       category
-# AGE          int64
-# LWT          int64
-# RACE      category
-# SMOKE     category
-# PTL          int64
-# HT        category
-# UI        category
-# FTV          int64
-# PTL_F     category
-# FTV_F     category
-# RACE_F    category
-# AGE_F     category
-# LWT_F     category
-# dtype: object
+data.info()
+# RangeIndex: 189 entries, 0 to 188
+# Data columns (total 16 columns):
+#  #   Column  Non-Null Count  Dtype
+# ---  ------  --------------  -----
+#  0   SR NO   189 non-null    int64
+#  1   ID      189 non-null    int64
+#  2   LOW     189 non-null    int64
+#  3   AGE     189 non-null    int64
+#  4   LWT     189 non-null    int64
+#  5   RACE    189 non-null    category
+#  6   SMOKE   189 non-null    category
+#  7   PTL     189 non-null    int64
+#  8   HT      189 non-null    category
+#  9   UI      189 non-null    category
+#  10  FTV     189 non-null    int64
+#  11  AGE_F   189 non-null    category
+#  12  LWT_F   189 non-null    category
+#  13  PTL_F   189 non-null    category
+#  14  FTV_F   189 non-null    category
+#  15  RACE_F  189 non-null    category
+# dtypes: category(9), int64(7)
+# memory usage: 13.2 KB
 
 
 
@@ -702,6 +713,6 @@ plt.show()
 
 
 
-auc_roc = roc_auc_score(data.LOW, data['pred_prob'])
-print("Area under the curve is :", auc_roc)
+roc_auc = roc_auc_score(data.LOW, data['pred_prob'])
+print("Area under the curve is :", roc_auc)
 # Area under the curve is : 0.7571056062581486
