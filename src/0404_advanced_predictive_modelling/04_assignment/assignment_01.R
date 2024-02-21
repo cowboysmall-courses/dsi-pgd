@@ -64,7 +64,7 @@ summary(data$AGE)
 # 14.00   19.00   23.00   23.24   26.00   45.00
 
 # construct a factor (0, 1) -> below / above median age
-data$AGE_F <- as.factor(ifelse(data$AGE <= 23, 0, 1))
+data$AGE_F <- ifelse(data$AGE <= 23, 0, 1)
 
 
 summary(data$LWT)
@@ -72,7 +72,7 @@ summary(data$LWT)
 # 80.0   110.0   121.0   129.8   140.0   250.0
 
 # construct a factor (0, 1) -> below / above median LWT
-data$LWT_F <- as.factor(ifelse(data$LWT <= 121.0, 0, 1))
+data$LWT_F <- ifelse(data$LWT <= 121.0, 0, 1)
 
 
 summary(data$PTL)
@@ -80,7 +80,7 @@ summary(data$PTL)
 # 0.0000  0.0000  0.0000  0.1958  0.0000  3.0000
 
 # construct a factor (0, 1) -> equal to / not equal to median PTL
-data$PTL_F <- as.factor(ifelse(data$PTL == 0, 0, 1))
+data$PTL_F <- ifelse(data$PTL == 0, 0, 1)
 
 
 summary(data$FTV)
@@ -88,7 +88,7 @@ summary(data$FTV)
 # 0.0000  0.0000  0.0000  0.7937  1.0000  6.0000
 
 # construct a factor (0, 1) -> equal to / not equal to median FTV
-data$FTV_F <- as.factor(ifelse(data$FTV == 0, 0, 1))
+data$FTV_F <- ifelse(data$FTV == 0, 0, 1)
 
 
 summary(data$RACE)
@@ -96,15 +96,23 @@ summary(data$RACE)
 # 1.000   1.000   1.000   1.847   3.000   3.000
 
 # construct a factor (0, 1) -> equal to / not equal to median RACE
-data$RACE_F <- as.factor(ifelse(data$RACE == 1, 0, 1))
+data$RACE_F <- ifelse(data$RACE == 1, 0, 1)
 
 
 
-data$LOW   <- as.factor(data$LOW)
-data$RACE  <- as.factor(data$RACE)
-data$SMOKE <- as.factor(data$SMOKE)
-data$HT    <- as.factor(data$HT)
-data$UI    <- as.factor(data$UI)
+data$AGE_F  <- as.factor(data$AGE_F)
+data$LWT_F  <- as.factor(data$LWT_F)
+data$PTL_F  <- as.factor(data$PTL_F)
+data$FTV_F  <- as.factor(data$FTV_F)
+data$RACE_F <- as.factor(data$RACE_F)
+
+
+
+data$LOW    <- as.factor(data$LOW)
+data$RACE   <- as.factor(data$RACE)
+data$SMOKE  <- as.factor(data$SMOKE)
+data$HT     <- as.factor(data$HT)
+data$UI     <- as.factor(data$UI)
 
 
 
@@ -749,10 +757,12 @@ table1
 # pred1   0   1
 #     0 107  27
 #     1  23  32
+
 table2
 # pred2  0  1
 #     0 97 20
 #     1 33 39
+
 table3
 # pred3   0   1
 #     0 122  41
