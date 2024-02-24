@@ -1,7 +1,9 @@
 
+library(ggplot2)
 library(caret)
 library(gmodels)
 library(car)
+library(ROCR)
 
 
 
@@ -23,6 +25,7 @@ head(data)
 # 6           no        yes
 
 
+
 str(data)
 # 'data.frame':	25000 obs. of  15 variables:
 # $ id              : int  1 2 3 4 5 6 7 8 9 10 ...
@@ -42,35 +45,73 @@ str(data)
 # $ readmitted      : chr  "no" "no" "yes" "yes" ...
 
 
+
 table(data$readmitted)
 #    no   yes 
 # 13246 11754 
+
+
 
 table(data$diagnosis)
 # Circulatory        Diabetes       Digestive          Injury         Missing Musculoskeletal           Other     Respiratory 
 #        7824            1747            2329            1666               4            1252            6498            3680 
 
+table(data$diagnosis, data$readmitted)
+#                   no  yes
+# Circulatory     4074 3750
+# Diabetes         810  937
+# Digestive       1224 1105
+# Injury           939  727
+# Missing            2    2
+# Musculoskeletal  757  495
+# Other           3566 2932
+# Respiratory     1874 1806
+
+
+
 table(data$glucose_test)
 # high     no normal 
 #  686  23625    689 
-
-table(data$A1Ctest)
-# high     no normal 
-# 2827  20938   1235 
-
-table(data$change)
-#    no   yes 
-# 13497 11503 
-
-table(data$diabetes_med)
-#   no   yes 
-# 5772 19228 
 
 table(data$glucose_test, data$readmitted)
 #           no   yes
 # high     329   357
 # no     12561 11064
 # normal   356   333
+
+
+
+table(data$A1Ctest)
+# high     no normal 
+# 2827  20938   1235 
+
+table(data$A1Ctest, data$readmitted)
+#           no   yes
+# high    1528  1299
+# no     11003  9935
+# normal   715   520
+
+
+
+table(data$change)
+#    no   yes 
+# 13497 11503 
+
+table(data$change, data$readmitted)
+#       no  yes
+# no  7420 6077
+# yes 5826 5677
+
+
+
+table(data$diabetes_med)
+#   no   yes 
+# 5772 19228 
+
+table(data$diabetes_med, data$readmitted)
+#       no  yes
+# no  3385 2387
+# yes 9861 9367
 
 
 
@@ -81,8 +122,8 @@ data$A1Ctest      <- as.factor(data$A1Ctest)
 data$change       <- as.factor(data$change)
 data$diabetes_med <- as.factor(data$diabetes_med)
 
-data$readmitted <- ifelse(data$readmitted == "yes", 1, 0)
-data$readmitted <- as.factor(data$readmitted)
+data$readmitted <- as.factor(ifelse(data$readmitted == "yes", 1, 0))
+
 
 
 str(data)
@@ -121,11 +162,49 @@ train <- data[index, ]
 test  <- data[-index, ]
 
 dim(train)
+# 17501    15
+
 dim(test)
+# 7499   15
+
 
 
 head(train)
+# id     age time_in_hospital n_lab_procedures n_procedures n_medications n_outpatient n_inpatient n_emergency   diagnosis glucose_test A1Ctest change
+# 1  1 [70-80)                8               72            1            18            2           0           0 Circulatory           no      no     no
+# 2  2 [70-80)                3               34            2            13            0           0           0       Other           no      no     no
+# 3  3 [50-60)                5               45            0            18            0           0           0 Circulatory           no      no    yes
+# 4  4 [70-80)                2               36            0            12            1           0           0 Circulatory           no      no    yes
+# 5  5 [60-70)                1               42            0             7            0           0           0       Other           no      no     no
+# 6  6 [40-50)                2               51            0            10            0           0           0       Other           no      no     no
+# diabetes_med readmitted
+# 1          yes          0
+# 2          yes          0
+# 3          yes          1
+# 4          yes          1
+# 5          yes          0
+# 6           no          1
+
+
+
 str(train)
+# 'data.frame':	17501 obs. of  15 variables:
+# $ id              : int  1 2 3 4 5 6 8 13 15 16 ...
+# $ age             : Factor w/ 6 levels "[40-50)","[50-60)",..: 4 4 2 4 3 1 3 4 5 5 ...
+# $ time_in_hospital: int  8 3 5 2 1 2 1 8 2 8 ...
+# $ n_lab_procedures: int  72 34 45 36 42 51 19 67 73 52 ...
+# $ n_procedures    : int  1 2 0 0 0 0 6 0 1 0 ...
+# $ n_medications   : int  18 13 18 12 7 10 16 21 26 20 ...
+# $ n_outpatient    : int  2 0 0 1 0 0 0 0 0 0 ...
+# $ n_inpatient     : int  0 0 0 0 0 0 0 0 0 0 ...
+# $ n_emergency     : int  0 0 0 0 0 0 1 0 0 0 ...
+# $ diagnosis       : Factor w/ 8 levels "Circulatory",..: 1 7 1 1 7 7 1 2 1 7 ...
+# $ glucose_test    : Factor w/ 3 levels "high","no","normal": 2 2 2 2 2 2 2 2 2 2 ...
+# $ A1Ctest         : Factor w/ 3 levels "high","no","normal": 2 2 2 2 2 2 2 3 2 2 ...
+# $ change          : Factor w/ 2 levels "no","yes": 1 1 2 2 1 1 1 1 1 2 ...
+# $ diabetes_med    : Factor w/ 2 levels "no","yes": 2 2 2 2 2 1 2 2 2 2 ...
+# $ readmitted      : Factor w/ 2 levels "0","1": 1 1 2 2 1 2 2 1 1 2 ...
+
 
 
 model <- glm(readmitted ~ age + time_in_hospital + n_lab_procedures + n_procedures + n_medications + n_outpatient + n_inpatient + n_emergency + diagnosis + glucose_test + A1Ctest + change + diabetes_med, data = train, family = "binomial")
@@ -385,6 +464,3 @@ confusionMatrix(test$predY, test$readmitted, positive = "1")
 #       Balanced Accuracy : 0.6076          
 #                                           
 #        'Positive' Class : 1   
-
-
-
