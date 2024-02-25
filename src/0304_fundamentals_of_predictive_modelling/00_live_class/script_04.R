@@ -5,7 +5,7 @@ library(nortest)
 
 
 
-data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/live_class/Vehicle\ Data.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/live_class/Vehicle\ Data.csv", header = TRUE)
 head(data)
 summary(data)
 

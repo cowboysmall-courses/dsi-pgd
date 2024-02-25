@@ -5,7 +5,7 @@ library(dplyr)
 
 
 # 1
-vas_data <- read.csv("../../../data/0104_exploratory_data_analysis/live_class/VAS_DATA.csv", header = TRUE)
+vas_data <- read.csv("./data/0104_exploratory_data_analysis/live_class/VAS_DATA.csv", header = TRUE)
 head(vas_data)
 
 

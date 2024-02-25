@@ -18,7 +18,7 @@ from scipy import stats
 
 # %%
 
-retail_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/descriptive_statistics/Retail_Data.csv")
+retail_data = pd.read_csv("./data/0104_exploratory_data_analysis/descriptive_statistics/Retail_Data.csv")
 retail_data.describe(include = 'all')
 
 

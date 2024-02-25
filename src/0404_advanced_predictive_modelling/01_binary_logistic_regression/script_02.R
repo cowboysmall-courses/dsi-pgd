@@ -4,7 +4,7 @@ library(ROCR)
 library(car)
 
 
-data <- read.csv("../../../data/0404_advanced_predictive_modelling/live_class/BANK\ LOAN.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/live_class/BANK\ LOAN.csv", header = TRUE)
 
 
 data$AGE <- factor(data$AGE)
@@ -40,7 +40,7 @@ head(data)
 
 
 influencePlot(model)
-StudRes         Hat       CookD
+#        StudRes         Hat       CookD
 # 1    0.6675108 0.077944303 0.004347290
 # 36  -2.4744534 0.006728529 0.025951104
 # 152  2.8779760 0.002847547 0.032633681
@@ -52,6 +52,3 @@ StudRes         Hat       CookD
 vif(model)
 #   EMPLOY  ADDRESS  DEBTINC CREDDEBT 
 # 1.807288 1.131470 1.328375 2.335715
-
-
-

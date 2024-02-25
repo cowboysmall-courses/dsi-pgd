@@ -16,7 +16,7 @@ from scipy.stats import kruskal
 
 
 # %% 1 - Import data.
-data = pd.read_csv("../../../data/0204_statistical_inference/non_parametric_tests/Kruskal Wallis Test.csv")
+data = pd.read_csv("./data/0204_statistical_inference/non_parametric_tests/Kruskal Wallis Test.csv")
 
 data.head()
 data.describe(include = 'all')

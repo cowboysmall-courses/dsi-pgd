@@ -2,7 +2,7 @@
 library(nortest)
 
 
-data <- read.csv("../../../data/0204_statistical_inference/analysis_of_variance/Two\ way\ anova.csv", header = TRUE)
+data <- read.csv("./data/0204_statistical_inference/analysis_of_variance/Two\ way\ anova.csv", header = TRUE)
 
 head(data)
 summary(data)

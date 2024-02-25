@@ -20,7 +20,7 @@ from scipy import stats
 
 # %%
 
-data = pd.read_csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/ONE SAMPLE t TEST.csv")
+data = pd.read_csv("./data/0204_statistical_inference/intro_and_parametric_tests/ONE SAMPLE t TEST.csv")
 data.info()
 
 

@@ -20,7 +20,7 @@ import seaborn as sns
 
 
 # %% 1 - import data, check top 6 rows...
-vas_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/live_class/VAS_DATA.csv")
+vas_data = pd.read_csv("./data/0104_exploratory_data_analysis/live_class/VAS_DATA.csv")
 
 # vas_data.info()
 # vas_data.shape

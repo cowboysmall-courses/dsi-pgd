@@ -17,7 +17,7 @@ import calendar
 
 # %%
 
-temp_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/data_visualisation/Average Temperatures in NY.csv")
+temp_data = pd.read_csv("./data/0104_exploratory_data_analysis/data_visualisation/Average Temperatures in NY.csv")
 temp_data.info()
 
 

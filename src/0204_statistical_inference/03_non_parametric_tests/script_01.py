@@ -16,7 +16,7 @@ from scipy.stats import mannwhitneyu
 
 
 # %% 1 - Import data.
-data = pd.read_csv("../../../data/0204_statistical_inference/non_parametric_tests/Mann Whitney test.csv")
+data = pd.read_csv("./data/0204_statistical_inference/non_parametric_tests/Mann Whitney test.csv")
 
 data.head()
 data.describe(include = 'all')

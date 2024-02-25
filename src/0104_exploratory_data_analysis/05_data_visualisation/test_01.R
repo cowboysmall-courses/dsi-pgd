@@ -1,6 +1,6 @@
 
 
-telecom <- read.csv("../../../data/0104_exploratory_data_analysis/data_visualisation/telecom.csv", header = TRUE)
+telecom <- read.csv("./data/0104_exploratory_data_analysis/data_visualisation/telecom.csv", header = TRUE)
 
 
 library(ggplot2)

@@ -2,7 +2,7 @@
 library(e1071)
 
 
-data <- read.csv("../../../data/0104_exploratory_data_analysis/live_class/Normality_Assessment_Data.csv", header = TRUE)
+data <- read.csv("./data/0104_exploratory_data_analysis/live_class/Normality_Assessment_Data.csv", header = TRUE)
 
 
 boxplot(data$csi, col = "cadetblue")

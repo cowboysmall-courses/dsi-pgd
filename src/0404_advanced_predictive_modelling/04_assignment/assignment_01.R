@@ -29,7 +29,7 @@ library(ROCR)
 
 
 # 1 - Import BIRTH WEIGHT data.
-data <- read.csv("../../../data/0404_advanced_predictive_modelling/assignment/BIRTH\ WEIGHT.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/assignment/BIRTH\ WEIGHT.csv", header = TRUE)
 
 head(data)
 #   SR.NO ID LOW AGE LWT RACE SMOKE PTL HT UI FTV

@@ -6,7 +6,7 @@ from statsmodels.formula.api import ols
 
 
 # %% 1 - import data and check the head
-data = pd.read_csv("../../../data/0304_fundamentals_of_predictive_modelling/predictive_modelling/RESTAURANT SALES DATA.csv")
+data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/RESTAURANT SALES DATA.csv")
 data.head()
 #    RESTAURANT  NOH LOCATION   SALES
 # 0           1  155  highway  131.27

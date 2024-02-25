@@ -16,7 +16,7 @@ set.seed(1337)
 
 
 # 1 - Import House Price Data. Check the structure of the data.
-data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/assignment/House\ Price\ Data.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/assignment/House\ Price\ Data.csv", header = TRUE)
 
 head(data)
 #   Houseid Price Area Distance Schools

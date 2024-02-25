@@ -19,7 +19,7 @@ from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
 # %% 1 - import data and check the head
-data = pd.read_csv("../../../data/0304_fundamentals_of_predictive_modelling/live_class/car price data.csv")
+data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/live_class/car price data.csv")
 data.head()
 
 

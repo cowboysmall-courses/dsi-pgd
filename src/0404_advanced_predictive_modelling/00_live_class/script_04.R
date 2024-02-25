@@ -1,7 +1,7 @@
 
 library(caret)
 
-data <- read.csv("../../../data/0404_advanced_predictive_modelling/live_class/BANK\ LOAN.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/live_class/BANK\ LOAN.csv", header = TRUE)
 head(data)
 #   SN AGE EMPLOY ADDRESS DEBTINC CREDDEBT OTHDEBT DEFAULTER
 # 1  1   3     17      12     9.3    11.36    5.01         1

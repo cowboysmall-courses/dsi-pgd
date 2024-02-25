@@ -17,7 +17,7 @@ from scipy import stats
 
 
 # %% 1 - Import data.
-data = pd.read_csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/Normality Testing Data.csv")
+data = pd.read_csv("./data/0204_statistical_inference/intro_and_parametric_tests/Normality Testing Data.csv")
 
 data.head()
 #    id    csi  billamt

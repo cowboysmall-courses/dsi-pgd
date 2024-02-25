@@ -1,7 +1,7 @@
 
 library(ggplot2)
 
-jobs_data <- read.csv("../../../data/0104_exploratory_data_analysis/data_visualisation/JOB\ PROFICIENCY\ DATA.csv", header = TRUE)
+jobs_data <- read.csv("./data/0104_exploratory_data_analysis/data_visualisation/JOB\ PROFICIENCY\ DATA.csv", header = TRUE)
 
 ggplot(jobs_data, aes(x = aptitude, y = job_prof)) + 
   geom_point() + 

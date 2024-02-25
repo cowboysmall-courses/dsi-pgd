@@ -2,7 +2,7 @@
 library(lm.beta)
 
 
-data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
 
 head(data)
 #   empid   jpi aptitude   tol technical general
@@ -90,7 +90,7 @@ head(data)
 # 6     6 38.71    39.60 43.63     48.34   42.06 35.61699  3.093010
 
 
-test_data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index\ new.csv", header = TRUE)
+test_data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index\ new.csv", header = TRUE)
 test_data$pred <- predict(model, test_data)
 
 head(test_data)

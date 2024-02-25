@@ -1,5 +1,5 @@
 
-test_data <- read.csv("../../../data/0204_statistical_inference/live_class/Pain\ Level\ Assessment.csv", header = TRUE)
+test_data <- read.csv("./data/0204_statistical_inference/live_class/Pain\ Level\ Assessment.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)

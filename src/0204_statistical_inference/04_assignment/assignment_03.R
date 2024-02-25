@@ -16,7 +16,7 @@ library(ggplot2)
 
 # 1 - Import NPRS DATA and name it as pain_nprs. Find 
 #     median NPRS before and after treatment.
-pain_nprs <- read.csv("../../../data/0204_statistical_inference/assignment/NPRS\ DATA.csv", header = TRUE)
+pain_nprs <- read.csv("./data/0204_statistical_inference/assignment/NPRS\ DATA.csv", header = TRUE)
 
 head(pain_nprs)
 summary(pain_nprs)

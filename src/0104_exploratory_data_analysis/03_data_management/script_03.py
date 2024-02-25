@@ -16,8 +16,8 @@ import pandas as pd
 
 # %%
 
-salary_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/data_management/sal_data.csv")
-bonus_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/data_management/bonus_data.csv")
+salary_data = pd.read_csv("./data/0104_exploratory_data_analysis/data_management/sal_data.csv")
+bonus_data = pd.read_csv("./data/0104_exploratory_data_analysis/data_management/bonus_data.csv")
 
 
 
@@ -51,8 +51,8 @@ outer_join
 
 # %%
 
-salary_1 = pd.read_csv("../../../data/data_management/basic_salary - 1.csv")
-salary_2 = pd.read_csv("../../../data/data_management/basic_salary - 2.csv")
+salary_1 = pd.read_csv("./data/data_management/basic_salary - 1.csv")
+salary_2 = pd.read_csv("./data/data_management/basic_salary - 2.csv")
 
 pd.concat([salary_1, salary_2])
 
@@ -60,7 +60,7 @@ pd.concat([salary_1, salary_2])
 
 # %%
 
-salary_data = pd.read_csv("../../../data/data_management/basic_salary.csv")
+salary_data = pd.read_csv("./data/data_management/basic_salary.csv")
 
 salary_data.groupby('Location')['ms'].sum()
 salary_data.groupby('Location')['ba', 'ms'].sum()

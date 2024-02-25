@@ -18,7 +18,7 @@ from statistics import mean
 
 # %%
 
-salary_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/data_management/basic_salary.csv")
+salary_data = pd.read_csv("./data/0104_exploratory_data_analysis/data_management/basic_salary.csv")
 salary_data.head()
 salary_data.isnull()
 salary_data.isnull().sum()
@@ -42,7 +42,7 @@ salary_data.dropna()
 
 # %%
 
-consumer_data = pd.read_csv("../../../data/0104_exploratory_data_analysis/data_management/consumerpreference.csv")
+consumer_data = pd.read_csv("./data/0104_exploratory_data_analysis/data_management/consumerpreference.csv")
 consumer_data.isnull().sum()
 
 

@@ -5,7 +5,7 @@ library(GGally)
 
 
 
-data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/live_class/car\ price\ data.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/live_class/car\ price\ data.csv", header = TRUE)
 head(data)
 
 ggpairs(

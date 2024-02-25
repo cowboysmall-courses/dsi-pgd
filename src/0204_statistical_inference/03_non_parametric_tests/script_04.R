@@ -1,7 +1,7 @@
 
 library(gmodels)
 
-test_data <- read.csv("../../../data/0204_statistical_inference/non_parametric_tests/chi\ square\ test\ of\ association.csv", header = TRUE)
+test_data <- read.csv("./data/0204_statistical_inference/non_parametric_tests/chi\ square\ test\ of\ association.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)

@@ -24,7 +24,7 @@ from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
 # %% 1 - import data and check the head
-data = pd.read_csv("../../../data/0304_fundamentals_of_predictive_modelling/live_class/Motor_Claims.csv")
+data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/live_class/Motor_Claims.csv")
 data.head()
 #    vehage    CC  Length  Weight  claimamt
 # 0       4  1495    4250    1023   72000.0

@@ -18,7 +18,7 @@ from statsmodels.formula.api import ols
 
 # %%
 
-data = pd.read_csv("../../../data/0204_statistical_inference/analysis_of_variance/Two way anova.csv")
+data = pd.read_csv("./data/0204_statistical_inference/analysis_of_variance/Two way anova.csv")
 data.info()
 
 

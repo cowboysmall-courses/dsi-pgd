@@ -7,7 +7,7 @@ library(caret)
 
 
 # 1 - Load the data...
-data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/live_class/Motor_Claims.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/live_class/Motor_Claims.csv", header = TRUE)
 head(data)
 
 

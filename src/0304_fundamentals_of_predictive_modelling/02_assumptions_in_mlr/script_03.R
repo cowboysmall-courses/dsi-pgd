@@ -3,7 +3,7 @@ library(car)
 
 
 
-data <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
 head(data)
 #   empid   jpi aptitude   tol technical general
 # 1     1 45.52    43.83 55.92     51.82   43.58

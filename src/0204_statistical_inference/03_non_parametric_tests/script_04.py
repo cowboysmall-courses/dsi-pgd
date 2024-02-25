@@ -16,7 +16,7 @@ from scipy.stats import chi2_contingency
 
 
 # %% 1 - Import data.
-data = pd.read_csv("../../../data/0204_statistical_inference/non_parametric_tests/chi square test of association.csv")
+data = pd.read_csv("./data/0204_statistical_inference/non_parametric_tests/chi square test of association.csv")
 
 data.head()
 data.describe(include = 'all')

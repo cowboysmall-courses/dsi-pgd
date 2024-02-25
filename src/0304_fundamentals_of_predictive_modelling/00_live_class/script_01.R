@@ -8,7 +8,7 @@ library(car)
 
 # 
 
-train_data1 <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
+train_data1 <- read.csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
 head(train_data1)
 
 
@@ -42,7 +42,7 @@ lillie.test(train_data1$resi)
 
 # 
 
-train_data2 <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
+train_data2 <- read.csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
 head(train_data2)
 
 model2 <- lm(jpi ~ aptitude + technical + general, data = train_data2)
@@ -75,7 +75,7 @@ lillie.test(train_data2$resi)
 
 # 
 
-test_data1 <- read.csv("../../../data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index\ new.csv", header = TRUE)
+test_data1 <- read.csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index\ new.csv", header = TRUE)
 head(test_data1)
 
 

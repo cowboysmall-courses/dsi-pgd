@@ -20,7 +20,7 @@ import pandas as pd
 
 
 # %% 1 - Import Premiums data and name it as Premium.
-Premium = pd.read_csv("../../../data/0104_exploratory_data_analysis/assignment/Premiums.csv")
+Premium = pd.read_csv("./data/0104_exploratory_data_analysis/assignment/Premiums.csv")
 
 
 
@@ -154,8 +154,8 @@ Premium_sub.to_excel("./Premiums_sub_Python.xlsx")
 
 
 # %% 9 - Import Premiums and Claims data and name it as Premium and Claim respectively.
-Premium = pd.read_csv("../../../data/exploratory_data_analysis_assignment/Premiums.csv")
-Claim = pd.read_csv("../../../data/exploratory_data_analysis_assignment/Claims.csv")
+Premium = pd.read_csv("./data/exploratory_data_analysis_assignment/Premiums.csv")
+Claim = pd.read_csv("./data/exploratory_data_analysis_assignment/Claims.csv")
 
 
 

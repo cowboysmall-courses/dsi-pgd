@@ -2,7 +2,7 @@
 library(nortest)
 
 
-test_data <- read.csv("../../../data/0204_statistical_inference/intro_and_parametric_tests/ONE\ SAMPLE\ t\ TEST.csv", header = TRUE)
+test_data <- read.csv("./data/0204_statistical_inference/intro_and_parametric_tests/ONE\ SAMPLE\ t\ TEST.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)

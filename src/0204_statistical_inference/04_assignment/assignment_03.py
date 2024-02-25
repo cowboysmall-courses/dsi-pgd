@@ -29,7 +29,7 @@ from scipy import stats
 
 # %% 1 - Import NPRS DATA and name it as pain_nprs. Find
 #     median NPRS before and after treatment.
-data = pd.read_csv("../../../data/0204_statistical_inference/assignment/NPRS DATA.csv")
+data = pd.read_csv("./data/0204_statistical_inference/assignment/NPRS DATA.csv")
 
 data.head()
 data.info()

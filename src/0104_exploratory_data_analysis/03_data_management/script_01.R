@@ -1,5 +1,5 @@
 
-salary_data <- read.csv("../../../data/0104_exploratory_data_analysis/data_management/basic_salary.csv", header = TRUE)
+salary_data <- read.csv("./data/0104_exploratory_data_analysis/data_management/basic_salary.csv", header = TRUE)
 
 dim(salary_data)
 names(salary_data)
