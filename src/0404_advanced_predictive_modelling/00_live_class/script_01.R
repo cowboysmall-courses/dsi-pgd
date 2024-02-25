@@ -6,7 +6,7 @@ library(gmodels)
 
 
 # 0 - import data and check the head
-data <- read.csv("../../../data/0404_advanced_predictive_modelling/live_class/Email\ Campaign.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/live_class/Email\ Campaign.csv", header = TRUE)
 head(data)
 #   SN Gender  AGE Recency_Service Recency_Product Bill_Service Bill_Product Success
 # 1  1      1 <=45              12              11        11.82         2.68       0

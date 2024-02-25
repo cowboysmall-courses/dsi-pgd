@@ -25,7 +25,7 @@ from scipy.stats import ks_2samp
 
 
 # %% 0 - 
-data = pd.read_csv("../../../data/0404_advanced_predictive_modelling/live_class/BANK LOAN.csv")
+data = pd.read_csv("./data/0404_advanced_predictive_modelling/live_class/BANK LOAN.csv")
          
 
 
