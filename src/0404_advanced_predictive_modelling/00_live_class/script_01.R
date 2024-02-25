@@ -20,7 +20,7 @@ head(data)
 
 # 0 - convert Gender to factor
 data$Gender <- as.factor(data$Gender)
-data$AGE <- as.factor(data$AGE)
+data$AGE    <- as.factor(data$AGE)
 str(data)
 
 
