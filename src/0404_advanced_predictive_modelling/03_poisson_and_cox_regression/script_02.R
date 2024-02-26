@@ -3,7 +3,6 @@ library(pec)
 library(survival)
 
 
-
 bankloan <- read.csv("./data/0404_advanced_predictive_modelling/poisson_and_cox_regression/BANK\ LOAN\ (COX).csv", header = TRUE)
 head(bankloan)
 #   SN AGE EMPLOY ADDRESS DEBTINC CREDDEBT OTHDEBT STATUS TIME
@@ -78,8 +77,3 @@ head(bankloantest)
 # 4 704   2     15      14     2.9     2.66    0.82 0.9930838
 # 5 705   1      2       0    17.6     1.79    3.06 0.4630305
 # 6 706   1      5       5    10.2     0.35    2.16 0.9416758
-
-
-
-
-

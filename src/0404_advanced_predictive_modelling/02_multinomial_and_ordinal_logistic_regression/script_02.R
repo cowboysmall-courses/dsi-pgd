@@ -70,4 +70,3 @@ table(data$Preference, expected)
 #   1 108  24   1
 #   2  34  56   4
 #   3   2  24   6
-

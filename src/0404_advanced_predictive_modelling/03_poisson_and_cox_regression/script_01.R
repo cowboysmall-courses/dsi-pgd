@@ -13,9 +13,9 @@ head(data)
 # 6      6      N   silver less2     5
 
 
-model <- glm(ncomp ~ region + tier + age, data = data, family = "poisson")
-s1    <- summary(model)
-s1
+model  <- glm(ncomp ~ region + tier + age, data = data, family = "poisson")
+smodel <- summary(model)
+smodel
 # Call:
 # glm(formula = ncomp ~ region + tier + age, family = "poisson", 
 #     data = data)
@@ -41,11 +41,7 @@ s1
 # Number of Fisher Scoring iterations: 5
 
 
-
-res_deviance <- s1$deviance
-df           <- s1$df.residual
-pvalue       <- 1 - pchisq(res_deviance, df)
-pvalue
+1 - pchisq(smodel$deviance, smodel$df.residual)
 # 0.2380154
 
 
@@ -62,8 +58,3 @@ head(data)
 
 zip_model <- zeroinfl(ncomp ~ region + tier + age, data = data)
 summary(zip_model)
-
-
-
-
-

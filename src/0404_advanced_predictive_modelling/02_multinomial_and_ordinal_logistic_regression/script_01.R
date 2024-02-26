@@ -2,7 +2,6 @@
 library(nnet)
 
 
-
 data <- read.csv("./data/0404_advanced_predictive_modelling/live_class/High\ School\ Data.csv", header = TRUE)
 head(data)
 #   sn  id    ses write     prog
@@ -30,9 +29,9 @@ str(data)
 
 
 
-model <- multinom(prog ~ ses + write, data = data)
-m     <- summary(model)
-m
+model  <- multinom(prog ~ ses + write, data = data)
+smodel <- summary(model)
+smodel
 # Call:
 # multinom(formula = prog ~ ses + write, data = data)
 
@@ -50,7 +49,7 @@ m
 # AIC: 375.9635 
 
 
-z <- m$coefficients / m$standard.errors
+z <- smodel$coefficients / smodel$standard.errors
 1 - pchisq(z ^ 2, df = 1)
 #           (Intercept)     seslow sesmiddle        write
 # general  0.1685163893 0.02373673 0.1757949 6.816914e-03
@@ -69,11 +68,9 @@ head(data)
 
 
 expected <- predict(model, data, type = "class")
-ctable   <- table(data$prog, expected)
-ctable
+table(data$prog, expected)
 #           expected
 #            academic general vocation
 #   academic       92       4        9
 #   general        27       7       11
 #   vocation       23       4       23
-
