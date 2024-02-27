@@ -3,7 +3,7 @@ library(nortest)
 library(gmodels)
 
 
-cust_data <- read.csv("./data/0204_statistical_inference/live_class/CUST_PROFILE.csv", header = TRUE)
+cust_data <- read.csv("./data/0204_statistical_inference/00_live_class/CUST_PROFILE.csv", header = TRUE)
 head(cust_data)
 dim(cust_data)
 str(cust_data)
@@ -12,7 +12,7 @@ summary(cust_data)
 length(unique(cust_data$CUSTID))
 # [1] 15001
 
-nps_data <- read.csv("./data/0204_statistical_inference/live_class/NPSDATA.csv", header = TRUE)
+nps_data <- read.csv("./data/0204_statistical_inference/00_live_class/NPSDATA.csv", header = TRUE)
 head(nps_data)
 dim(nps_data)
 str(nps_data)

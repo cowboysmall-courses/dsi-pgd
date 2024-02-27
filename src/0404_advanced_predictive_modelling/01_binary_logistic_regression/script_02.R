@@ -4,7 +4,7 @@ library(ROCR)
 library(car)
 
 
-data <- read.csv("./data/0404_advanced_predictive_modelling/live_class/BANK\ LOAN.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/01_binary_logistic_regression/BANK\ LOAN.csv", header = TRUE)
 
 
 data$AGE <- factor(data$AGE)

@@ -2,7 +2,7 @@
 library(reshape2)
 library(plyr)
 
-stud_data <- read.csv("./data/0104_exploratory_data_analysis/data_management/stud_data.csv", header = TRUE)
+stud_data <- read.csv("./data/0104_exploratory_data_analysis/03_data_management/stud_data.csv", header = TRUE)
 stud_data
 
 

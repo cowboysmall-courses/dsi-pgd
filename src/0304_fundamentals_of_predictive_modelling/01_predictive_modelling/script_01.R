@@ -2,7 +2,7 @@
 library(GGally)
 
 
-data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance\ Index.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/01_predictive_modelling/Performance\ Index.csv", header = TRUE)
 
 head(data)
 #   empid   jpi aptitude   tol technical general

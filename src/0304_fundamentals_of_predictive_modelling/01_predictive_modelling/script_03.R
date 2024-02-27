@@ -1,5 +1,5 @@
 
-data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/RESTAURANT\ SALES\ DATA.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/01_predictive_modelling/RESTAURANT\ SALES\ DATA.csv", header = TRUE)
 
 head(data)
 #   RESTAURANT NOH LOCATION  SALES

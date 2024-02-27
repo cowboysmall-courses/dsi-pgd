@@ -8,9 +8,9 @@ library(caret)
 library(nortest)
 
 
-p_data_1 <- read.csv("./data/0404_advanced_predictive_modelling/live_class/Purchase\ Data\ 1.csv", header = TRUE)
-p_data_2 <- read.csv("./data/0404_advanced_predictive_modelling/live_class/Purchase\ Data\ 2.csv", header = TRUE)
-r_data_1 <- read.csv("./data/0404_advanced_predictive_modelling/live_class/Response\ Data.csv", header = TRUE)
+p_data_1 <- read.csv("./data/0404_advanced_predictive_modelling/00_live_class/Purchase\ Data\ 1.csv", header = TRUE)
+p_data_2 <- read.csv("./data/0404_advanced_predictive_modelling/00_live_class/Purchase\ Data\ 2.csv", header = TRUE)
+r_data_1 <- read.csv("./data/0404_advanced_predictive_modelling/00_live_class/Response\ Data.csv", header = TRUE)
 
 head(p_data_1)
 head(p_data_2)

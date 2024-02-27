@@ -1,5 +1,5 @@
 
-house_data <- read.csv("./data/0104_exploratory_data_analysis/live_class/Housing_Prices.csv", header = TRUE)
+house_data <- read.csv("./data/0104_exploratory_data_analysis/00_live_class/Housing_Prices.csv", header = TRUE)
 
 head(house_data)
 summary(house_data)

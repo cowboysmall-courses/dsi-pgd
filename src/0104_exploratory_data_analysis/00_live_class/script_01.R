@@ -1,20 +1,20 @@
 
 # Q1
-nsv_data <- read.csv("./data/0104_exploratory_data_analysis/live_class/NSVDATA.csv", header = TRUE)
+nsv_data <- read.csv("./data/0104_exploratory_data_analysis/00_live_class/NSVDATA.csv", header = TRUE)
 head(nsv_data)
 dim(nsv_data)
 str(nsv_data)
 summary(nsv_data)
 
 
-cust_data <- read.csv("./data/0104_exploratory_data_analysis/live_class/CUST_PROFILE.csv", header = TRUE)
+cust_data <- read.csv("./data/0104_exploratory_data_analysis/00_live_class/CUST_PROFILE.csv", header = TRUE)
 head(cust_data)
 dim(cust_data)
 str(cust_data)
 summary(cust_data)
 
 
-nps_data <- read.csv("./data/0104_exploratory_data_analysis/live_class/NPSDATA.csv", header = TRUE)
+nps_data <- read.csv("./data/0104_exploratory_data_analysis/00_live_class/NPSDATA.csv", header = TRUE)
 head(nps_data)
 dim(nps_data)
 str(nps_data)

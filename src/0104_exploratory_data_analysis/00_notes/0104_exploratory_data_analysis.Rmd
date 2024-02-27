@@ -411,7 +411,7 @@ interpreting a scatter plot:
 
 ```{r data1, echo = FALSE}
 
-data <- read.csv("./data/0104_exploratory_data_analysis/live_class/Normality_Assessment_Data.csv", header = TRUE)
+data <- read.csv("./data/0104_exploratory_data_analysis/00_live_class/Normality_Assessment_Data.csv", header = TRUE)
 
 ```
 

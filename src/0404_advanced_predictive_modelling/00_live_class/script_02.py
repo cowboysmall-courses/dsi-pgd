@@ -31,7 +31,7 @@ warnings.filterwarnings("ignore")
 
 
 # %% 1 - import data and check the head
-data = pd.read_csv("./data/0404_advanced_predictive_modelling/case_study/ICU Mortality.csv")
+data = pd.read_csv("./data/0404_advanced_predictive_modelling/00_live_class/ICU Mortality.csv")
 data.rename(columns = {'INF': 'INF_C'}, inplace = True)
 data.head()
 #    SR NO  ID  STA  AGE  SEX  RACE  SER  ...  FRA  PO2  PH  PCO  BIC  CRE  LOC

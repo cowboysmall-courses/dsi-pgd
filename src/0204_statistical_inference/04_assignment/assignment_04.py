@@ -27,7 +27,7 @@ from scipy import stats
 
 # %% 1 - Import EMPLOYEE SATISFACTION SURVEY data. Check for
 #     normality of the data.
-data = pd.read_csv("./data/0204_statistical_inference/assignment/EMPLOYEE SATISFACTION SURVEY.csv")
+data = pd.read_csv("./data/0204_statistical_inference/04_assignment/EMPLOYEE SATISFACTION SURVEY.csv")
 
 data.head()
 data.info()

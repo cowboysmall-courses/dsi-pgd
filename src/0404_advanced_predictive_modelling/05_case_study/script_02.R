@@ -3,7 +3,7 @@ library(MASS)
 
 
 
-data <- read.csv("./data/0404_advanced_predictive_modelling/case_study/Brand\ Preference\ Study.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/05_case_study/Brand\ Preference\ Study.csv", header = TRUE)
 head(data)
 # id Preference Gender Location   Age
 # 1  1          3   MALE     CITY  <=25

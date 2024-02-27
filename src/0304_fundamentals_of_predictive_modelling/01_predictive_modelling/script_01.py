@@ -7,7 +7,7 @@ from statsmodels.formula.api import ols
 
 
 # %% 1 - import data and check the head
-data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/predictive_modelling/Performance Index.csv")
+data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/01_predictive_modelling/Performance Index.csv")
 data.head()
 #    empid    jpi  aptitude    tol  technical  general
 # 0      1  45.52     43.83  55.92      51.82    43.58

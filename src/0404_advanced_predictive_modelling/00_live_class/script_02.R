@@ -5,7 +5,7 @@ library(gmodels)
 library(ROCR)
 
 
-data <- read.csv("./data/0404_advanced_predictive_modelling/live_class/BANK\ LOAN.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/00_live_class/BANK\ LOAN.csv", header = TRUE)
 head(data)
 
 

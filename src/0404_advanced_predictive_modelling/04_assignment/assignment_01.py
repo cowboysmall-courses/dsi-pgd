@@ -41,7 +41,7 @@ from sklearn.metrics import roc_curve, roc_auc_score
 
 
 # %% 1 - Import BIRTH WEIGHT data.
-data = pd.read_csv("./data/0404_advanced_predictive_modelling/assignment/BIRTH WEIGHT.csv")
+data = pd.read_csv("./data/0404_advanced_predictive_modelling/04_assignment/BIRTH WEIGHT.csv")
 
 data.head()
 #    SR NO  ID  LOW  AGE  LWT  RACE  SMOKE  PTL  HT  UI  FTV

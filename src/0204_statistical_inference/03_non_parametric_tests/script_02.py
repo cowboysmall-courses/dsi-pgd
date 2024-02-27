@@ -16,7 +16,7 @@ from scipy.stats import wilcoxon
 
 
 # %% 1 - Import data.
-data = pd.read_csv("./data/0204_statistical_inference/non_parametric_tests/Wilcoxon Signed Rank test for paired data.csv")
+data = pd.read_csv("./data/0204_statistical_inference/03_non_parametric_tests/Wilcoxon Signed Rank test for paired data.csv")
 
 data.head()
 data.describe(include = 'all')

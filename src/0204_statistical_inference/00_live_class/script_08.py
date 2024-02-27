@@ -24,7 +24,7 @@ from scipy import stats
 
 # %% read data
 
-cust_data = pd.read_csv("./data/0204_statistical_inference/live_class/CUST_PROFILE.csv")
+cust_data = pd.read_csv("./data/0204_statistical_inference/00_live_class/CUST_PROFILE.csv")
 cust_data.head()
 
 # %%
@@ -49,7 +49,7 @@ cust_data.describe(include='all')
 
 # %% read data
 
-nps_data = pd.read_csv("./data/0204_statistical_inference/live_class/NPSDATA.csv")
+nps_data = pd.read_csv("./data/0204_statistical_inference/00_live_class/NPSDATA.csv")
 nps_data.head()
 
 # %%

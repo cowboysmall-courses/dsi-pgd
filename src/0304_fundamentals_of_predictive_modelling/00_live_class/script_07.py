@@ -18,7 +18,7 @@ from sklearn import linear_model
 
 
 # %% 1 - import data and check the head
-data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/live_class/Motor_Claims.csv")
+data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/00_live_class/Motor_Claims.csv")
 data.head()
 #    vehage    CC  Length  Weight  claimamt
 # 0       4  1495    4250    1023   72000.0

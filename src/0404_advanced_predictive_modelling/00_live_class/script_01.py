@@ -22,7 +22,7 @@ from statsmodels.formula.api import logit
 
 
 # %% 0 - import data and check the head
-data = pd.read_csv("./data/0404_advanced_predictive_modelling/live_class/Email Campaign.csv")
+data = pd.read_csv("./data/0404_advanced_predictive_modelling/00_live_class/Email Campaign.csv")
 data.head()
 #    SN  Gender   AGE  ...  Bill_Service  Bill_Product  Success
 # 0   1       1  <=45  ...         11.82          2.68        0

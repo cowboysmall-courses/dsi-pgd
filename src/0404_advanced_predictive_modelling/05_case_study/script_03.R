@@ -7,7 +7,7 @@ library(ROCR)
 
 
 
-data <- read.csv("./data/0404_advanced_predictive_modelling/case_study/Hospital\ Readmissions.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/05_case_study/Hospital\ Readmissions.csv", header = TRUE)
 head(data)
 # id     age time_in_hospital n_lab_procedures n_procedures n_medications n_outpatient n_inpatient n_emergency   diagnosis glucose_test A1Ctest change
 # 1  1 [70-80)                8               72            1            18            2           0           0 Circulatory           no      no     no

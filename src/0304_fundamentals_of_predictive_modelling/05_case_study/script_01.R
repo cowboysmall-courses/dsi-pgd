@@ -8,7 +8,7 @@ library(nortest)
 
 
 # 1 - import data and check the head
-data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/case_study/Housing\ Prices.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/05_case_study/Housing\ Prices.csv", header = TRUE)
 head(data)
 #      CRIM ZN INDUS CHAS   NOX    RM  AGE    DIS RAD TAX PTRATIO LSTAT MEDV
 # 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3  4.98 24.0

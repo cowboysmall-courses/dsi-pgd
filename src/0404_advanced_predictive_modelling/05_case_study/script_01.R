@@ -6,7 +6,7 @@ library(car)
 library(caret)
 
 
-data <- read.csv("./data/0404_advanced_predictive_modelling/case_study/ICU\ Mortality.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/05_case_study/ICU\ Mortality.csv", header = TRUE)
 head(data)
 #   SR.NO ID STA AGE SEX RACE SER CAN CRN INF CPR SYS HRA PRE TYP FRA PO2 PH PCO BIC CRE LOC
 # 1     1  8   0  27   1    1   0   0   0   1   0 142  88   0   1   0   0  0   0   0   0   0

@@ -28,7 +28,7 @@ from scipy import stats
 
 
 # %% 1 - Import VAS DATA and name it as pain_vas. Check for normality of the data.
-data = pd.read_csv("./data/0204_statistical_inference/assignment/VAS DATA.csv")
+data = pd.read_csv("./data/0204_statistical_inference/04_assignment/VAS DATA.csv")
 
 data.head()
 data.info()

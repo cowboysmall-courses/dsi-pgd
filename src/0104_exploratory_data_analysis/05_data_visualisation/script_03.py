@@ -17,7 +17,7 @@ import seaborn as sns
 
 # %%
 
-employee_data = pd.read_csv("./data/0104_exploratory_data_analysis/data_visualisation/JOB PROFICIENCY DATA.csv", index_col = 0)
+employee_data = pd.read_csv("./data/0104_exploratory_data_analysis/05_data_visualisation/JOB PROFICIENCY DATA.csv", index_col = 0)
 employee_data.info()
 
 

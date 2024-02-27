@@ -2,7 +2,7 @@
 library(nnet)
 
 
-data <- read.csv("./data/0404_advanced_predictive_modelling/live_class/High\ School\ Data.csv", header = TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/02_multinomial_and_ordinal_logistic_regression/High\ School\ Data.csv", header = TRUE)
 head(data)
 #   sn  id    ses write     prog
 # 1  1  45    low    35 vocation

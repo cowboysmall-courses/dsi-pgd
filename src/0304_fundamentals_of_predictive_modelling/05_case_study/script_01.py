@@ -29,7 +29,7 @@ np.random.seed(42)
 
 
 # %% 1 - import data and check the head
-data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/case_study/Housing Prices.csv")
+data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/05_case_study/Housing Prices.csv")
 data.head()
 #       CRIM    ZN  INDUS  CHAS    NOX  ...  RAD  TAX  PTRATIO  LSTAT  MEDV
 # 0  0.00632  18.0   2.31     0  0.538  ...    1  296     15.3   4.98  24.0

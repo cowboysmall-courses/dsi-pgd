@@ -5,7 +5,7 @@ library(dplyr)
 
 
 # 1
-bank_data <- read.csv("./data/0104_exploratory_data_analysis/live_class/Bank_Churn.csv", header = TRUE)
+bank_data <- read.csv("./data/0104_exploratory_data_analysis/00_live_class/Bank_Churn.csv", header = TRUE)
 
 dim(bank_data)
 str(bank_data)

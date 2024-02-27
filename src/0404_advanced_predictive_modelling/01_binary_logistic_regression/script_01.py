@@ -20,7 +20,7 @@ from statsmodels.formula.api import logit
 
 
 # %% 0 - 
-data = pd.read_csv("./data/0404_advanced_predictive_modelling/live_class/BANK LOAN.csv")
+data = pd.read_csv("./data/0404_advanced_predictive_modelling/01_binary_logistic_regression/BANK LOAN.csv")
 data.info()
 # <class 'pandas.core.frame.DataFrame'>
 # RangeIndex: 700 entries, 0 to 699

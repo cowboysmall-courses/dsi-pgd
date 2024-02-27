@@ -26,7 +26,7 @@ np.random.seed(1024)
 
 
 # %% 1 - Import House Price Data. Check the structure of the data.
-data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/assignment/House Price Data.csv")
+data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/04_assignment/House Price Data.csv")
 
 data.head()
 #    Houseid  Price  Area  Distance  Schools

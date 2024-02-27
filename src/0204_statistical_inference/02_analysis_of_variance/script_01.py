@@ -17,7 +17,7 @@ from scipy import stats
 
 
 # %% 1 - Import data.
-data = pd.read_csv("./data/0204_statistical_inference/analysis_of_variance/F test for 2 variances.csv")
+data = pd.read_csv("./data/0204_statistical_inference/02_analysis_of_variance/F test for 2 variances.csv")
 
 data.head()
 data.describe(include = 'all')

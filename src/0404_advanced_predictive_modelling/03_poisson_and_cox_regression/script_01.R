@@ -2,7 +2,7 @@
 library(pscl)
 
 
-data <- read.csv("./data/0404_advanced_predictive_modelling/poisson_and_cox_regression/Complaints.csv",header=TRUE)
+data <- read.csv("./data/0404_advanced_predictive_modelling/03_poisson_and_cox_regression/Complaints.csv",header=TRUE)
 head(data)
 #   custid region     tier   age ncomp
 # 1      1      N platinum less2     0

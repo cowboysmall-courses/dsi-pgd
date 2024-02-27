@@ -14,7 +14,7 @@ library(gmodels)
 
 # 1 - Import EMPLOYEE SATISFACTION SURVEY data. Check for 
 #     normality of the data.
-ess_data <- read.csv("./data/0204_statistical_inference/assignment/EMPLOYEE\ SATISFACTION\ SURVEY.csv", header = TRUE)
+ess_data <- read.csv("./data/0204_statistical_inference/04_assignment/EMPLOYEE\ SATISFACTION\ SURVEY.csv", header = TRUE)
 
 head(ess_data)
 summary(ess_data)

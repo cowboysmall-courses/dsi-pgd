@@ -5,7 +5,7 @@ library(caret)
 
 
 
-data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/cross_validation/Motor_Claims.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/03_cross_validation/Motor_Claims.csv", header = TRUE)
 head(data)
 #   vehage   CC Length Weight claimamt
 # 1      4 1495   4250   1023  72000.0

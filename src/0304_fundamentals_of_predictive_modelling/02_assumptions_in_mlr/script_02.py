@@ -9,7 +9,7 @@ from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
 # %% 1 - import data and check the head
-data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/assumptions_in_mlr/ridge regression data.csv")
+data = pd.read_csv("./data/0304_fundamentals_of_predictive_modelling/02_assumptions_in_mlr/ridge regression data.csv")
 data.head()
 #                  MODEL  RESALE PRICE  ENGINE SIZE  HORSE POWER  WEIGHT  YEARS
 # 0       Daihatsu Cuore          3870          846           32     650    2.9

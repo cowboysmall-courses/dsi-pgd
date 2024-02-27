@@ -3,7 +3,7 @@ library(gmodels)
 library(nortest)
 
 
-data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/misc/basic_recovery_data.csv", header = TRUE)
+data <- read.csv("./data/0304_fundamentals_of_predictive_modelling/00_misc/basic_recovery_data.csv", header = TRUE)
 
 head(data)
 #   Gender Resting.HR X2.mins X4.mins X6.mins X8.mins X10.mins

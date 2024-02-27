@@ -16,7 +16,7 @@ from scipy import stats
 
 
 # %% 1 - Import data.
-data = pd.read_csv("./data/0204_statistical_inference/intro_and_parametric_tests/INDEPENDENT SAMPLES t TEST.csv")
+data = pd.read_csv("./data/0204_statistical_inference/01_introduction_and_parametric_tests/INDEPENDENT SAMPLES t TEST.csv")
 
 data.head()
 data.describe(include = 'all')

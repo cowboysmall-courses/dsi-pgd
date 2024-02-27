@@ -22,7 +22,7 @@ from sklearn.linear_model import LogisticRegression
 
 
 # %% 1 - Import data and check the head
-data = pd.read_csv("./data/0404_advanced_predictive_modelling/live_class/BANK LOAN.csv")
+data = pd.read_csv("./data/0404_advanced_predictive_modelling/00_live_class/BANK LOAN.csv")
 data.head()
 #    SN  AGE  EMPLOY  ADDRESS  DEBTINC  CREDDEBT  OTHDEBT  DEFAULTER
 # 0   1    3      17       12      9.3     11.36     5.01          1

@@ -20,7 +20,7 @@ import pandas as pd
 
 
 # %% 1 - Import Premiums data and name it as Premium.
-Premium = pd.read_csv("./data/0104_exploratory_data_analysis/assignment/Premiums.csv")
+Premium = pd.read_csv("./data/0104_exploratory_data_analysis/06_assignment/Premiums.csv")
 
 
 

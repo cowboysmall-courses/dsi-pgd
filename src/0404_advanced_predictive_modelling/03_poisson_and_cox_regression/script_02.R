@@ -3,7 +3,7 @@ library(pec)
 library(survival)
 
 
-bankloan <- read.csv("./data/0404_advanced_predictive_modelling/poisson_and_cox_regression/BANK\ LOAN\ (COX).csv", header = TRUE)
+bankloan <- read.csv("./data/0404_advanced_predictive_modelling/03_poisson_and_cox_regression/BANK\ LOAN\ (COX).csv", header = TRUE)
 head(bankloan)
 #   SN AGE EMPLOY ADDRESS DEBTINC CREDDEBT OTHDEBT STATUS TIME
 # 1  1   3     17      12     9.3    11.36    5.01      1   12
@@ -54,7 +54,7 @@ summary(timemodel)
 # Score (logrank) test = 322  on 7 df,   p=<2e-16
 
 
-bankloantest <- read.csv("./data/0404_advanced_predictive_modelling/poisson_and_cox_regression/BANK\ LOAN\ (COX)\ TEST.csv", header = TRUE)
+bankloantest <- read.csv("./data/0404_advanced_predictive_modelling/03_poisson_and_cox_regression/BANK\ LOAN\ (COX)\ TEST.csv", header = TRUE)
 head(bankloantest)
 #    SN AGE EMPLOY ADDRESS DEBTINC CREDDEBT OTHDEBT
 # 1 701   3     17      12     9.4    11.38    5.01

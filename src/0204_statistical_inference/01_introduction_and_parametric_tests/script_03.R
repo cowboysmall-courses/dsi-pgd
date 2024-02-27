@@ -1,5 +1,5 @@
 
-test_data <- read.csv("./data/0204_statistical_inference/intro_and_parametric_tests/INDEPENDENT\ SAMPLES\ t\ TEST.csv", header = TRUE)
+test_data <- read.csv("./data/0204_statistical_inference/01_introduction_and_parametric_tests/INDEPENDENT\ SAMPLES\ t\ TEST.csv", header = TRUE)
 
 head(test_data)
 summary(test_data)

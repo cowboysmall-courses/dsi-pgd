@@ -16,8 +16,8 @@ import pandas as pd
 
 # %%
 
-salary_data = pd.read_csv("./data/0104_exploratory_data_analysis/data_management/sal_data.csv")
-bonus_data = pd.read_csv("./data/0104_exploratory_data_analysis/data_management/bonus_data.csv")
+salary_data = pd.read_csv("./data/0104_exploratory_data_analysis/03_data_management/sal_data.csv")
+bonus_data = pd.read_csv("./data/0104_exploratory_data_analysis/03_data_management/bonus_data.csv")
 
 
 
