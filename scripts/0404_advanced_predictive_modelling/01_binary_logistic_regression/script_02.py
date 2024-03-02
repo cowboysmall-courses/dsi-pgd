@@ -18,6 +18,7 @@ import seaborn as sns
 from statsmodels.formula.api import logit
 
 from sklearn.metrics import roc_curve, auc
+from sklearn.linear_model import LogisticRegression
 from scipy.stats import ks_2samp
 
 
@@ -141,6 +142,3 @@ data.head()
 sns.scatterplot(x = "SN", y = "resid", data = data)
 plt.xlabel("SN")
 plt.ylabel("residual")
-
-
-
