@@ -12,7 +12,7 @@ Created on Sat Feb 17 16:52:03 2024
 # %% 0 - Import libraries
 import pandas as pd
 import matplotlib.pyplot as plt
-# import scikitplot as skplt
+import scikitplot as skplt
 import seaborn as sns
 
 from statsmodels.formula.api import logit
@@ -104,16 +104,16 @@ print("Area under the ROC curve : %f" % ruc_auc)
 
 
 # %% 0 - 
-# X = data[["EMPLOY", "ADDRESS", "DEBTINC", "CREDDEBT"]]
-# y = data[["DEFAULTER"]]
+X = data[["EMPLOY", "ADDRESS", "DEBTINC", "CREDDEBT"]]
+y = data[["DEFAULTER"]]
 
-# log_model = LogisticRegression()
-# log_model.fit(X, y)
+log_model = LogisticRegression()
+log_model.fit(X, y)
 
-# pred_log = log_model.predict_proba(X)
+pred_log = log_model.predict_proba(X)
 
-# skplt.metrics.plot_lift_curve(y, pred_log)
-# plt.show()
+skplt.metrics.plot_lift_curve(y, pred_log)
+plt.show()
 
 
 

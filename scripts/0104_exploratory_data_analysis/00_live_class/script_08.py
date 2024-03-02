@@ -7,7 +7,6 @@ Created on Sat Oct 21 09:05:26 2023
 """
 
 
-
 # %%
 
 import pandas as pd
