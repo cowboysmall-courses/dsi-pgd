@@ -27,7 +27,7 @@ from scipy.stats import ks_2samp
 
 # %% 0 - 
 data = pd.read_csv("./data/0404_advanced_predictive_modelling/01_binary_logistic_regression/BANK LOAN.csv")
-         
+
 
 
 
