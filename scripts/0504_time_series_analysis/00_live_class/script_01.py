@@ -23,7 +23,7 @@ data.head()
 
 
 # %% 2 - 
-sales_r = pd.date_range('1961-01-01', '2017-12-31', freq = 'Y')
+sales_r = pd.date_range('1961-01-01', '2017-12-31', freq = 'YE')
 sales_v = data.sales.values
 
 sales_s = pd.Series(sales_v, sales_r)

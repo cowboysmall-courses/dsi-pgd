@@ -3,7 +3,7 @@ library(forecast)
 library(urca)
 
 
-data <- read.csv("./data/0504_time_series_analysis/00_live_class/CROP\ DATA.csv", header = TRUE)
+data <- read.csv("./data/0504_time_series_analysis/07_case_study/CROP\ DATA.csv", header = TRUE)
 head(data)
 #   Year Quarter CROPYIELD
 # 1 1947       1  2182.681
