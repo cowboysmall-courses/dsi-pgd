@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="httpgd" width="1041.00" height="625.00" viewBox="0 0 1041.00 625.00">
+<defs>
+  <style type='text/css'><![CDATA[
+    .httpgd line, .httpgd polyline, .httpgd polygon, .httpgd path, .httpgd rect, .httpgd circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+<clipPath id="c0"><rect x="0.00" y="0.00" width="1041.00" height="625.00"/></clipPath>
+<clipPath id="c1"><rect x="38.97" y="38.97" width="982.08" height="120.90"/></clipPath>
+<clipPath id="c2"><rect x="0.00" y="0.00" width="1041.00" height="208.33"/></clipPath>
+<clipPath id="c3"><rect x="0.00" y="0.00" width="1041.00" height="625.00"/></clipPath>
+<clipPath id="c4"><rect x="38.97" y="247.30" width="982.08" height="120.90"/></clipPath>
+<clipPath id="c5"><rect x="0.00" y="208.33" width="1041.00" height="208.33"/></clipPath>
+<clipPath id="c6"><rect x="0.00" y="0.00" width="1041.00" height="625.00"/></clipPath>
+<clipPath id="c7"><rect x="38.97" y="455.63" width="982.08" height="120.90"/></clipPath>
+<clipPath id="c8"><rect x="0.00" y="416.67" width="1041.00" height="208.33"/></clipPath>
+<clipPath id="c9"><rect x="0.00" y="0.00" width="1041.00" height="625.00"/></clipPath>
+</defs>
+<rect width="100%" height="100%" style="stroke: none;fill: #FFFFFF;"/>
+<g clip-path="url(#c0)">
+</g><g clip-path="url(#c1)">
+<polyline points="75.34,91.24 102.08,92.09 128.83,92.32 155.57,92.42 182.32,92.48 209.06,92.51 235.81,92.52 262.55,92.50 289.30,92.51 316.04,92.49 342.79,92.50 369.53,93.93 396.28,101.28 423.02,89.36 449.77,86.93 476.51,124.27 503.26,79.43 530.00,73.39 556.75,81.77 583.49,90.24 610.24,80.08 636.98,155.39 663.73,93.23 690.47,102.69 717.22,116.53 743.96,92.17 770.71,109.63 797.45,53.79 824.20,116.52 850.94,108.68 877.69,122.55 904.43,98.17 931.18,43.44 957.92,84.74 984.67,104.65" style="stroke-width: 0.75;stroke: #FF8C00;"/>
+</g><g clip-path="url(#c2)">
+<g><text x="530.00" y="195.98" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="18.29px" lengthAdjust="spacingAndGlyphs">Time</text></g>
+<g><text transform="translate(8.55,99.41) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="18.07px" lengthAdjust="spacingAndGlyphs">resi1</text></g>
+</g><g clip-path="url(#c3)">
+<line x1="48.59" y1="159.86" x2="1011.41" y2="159.86" style="stroke-width: 0.75;"/>
+<line x1="48.59" y1="159.86" x2="48.59" y2="164.61" style="stroke-width: 0.75;"/>
+<line x1="209.06" y1="159.86" x2="209.06" y2="164.61" style="stroke-width: 0.75;"/>
+<line x1="369.53" y1="159.86" x2="369.53" y2="164.61" style="stroke-width: 0.75;"/>
+<line x1="530.00" y1="159.86" x2="530.00" y2="164.61" style="stroke-width: 0.75;"/>
+<line x1="690.47" y1="159.86" x2="690.47" y2="164.61" style="stroke-width: 0.75;"/>
+<line x1="850.94" y1="159.86" x2="850.94" y2="164.61" style="stroke-width: 0.75;"/>
+<line x1="1011.41" y1="159.86" x2="1011.41" y2="164.61" style="stroke-width: 0.75;"/>
+<g><text x="48.59" y="176.97" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2015.0</text></g>
+<g><text x="209.06" y="176.97" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2015.5</text></g>
+<g><text x="369.53" y="176.97" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2016.0</text></g>
+<g><text x="530.00" y="176.97" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2016.5</text></g>
+<g><text x="690.47" y="176.97" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2017.0</text></g>
+<g><text x="850.94" y="176.97" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2017.5</text></g>
+<g><text x="1011.41" y="176.97" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2018.0</text></g>
+<line x1="38.97" y1="154.62" x2="38.97" y2="51.47" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="154.62" x2="34.21" y2="154.62" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="133.99" x2="34.21" y2="133.99" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="113.36" x2="34.21" y2="113.36" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="92.73" x2="34.21" y2="92.73" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="72.10" x2="34.21" y2="72.10" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="51.47" x2="34.21" y2="51.47" style="stroke-width: 0.75;"/>
+<g><text transform="translate(27.56,154.62) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="7.07px" lengthAdjust="spacingAndGlyphs">-3</text></g>
+<g><text transform="translate(27.56,133.99) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="7.07px" lengthAdjust="spacingAndGlyphs">-2</text></g>
+<g><text transform="translate(27.56,113.36) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="7.07px" lengthAdjust="spacingAndGlyphs">-1</text></g>
+<g><text transform="translate(27.56,92.73) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="4.52px" lengthAdjust="spacingAndGlyphs">0</text></g>
+<g><text transform="translate(27.56,72.10) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="4.52px" lengthAdjust="spacingAndGlyphs">1</text></g>
+<g><text transform="translate(27.56,51.47) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="4.52px" lengthAdjust="spacingAndGlyphs">2</text></g>
+<polygon points="38.97,159.86 1021.04,159.86 1021.04,38.97 38.97,38.97" style="stroke-width: 0.75;" />
+</g><g clip-path="url(#c4)">
+<polyline points="75.34,299.69 102.08,318.65 128.83,284.11 155.57,274.02 182.32,308.61 209.06,307.92 235.81,302.92 262.55,299.31 289.30,316.14 316.04,300.28 342.79,341.94 369.53,297.20 396.28,290.71 423.02,313.69 449.77,290.62 476.51,313.71 503.26,363.72 530.00,316.29 556.75,305.45 583.49,298.50 610.24,326.84 636.98,312.50 663.73,301.45 690.47,320.67 717.22,288.38 743.96,251.78 770.71,336.66 797.45,262.34 824.20,281.04 850.94,301.13 877.69,352.10 904.43,346.14 931.18,285.40 957.92,315.40 984.67,263.97" style="stroke-width: 0.75;stroke: #FF8C00;"/>
+</g><g clip-path="url(#c5)">
+<g><text x="530.00" y="404.31" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="18.29px" lengthAdjust="spacingAndGlyphs">Time</text></g>
+<g><text transform="translate(8.55,307.75) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="18.07px" lengthAdjust="spacingAndGlyphs">resi2</text></g>
+</g><g clip-path="url(#c6)">
+<line x1="48.59" y1="368.20" x2="1011.41" y2="368.20" style="stroke-width: 0.75;"/>
+<line x1="48.59" y1="368.20" x2="48.59" y2="372.95" style="stroke-width: 0.75;"/>
+<line x1="209.06" y1="368.20" x2="209.06" y2="372.95" style="stroke-width: 0.75;"/>
+<line x1="369.53" y1="368.20" x2="369.53" y2="372.95" style="stroke-width: 0.75;"/>
+<line x1="530.00" y1="368.20" x2="530.00" y2="372.95" style="stroke-width: 0.75;"/>
+<line x1="690.47" y1="368.20" x2="690.47" y2="372.95" style="stroke-width: 0.75;"/>
+<line x1="850.94" y1="368.20" x2="850.94" y2="372.95" style="stroke-width: 0.75;"/>
+<line x1="1011.41" y1="368.20" x2="1011.41" y2="372.95" style="stroke-width: 0.75;"/>
+<g><text x="48.59" y="385.30" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2015.0</text></g>
+<g><text x="209.06" y="385.30" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2015.5</text></g>
+<g><text x="369.53" y="385.30" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2016.0</text></g>
+<g><text x="530.00" y="385.30" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2016.5</text></g>
+<g><text x="690.47" y="385.30" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2017.0</text></g>
+<g><text x="850.94" y="385.30" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2017.5</text></g>
+<g><text x="1011.41" y="385.30" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2018.0</text></g>
+<line x1="38.97" y1="357.91" x2="38.97" y2="253.48" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="357.91" x2="34.21" y2="357.91" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="331.80" x2="34.21" y2="331.80" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="305.70" x2="34.21" y2="305.70" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="279.59" x2="34.21" y2="279.59" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="253.48" x2="34.21" y2="253.48" style="stroke-width: 0.75;"/>
+<g><text transform="translate(27.56,357.91) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="13.71px" lengthAdjust="spacingAndGlyphs">-1.0</text></g>
+<g><text transform="translate(27.56,331.80) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="13.71px" lengthAdjust="spacingAndGlyphs">-0.5</text></g>
+<g><text transform="translate(27.56,305.70) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="11.16px" lengthAdjust="spacingAndGlyphs">0.0</text></g>
+<g><text transform="translate(27.56,279.59) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="11.16px" lengthAdjust="spacingAndGlyphs">0.5</text></g>
+<g><text transform="translate(27.56,253.48) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="11.16px" lengthAdjust="spacingAndGlyphs">1.0</text></g>
+<polygon points="38.97,368.20 1021.04,368.20 1021.04,247.30 38.97,247.30" style="stroke-width: 0.75;" />
+</g><g clip-path="url(#c7)">
+<polyline points="75.34,517.44 102.08,572.05 128.83,538.87 155.57,560.29 182.32,497.87 209.06,540.73 235.81,460.11 262.55,497.96 289.30,562.83 316.04,563.40 342.79,530.02 369.53,530.05 396.28,552.16 423.02,544.81 449.77,547.26 476.51,502.19 503.26,561.42 530.00,486.42 556.75,511.34 583.49,492.00 610.24,542.68 636.98,547.97 663.73,490.89 690.47,520.92 717.22,533.07 743.96,562.22 770.71,508.28 797.45,537.27 824.20,538.70 850.94,571.41 877.69,538.42 904.43,549.38 931.18,523.61 957.92,476.86 984.67,514.52" style="stroke-width: 0.75;stroke: #FF8C00;"/>
+</g><g clip-path="url(#c8)">
+<g><text x="530.00" y="612.64" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="18.29px" lengthAdjust="spacingAndGlyphs">Time</text></g>
+<g><text transform="translate(8.55,516.08) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="18.07px" lengthAdjust="spacingAndGlyphs">resi3</text></g>
+</g><g clip-path="url(#c9)">
+<line x1="48.59" y1="576.53" x2="1011.41" y2="576.53" style="stroke-width: 0.75;"/>
+<line x1="48.59" y1="576.53" x2="48.59" y2="581.28" style="stroke-width: 0.75;"/>
+<line x1="209.06" y1="576.53" x2="209.06" y2="581.28" style="stroke-width: 0.75;"/>
+<line x1="369.53" y1="576.53" x2="369.53" y2="581.28" style="stroke-width: 0.75;"/>
+<line x1="530.00" y1="576.53" x2="530.00" y2="581.28" style="stroke-width: 0.75;"/>
+<line x1="690.47" y1="576.53" x2="690.47" y2="581.28" style="stroke-width: 0.75;"/>
+<line x1="850.94" y1="576.53" x2="850.94" y2="581.28" style="stroke-width: 0.75;"/>
+<line x1="1011.41" y1="576.53" x2="1011.41" y2="581.28" style="stroke-width: 0.75;"/>
+<g><text x="48.59" y="593.64" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2015.0</text></g>
+<g><text x="209.06" y="593.64" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2015.5</text></g>
+<g><text x="369.53" y="593.64" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2016.0</text></g>
+<g><text x="530.00" y="593.64" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2016.5</text></g>
+<g><text x="690.47" y="593.64" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2017.0</text></g>
+<g><text x="850.94" y="593.64" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2017.5</text></g>
+<g><text x="1011.41" y="593.64" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="24.72px" lengthAdjust="spacingAndGlyphs">2018.0</text></g>
+<line x1="38.97" y1="574.24" x2="38.97" y2="463.61" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="574.24" x2="34.21" y2="574.24" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="552.11" x2="34.21" y2="552.11" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="529.99" x2="34.21" y2="529.99" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="507.86" x2="34.21" y2="507.86" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="485.74" x2="34.21" y2="485.74" style="stroke-width: 0.75;"/>
+<line x1="38.97" y1="463.61" x2="34.21" y2="463.61" style="stroke-width: 0.75;"/>
+<g><text transform="translate(27.56,574.24) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="13.71px" lengthAdjust="spacingAndGlyphs">-0.4</text></g>
+<g><text transform="translate(27.56,552.11) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="13.71px" lengthAdjust="spacingAndGlyphs">-0.2</text></g>
+<g><text transform="translate(27.56,529.99) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="11.16px" lengthAdjust="spacingAndGlyphs">0.0</text></g>
+<g><text transform="translate(27.56,507.86) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="11.16px" lengthAdjust="spacingAndGlyphs">0.2</text></g>
+<g><text transform="translate(27.56,485.74) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="11.16px" lengthAdjust="spacingAndGlyphs">0.4</text></g>
+<g><text transform="translate(27.56,463.61) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 7.92px;" textLength="11.16px" lengthAdjust="spacingAndGlyphs">0.6</text></g>
+<polygon points="38.97,576.53 1021.04,576.53 1021.04,455.63 38.97,455.63" style="stroke-width: 0.75;" />
+</g>
+</svg>

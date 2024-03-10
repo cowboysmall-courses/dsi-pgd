@@ -261,7 +261,7 @@ summary(df6)
 
 
 
-model1 <- auto.arima(series1, d = 1, max.p = 3, max.q = 3, trace = TRUE, ic = "aic")
+model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
 #  ARIMA(2,1,2)(0,1,0)[12]                    : Inf
 #  ARIMA(0,1,0)(0,1,0)[12]                    : 78.21463
@@ -290,7 +290,7 @@ Box.test(resi1)
 
 
 
-model2 <- auto.arima(series2, d = 1, max.p = 3, max.q = 3, trace = TRUE, ic = "aic")
+model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
 #  ARIMA(2,1,2)            with drift         : Inf
 #  ARIMA(0,1,0)            with drift         : 52.31335
