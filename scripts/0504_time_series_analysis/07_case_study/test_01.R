@@ -14,6 +14,13 @@ head(data)
 # 6 1948       2  2276.690
 
 
+str(data)
+# 'data.frame':   308 obs. of  3 variables:
+#  $ Year     : int  1947 1947 1947 1947 1948 1948 1948 1948 1949 1949 ...
+#  $ Quarter  : int  1 2 3 4 1 2 3 4 1 2 ...
+#  $ CROPYIELD: num  2183 2177 2172 2206 2240 ...
+
+
 nrow(data)
 # 308
 
@@ -21,7 +28,15 @@ nrow(data)
 data_y <- aggregate(CROPYIELD ~ Year, data = data, FUN = sum)
 
 
-series <- ts(data_y$CROPYIELD, start = 1947, end = 2023)
+index <- data$Year < 2020
+head(index)
+
+
+train <- data_y[(data_y$Year < 2020), ]
+test  <- data_y[(data_y$Year >= 2020), ]
+
+
+series <- ts(train$CROPYIELD, start = 1947, end = 2019)
 
 
 plot(series, col = "red")
@@ -43,20 +58,20 @@ summary(df)
 
 # Residuals:
 #     Min      1Q  Median      3Q     Max 
-# -3852.5  -220.7   192.8   568.3  2718.8 
+# -3434.2  -192.6   162.1   557.6  1435.8 
 
 # Coefficients:
 #         Estimate Std. Error t value Pr(>|t|)    
-# z.lag.1 0.024411   0.002221   10.99   <2e-16 ***
+# z.lag.1 0.025396   0.001978   12.84   <2e-16 ***
 # ---
 # Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-# Residual standard error: 886.6 on 75 degrees of freedom
-# Multiple R-squared:  0.617,     Adjusted R-squared:  0.6119 
-# F-statistic: 120.8 on 1 and 75 DF,  p-value: < 2.2e-16
+# Residual standard error: 716 on 71 degrees of freedom
+# Multiple R-squared:  0.6989,    Adjusted R-squared:  0.6947 
+# F-statistic: 164.8 on 1 and 71 DF,  p-value: < 2.2e-16
 
 
-# Value of test-statistic is: 10.9911 
+# Value of test-statistic is: 12.8379 
 
 # Critical values for test statistics: 
 #      1pct  5pct 10pct
@@ -93,20 +108,20 @@ summary(df2)
 
 # Residuals:
 #     Min      1Q  Median      3Q     Max 
-# -3999.3  -439.3   122.1   478.0  4531.4 
+# -2173.5  -359.3   104.2   429.4  2956.8 
 
 # Coefficients:
 #         Estimate Std. Error t value Pr(>|t|)    
-# z.lag.1 -1.52163    0.09994  -15.23   <2e-16 ***
+# z.lag.1  -1.2964     0.1149  -11.28   <2e-16 ***
 # ---
 # Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-# Residual standard error: 1062 on 73 degrees of freedom
-# Multiple R-squared:  0.7605,    Adjusted R-squared:  0.7572 
-# F-statistic: 231.8 on 1 and 73 DF,  p-value: < 2.2e-16
+# Residual standard error: 783.1 on 69 degrees of freedom
+# Multiple R-squared:  0.6485,    Adjusted R-squared:  0.6434 
+# F-statistic: 127.3 on 1 and 69 DF,  p-value: < 2.2e-16
 
 
-# Value of test-statistic is: -15.2256 
+# Value of test-statistic is: -11.2834 
 
 # Critical values for test statistics: 
 #      1pct  5pct 10pct
@@ -115,24 +130,26 @@ summary(df2)
 
 model <- auto.arima(series, d = 2, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 
-#  ARIMA(2,2,2)                    : 1244.935
-#  ARIMA(0,2,0)                    : 1281.959
-#  ARIMA(1,2,0)                    : 1260.488
-#  ARIMA(0,2,1)                    : 1239.208
-#  ARIMA(1,2,1)                    : 1241.172
-#  ARIMA(0,2,2)                    : 1241.173
-#  ARIMA(1,2,2)                    : 1243.015
+#  ARIMA(2,2,2)                    : Inf
+#  ARIMA(0,2,0)                    : 1154.445
+#  ARIMA(1,2,0)                    : 1149.998
+#  ARIMA(0,2,1)                    : 1140.78
+#  ARIMA(1,2,1)                    : 1136.349
+#  ARIMA(2,2,1)                    : 1138.058
+#  ARIMA(1,2,2)                    : 1138.173
+#  ARIMA(0,2,2)                    : 1136.536
+#  ARIMA(2,2,0)                    : 1149.041
 
-#  Best model: ARIMA(0,2,1)     
+#  Best model: ARIMA(1,2,1)
 
 
 coef(model)
-#        ma1 
-# -0.8961226 
+#        ar1        ma1 
+#  0.3273661 -0.9089416 
 
 
 AIC(model)
-# 1239.208
+# 1136.349
 
 
 resi <- residuals(model)
@@ -141,24 +158,32 @@ Box.test(resi)
 #         Box-Pierce test
 
 # data:  resi
-# X-squared = 0.30544, df = 1, p-value = 0.5805
+# X-squared = 0.022152, df = 1, p-value = 0.8817
 
 
 
 plot(resi, col = "darkorange")
 
 
-predict(model, n.ahead = 1)
+predict(model, n.ahead = 4)
 # $pred
 # Time Series:
-# Start = 2024 
-# End = 2024 
+# Start = 2020 
+# End = 2023 
 # Frequency = 1 
-# [1] 91144.54
+# [1] 84466.09 86067.25 87636.80 89195.99
 
 # $se
 # Time Series:
-# Start = 2024 
-# End = 2024 
+# Start = 2020 
+# End = 2023 
 # Frequency = 1 
-# [1] 908.3818
+# [1]  697.4354 1210.3929 1668.4259 2093.0883
+
+
+test
+#    Year CROPYIELD
+# 74 2020  80936.30
+# 75 2021  85630.77
+# 76 2022  87288.15
+# 77 2023  89497.36

@@ -104,4 +104,3 @@ adf.summary()
 # Critical Values: -2.61 (1%), -1.95 (5%), -1.61 (10%)
 # Null Hypothesis: The process contains a unit root.
 # Alternative Hypothesis: The process is weakly stationary.
-

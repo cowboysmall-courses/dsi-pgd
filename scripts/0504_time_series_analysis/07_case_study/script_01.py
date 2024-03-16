@@ -173,6 +173,3 @@ resi.plot(color = 'red')
 model.predict(1)
 # 2024-12-31    91138.301863
 # Freq: YE-DEC, dtype: float64
-
-
-

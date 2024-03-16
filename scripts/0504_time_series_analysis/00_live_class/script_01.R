@@ -95,4 +95,3 @@ summary(ur.df(diff, lag = 0))
 # Critical values for test statistics: 
 #       1pct  5pct 10pct
 # tau1 -2.66 -1.95  -1.6
-
