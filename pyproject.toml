@@ -167,7 +167,7 @@ unfixable = [
 ]
 
 [tool.ruff.isort]
-known-first-party = ["gsma"]
+known-first-party = ["cowboysmall"]
 
 [tool.ruff.flake8-tidy-imports]
 ban-relative-imports = "all"
@@ -181,7 +181,7 @@ ban-relative-imports = "all"
 
 
 [tool.coverage.run]
-source_pkgs = ["gsma", "tests"]
+source_pkgs = ["cowboysmall", "tests"]
 branch = true
 parallel = true
 omit = [
@@ -189,7 +189,7 @@ omit = [
 ]
 
 [tool.coverage.paths]
-gsma = ["src/cowboysmall", "*/dsi-msc/src/cowboysmall"]
+cowboysmall = ["src/cowboysmall", "*/dsi-msc/src/cowboysmall"]
 tests = ["tests", "*/dsi-msc/tests"]
 
 [tool.coverage.report]
