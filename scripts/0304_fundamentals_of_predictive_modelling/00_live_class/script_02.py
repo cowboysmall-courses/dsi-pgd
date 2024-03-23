@@ -8,7 +8,6 @@ Created on Sat Dec  9 09:01:23 2023
 
 
 # %% 0 - import libraries
-
 import pandas as pd
 import statsmodels.api as sm
 
