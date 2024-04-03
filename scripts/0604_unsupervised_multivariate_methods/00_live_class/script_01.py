@@ -1,14 +1,12 @@
 
 # %% 0 - import libraries
 import pandas as pd
-import sklearn.preprocessing
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import scale
 from sklearn.cluster import KMeans
-from sklearn.impute import SimpleImputer
 
 import warnings
 warnings.filterwarnings("ignore", category = FutureWarning)
@@ -80,7 +78,7 @@ print(data.head())
 
 
 # %% 1 - 
-scaled = sklearn.preprocessing.scale(data)
+scaled = scale(data)
 scaled
 # array([[ 0.75455685,  1.19283766,  1.83500523,  1.65449965,  0.55744769],
 #        [-0.46048874,  0.46615231, -0.16445267, -0.47888889,  0.55744769],
