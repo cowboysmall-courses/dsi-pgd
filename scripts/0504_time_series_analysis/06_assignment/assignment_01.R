@@ -261,7 +261,7 @@ summary(df6)
 
 
 
-model1 <- auto.arima(series1, d = ndiffs1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
+model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
 #  ARIMA(2,1,2)(0,1,0)[12]                    : Inf
 #  ARIMA(0,1,0)(0,1,0)[12]                    : 78.21463
@@ -281,6 +281,8 @@ AIC(model1)
 # 73.7662
 
 resi1 <- residuals(model1)
+resi1
+
 Box.test(resi1)
 # 
 #         Box-Pierce test
@@ -290,7 +292,7 @@ Box.test(resi1)
 
 
 
-model2 <- auto.arima(series2, d = ndiffs2, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
+model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
 #  ARIMA(2,1,2)            with drift         : Inf
 #  ARIMA(0,1,0)            with drift         : 52.31335
@@ -312,6 +314,8 @@ AIC(model2)
 # 51.75392
 
 resi2 <- residuals(model2)
+resi2
+
 Box.test(resi2)
 # 
 #         Box-Pierce test
@@ -323,7 +327,7 @@ Box.test(resi2)
 
 
 
-model3 <- auto.arima(series3, d = ndiffs3, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
+model3 <- auto.arima(series3, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
 #  ARIMA(2,1,2)            with drift         : Inf
 #  ARIMA(0,1,0)            with drift         : 12.41481
@@ -345,6 +349,8 @@ AIC(model3)
 # 10.21436
 
 resi3 <- residuals(model3)
+resi3
+
 Box.test(resi3)
 
 #         Box-Pierce test

@@ -1,12 +1,6 @@
 
 # %% 0 - filter out warnings
 import warnings
-
-warnings.filterwarnings("ignore", category = FutureWarning)
-
-
-
-# %% 0 - import libraries
 import pandas as pd
 import matplotlib.pyplot as plt
 import statsmodels.formula.api as smf
@@ -18,6 +12,8 @@ from statsmodels.stats.diagnostic import lilliefors
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from statsmodels.stats.stattools import durbin_watson
 
+
+warnings.filterwarnings("ignore", category = FutureWarning)
 
 
 # %% 1 -
