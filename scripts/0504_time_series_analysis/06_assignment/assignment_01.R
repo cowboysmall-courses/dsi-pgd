@@ -261,7 +261,7 @@ summary(df6)
 
 
 
-model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
+model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max.Q = 2, trace = TRUE, ic = "aic")
 # 
 #  ARIMA(2,1,2)(0,1,0)[12]                    : Inf
 #  ARIMA(0,1,0)(0,1,0)[12]                    : 78.21463
@@ -272,6 +272,20 @@ model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "a
 #  ARIMA(1,1,2)(0,1,0)[12]                    : Inf
 # 
 #  Best model: ARIMA(0,1,1)(0,1,0)[12] 
+
+model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
+# 
+# ARIMA(2,1,2)(0,1,0)[12]                    : Inf
+# ARIMA(0,1,0)(0,1,0)[12]                    : 78.21463
+# ARIMA(1,1,0)(0,1,0)[12]                    : 76.95402
+# ARIMA(0,1,1)(0,1,0)[12]                    : 73.7662
+# ARIMA(1,1,1)(0,1,0)[12]                    : Inf
+# ARIMA(0,1,2)(0,1,0)[12]                    : Inf
+# ARIMA(1,1,2)(0,1,0)[12]                    : Inf
+# 
+# Best model: ARIMA(0,1,1)(0,1,0)[12]         
+
+model1 <- Arima(series1, order = c(0, 1, 1), seasonal = list(order = c(0, 1, 0), period = 12))
 
 coef(model1)
 #       ma1 
@@ -291,20 +305,32 @@ Box.test(resi1)
 # X-squared = 0.36574, df = 1, p-value = 0.5453
 
 
+model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max.Q = 2, trace = TRUE, ic = "aic")
+# 
+# ARIMA(2,1,2)(0,1,0)[12]                    : Inf
+# ARIMA(0,1,0)(0,1,0)[12]                    : 52.17169
+# ARIMA(1,1,0)(0,1,0)[12]                    : 52.64085
+# ARIMA(0,1,1)(0,1,0)[12]                    : Inf
+# ARIMA(1,1,1)(0,1,0)[12]                    : Inf
+# 
+# Best model: ARIMA(0,1,0)(0,1,0)[12]  
 
 model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
-#  ARIMA(2,1,2)            with drift         : Inf
-#  ARIMA(0,1,0)            with drift         : 52.31335
-#  ARIMA(1,1,0)            with drift         : 52.47872
-#  ARIMA(0,1,1)            with drift         : 51.75392
-#  ARIMA(0,1,0)                               : 71.36077
-#  ARIMA(1,1,1)            with drift         : 53.39991
-#  ARIMA(0,1,2)            with drift         : 53.34526
-#  ARIMA(1,1,2)            with drift         : Inf
-#  ARIMA(0,1,1)                               : 62.72611
+# ARIMA(2,1,2)            with drift         : Inf
+# ARIMA(0,1,0)            with drift         : 52.31335
+# ARIMA(1,1,0)            with drift         : 52.47872
+# ARIMA(0,1,1)            with drift         : 51.75392
+# ARIMA(0,1,0)                               : 71.36077
+# ARIMA(1,1,1)            with drift         : 53.39991
+# ARIMA(0,1,2)            with drift         : 53.34526
+# ARIMA(1,1,2)            with drift         : Inf
+# ARIMA(0,1,1)                               : 62.72611
 # 
-#  Best model: ARIMA(0,1,1)            with drift 
+# Best model: ARIMA(0,1,1)            with drift  
+
+# model2 <- arima(series2, order = c(0, 1, 0), seasonal = list(order = c(0, 1, 0), period = 12))
+model2 <- Arima(series2, order = c(0, 1, 1), include.drift = TRUE)
 
 coef(model2)
 #       ma1     drift 
@@ -325,7 +351,15 @@ Box.test(resi2)
 
 
 
-
+model3 <- auto.arima(series3, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max.Q = 2, trace = TRUE, ic = "aic")
+# 
+# ARIMA(2,1,2)(0,1,0)[12]                    : Inf
+# ARIMA(0,1,0)(0,1,0)[12]                    : 18.2819
+# ARIMA(1,1,0)(0,1,0)[12]                    : 20.03478
+# ARIMA(0,1,1)(0,1,0)[12]                    : 20.11575
+# ARIMA(1,1,1)(0,1,0)[12]                    : 21.8712
+# 
+# Best model: ARIMA(0,1,0)(0,1,0)[12]    
 
 model3 <- auto.arima(series3, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
@@ -340,6 +374,9 @@ model3 <- auto.arima(series3, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "a
 #  ARIMA(0,1,1)                               : 33.43813
 # 
 #  Best model: ARIMA(0,1,1)            with drift   
+
+# model3 <- arima(series3, order = c(0, 1, 0), seasonal = list(order = c(0, 1, 0), period = 12))
+model3 <- Arima(series3, order = c(0, 1, 1), include.drift = TRUE)
 
 coef(model3)
 #       ma1     drift 
@@ -380,11 +417,29 @@ forecast(model1, h = 3)
 # Feb 2018       138.0859 135.0478 141.1240 133.4395 142.7322
 # Mar 2018       135.9859 131.9707 140.0011 129.8451 142.1266
 
+predict(model2, n.ahead = 3)
+# $pred
+#        Jan   Feb   Mar
+# 2018 131.2 131.9 133.5
+# 
+# $se
+#            Jan       Feb       Mar
+# 2018 0.7567875 1.0702591 1.3107943
+
 forecast(model2, h = 3)
 #          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
 # Jan 2018       131.7179 131.0919 132.3439 130.7605 132.6752
 # Feb 2018       132.1785 131.1409 133.2161 130.5917 133.7653
 # Mar 2018       132.6391 131.3120 133.9663 130.6094 134.6688
+
+predict(model3, n.ahead = 3)
+# $pred
+#        Jan   Feb   Mar
+# 2018 128.1 128.5 128.6
+# 
+# $se
+#            Jan       Feb       Mar
+# 2018 0.3503245 0.4954337 0.6067799
 
 forecast(model3, h = 3)
 #          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
