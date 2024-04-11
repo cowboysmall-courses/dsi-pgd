@@ -15,9 +15,11 @@ head(data)
 # 6 2015     July 124.0 118.7 115.1
 
 
+
 series1 <- ts(data$BU1, start = c(2015, 2), end = c(2017, 12), frequency = 12)
 series2 <- ts(data$BU2, start = c(2015, 2), end = c(2017, 12), frequency = 12)
 series3 <- ts(data$BU3, start = c(2015, 2), end = c(2017, 12), frequency = 12)
+
 
 
 par(mfrow = c(3, 2))
@@ -27,6 +29,12 @@ plot(series2, col = "red")
 acf(series2, col = "blue")
 plot(series3, col = "red")
 acf(series3, col = "blue")
+
+# looking at the plots: the sales data of all three business units are trending
+# upwards, but it appears that BU1 has seasonal characteristics - while BU2 and
+# BU3 do not appear to have seasonal characteristics. Also, all three series
+# appear to be non-stationary, which we can confirm with the Dickey-Fuller test
+
 
 
 df1 <- ur.df(series1, lag = 0)
@@ -60,6 +68,11 @@ summary(df1)
 # Critical values for test statistics: 
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
+
+# the time series is non-stationary as the value of the test statistic is
+# greater than the 5pct critical value
+
+
 
 df2 <- ur.df(series2, lag = 0)
 summary(df2)
@@ -95,6 +108,11 @@ summary(df2)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+# the time series is non-stationary as the value of the test statistic is
+# greater than the 5pct critical value
+
+
+
 df3 <- ur.df(series3, lag = 0)
 summary(df3)
 # 
@@ -129,6 +147,10 @@ summary(df3)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+# the time series is non-stationary as the value of the test statistic is
+# greater than the 5pct critical value
+
+
 
 ndiffs1 <- ndiffs(series1, test = "adf")
 ndiffs1
@@ -143,9 +165,11 @@ ndiffs3
 # 1
 
 
+
 diff1 <- diff(series1, differences = ndiffs1)
 diff2 <- diff(series2, differences = ndiffs2)
 diff3 <- diff(series3, differences = ndiffs3)
+
 
 
 par(mfrow = c(3, 2))
@@ -155,6 +179,10 @@ plot(diff2, col = "red")
 acf(diff2, col = "blue")
 plot(diff3, col = "red")
 acf(diff3, col = "blue")
+
+# looking at the plots after differencing it appears that all of the
+# business units are now stationary - we can confirm this by running
+# the Dickey-Fuller test
 
 
 
@@ -192,6 +220,11 @@ summary(df4)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+# the differenced time series is stationary as the value of the test
+# statistic is less than the 5pct critical value
+
+
+
 df5 <- ur.df(diff2, lag = 0)
 summary(df5)
 # 
@@ -226,6 +259,11 @@ summary(df5)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+# the differenced time series is stationary as the value of the test
+# statistic is less than the 5pct critical value
+
+
+
 df6 <- ur.df(diff3, lag = 0)
 summary(df6)
 # 
@@ -258,6 +296,51 @@ summary(df6)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+# the differenced time series is still non-stationary as the value of the test
+# statistic is slightly greater than the 5pct critical value, but it is close
+# enough to proceed
+
+
+
+# NOTE: the function ndiffs returned a value of 1 for series3 indicating that
+# one difference is required to produce stationarity, but interestingly if we
+# use two differences we get a better result from the Dickey-Fuller test:
+#
+#    > summary(ur.df(diff(series3, differences = 2), lag = 0))
+#
+# ###############################################
+# # Augmented Dickey-Fuller Test Unit Root Test #
+# ###############################################
+#
+# Test regression none
+#
+#
+# Call:
+# lm(formula = z.diff ~ z.lag.1 - 1)
+#
+# Residuals:
+#   Min       1Q   Median       3Q      Max
+# -0.72413 -0.18794  0.01032  0.21294  0.55175
+#
+# Coefficients:
+#         Estimate Std. Error t value Pr(>|t|)
+# z.lag.1  -1.2413     0.1743  -7.121  5.3e-08 ***
+# ---
+# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#
+# Residual standard error: 0.3094 on 31 degrees of freedom
+# Multiple R-squared:  0.6206,	Adjusted R-squared:  0.6084
+# F-statistic: 50.72 on 1 and 31 DF,  p-value: 5.297e-08
+#
+#
+# Value of test-statistic is: -7.1215
+#
+# Critical values for test statistics:
+#       1pct  5pct 10pct
+# tau1 -2.62 -1.95 -1.61
+
+
+
 
 
 
@@ -273,7 +356,7 @@ model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max
 # 
 #  Best model: ARIMA(0,1,1)(0,1,0)[12] 
 
-model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
+# model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
 # ARIMA(2,1,2)(0,1,0)[12]                    : Inf
 # ARIMA(0,1,0)(0,1,0)[12]                    : 78.21463
@@ -285,7 +368,23 @@ model1 <- auto.arima(series1, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "a
 # 
 # Best model: ARIMA(0,1,1)(0,1,0)[12]         
 
-model1 <- Arima(series1, order = c(0, 1, 1), seasonal = list(order = c(0, 1, 0), period = 12))
+summary(model1)
+# Series: series1 
+# ARIMA(0,1,1)(0,1,0)[12] 
+# 
+# Coefficients:
+#          ma1
+#       0.7169
+# s.e.  0.3244
+# 
+# sigma^2 = 1.424:  log likelihood = -34.88
+# AIC=73.77   AICc=74.4   BIC=75.95
+# 
+# Training set error measures:
+#                      ME      RMSE       MAE        MPE      MAPE      MASE       ACF1
+# Training set -0.1009652 0.9242057 0.5694445 -0.0750496 0.4224749 0.1141868 -0.1022243
+
+# model1 <- Arima(series1, order = c(0, 1, 1), seasonal = list(order = c(0, 1, 0), period = 12))
 
 coef(model1)
 #       ma1 
@@ -295,7 +394,6 @@ AIC(model1)
 # 73.7662
 
 resi1 <- residuals(model1)
-resi1
 
 Box.test(resi1)
 # 
@@ -304,8 +402,11 @@ Box.test(resi1)
 # data:  resi1
 # X-squared = 0.36574, df = 1, p-value = 0.5453
 
+# fail to reject the null hypothesis that the residuals are a white noise
+# process
 
-model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max.Q = 2, trace = TRUE, ic = "aic")
+
+# model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max.Q = 2, trace = TRUE, ic = "aic")
 # 
 # ARIMA(2,1,2)(0,1,0)[12]                    : Inf
 # ARIMA(0,1,0)(0,1,0)[12]                    : 52.17169
@@ -314,6 +415,8 @@ model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max
 # ARIMA(1,1,1)(0,1,0)[12]                    : Inf
 # 
 # Best model: ARIMA(0,1,0)(0,1,0)[12]  
+
+# model2 <- arima(series2, order = c(0, 1, 0), seasonal = list(order = c(0, 1, 0), period = 12))
 
 model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
@@ -329,7 +432,22 @@ model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "a
 # 
 # Best model: ARIMA(0,1,1)            with drift  
 
-# model2 <- arima(series2, order = c(0, 1, 0), seasonal = list(order = c(0, 1, 0), period = 12))
+summary(model2)
+# Series: series2 
+# ARIMA(0,1,1) with drift 
+# 
+# Coefficients:
+#          ma1   drift
+#       0.3219  0.4606
+# s.e.  0.1901  0.1066
+# 
+# sigma^2 = 0.2386:  log likelihood = -22.88
+# AIC=51.75   AICc=52.55   BIC=56.33
+# 
+# Training set error measures:
+#                       ME      RMSE       MAE         MPE      MAPE       MASE        ACF1
+# Training set 0.005517712 0.4670486 0.3555372 0.003875555 0.2854565 0.07135562 -0.02565482
+
 model2 <- Arima(series2, order = c(0, 1, 1), include.drift = TRUE)
 
 coef(model2)
@@ -340,7 +458,6 @@ AIC(model2)
 # 51.75392
 
 resi2 <- residuals(model2)
-resi2
 
 Box.test(resi2)
 # 
@@ -349,9 +466,12 @@ Box.test(resi2)
 # data:  resi2
 # X-squared = 0.023036, df = 1, p-value = 0.8794
 
+# fail to reject the null hypothesis that the residuals are a white noise
+# process
 
 
-model3 <- auto.arima(series3, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max.Q = 2, trace = TRUE, ic = "aic")
+
+# model3 <- auto.arima(series3, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max.Q = 2, trace = TRUE, ic = "aic")
 # 
 # ARIMA(2,1,2)(0,1,0)[12]                    : Inf
 # ARIMA(0,1,0)(0,1,0)[12]                    : 18.2819
@@ -360,6 +480,8 @@ model3 <- auto.arima(series3, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max
 # ARIMA(1,1,1)(0,1,0)[12]                    : 21.8712
 # 
 # Best model: ARIMA(0,1,0)(0,1,0)[12]    
+
+# model3 <- arima(series3, order = c(0, 1, 0), seasonal = list(order = c(0, 1, 0), period = 12))
 
 model3 <- auto.arima(series3, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "aic")
 # 
@@ -375,7 +497,22 @@ model3 <- auto.arima(series3, d = 1, max.p = 2, max.q = 2, trace = TRUE, ic = "a
 # 
 #  Best model: ARIMA(0,1,1)            with drift   
 
-# model3 <- arima(series3, order = c(0, 1, 0), seasonal = list(order = c(0, 1, 0), period = 12))
+summary(model3)
+# Series: series3 
+# ARIMA(0,1,1) with drift 
+# 
+# Coefficients:
+#          ma1   drift
+#       0.3323  0.4006
+# s.e.  0.1409  0.0583
+# 
+# sigma^2 = 0.07058:  log likelihood = -2.11
+# AIC=10.21   AICc=11.01   BIC=14.79
+# 
+# Training set error measures:
+#                       ME      RMSE       MAE        MPE      MAPE       MASE       ACF1
+# Training set 0.006229748 0.2540251 0.2103936 0.00450463 0.1755855 0.04278561 0.01091841
+
 model3 <- Arima(series3, order = c(0, 1, 1), include.drift = TRUE)
 
 coef(model3)
@@ -386,14 +523,17 @@ AIC(model3)
 # 10.21436
 
 resi3 <- residuals(model3)
-resi3
 
 Box.test(resi3)
-
+#
 #         Box-Pierce test
-
+#
 # data:  resi3
 # X-squared = 0.0041724, df = 1, p-value = 0.9485
+
+# fail to reject the null hypothesis that the residuals are a white noise
+# process
+
 
 
 par(mfrow = c(3, 1))
@@ -401,6 +541,11 @@ plot(resi1, col = "darkorange")
 plot(resi2, col = "darkorange")
 plot(resi3, col = "darkorange")
 
+
+
+# to predict sales for each business unit for the first three months of 2018
+# we must use the forecast function on BU2 and BU3 because predict fails due
+# to the presence of drift
 
 predict(model1, n.ahead = 3)
 # $pred
@@ -417,14 +562,8 @@ forecast(model1, h = 3)
 # Feb 2018       138.0859 135.0478 141.1240 133.4395 142.7322
 # Mar 2018       135.9859 131.9707 140.0011 129.8451 142.1266
 
-predict(model2, n.ahead = 3)
-# $pred
-#        Jan   Feb   Mar
-# 2018 131.2 131.9 133.5
-# 
-# $se
-#            Jan       Feb       Mar
-# 2018 0.7567875 1.0702591 1.3107943
+# predict(model2, n.ahead = 3)
+# the above call fails due (I think) to the presence of drift
 
 forecast(model2, h = 3)
 #          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
@@ -432,14 +571,8 @@ forecast(model2, h = 3)
 # Feb 2018       132.1785 131.1409 133.2161 130.5917 133.7653
 # Mar 2018       132.6391 131.3120 133.9663 130.6094 134.6688
 
-predict(model3, n.ahead = 3)
-# $pred
-#        Jan   Feb   Mar
-# 2018 128.1 128.5 128.6
-# 
-# $se
-#            Jan       Feb       Mar
-# 2018 0.3503245 0.4954337 0.6067799
+# predict(model3, n.ahead = 3)
+# the above call fails due (I think) to the presence of drift
 
 forecast(model3, h = 3)
 #          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
