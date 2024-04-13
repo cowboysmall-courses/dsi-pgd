@@ -44,6 +44,8 @@ dependencies = [
   "yfinance",
   "arch",
   "pmdarima",
+  "hoggorm",
+  # "hoggorm==0.13.3",
   "ipykernel",
 ]
 

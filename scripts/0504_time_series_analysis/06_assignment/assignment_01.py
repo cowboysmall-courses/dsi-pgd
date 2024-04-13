@@ -4,14 +4,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pmdarima as pm
+import statsmodels.api as sm
 
 from arch.unitroot import ADF
 from pmdarima.arima.utils import ndiffs
 from statsmodels.graphics.tsaplots import plot_acf
 from statsmodels.tsa.statespace.tools import diff
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.stats.diagnostic import acorr_ljungbox
+
+# from statsmodels.tsa.statespace.sarimax import SARIMAX
+# from statsmodels.tsa.arima.model import ARIMA
+
 
 
 # %% 1 -
@@ -20,6 +23,7 @@ plt.style.use("ggplot")
 
 sns.set_style("darkgrid")
 sns.set_context("paper")
+
 
 
 # %% 2 - import data and check the head
@@ -33,6 +37,7 @@ data.head()
 # 4	2015	     June	123.4	118.3	114.7
 
 
+
 # %% 3 - 
 # series_rng = pd.date_range('2015-02-01', '2017-12-31', freq = 'M')
 series_rng = pd.date_range('2015-02-01', '2017-12-31', freq = 'ME')
@@ -42,7 +47,24 @@ series2 = pd.Series(data.BU2.values, series_rng)
 series3 = pd.Series(data.BU3.values, series_rng)
 
 
-# %% 4 - 
+
+# %% 4 -
+decomp1 = sm.tsa.seasonal_decompose(series1.interpolate())
+decomp1.plot()
+
+
+# %% 5 -
+decomp2 = sm.tsa.seasonal_decompose(series2.interpolate())
+decomp2.plot()
+
+
+# %% 6 -
+decomp3 = sm.tsa.seasonal_decompose(series3.interpolate())
+decomp3.plot()
+
+
+
+# %% 7 -
 fig, axs = plt.subplots(3, 2, figsize = (16, 9))
 axs[0, 0].plot(series1, color = 'red')
 plot_acf(series1, ax = axs[0, 1])
@@ -52,13 +74,15 @@ axs[2, 0].plot(series3, color = 'red')
 plot_acf(series3, ax = axs[2, 1])
 plt.show()
 
-# looking at the plots: the sales data of all three business units are trending 
-# upwards, but it appears that BU1 has seasonal characteristics - while BU2 and 
-# BU3 do not appear to have seasonal characteristics. Also, all three series 
+# COMMENT:
+# looking at the plots: the sales data of all three business units are trending upwards,
+# and it appears that all three business units have seasonal characteristics - while BU2
+# and BU3 do not appear to have strong seasonal characteristics. Also, all three series
 # appear to be non-stationary, which we can confirm with the Dickey-Fuller test
 
 
-# %% 5 - 
+
+# %% 8 -
 adf = ADF(series1, lags = 0, trend = 'n')
 adf.summary()
 # """
@@ -75,11 +99,13 @@ adf.summary()
 # Alternative Hypothesis: The process is weakly stationary.
 # """
 
+# COMMENT:
 # the time series is non-stationary as the value of the test statistic is
 # greater than the 5pct critical value
 
 
-# %% 6 - 
+
+# %% 9 -
 adf = ADF(series2, lags = 0, trend = 'n')
 adf.summary()
 # """
@@ -96,11 +122,13 @@ adf.summary()
 # Alternative Hypothesis: The process is weakly stationary.
 # """
 
+# COMMENT:
 # the time series is non-stationary as the value of the test statistic is
 # greater than the 5pct critical value
 
 
-# %% 7 - 
+
+# %% 10 -
 adf = ADF(series3, lags = 0, trend = 'n')
 adf.summary()
 # """
@@ -117,32 +145,36 @@ adf.summary()
 # Alternative Hypothesis: The process is weakly stationary.
 # """
 
+# COMMENT:
 # the time series is non-stationary as the value of the test statistic is
 # greater than the 5pct critical value
 
 
-# %% 8 - 
+
+# %% 11 -
 ndiffs(series1)
 # 1
 
 
-# %% 9 - 
+# %% 12 -
 ndiffs(series2)
 # 1
 
 
-# %% 10 - 
+# %% 13 -
 ndiffs(series3)
 # 1
 
 
-# %% 11 - 
+
+# %% 14 -
 diff1 = diff(series1)
 diff2 = diff(series2)
 diff3 = diff(series3)
 
 
-# %% 12 - 
+
+# %% 15 -
 fig, axs = plt.subplots(3, 2, figsize = (16, 9))
 axs[0, 0].plot(diff1, color = 'red')
 plot_acf(diff1, ax = axs[0, 1])
@@ -152,12 +184,14 @@ axs[2, 0].plot(diff3, color = 'red')
 plot_acf(diff3, ax = axs[2, 1])
 plt.show()
 
+# COMMENT:
 # looking at the plots after differencing it appears that all of the 
 # business units are now stationary - we can confirm this by running 
 # the Dickey-Fuller test
 
 
-# %% 13 - 
+
+# %% 16 -
 adf = ADF(diff1, lags = 0, trend = 'n')
 adf.summary()
 # """
@@ -174,11 +208,12 @@ adf.summary()
 # Alternative Hypothesis: The process is weakly stationary.
 # """
 
+# COMMENT:
 # the differenced time series is stationary as the value of the test
 # statistic is less than the 5pct critical value
 
 
-# %% 14 - 
+# %% 17 -
 adf = ADF(diff2, lags = 0, trend = 'n')
 adf.summary()
 # """
@@ -195,11 +230,12 @@ adf.summary()
 # Alternative Hypothesis: The process is weakly stationary.
 # """
 
+# COMMENT:
 # the differenced time series is stationary as the value of the test
 # statistic is less than the 5pct critical value
 
 
-# %% 15 - 
+# %% 18 -
 adf = ADF(diff3, lags = 0, trend = 'n')
 adf.summary()
 # """
@@ -216,13 +252,15 @@ adf.summary()
 # Alternative Hypothesis: The process is weakly stationary.
 # """
 
+# COMMENT:
 # the differenced time series is still non-stationary as the value of the test
 # statistic is slightly greater than the 5pct critical value, but it is close
 # enough to proceed
 
 
 
-# %% 16 - 
+
+# %% 19 -
 model1 = pm.auto_arima(series1, d = 1, max_p = 2, max_q = 2, seasonal = True, m = 12, trace = True)
 # Performing stepwise search to minimize aic
 #  ARIMA(2,1,2)(1,1,1)[12]             : AIC=inf, Time=0.44 sec
@@ -242,7 +280,7 @@ model1 = pm.auto_arima(series1, d = 1, max_p = 2, max_q = 2, seasonal = True, m 
 # Total fit time: 0.898 seconds
 
 
-# %% 19 - 
+# %% 20 -
 model1.summary()
 # """
 #                                       SARIMAX Results                                      
@@ -271,36 +309,35 @@ model1.summary()
 # """
 
 
-# %% 17 - 
+# %% 21 -
 model1.params()
 # ma.L1     0.716674
 # sigma2    1.350645
 # dtype: float64
 
 
-# %% 18 - 
+# %% 22 -
 model1.aic()
 # 73.76709547666287
 
 
-# %% 19 - 
+# %% 23 -
 resi1 = model1.resid()
 
 
-
-# %% 20 - 
-# acorr_ljungbox(resi1[1:], lags = None, boxpierce = True)
+# %% 23 -
+acorr_ljungbox(resi1, lags = 1, boxpierce = True)
 #     lb_stat  lb_pvalue   bp_stat  bp_pvalue
-# 1  0.065811   0.797537  0.060327   0.805980
-# 2  0.141720   0.931593  0.127801   0.938098
-# 3  0.194773   0.978429  0.173486   0.981752
-# 4  0.320527   0.988451  0.278281   0.991173
-# 5  0.603002   0.987865  0.505831   0.991908
-# 6  0.746240   0.993438  0.617238   0.996106
+# 1  0.002027   0.964091  0.001863   0.965576
+
+# COMMENT:
+# fail to reject the null hypothesis that the residuals are a white noise
+# process
 
 
 
-# %% 20 - 
+
+# %% 24 -
 # model2 = pm.auto_arima(series2, max_p = 2, max_q = 2, d = 1, seasonal = True, m = 12, trace = True)
 # Performing stepwise search to minimize aic
 #  ARIMA(2,1,2)(1,0,1)[12] intercept   : AIC=inf, Time=0.35 sec
@@ -336,7 +373,7 @@ model2 = pm.auto_arima(series2, max_p = 2, max_q = 2, d = 1, seasonal = False, t
 # Total fit time: 0.220 seconds
 
 
-# %% 20 - 
+# %% 25 -
 model2.summary()
 # """
 #                                SARIMAX Results                                
@@ -366,7 +403,7 @@ model2.summary()
 # """
 
 
-# %% 21 - 
+# %% 26 -
 model2.params()
 # intercept    0.460616
 # ma.L1        0.321906
@@ -374,27 +411,27 @@ model2.params()
 # dtype: float64
 
 
-# %% 22 - 
+# %% 27 -
 model2.aic()
 # 51.75384285245132
 
 
-# %% 23 - 
+# %% 28 -
 resi2 = model2.resid()
 
 
-# %% 23 - 
-# acorr_ljungbox(resi2[1:], lags = None, boxpierce = True)
+# %% 28 -
+acorr_ljungbox(resi2, lags = 1, boxpierce = True)
 #     lb_stat  lb_pvalue   bp_stat  bp_pvalue
-# 1  0.019435   0.889125  0.017816   0.893817
-# 2  0.347350   0.840570  0.309296   0.856717
-# 3  0.442234   0.931386  0.391001   0.942095
-# 4  1.196449   0.878683  1.019514   0.906823
-# 5  1.284545   0.936514  1.090480   0.954943
-# 6  1.361708   0.968146  1.150495   0.979259
+# 1  0.000342   0.985236  0.000315   0.985847
+
+# COMMENT:
+# fail to reject the null hypothesis that the residuals are a white noise
+# process
 
 
-# %% 24 - 
+
+# %% 29 -
 model3 = pm.auto_arima(series3, max_p = 2, max_q = 2, d = 1, seasonal = False, trace = True)
 # Performing stepwise search to minimize aic
 #  ARIMA(2,1,2)(0,0,0)[0] intercept   : AIC=inf, Time=0.10 sec
@@ -411,7 +448,7 @@ model3 = pm.auto_arima(series3, max_p = 2, max_q = 2, d = 1, seasonal = False, t
 # Total fit time: 0.245 seconds
 
 
-# %% 24 - 
+# %% 30 -
 model3.summary()
 # """
 #                                SARIMAX Results                                
@@ -441,7 +478,7 @@ model3.summary()
 # """
 
 
-# %% 25 - 
+# %% 31 -
 model3.params()
 # intercept    0.400626
 # ma.L1        0.332299
@@ -449,28 +486,27 @@ model3.params()
 # dtype: float64
 
 
-# %% 26 - 
+# %% 32 -
 model3.aic()
 # 10.21395701201946
 
 
-# %% 27 - 
+# %% 33 -
 resi3 = model3.resid()
 
 
-# %% 29 - 
-# acorr_ljungbox(resi3, lags = None, boxpierce = True)
-# acorr_ljungbox(resi3[1:], lags = None, boxpierce = True)
+# %% 33 -
+acorr_ljungbox(resi3, lags = 1, boxpierce = True)
 #     lb_stat  lb_pvalue   bp_stat  bp_pvalue
-# 1  0.034134   0.853421  0.031290   0.859595
-# 2  0.074437   0.963465  0.067115   0.966999
-# 3  2.704313   0.439495  2.331729   0.506470
-# 4  2.782347   0.594884  2.396758   0.663213
-# 5  3.929995   0.559538  3.321252   0.650590
-# 6  6.315627   0.388778  5.176744   0.521353
+# 1  0.000757   0.978052  0.000695   0.978961
+
+# COMMENT:
+# fail to reject the null hypothesis that the residuals are a white noise
+# process
 
 
-# %% 29 - 
+
+# %% 34 -
 fig, axs = plt.subplots(3, 1, figsize = (16, 9))
 axs[0].plot(resi1[1:], color = 'darkorange')
 axs[1].plot(resi2[1:], color = 'darkorange')
@@ -478,7 +514,16 @@ axs[2].plot(resi3[1:], color = 'darkorange')
 plt.show()
 
 
-# %% 29 - 
+
+
+
+
+# COMMENT:
+# to predict sales for each business unit for the first three months of 2018
+# we use the predict function
+
+
+# %% 35 -
 # model1.forecast(3)
 
 model1.predict(3)
@@ -488,7 +533,7 @@ model1.predict(3)
 # Freq: ME, dtype: float64
 
 
-# %% 29 - 
+# %% 36 -
 # model2.forecast(3)
 
 model2.predict(3)
@@ -498,7 +543,7 @@ model2.predict(3)
 # Freq: ME, dtype: float64
 
 
-# %% 29 - 
+# %% 37 -
 # model3.forecast(3)
 
 model3.predict(3)
@@ -506,7 +551,3 @@ model3.predict(3)
 # 2018-02-28    128.347705
 # 2018-03-31    128.748331
 # Freq: ME, dtype: float64
-
-# to predict sales for each business unit for the first three months of 2018
-# we use the predict function
-

@@ -22,6 +22,18 @@ series3 <- ts(data$BU3, start = c(2015, 2), end = c(2017, 12), frequency = 12)
 
 
 
+decomp1 <- stl(series1, s.window = "periodic")
+plot(decomp1)
+
+decomp2 <- stl(series2, s.window = "periodic")
+plot(decomp2)
+
+decomp3 <- stl(series3, s.window = "periodic")
+plot(decomp3)
+
+
+
+
 par(mfrow = c(3, 2))
 plot(series1, col = "red")
 acf(series1, col = "blue")
@@ -30,9 +42,11 @@ acf(series2, col = "blue")
 plot(series3, col = "red")
 acf(series3, col = "blue")
 
-# looking at the plots: the sales data of all three business units are trending
-# upwards, but it appears that BU1 has seasonal characteristics - while BU2 and
-# BU3 do not appear to have seasonal characteristics. Also, all three series
+
+# COMMENT:
+# looking at the plots: the sales data of all three business units are trending upwards,
+# and it appears that all three business units have seasonal characteristics - while BU2
+# and BU3 do not appear to have strong seasonal characteristics. Also, all three series
 # appear to be non-stationary, which we can confirm with the Dickey-Fuller test
 
 
@@ -69,6 +83,8 @@ summary(df1)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+
+# COMMENT:
 # the time series is non-stationary as the value of the test statistic is
 # greater than the 5pct critical value
 
@@ -108,6 +124,8 @@ summary(df2)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+
+# COMMENT:
 # the time series is non-stationary as the value of the test statistic is
 # greater than the 5pct critical value
 
@@ -147,6 +165,8 @@ summary(df3)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+
+# COMMENT:
 # the time series is non-stationary as the value of the test statistic is
 # greater than the 5pct critical value
 
@@ -180,6 +200,8 @@ acf(diff2, col = "blue")
 plot(diff3, col = "red")
 acf(diff3, col = "blue")
 
+
+# COMMENT:
 # looking at the plots after differencing it appears that all of the
 # business units are now stationary - we can confirm this by running
 # the Dickey-Fuller test
@@ -220,6 +242,8 @@ summary(df4)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+
+# COMMENT:
 # the differenced time series is stationary as the value of the test
 # statistic is less than the 5pct critical value
 
@@ -259,6 +283,8 @@ summary(df5)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+
+# COMMENT:
 # the differenced time series is stationary as the value of the test
 # statistic is less than the 5pct critical value
 
@@ -296,15 +322,19 @@ summary(df6)
 #       1pct  5pct 10pct
 # tau1 -2.62 -1.95 -1.61
 
+
+# COMMENT:
 # the differenced time series is still non-stationary as the value of the test
 # statistic is slightly greater than the 5pct critical value, but it is close
 # enough to proceed
 
 
 
-# NOTE: the function ndiffs returned a value of 1 for series3 indicating that
-# one difference is required to produce stationarity, but interestingly if we
-# use two differences we get a better result from the Dickey-Fuller test:
+# NOTE:
+# the function ndiffs returned a value of 1 for series3 indicating that
+# one difference is required to produce stationarity, but interestingly
+# if we use two differences we get a better result from the Dickey-Fuller
+# test:
 #
 #    > summary(ur.df(diff(series3, differences = 2), lag = 0))
 #
@@ -402,8 +432,11 @@ Box.test(resi1)
 # data:  resi1
 # X-squared = 0.36574, df = 1, p-value = 0.5453
 
+
+# COMMENT:
 # fail to reject the null hypothesis that the residuals are a white noise
 # process
+
 
 
 # model2 <- auto.arima(series2, d = 1, max.p = 2, max.q = 2, D = 1, max.P = 2, max.Q = 2, trace = TRUE, ic = "aic")
@@ -448,7 +481,7 @@ summary(model2)
 #                       ME      RMSE       MAE         MPE      MAPE       MASE        ACF1
 # Training set 0.005517712 0.4670486 0.3555372 0.003875555 0.2854565 0.07135562 -0.02565482
 
-model2 <- Arima(series2, order = c(0, 1, 1), include.drift = TRUE)
+# model2 <- Arima(series2, order = c(0, 1, 1), include.drift = TRUE)
 
 coef(model2)
 #       ma1     drift 
@@ -466,6 +499,8 @@ Box.test(resi2)
 # data:  resi2
 # X-squared = 0.023036, df = 1, p-value = 0.8794
 
+
+# COMMENT:
 # fail to reject the null hypothesis that the residuals are a white noise
 # process
 
@@ -513,7 +548,7 @@ summary(model3)
 #                       ME      RMSE       MAE        MPE      MAPE       MASE       ACF1
 # Training set 0.006229748 0.2540251 0.2103936 0.00450463 0.1755855 0.04278561 0.01091841
 
-model3 <- Arima(series3, order = c(0, 1, 1), include.drift = TRUE)
+# model3 <- Arima(series3, order = c(0, 1, 1), include.drift = TRUE)
 
 coef(model3)
 #       ma1     drift 
@@ -531,6 +566,8 @@ Box.test(resi3)
 # data:  resi3
 # X-squared = 0.0041724, df = 1, p-value = 0.9485
 
+
+# COMMENT:
 # fail to reject the null hypothesis that the residuals are a white noise
 # process
 
@@ -543,6 +580,7 @@ plot(resi3, col = "darkorange")
 
 
 
+# COMMENT:
 # to predict sales for each business unit for the first three months of 2018
 # we must use the forecast function on BU2 and BU3 because predict fails due
 # to the presence of drift
