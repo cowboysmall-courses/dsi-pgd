@@ -52,8 +52,11 @@ head(data_cl)
 wss <- function(k) { 
   kmeans(data_cl, k, iter.max = 1000)$tot.withinss
 }
+
 k_values <- 1:15
+
 wss_values <- map_dbl(k_values, wss)
+
 plot(
   k_values,
   wss_values,
