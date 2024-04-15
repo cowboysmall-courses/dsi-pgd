@@ -25,7 +25,7 @@ sns.set_context("paper")
 
 # %% 1 - import data and check the head
 data = pd.read_csv("./data/0604_unsupervised_multivariate_methods/00_live_class/Customer Segments.csv")
-print(data.head())
+data.head()
 #    Cust_ID  Age  BillAmt_Product  BillAmt_Service  BillAmt_Pre  Vintage
 # 0    82078   49         81128.27         48203.10     62975.45      5.0
 # 1    57215   34         59480.20         17263.19     23633.58      5.0
@@ -67,7 +67,7 @@ print(f"Number of cols: {cols}")
 
 # %% 1 - 
 data = data.drop(['Cust_ID'], axis = 1)
-print(data.head())
+data.head()
 #    Age  BillAmt_Product  BillAmt_Service  BillAmt_Pre  Vintage
 # 0   49         81128.27         48203.10     62975.45      5.0
 # 1   34         59480.20         17263.19     23633.58      5.0

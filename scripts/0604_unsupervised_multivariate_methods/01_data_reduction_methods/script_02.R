@@ -3,7 +3,7 @@ library(car)
 library(pls)
 
 
-data <- read.csv("./data/0604_unsupervised_multivariate_methods/00_live_class/pcrdata.csv", header = TRUE)
+data <- read.csv("./data/0604_unsupervised_multivariate_methods/01_data_reduction_methods/pcrdata.csv", header = TRUE)
 head(data)
 #   SRNO SALES   AD PRO SALEXP ADPRE PROPRE
 # 1    1 20.11 1.98 0.9   0.31  2.02    0.0
@@ -70,8 +70,8 @@ head(data)
 # 6    6 17.85 1.74 0.3   0.32  1.69    1.3 20.57217
 
 
-data_test <- read.csv("./data/0604_unsupervised_multivariate_methods/00_live_class/pcrdata_test.csv", header = TRUE)
-head(data_test)
+test <- read.csv("./data/0604_unsupervised_multivariate_methods/00_live_class/pcrdata_test.csv", header = TRUE)
+head(test)
 #   SRNO SALES   AD  PRO SALEXP ADPRE PROPRE
 # 1    1 28.93 2.75 1.00   0.72  1.97   0.02
 # 2    2 25.96 1.73 1.06   0.89  2.77   0.02
@@ -81,17 +81,17 @@ head(data_test)
 # 6    6 23.23 2.97 0.46   0.96  2.36   0.12
 
 
-data_test$lmpredict <- predict(lmmodel, data_test)
-data_test$lmres     <- (data_test$SALES - data_test$lmpredict)
-RMSE_lm <- sqrt(mean(data_test$lmres ** 2))
+test$pcrpredict <- predict(pcmodel, test, ncomp = 3)
+test$pcrres     <- (test$SALES - test$pcrpredict)
+RMSE_pcr <- sqrt(mean(test$pcrres ** 2))
 
 
-data_test$pcrpredict <- predict(pcmodel, data_test, ncomp = 3)
-data_test$pcrres     <- (data_test$SALES - data_test$pcrpredict)
-RMSE_pcr <- sqrt(mean(data_test$pcrres ** 2))
+test$lmpredict <- predict(lmmodel, test)
+test$lmres     <- (test$SALES - test$lmpredict)
+RMSE_lm <- sqrt(mean(test$lmres ** 2))
 
 
-head(data_test)
+head(test)
 #   SRNO SALES   AD  PRO SALEXP ADPRE PROPRE lmpredict       lmres pcrpredict
 # 1    1 28.93 2.75 1.00   0.72  1.97   0.02  32.31368  -3.3836776   23.23291
 # 2    2 25.96 1.73 1.06   0.89  2.77   0.02  34.36925  -8.4092464   22.26693
