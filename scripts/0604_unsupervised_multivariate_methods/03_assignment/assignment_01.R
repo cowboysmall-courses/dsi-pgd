@@ -89,7 +89,7 @@ aggregate(cbind(age, MonthlyIncome, MinBal, MaxBal, Age.with.Bank) ~ segment, da
 # 
 # so instead take the below approach 
 
-wss <- function(k) { 
+wss <- function(k) {
 
   CL <- kmeans(data_cl, k, iter.max = 1000)
   CL$tot.withinss
