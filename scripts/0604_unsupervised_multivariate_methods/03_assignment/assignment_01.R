@@ -11,9 +11,7 @@
 
 
 library(purrr)
-library(factoextra)
 library(fpc)
-library(flexclust)
 
 
 
@@ -32,7 +30,7 @@ head(data)
 
 
 # 2. Subset the data excluding Customer id and City.
-data_cl <- subset(data, select = c(-Cust_Id, -City))
+data_cl <- subset(data, select = -c(Cust_Id, City))
 
 
 
@@ -111,6 +109,14 @@ plot(
   ylab = "Total within-clusters sum of squares"
 )
 
+# We can see from the plot that the appropriate number of clusters is around 3.
+
+
 cl <- kmeansruns(data_cl, krange = 2:10)
 cl$bestk
 # 3
+
+# The above function runs kmeans over the specified range to evaluate the best
+# number of clusters - and the result agrees with what we have seen from the
+# above plot.
+
