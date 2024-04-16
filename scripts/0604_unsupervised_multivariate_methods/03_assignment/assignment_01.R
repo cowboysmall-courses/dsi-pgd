@@ -10,7 +10,6 @@
 #   bank (in years).
 
 
-library(dplyr)
 library(purrr)
 library(factoextra)
 library(fpc)
