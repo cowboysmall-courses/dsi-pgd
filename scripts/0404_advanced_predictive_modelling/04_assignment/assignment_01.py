@@ -679,17 +679,17 @@ falsepos4    = (table4.iloc[1, 0] / (table4.iloc[0, 0] + table4.iloc[1, 0])) * 1
 
 print("Sensitivity for cut-off", threshold, "is :", round(sensitivity4, 2))
 # Sensitivity for cut-off 0.3 is : 66.1
-print("Specificity for cut-off", threshold, "is :", round(specificity2, 2))
+print("Specificity for cut-off", threshold, "is :", round(specificity4, 2))
 # Specificity for cut-off 0.3 is : 74.62
-print("Accuracy for cut-off", threshold, "is :", round(accuracy2, 2))
+print("Accuracy for cut-off", threshold, "is :", round(accuracy4, 2))
 # Accuracy for cut-off 0.3 is : 71.96
-print("Mis-Classification for cut-off", threshold, "is :", round(misclass2, 2))
+print("Mis-Classification for cut-off", threshold, "is :", round(misclass4, 2))
 # Mis-Classification for cut-off 0.3 is : 28.04
-print("The sum of Sensitivity and Specificity for cut-off", threshold, "is :", round(sensitivity2 + specificity2, 2))
+print("The sum of Sensitivity and Specificity for cut-off", threshold, "is :", round(sensitivity4 + specificity4, 2))
 # The sum of Sensitivity and Specificity for cut-off 0.3 is : 140.72
-print("The difference of Sensitivity and Specificity for cut-off", threshold, "is :", abs(round(sensitivity2 - specificity2, 2)))
+print("The difference of Sensitivity and Specificity for cut-off", threshold, "is :", abs(round(sensitivity4 - specificity4, 2)))
 # The difference of Sensitivity and Specificity for cut-off 0.3 is : 8.51
-print("False Positive Rate for cut-off", threshold, "is :", round(falsepos2, 2))
+print("False Positive Rate for cut-off", threshold, "is :", round(falsepos4, 2))
 # False Positive Rate for cut-off 0.3 is : 25.38
 
 
