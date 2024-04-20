@@ -3,7 +3,6 @@ library(caret)
 library(class)
 
 
-# data <- read.csv("./data/0704_machine_learning_01/00_live_class/BANK\ LOAN.csv", header = TRUE)
 data <- read.csv("./data/0704_machine_learning_01/00_live_class/BANK\ LOAN\ KNN.csv", header = TRUE)
 head(data)
 #   SN AGE EMPLOY ADDRESS DEBTINC CREDDEBT OTHDEBT DEFAULTER
@@ -15,25 +14,25 @@ head(data)
 # 6 14   2      6       9    16.3     1.72    3.01         0
 
 
-data2 <- subset(data, select = c(-AGE, -SN, -DEFAULTER))
+data_sub <- subset(data, select = c(-AGE, -SN, -DEFAULTER))
 
 
-data2 <- scale(data2)
+data_sub <- scale(data_sub)
 
 
 index <- createDataPartition(data$SN, p = 0.7, list = FALSE)
-train <- data2[index, ]
-test  <- data2[-index, ]
+train <- data_sub[index, ]
+test  <- data_sub[-index, ]
 
 
 y_train <- data$DEFAULTER[index]
 y_test  <- data$DEFAULTER[-index]
 
 
-y_test_pred <- knn(train, test, k = 17, cl = y_train)
+y_pred <- knn(train, test, k = 17, cl = y_train)
 
 
-table(y_test, y_test_pred)
+table(y_test, y_pred)
 #       y_test_pred
 # y_test  0  1
 #      0 44 13
