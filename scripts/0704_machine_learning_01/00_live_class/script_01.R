@@ -33,8 +33,8 @@ y_pred <- knn(train, test, k = 17, cl = y_train)
 
 
 table(y_test, y_pred)
-#       y_test_pred
+#       y_pred
 # y_test  0  1
-#      0 44 13
-#      1 15 44
+#      0 38 20
+#      1 15 43
 

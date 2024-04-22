@@ -2,12 +2,11 @@
 # %% 0 - import libraries
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report, confusion_matrix, f1_score, precision_score, recall_score, accuracy_score, roc_curve, roc_auc_score
+from sklearn.metrics import classification_report, confusion_matrix, precision_score, recall_score, accuracy_score
 
 
 
@@ -68,13 +67,16 @@ knn_classifier.fit(X_train, y_train)
 
 y_pred =  knn_classifier.predict(X_test)
 
+
+
+# %% 6 - 
 confusion_matrix(y_test, y_pred, labels = [0, 1])
 # array([[49,  7],
 #        [24, 37]])
 
 
 
-# %% 6 - 
+# %% 7 - 
 print(accuracy_score(y_test, y_pred))
 # 0.7350427350427351
 
@@ -86,7 +88,7 @@ print(recall_score(y_test, y_pred))
 
 
 
-# %% 7 - 
+# %% 8 - 
 print(classification_report(y_test, y_pred))
 #               precision    recall  f1-score   support
 # 
@@ -99,19 +101,22 @@ print(classification_report(y_test, y_pred))
 
 
 
-# %% 8 - 
+# %% 9 - 
 knn_classifier = KNeighborsClassifier(n_neighbors = int(np.sqrt(len(X_train)).round()))
 knn_classifier.fit(X_train, y_train)
 
 y_pred =  knn_classifier.predict(X_test)
 
+
+
+# %% 10 - 
 confusion_matrix(y_test, y_pred, labels = [0, 1])
 # array([[46, 10],
 #        [21, 40]])
 
 
 
-# %% 9 - 
+# %% 11 - 
 print(accuracy_score(y_test, y_pred))
 # 0.7350427350427351
 
@@ -123,7 +128,7 @@ print(recall_score(y_test, y_pred))
 
 
 
-# %% 10 - 
+# %% 12 - 
 print(classification_report(y_test, y_pred))
 #               precision    recall  f1-score   support
 # 
