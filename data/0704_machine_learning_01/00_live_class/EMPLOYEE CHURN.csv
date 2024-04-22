@@ -1,0 +1,84 @@
+sn,status,function,exp,gender,source
+1,1,CS,<3,M,external
+2,1,CS,<3,M,external
+3,1,CS,>=3 and <=5,M,internal
+4,1,CS,>=3 and <=5,F,internal
+5,1,CS,<3,M,internal
+6,1,CS,>5,M,external
+7,1,CS,>5,F,external
+8,1,CS,<3,F,external
+9,1,CS,<3,M,external
+10,1,CS,<3,F,internal
+11,1,CS,<3,F,internal
+12,1,CS,<3,M,internal
+13,1,CS,<3,F,external
+14,1,CS,<3,F,external
+15,1,CS,>5,F,external
+16,1,CS,>5,F,internal
+17,1,CS,<3,M,internal
+18,1,CS,<3,M,external
+19,1,FINANCE,<3,F,internal
+20,1,FINANCE,<3,F,external
+21,1,FINANCE,<3,M,external
+22,1,FINANCE,<3,M,internal
+23,1,FINANCE,<3,M,external
+24,1,FINANCE,<3,F,external
+25,1,FINANCE,<3,M,internal
+26,1,FINANCE,<3,M,internal
+27,1,MARKETING,<3,M,external
+28,1,MARKETING,<3,F,internal
+29,1,MARKETING,<3,M,external
+30,1,MARKETING,>=3 and <=5,M,internal
+31,1,MARKETING,>=3 and <=5,M,external
+32,1,MARKETING,<3,F,external
+33,1,MARKETING,<3,M,internal
+34,0,CS,>5,M,internal
+35,0,CS,>=3 and <=5,F,internal
+36,0,CS,<3,F,external
+37,0,CS,>=3 and <=5,F,internal
+38,0,CS,<3,M,internal
+39,0,CS,>=3 and <=5,M,internal
+40,0,CS,>5,M,internal
+41,0,CS,<3,M,internal
+42,0,FINANCE,>5,M,internal
+43,0,FINANCE,>5,M,internal
+44,0,FINANCE,>=3 and <=5,M,internal
+45,0,FINANCE,<3,M,external
+46,0,FINANCE,<3,F,internal
+47,0,FINANCE,>5,F,internal
+48,0,FINANCE,>5,F,internal
+49,0,FINANCE,>5,M,internal
+50,0,FINANCE,>=3 and <=5,M,internal
+51,0,FINANCE,>5,F,internal
+52,0,FINANCE,>5,F,external
+53,0,FINANCE,>=3 and <=5,F,internal
+54,0,FINANCE,>5,F,internal
+55,0,FINANCE,>5,F,external
+56,0,FINANCE,>=3 and <=5,F,internal
+57,0,FINANCE,<3,M,external
+58,0,FINANCE,<3,M,external
+59,0,FINANCE,>5,M,external
+60,0,FINANCE,>5,M,internal
+61,0,FINANCE,>5,M,internal
+62,0,MARKETING,>5,F,external
+63,0,MARKETING,>5,F,external
+64,0,MARKETING,>=3 and <=5,F,external
+65,0,MARKETING,>5,F,internal
+66,0,MARKETING,>5,M,external
+67,0,MARKETING,>=3 and <=5,M,internal
+68,0,MARKETING,>5,M,internal
+69,0,MARKETING,<3,F,internal
+70,0,MARKETING,>5,F,external
+71,0,MARKETING,>5,F,external
+72,0,MARKETING,>5,M,external
+73,0,MARKETING,<3,M,internal
+74,0,MARKETING,>5,M,internal
+75,0,MARKETING,>5,M,external
+76,0,MARKETING,>5,M,internal
+77,0,MARKETING,>5,F,internal
+78,0,MARKETING,>5,F,internal
+79,0,MARKETING,>5,F,internal
+80,0,MARKETING,>5,F,external
+81,0,MARKETING,>5,M,internal
+82,0,MARKETING,>=3 and <=5,M,internal
+83,0,MARKETING,<3,M,external
