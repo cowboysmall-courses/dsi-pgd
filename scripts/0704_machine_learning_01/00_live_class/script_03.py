@@ -119,7 +119,7 @@ print(f"AUC: {auc:.3f}")
 
 
 # %% 11 - 
-fpr, tpr, thresholds = roc_curve(y_emp, y_pred[:,1])
+fpr, tpr, thresholds = roc_curve(y_emp, y_pred[:, 1])
 
 plt.figure()
 

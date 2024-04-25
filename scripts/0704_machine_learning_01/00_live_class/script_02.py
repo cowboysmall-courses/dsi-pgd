@@ -39,7 +39,7 @@ X = data_sub.loc[:, data_sub.columns != 'DEFAULTER']
 y = data_sub.loc[:, 'DEFAULTER']
 
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size =  0.3, random_state = 999)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 999)
 
 
 
@@ -102,14 +102,14 @@ print(classification_report(y_test, pred_test))
 
 
 # %% 9 - 
-auc = roc_auc_score(y_test, y_pred[:,1])
+auc = roc_auc_score(y_test, y_pred[:, 1])
 print(f"AUC: {auc:.3f}")
 # AUC: 0.816
 
 
 
 # %% 10 - 
-fpr, tpr, thresholds = roc_curve(y_test, y_pred[:,1])
+fpr, tpr, thresholds = roc_curve(y_test, y_pred[:, 1])
 
 plt.figure()
 
