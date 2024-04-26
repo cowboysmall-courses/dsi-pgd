@@ -3,9 +3,19 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report, confusion_matrix, precision_score, recall_score, accuracy_score, roc_curve, roc_auc_score
+
+
+
+# %% 1 -
+plt.figure(figsize = (8, 6))
+plt.style.use("ggplot")
+
+sns.set_style("darkgrid")
+sns.set_context("paper")
 
 
 
