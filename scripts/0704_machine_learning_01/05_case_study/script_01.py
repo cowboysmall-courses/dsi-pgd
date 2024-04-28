@@ -193,7 +193,7 @@ model_log.fit(X_train, y_train)
 
 # %% 1 -
 y_pred = model_log.predict(X_test)
-y_pred.head()
+# y_pred.head()
 
 
 
@@ -247,7 +247,7 @@ model_nb.fit(X_train, y_train)
 
 # %% 1 -
 y_pred = model_nb.predict(X_test)
-y_pred.head()
+# y_pred.head()
 
 
 

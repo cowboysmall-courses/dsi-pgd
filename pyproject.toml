@@ -47,6 +47,7 @@ dependencies = [
   "hoggorm",
   # "hoggorm==0.13.3",
   "ipykernel",
+  "radian",
 ]
 
 [project.urls]
