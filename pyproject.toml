@@ -30,6 +30,9 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
+  "pyasyncore",
+  "pyasynchat",
+  "ipykernel",
   "numpy",
   "pandas",
   # "scipy",
@@ -44,10 +47,9 @@ dependencies = [
   "yfinance",
   "arch",
   "pmdarima",
+  "radian",
   "hoggorm",
   # "hoggorm==0.13.3",
-  "ipykernel",
-  "radian",
 ]
 
 [project.urls]
