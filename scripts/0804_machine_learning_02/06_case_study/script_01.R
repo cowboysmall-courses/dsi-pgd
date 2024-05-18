@@ -11,20 +11,13 @@ library(randomForest)
 
 data <- read.csv("./data/0804_machine_learning_02/06_case_study/Bank Churn.csv", header = TRUE)
 head(data)
-#   RowNumber CustomerId  Surname CreditScore Geography Gender Age Tenure
-# 1         1   15634602 Hargrave         619    France Female  42      2
-# 2         2   15647311     Hill         608     Spain Female  41      1
-# 3         3   15619304     Onio         502    France Female  42      8
-# 4         4   15701354     Boni         699    France Female  39      1
-# 5         5   15737888 Mitchell         850     Spain Female  43      2
-# 6         6   15574012      Chu         645     Spain   Male  44      8
-#     Balance NumOfProducts HasCrCard IsActiveMember EstimatedSalary Exited
-# 1      0.00             1         1              1       101348.88      1
-# 2  83807.86             1         0              1       112542.58      0
-# 3 159660.80             3         1              0       113931.57      1
-# 4      0.00             2         0              0        93826.63      0
-# 5 125510.82             1         1              1        79084.10      0
-# 6 113755.78             2         1              0       149756.71      1
+#   RowNumber CustomerId  Surname CreditScore Geography Gender Age Tenure   Balance NumOfProducts HasCrCard IsActiveMember EstimatedSalary Exited
+# 1         1   15634602 Hargrave         619    France Female  42      2      0.00             1         1              1       101348.88      1
+# 2         2   15647311     Hill         608     Spain Female  41      1  83807.86             1         0              1       112542.58      0
+# 3         3   15619304     Onio         502    France Female  42      8 159660.80             3         1              0       113931.57      1
+# 4         4   15701354     Boni         699    France Female  39      1      0.00             2         0              0        93826.63      0
+# 5         5   15737888 Mitchell         850     Spain Female  43      2 125510.82             1         1              1        79084.10      0
+# 6         6   15574012      Chu         645     Spain   Male  44      8 113755.78             2         1              0       149756.71      1
 
 
 data <- data %>% mutate_at(vars(c("HasCrCard", "IsActiveMember", "Exited", "Geography", "Gender")), ~as.factor(.))
@@ -44,13 +37,13 @@ counts
 # 2      1 2037  0.2037
 
 
-ctree <- partykit::ctree(Exited ~ CreditScore + Geography + Gender + Age + Tenure + Balance + NumOfProducts + HasCrCard + IsActiveMember + EstimatedSalary, data = train)
-plot(ctree, type = "simple")
+model_dt <- partykit::ctree(Exited ~ CreditScore + Geography + Gender + Age + Tenure + Balance + NumOfProducts + HasCrCard + IsActiveMember + EstimatedSalary, data = train)
+plot(model_dt, type = "simple")
 
 
-predtree <- predict(ctree, test, type = "prob")
-pred     <- prediction(predtree[, 2], test$Exited)
-perf     <- performance(pred, "tpr", "fpr")
+pred_dt <- predict(model_dt, test, type = "prob")
+pred    <- prediction(pred_dt[, 2], test$Exited)
+perf    <- performance(pred, "tpr", "fpr")
 
 plot(perf)
 abline(0, 1)
@@ -61,7 +54,7 @@ auc@y.values
 # 0.7726933
 
 
-test$predY <- predict(ctree, test, type = "response")
+test$predY <- predict(model_dt, test, type = "response")
 confusionMatrix(test$predY, test$Exited, positive = "1")
 # Confusion Matrix and Statistics
 # 
@@ -108,36 +101,25 @@ model_rf
 
 
 model_rf$importance
-#                             0            1 MeanDecreaseAccuracy
-# CreditScore      4.558191e-04 0.0006606193         0.0004998380
-# Geography        1.998169e-03 0.0502095802         0.0118014812
-# Gender           1.656573e-03 0.0021982927         0.0017702724
-# Age              3.758416e-02 0.1203241912         0.0544570868
-# Tenure          -5.293577e-05 0.0010767096         0.0001843785
-# Balance          1.141431e-02 0.0426767992         0.0177586506
-# NumOfProducts    4.064915e-02 0.1020263275         0.0531395965
-# HasCrCard        5.981471e-04 0.0006404713         0.0006060793
-# IsActiveMember   1.810518e-02 0.0238535241         0.0192711252
-# EstimatedSalary  3.241833e-04 0.0009782428         0.0004684999
-#                 MeanDecreaseGini
-# CreditScore            298.06614
-# Geography              102.02564
-# Gender                  38.90414
-# Age                    522.41276
-# Tenure                 165.53893
-# Balance                309.54060
-# NumOfProducts          303.41353
-# HasCrCard               37.20058
-# IsActiveMember          87.53085
-# EstimatedSalary        302.90494
+#                             0            1 MeanDecreaseAccuracy MeanDecreaseGini
+# CreditScore      1.993849e-03 0.0033380024         2.255401e-03        295.87134
+# Geography        1.151495e-03 0.0437234906         9.793972e-03         96.37106
+# Gender           9.645670e-04 0.0029123545         1.361047e-03         40.56318
+# Age              3.512301e-02 0.1160265442         5.152213e-02        508.13672
+# Tenure           3.383143e-04 0.0031483009         9.064295e-04        171.86493
+# Balance          1.177768e-02 0.0391874189         1.734273e-02        305.47159
+# NumOfProducts    4.013819e-02 0.1086307582         5.401977e-02        313.82149
+# HasCrCard        4.507029e-04 0.0012165810         6.009641e-04         36.61905
+# IsActiveMember   1.662121e-02 0.0278382656         1.890684e-02         88.80577
+# EstimatedSalary -4.474317e-05 0.0003549408         2.880274e-05        304.51476
 
 
 varImpPlot(model_rf, col = "blue")
 
 
-predrf <- predict(model_rf, test, type = "vote", norm.votes = TRUE)
-pred   <- prediction(predrf[, 2], test$Exited)
-perf   <- performance(pred, "tpr", "fpr")
+pred_rf <- predict(model_rf, test, type = "vote", norm.votes = TRUE)
+pred    <- prediction(pred_rf[, 2], test$Exited)
+perf    <- performance(pred, "tpr", "fpr")
 
 plot(perf)
 abline(0,1)
@@ -176,3 +158,4 @@ confusionMatrix(test$predY, test$Exited, positive = "1")
 #       Balanced Accuracy : 0.71807         
 # 
 #        'Positive' Class : 1       
+
