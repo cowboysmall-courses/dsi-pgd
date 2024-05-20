@@ -40,9 +40,9 @@ model
 # 
 # Number of Support Vectors:  312
 
-# pred1 <- predict(model, data, probability = TRUE)
+pred1 <- predict(model, data, probability = TRUE)
 # pred1 <- predict(model, data, decision.values = TRUE)
-pred1 <- predict(model, data)
+# pred1 <- predict(model, data)
 pred2 <- attr(pred1, "probabilities")[, 1]
 pred3 <- prediction(pred2, data$DEFAULTER)
 
