@@ -215,7 +215,7 @@ pred <- prediction(test$predprob, test$readmitted)
 perf <- performance(pred, "tpr", "fpr")
 
 plot(perf)
-abline(0,1)
+abline(0, 1)
 
 
 
