@@ -38,6 +38,12 @@ library(ROCR)
 library(e1071)
 
 
+
+
+
+# 1. Import Email Campaign data. Perform binary logistic regression to model
+#    "Success". Interpret sign of each significant variable in the model.
+
 data <- read.csv("./data/0704_machine_learning_01/04_assignment/Email Campaign.csv", header = TRUE)
 head(data)
 #   SN Gender  AGE Recency_Service Recency_Product Bill_Service Bill_Product Success
@@ -81,16 +87,23 @@ str(data)
 #  $ Success        : Factor w/ 2 levels "0","1": 1 1 1 1 2 2 1 1 2 1 ...
 
 
+counts <- data.frame(table(data$Success))
+colnames(counts)[1] <- "Success"
+counts$Percent <- counts$Freq / sum(counts$Freq)
+counts
+#   Success Freq   Percent
+# 1       0  503 0.7364568
+# 2       1  180 0.2635432
 
 
+# we could use the percent value from the counts table above for the cutoff,
+# which would reflect the prior distribution of Success, but instead I will
+# use 0.5 and look at the optimal cutoffs at each stage to see how they may 
+# vary
 
+# cutoff <- 0.26
+cutoff <- 0.5
 
-
-
-
-
-# 1. Import Email Campaign data. Perform binary logistic regression to model
-#    "Success". Interpret sign of each significant variable in the model.
 
 model_glm <- glm(Success ~ Gender + AGE + Recency_Service + Recency_Product + Bill_Service + Bill_Product, data = data, family = binomial)
 summary(model_glm)
@@ -190,7 +203,6 @@ vif(model_glm)
 # 2. Compare performance of Binary Logistic Regression (significant variables)
 #    and Naïve Bayes Method (all variables) using area under the ROC curve.
 
-
 #   My approach is as follows:
 #     1. split the data into train and test data sets
 #     2. train a model for each classifier (glm and naive bayes)
@@ -199,7 +211,6 @@ vif(model_glm)
 #        well
 #     4. compare the results of each model's performance for the
 #        test data set
-
 
 index <- createDataPartition(data$Success, p = 0.7, list = FALSE)
 train <- data[index, ]
@@ -222,7 +233,13 @@ auc@y.values
 # 0.8526238
 
 
-predY_glm <- as.factor(ifelse(predprob_glm > 0.5, 1, 0))
+ss_glm            <- performance(pred_glm, "sens", "spec")
+optimal_threshold <- ss_glm@alpha.values[[1]][which.max(ss_glm@x.values[[1]] + ss_glm@y.values[[1]])]
+optimal_threshold
+# 0.28
+
+
+predY_glm <- as.factor(ifelse(predprob_glm > cutoff, 1, 0))
 confusionMatrix(predY_glm, train$Success, positive = "1")
 # Confusion Matrix and Statistics
 # 
@@ -265,7 +282,13 @@ auc@y.values
 # 0.8503704
 
 
-predY_glm <- as.factor(ifelse(predprob_glm > 0.5, 1, 0))
+ss_glm            <- performance(pred_glm, "sens", "spec")
+optimal_threshold <- ss_glm@alpha.values[[1]][which.max(ss_glm@x.values[[1]] + ss_glm@y.values[[1]])]
+optimal_threshold
+# 0.227596
+
+
+predY_glm <- as.factor(ifelse(predprob_glm > cutoff, 1, 0))
 confusionMatrix(predY_glm, test$Success, positive = "1")
 # Confusion Matrix and Statistics
 # 
@@ -358,7 +381,13 @@ auc@y.values
 # 0.8150546
 
 
-predY_nb <- as.factor(ifelse(predprob_nb[, 2] > 0.5, 1, 0))
+ss_nb             <- performance(pred_nb, "sens", "spec")
+optimal_threshold <- ss_nb@alpha.values[[1]][which.max(ss_nb@x.values[[1]] + ss_nb@y.values[[1]])]
+optimal_threshold
+# 0.1832503
+
+
+predY_nb <- as.factor(ifelse(predprob_nb[, 2] > cutoff, 1, 0))
 confusionMatrix(predY_nb, train$Success, positive = "1")
 # Confusion Matrix and Statistics
 # 
@@ -401,7 +430,13 @@ auc@y.values
 # 0.8080247
 
 
-predY_nb <- as.factor(ifelse(predprob_nb[, 2] > 0.5, 1, 0))
+ss_nb             <- performance(pred_nb, "sens", "spec")
+optimal_threshold <- ss_nb@alpha.values[[1]][which.max(ss_nb@x.values[[1]] + ss_nb@y.values[[1]])]
+optimal_threshold
+# 0.2929503
+
+
+predY_nb <- as.factor(ifelse(predprob_nb[, 2] > cutoff, 1, 0))
 confusionMatrix(predY_nb, test$Success, positive = "1")
 # Confusion Matrix and Statistics
 # 
@@ -522,7 +557,13 @@ auc@y.values
 # 0.8079837
 
 
-predY_glm <- as.factor(ifelse(predprob_glm > 0.5, 1, 0))
+ss_glm            <- performance(pred_glm, "sens", "spec")
+optimal_threshold <- ss_glm@alpha.values[[1]][which.max(ss_glm@x.values[[1]] + ss_glm@y.values[[1]])]
+optimal_threshold
+# 0.24
+
+
+predY_glm <- as.factor(ifelse(predprob_glm > cutoff, 1, 0))
 confusionMatrix(predY_glm, train$Success, positive = "1")
 # Confusion Matrix and Statistics
 # 
@@ -565,7 +606,13 @@ auc@y.values
 # 0.8390123
 
 
-predY_glm <- as.factor(ifelse(predprob_glm > 0.5, 1, 0))
+ss_glm            <- performance(pred_glm, "sens", "spec")
+optimal_threshold <- ss_glm@alpha.values[[1]][which.max(ss_glm@x.values[[1]] + ss_glm@y.values[[1]])]
+optimal_threshold
+# 0.2041104
+
+
+predY_glm <- as.factor(ifelse(predprob_glm > cutoff, 1, 0))
 confusionMatrix(predY_glm, test$Success, positive = "1")
 # Confusion Matrix and Statistics
 # 
@@ -624,7 +671,14 @@ auc <- performance(pred_svm, "auc")
 auc@y.values
 # 0.8083097
 
-predY_svm <- as.factor(ifelse(pred2 > 0.5, 1, 0))
+
+ss_svm            <- performance(pred_svm, "sens", "spec")
+optimal_threshold <- ss_svm@alpha.values[[1]][which.max(ss_svm@x.values[[1]] + ss_svm@y.values[[1]])]
+optimal_threshold
+# 0.2301857
+
+
+predY_svm <- as.factor(ifelse(pred2 > cutoff, 1, 0))
 confusionMatrix(predY_svm, train$Success, positive = "1")
 # Confusion Matrix and Statistics
 # 
@@ -670,7 +724,14 @@ auc <- performance(pred_svm, "auc")
 auc@y.values
 # 0.8385185
 
-predY_svm <- as.factor(ifelse(pred2 > 0.5, 1, 0))
+
+ss_svm            <- performance(pred_svm, "sens", "spec")
+optimal_threshold <- ss_svm@alpha.values[[1]][which.max(ss_svm@x.values[[1]] + ss_svm@y.values[[1]])]
+optimal_threshold
+# 0.3027613
+
+
+predY_svm <- as.factor(ifelse(pred2 > cutoff, 1, 0))
 confusionMatrix(predY_svm, test$Success, positive = "1")
 # Confusion Matrix and Statistics
 # 
@@ -711,4 +772,5 @@ confusionMatrix(predY_svm, test$Success, positive = "1")
 #     Test Data:
 #       GLM AUC: 0.8390123
 #       SVM AUC: 0.8385185
+
 

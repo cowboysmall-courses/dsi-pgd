@@ -33,6 +33,8 @@
 
 
 
+
+
 # %% 0 - import libraries
 import pandas as pd
 import numpy as np
@@ -54,7 +56,10 @@ import random
 random.seed(27041970)
 
 
-# %% 1 - function for plotting ROC curves
+
+
+
+# %% 0 - function for plotting ROC curves
 def plot_roc_curve(fpr, tpr, auc, description = None):
     plt.figure()
 
@@ -71,7 +76,20 @@ def plot_roc_curve(fpr, tpr, auc, description = None):
     plt.show()
 
 
-# %% 1 - import data and check the head
+
+
+
+
+
+
+
+# %%
+
+# 1. Import Email Campaign data. Perform binary logistic regression to model
+#    "Success". Interpret sign of each significant variable in the model.
+
+
+# %% 1 - import data and check
 data = pd.read_csv("./data/0704_machine_learning_01/04_assignment/Email Campaign.csv")
 data.head()
 #    SN  Gender   AGE  Recency_Service  Recency_Product  Bill_Service  \
@@ -146,18 +164,24 @@ data.info()
 # memory usage: 28.4 KB
 
 
+# %% 1 - 
+counts = data['Success'].value_counts().reset_index()
+counts.columns = ['Success', 'Freq']
+counts['Percent'] = counts['Freq'] / counts['Freq'].sum()
+print(counts)
+#    Success  Freq   Percent
+# 0        0   503  0.736457
+# 1        1   180  0.263543
 
 
+# %% 1 - 
+# we could use the percent value from the counts table above for the cutoff,
+# which would reflect the prior distribution of Success, but instead I will
+# use 0.5 and look at the optimal cutoffs at each stage to see how they may 
+# vary
 
-
-
-
-
-
-# %% 
-
-# 1. Import Email Campaign data. Perform binary logistic regression to model
-#    "Success". Interpret sign of each significant variable in the model.
+# cutoff = 0.26
+cutoff = 0.5
 
 
 # %% 1 - 
@@ -242,6 +266,8 @@ vif_data
 # 3     Bill_Product  1.750976
 
 
+# %% 1 -
+
 # - one unit increase in the Recency_Service estimator will result in a -0.2298
 #   change in the log odds of the email being successfully opened
 # - one unit increase in the Recency_Product estimator will result in a -0.0739
@@ -268,7 +294,8 @@ vif_data
 
 
 
-# %%
+
+# %% 2 -
 
 # 2. Compare performance of Binary Logistic Regression (significant variables)
 #    and Naïve Bayes Method (all variables) using area under the ROC curve.
@@ -284,13 +311,13 @@ vif_data
 #        test data set
 
 
-# %% 1 -
+# %% 2 -
 sig_preds  = ["Recency_Service", "Recency_Product", "Bill_Service", "Bill_Product"]
 
 data_dummy = pd.get_dummies(data)
 
 
-# %% 1 -
+# %% 2 -
 X = data_dummy.loc[:, data_dummy.columns != 'Success']
 y = data_dummy.loc[:, 'Success']
 
@@ -300,33 +327,39 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, rando
 
 
 
-# %% 1 -
+# %% 2 -
 model_log = LogisticRegression(max_iter = 1000)
 model_log.fit(X_train[sig_preds], y_train)
 
 
-# %% 1 - 
+# %% 2 -
 y_pred = model_log.predict(X_train[sig_preds])
 
 
-# %% 1 -
+# %% 2 -
 train_predprob = model_log.predict_proba(X_train[sig_preds])
-train_pred     = np.where(train_predprob[:, 1] > 0.5, 1, 0)
+train_pred     = np.where(train_predprob[:, 1] > cutoff, 1, 0)
 
 
-# %% 1 -
+# %% 2 -
 auc = roc_auc_score(y_train, train_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
 # AUC: 0.841
 
 
-# %% 1 -
-fpr, tpr, _ = roc_curve(y_train, train_predprob[:, 1])
+# %% 2 -
+fpr, tpr, thresholds = roc_curve(y_train, train_predprob[:, 1])
 
 plot_roc_curve(fpr, tpr, auc, description = "Logistic Regression")
 
 
-# %% 1 -
+# %% 2 -
+optimal_threshold = round(thresholds[np.argmax(tpr - fpr)], 3)
+print(f'Best Threshold is : {optimal_threshold}')
+# Best Threshold is : 0.289
+
+
+# %% 2 -
 print(classification_report(y_train, train_pred))
 #               precision    recall  f1-score   support
 # 
@@ -338,28 +371,34 @@ print(classification_report(y_train, train_pred))
 # weighted avg       0.79      0.80      0.79       478
 
 
-# %% 1 - 
+# %% 2 -
 y_pred = model_log.predict(X_test[sig_preds])
 
 
-# %% 1 -
+# %% 2 -
 test_predprob = model_log.predict_proba(X_test[sig_preds])
-test_pred     = np.where(test_predprob[:, 1] > 0.5, 1, 0)
+test_pred     = np.where(test_predprob[:, 1] > cutoff, 1, 0)
 
 
-# %% 1 -
+# %% 2 -
 auc = roc_auc_score(y_test, test_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
 # AUC: 0.875
 
 
-# %% 1 -
-fpr, tpr, _ = roc_curve(y_test, test_predprob[:, 1])
+# %% 2 -
+fpr, tpr, thresholds = roc_curve(y_test, test_predprob[:, 1])
 
 plot_roc_curve(fpr, tpr, auc, description = "Logistic Regression")
 
 
-# %% 1 -
+# %% 2 -
+optimal_threshold = round(thresholds[np.argmax(tpr - fpr)], 3)
+print(f'Best Threshold is : {optimal_threshold}')
+# Best Threshold is : 0.256
+
+
+# %% 2 -
 print(classification_report(y_test, test_pred))
 #               precision    recall  f1-score   support
 # 
@@ -371,7 +410,7 @@ print(classification_report(y_test, test_pred))
 # weighted avg       0.83      0.84      0.83       205
 
 
-# %%
+# %% 2 -
 
 # The glm model performs consistently well
 
@@ -379,33 +418,39 @@ print(classification_report(y_test, test_pred))
 
 
 
-# %% 1 -
+# %% 2 -
 model_nb = MultinomialNB(alpha = 0)
 model_nb.fit(X_train, y_train)
 
 
-# %% 1 -
+# %% 2 -
 y_pred = model_nb.predict(X_train)
 
 
-# %% 1 -
+# %% 2 -
 train_predprob = model_nb.predict_proba(X_train)
-train_pred     = np.where(train_predprob[:, 1] > 0.5, 1, 0)
+train_pred     = np.where(train_predprob[:, 1] > cutoff, 1, 0)
 
 
-# %% 1 -
+# %% 2 -
 auc = roc_auc_score(y_train, train_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
 # AUC: 0.814
 
 
-# %% 1 -
-fpr, tpr, _ = roc_curve(y_train, train_predprob[:, 1])
+# %% 2 -
+fpr, tpr, thresholds = roc_curve(y_train, train_predprob[:, 1])
 
 plot_roc_curve(fpr, tpr, auc, description = "Naive Bayes")
 
 
-# %% 1 -
+# %% 2 -
+optimal_threshold = round(thresholds[np.argmax(tpr - fpr)], 3)
+print(f'Best Threshold is : {optimal_threshold}')
+# Best Threshold is : 0.163
+
+
+# %% 2 -
 print(classification_report(y_train, train_pred))
 #               precision    recall  f1-score   support
 # 
@@ -417,28 +462,34 @@ print(classification_report(y_train, train_pred))
 # weighted avg       0.77      0.74      0.75       478
 
 
-# %% 1 -
+# %% 2 -
 y_pred = model_nb.predict(X_test)
 
 
-# %% 1 -
+# %% 2 -
 test_predprob = model_nb.predict_proba(X_test)
-test_pred     = np.where(test_predprob[:, 1] > 0.5, 1, 0)
+test_pred     = np.where(test_predprob[:, 1] > cutoff, 1, 0)
 
 
-# %% 1 -
+# %% 2 -
 auc = roc_auc_score(y_test, test_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
 # AUC: 0.846
 
 
-# %% 1 -
-fpr, tpr, _ = roc_curve(y_test, test_predprob[:, 1])
+# %% 2 -
+fpr, tpr, thresholds = roc_curve(y_test, test_predprob[:, 1])
 
 plot_roc_curve(fpr, tpr, auc, description = "Naive Bayes")
 
 
-# %% 1 -
+# %% 2 -
+optimal_threshold = round(thresholds[np.argmax(tpr - fpr)], 3)
+print(f'Best Threshold is : {optimal_threshold}')
+# Best Threshold is : 0.455
+
+
+# %% 2 -
 print(classification_report(y_test, test_pred))
 #               precision    recall  f1-score   support
 # 
@@ -450,12 +501,12 @@ print(classification_report(y_test, test_pred))
 # weighted avg       0.81      0.77      0.78       205
 
 
-# %%
+# %% 2 -
 
 # The naive bayes model performs consistently well
 
 
-# %%
+# %% 2 -
 
 # According to the above analysis, the glm model outperforms the naive bayes
 # model significantly - looking at AUC for the test data for each model:
@@ -471,7 +522,7 @@ print(classification_report(y_test, test_pred))
 
 
 
-# %%
+# %% 3 -
 
 # 3. Implement binary logistic regression and Support Vector Machines by
 #    combining service and product variables. State area under the ROC curve
@@ -486,7 +537,7 @@ print(classification_report(y_test, test_pred))
 # each.
 
 
-# %% 1 -
+# %% 3 -
 # sig_preds  = ["Recency_Service", "Recency_Product", "Bill_Service", "Bill_Product"]
 data['Recency_Max'] = data[['Recency_Service', 'Recency_Product']].max(axis = 1)
 data['Bill_Total']  = data['Bill_Service'] + data['Bill_Product']
@@ -506,7 +557,7 @@ data.head()
 # 4          1.01        1           11        5.57  
 
 
-# %% 1 -
+# %% 3 -
 X = data.loc[:, ['Recency_Max', 'Bill_Total']]
 y = data.loc[:, 'Success']
 
@@ -516,33 +567,39 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, rando
 
 
 
-# %% 1 -
+# %% 3 -
 model_log = LogisticRegression(max_iter = 1000)
 model_log.fit(X_train, y_train)
 
 
-# %% 1 - 
+# %% 3 -
 y_pred = model_log.predict(X_train)
 
 
-# %% 1 -
+# %% 3 -
 train_predprob = model_log.predict_proba(X_train)
-train_pred     = np.where(train_predprob[:, 1] > 0.5, 1, 0)
+train_pred     = np.where(train_predprob[:, 1] > cutoff, 1, 0)
 
 
-# %% 1 -
+# %% 3 -
 auc = roc_auc_score(y_train, train_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
 # AUC: 0.805
 
 
-# %% 1 -
-fpr, tpr, _ = roc_curve(y_train, train_predprob[:, 1])
+# %% 3 -
+fpr, tpr, thresholds = roc_curve(y_train, train_predprob[:, 1])
 
 plot_roc_curve(fpr, tpr, auc, description = "Logistic Regression")
 
 
-# %% 1 -
+# %% 2 -
+optimal_threshold = round(thresholds[np.argmax(tpr - fpr)], 3)
+print(f'Best Threshold is : {optimal_threshold}')
+# Best Threshold is : 
+
+
+# %% 3 -
 print(classification_report(y_train, train_pred))
 #               precision    recall  f1-score   support
 # 
@@ -554,28 +611,34 @@ print(classification_report(y_train, train_pred))
 # weighted avg       0.77      0.79      0.77       478
 
 
-# %% 1 - 
+# %% 3 -
 y_pred = model_log.predict(X_test)
 
 
-# %% 1 -
+# %% 3 -
 test_predprob = model_log.predict_proba(X_test)
-test_pred     = np.where(test_predprob[:, 1] > 0.5, 1, 0)
+test_pred     = np.where(test_predprob[:, 1] > cutoff, 1, 0)
 
 
-# %% 1 -
+# %% 3 -
 auc = roc_auc_score(y_test, test_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
 # AUC: 0.843
 
 
-# %% 1 -
-fpr, tpr, _ = roc_curve(y_test, test_predprob[:, 1])
+# %% 3 -
+fpr, tpr, thresholds = roc_curve(y_test, test_predprob[:, 1])
 
 plot_roc_curve(fpr, tpr, auc, description = "Logistic Regression")
 
 
-# %% 1 -
+# %% 2 -
+optimal_threshold = round(thresholds[np.argmax(tpr - fpr)], 3)
+print(f'Best Threshold is : {optimal_threshold}')
+# Best Threshold is : 
+
+
+# %% 3 -
 print(classification_report(y_test, test_pred))
 #               precision    recall  f1-score   support
 # 
@@ -587,7 +650,7 @@ print(classification_report(y_test, test_pred))
 # weighted avg       0.81      0.82      0.80       205
 
 
-# %%
+# %% 3 -
 
 # The glm model performs consistently well
 
@@ -595,33 +658,39 @@ print(classification_report(y_test, test_pred))
 
 
 
-# %% 1 - SVM / SVC
+# %% 3 - SVM / SVC
 model_svm = SVC(probability = True, random_state = 0, kernel = "linear")
 model_svm.fit(X_train, y_train)
 
 
-# %% 1 -
+# %% 3 -
 y_pred = model_svm.predict(X_train)
 
 
-# %% 1 -
+# %% 3 -
 train_predprob = model_svm.predict_proba(X_train)
-train_pred     = np.where(train_predprob[:, 1] > 0.5, 1, 0)
+train_pred     = np.where(train_predprob[:, 1] > cutoff, 1, 0)
 
 
-# %% 1 -
+# %% 3 -
 auc = roc_auc_score(y_train, train_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
 # AUC: 0.806
 
 
-# %% 1 -
-fpr, tpr, _ = roc_curve(y_train, train_predprob[:, 1])
+# %% 3 -
+fpr, tpr, thresholds = roc_curve(y_train, train_predprob[:, 1])
 
 plot_roc_curve(fpr, tpr, auc, description = "SVM")
 
 
-# %% 1 -
+# %% 2 -
+optimal_threshold = round(thresholds[np.argmax(tpr - fpr)], 3)
+print(f'Best Threshold is : {optimal_threshold}')
+# Best Threshold is : 
+
+
+# %% 3 -
 print(classification_report(y_train, train_pred))
 #               precision    recall  f1-score   support
 # 
@@ -633,28 +702,34 @@ print(classification_report(y_train, train_pred))
 # weighted avg       0.76      0.78      0.75       478
 
 
-# %% 1 -
+# %% 3 -
 y_pred = model_svm.predict(X_test)
 
 
-# %% 1 -
+# %% 3 -
 test_predprob = model_svm.predict_proba(X_test)
-test_pred     = np.where(test_predprob[:, 1] > 0.5, 1, 0)
+test_pred     = np.where(test_predprob[:, 1] > cutoff, 1, 0)
 
 
-# %% 1 -
+# %% 3 -
 auc = roc_auc_score(y_test, test_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
 # AUC: 0.844
 
 
-# %% 1 -
-fpr, tpr, _ = roc_curve(y_test, test_predprob[:, 1])
+# %% 3 -
+fpr, tpr, thresholds = roc_curve(y_test, test_predprob[:, 1])
 
 plot_roc_curve(fpr, tpr, auc, description = "SVM")
 
 
-# %% 1 -
+# %% 2 -
+optimal_threshold = round(thresholds[np.argmax(tpr - fpr)], 3)
+print(f'Best Threshold is : {optimal_threshold}')
+# Best Threshold is : 
+
+
+# %% 3 -
 print(classification_report(y_test, test_pred))
 #               precision    recall  f1-score   support
 # 
@@ -666,12 +741,12 @@ print(classification_report(y_test, test_pred))
 # weighted avg       0.82      0.82      0.80       205
 
 
-# %%
+# %% 3 -
 
 # The svm model performs consistently well
 
 
-# %%
+# %% 3 -
 
 # According to the above analysis, the glm model and the svm model perform
 # almost identically - looking at AUC for the train and test data for each
