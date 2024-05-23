@@ -23,7 +23,7 @@
 # QUESTIONS
 #
 #     1: Import Email Campaign data. Perform binary logistic regression to model
-#        "Success. Interpret sign of each significant variable in the model.
+#        "Success". Interpret sign of each significant variable in the model.
 #     2: Compare performance of Binary Logistic Regression (significant
 #        variables) and Naïve Bayes Method (all variables) using area under the
 #        ROC curve.

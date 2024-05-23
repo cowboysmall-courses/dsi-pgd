@@ -98,7 +98,7 @@ counts
 
 # we could use the percent value from the counts table above for the cutoff,
 # which would reflect the prior distribution of Success, but instead I will
-# use 0.5 and look at the optimal cutoffs at each stage to see how they may 
+# use 0.5 and look at the optimal cutoffs at each stage to see how they may
 # vary
 
 # cutoff <- 0.26
@@ -220,6 +220,9 @@ test  <- data[-index, ]
 model_glm <- glm(Success ~ Recency_Service + Recency_Product + Bill_Service + Bill_Product, data = train, family = binomial)
 
 
+
+
+
 predprob_glm <- round(fitted(model_glm), 2)
 pred_glm     <- prediction(predprob_glm, train$Success)
 perf_glm     <- performance(pred_glm, "tpr", "fpr")
@@ -267,6 +270,9 @@ confusionMatrix(predY_glm, train$Success, positive = "1")
 #       Balanced Accuracy : 0.7186
 # 
 #        'Positive' Class : 1
+
+
+
 
 
 predprob_glm <- predict(model_glm, test, type = "response")
@@ -368,6 +374,9 @@ model_nb
 #   1 3.090873 3.485516
 
 
+
+
+
 predprob_nb <- predict(model_nb, train, type = "raw")
 pred_nb     <- prediction(predprob_nb[, 2], train$Success)
 perf_nb     <- performance(pred_nb, "tpr", "fpr")
@@ -415,6 +424,9 @@ confusionMatrix(predY_nb, train$Success, positive = "1")
 #       Balanced Accuracy : 0.6573
 # 
 #        'Positive' Class : 1
+
+
+
 
 
 predprob_nb <- predict(model_nb, test, type = "raw")
@@ -521,6 +533,9 @@ train <- data[index, ]
 test  <- data[-index, ]
 
 
+
+
+
 model_glm <- glm(Success ~ Recency_Max + Bill_Total, data = train, family = binomial)
 summary(model_glm)
 # Call:
@@ -542,6 +557,9 @@ summary(model_glm)
 # AIC: 439.14
 # 
 # Number of Fisher Scoring iterations: 5
+
+
+
 
 
 predprob_glm <- round(fitted(model_glm), 2)
@@ -591,6 +609,9 @@ confusionMatrix(predY_glm, train$Success, positive = "1")
 #       Balanced Accuracy : 0.63381
 # 
 #        'Positive' Class : 1
+
+
+
 
 
 predprob_glm <- predict(model_glm, test, type = "response")
@@ -643,6 +664,8 @@ confusionMatrix(predY_glm, test$Success, positive = "1")
 
 
 
+
+
 model_svm <- svm(Success ~ Recency_Max + Bill_Total, data = train, type = "C", probability = TRUE, kernel = "linear")
 model_svm
 # Call:
@@ -655,6 +678,9 @@ model_svm
 #        cost:  1 
 # 
 # Number of Support Vectors:  241
+
+
+
 
 
 pred1 <- predict(model_svm, train, probability = TRUE)
@@ -706,6 +732,7 @@ confusionMatrix(predY_svm, train$Success, positive = "1")
 #       Balanced Accuracy : 0.64685
 # 
 #        'Positive' Class : 1
+
 
 
 
