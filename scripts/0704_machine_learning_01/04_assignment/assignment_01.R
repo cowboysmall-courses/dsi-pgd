@@ -23,7 +23,7 @@
 # QUESTIONS
 #
 #     1: Import Email Campaign data. Perform binary logistic regression to model
-#        "Success. Interpret sign of each significant variable in the model.
+#        "Success". Interpret sign of each significant variable in the model.
 #     2: Compare performance of Binary Logistic Regression (significant
 #        variables) and Naïve Bayes Method (all variables) using area under the
 #        ROC curve.
@@ -36,9 +36,6 @@ library(car)
 library(caret)
 library(ROCR)
 library(e1071)
-
-
-set.seed(27041970)
 
 
 data <- read.csv("./data/0704_machine_learning_01/04_assignment/Email Campaign.csv", header = TRUE)
@@ -222,7 +219,7 @@ abline(0, 1)
 
 auc <- performance(pred_glm, "auc")
 auc@y.values
-# 0.8428774
+# 0.8526238
 
 
 predY_glm <- as.factor(ifelse(predprob_glm > 0.5, 1, 0))
@@ -231,26 +228,26 @@ confusionMatrix(predY_glm, train$Success, positive = "1")
 # 
 #           Reference
 # Prediction   0   1
-#          0 332  64
-#          1  21  62
+#          0 328  62
+#          1  25  64
 # 
-#                Accuracy : 0.8225          
-#                  95% CI : (0.7853, 0.8557)
+#                Accuracy : 0.8184
+#                  95% CI : (0.7809, 0.8519)
 #     No Information Rate : 0.737           
-#     P-Value [Acc > NIR] : 6.239e-06       
+#     P-Value [Acc > NIR] : 1.714e-05
 # 
-#                   Kappa : 0.4859          
+#                   Kappa : 0.4827
 # 
-#  Mcnemar's Test P-Value : 5.225e-06       
+#  Mcnemar's Test P-Value : 0.0001136
 # 
-#             Sensitivity : 0.4921          
-#             Specificity : 0.9405          
-#          Pos Pred Value : 0.7470          
-#          Neg Pred Value : 0.8384          
+#             Sensitivity : 0.5079
+#             Specificity : 0.9292
+#          Pos Pred Value : 0.7191
+#          Neg Pred Value : 0.8410
 #              Prevalence : 0.2630          
-#          Detection Rate : 0.1294          
-#    Detection Prevalence : 0.1733          
-#       Balanced Accuracy : 0.7163          
+#          Detection Rate : 0.1336
+#    Detection Prevalence : 0.1858
+#       Balanced Accuracy : 0.7186
 # 
 #        'Positive' Class : 1
 
@@ -265,7 +262,7 @@ abline(0, 1)
 
 auc <- performance(pred_glm, "auc")
 auc@y.values
-# 0.8754321
+# 0.8503704
 
 
 predY_glm <- as.factor(ifelse(predprob_glm > 0.5, 1, 0))
@@ -274,32 +271,31 @@ confusionMatrix(predY_glm, test$Success, positive = "1")
 # 
 #           Reference
 # Prediction   0   1
-#          0 143  29
-#          1   7  25
+#          0 145  32
+#          1   5  22
 # 
-#                Accuracy : 0.8235          
-#                  95% CI : (0.7642, 0.8732)
-#     No Information Rate : 0.7353          
-#     P-Value [Acc > NIR] : 0.0019909       
+#                Accuracy : 0.8186
+#                  95% CI : (0.7588, 0.869)
+#     No Information Rate : 0.7353
+#     P-Value [Acc > NIR] : 0.003397
 # 
-#                   Kappa : 0.4787          
+#                   Kappa : 0.4453
 # 
-#  Mcnemar's Test P-Value : 0.0004653       
+#  Mcnemar's Test P-Value : 1.917e-05
 # 
-#             Sensitivity : 0.4630          
-#             Specificity : 0.9533          
-#          Pos Pred Value : 0.7813          
-#          Neg Pred Value : 0.8314          
-#              Prevalence : 0.2647          
-#          Detection Rate : 0.1225          
-#    Detection Prevalence : 0.1569          
-#       Balanced Accuracy : 0.7081          
+#             Sensitivity : 0.4074
+#             Specificity : 0.9667
+#          Pos Pred Value : 0.8148
+#          Neg Pred Value : 0.8192
+#              Prevalence : 0.2647
+#          Detection Rate : 0.1078
+#    Detection Prevalence : 0.1324
+#       Balanced Accuracy : 0.6870
 # 
 #        'Positive' Class : 1
 
 
-# The glm model performs consistently well, with the test data even
-# outperforming the training data based on the AUC value
+# The glm model performs consistently well
 
 
 
@@ -320,33 +316,33 @@ model_nb
 # Conditional probabilities:
 #    Gender
 # Y      Female      Male
-#   0 0.5354108 0.4645892
-#   1 0.5079365 0.4920635
+#   0 0.5694051 0.4305949
+#   1 0.5238095 0.4761905
 # 
 #    AGE
 # Y        <=30      <=45      <=55
-#   0 0.3116147 0.4277620 0.2606232
-#   1 0.5317460 0.3253968 0.1428571
+#   0 0.3172805 0.4192635 0.2634561
+#   1 0.4920635 0.3095238 0.1984127
 # 
 #    Recency_Service
 # Y       [,1]     [,2]
-#   0 9.509915 6.944221
-#   1 4.674603 4.576163
+#   0 9.501416 6.710374
+#   1 5.182540 5.733272
 # 
 #    Recency_Product
 # Y       [,1]     [,2]
-#   0 9.076487 7.155127
-#   1 5.571429 5.130970
+#   0 8.830028 7.162045
+#   1 6.920635 6.460468
 # 
 #    Bill_Service
 # Y        [,1]     [,2]
-#   0  9.488499 5.695497
-#   1 14.774683 7.946189
+#   0  9.285524 5.621474
+#   1 15.592063 8.206811
 # 
 #    Bill_Product
 # Y       [,1]     [,2]
-#   0 1.769943 1.576861
-#   1 2.645476 2.590578
+#   0 1.746969 1.491369
+#   1 3.090873 3.485516
 
 
 predprob_nb <- predict(model_nb, train, type = "raw")
@@ -359,7 +355,7 @@ abline(0, 1)
 
 auc <- performance(pred_nb, "auc")
 auc@y.values
-# 0.8122892
+# 0.8150546
 
 
 predY_nb <- as.factor(ifelse(predprob_nb[, 2] > 0.5, 1, 0))
@@ -368,28 +364,28 @@ confusionMatrix(predY_nb, train$Success, positive = "1")
 # 
 #           Reference
 # Prediction   0   1
-#          0 325  68
-#          1  28  58
+#          0 324  76
+#          1  29  50
 # 
-#                Accuracy : 0.7996          
-#                  95% CI : (0.7609, 0.8345)
-#     No Information Rate : 0.737           
-#     P-Value [Acc > NIR] : 0.0008436       
+#                Accuracy : 0.7808
+#                  95% CI : (0.741, 0.8171)
+#     No Information Rate : 0.737
+#     P-Value [Acc > NIR] : 0.01541
 # 
-#                   Kappa : 0.4243          
+#                   Kappa : 0.3576
 # 
-#  Mcnemar's Test P-Value : 6.879e-05       
+#  Mcnemar's Test P-Value : 7.151e-06
 # 
-#             Sensitivity : 0.4603          
-#             Specificity : 0.9207          
-#          Pos Pred Value : 0.6744          
-#          Neg Pred Value : 0.8270          
-#              Prevalence : 0.2630          
-#          Detection Rate : 0.1211          
-#    Detection Prevalence : 0.1795          
-#       Balanced Accuracy : 0.6905          
+#             Sensitivity : 0.3968
+#             Specificity : 0.9178
+#          Pos Pred Value : 0.6329
+#          Neg Pred Value : 0.8100
+#              Prevalence : 0.2630
+#          Detection Rate : 0.1044
+#    Detection Prevalence : 0.1649
+#       Balanced Accuracy : 0.6573
 # 
-#        'Positive' Class : 1 
+#        'Positive' Class : 1
 
 
 predprob_nb <- predict(model_nb, test, type = "raw")
@@ -402,7 +398,7 @@ abline(0, 1)
 
 auc <- performance(pred_nb, "auc")
 auc@y.values
-# 0.8091358
+# 0.8080247
 
 
 predY_nb <- as.factor(ifelse(predprob_nb[, 2] > 0.5, 1, 0))
@@ -411,38 +407,45 @@ confusionMatrix(predY_nb, test$Success, positive = "1")
 # 
 #           Reference
 # Prediction   0   1
-#          0 141  31
-#          1   9  23
+#          0 142  40
+#          1   8  14
 # 
-#                Accuracy : 0.8039          
-#                  95% CI : (0.7427, 0.8561)
+#                Accuracy : 0.7647
+#                  95% CI : (0.7004, 0.8211)
 #     No Information Rate : 0.7353          
-#     P-Value [Acc > NIR] : 0.0140904       
+#     P-Value [Acc > NIR] : 0.1922
 # 
-#                   Kappa : 0.4208          
+#                   Kappa : 0.2541
 # 
-#  Mcnemar's Test P-Value : 0.0008989       
+#  Mcnemar's Test P-Value : 7.66e-06
 # 
-#             Sensitivity : 0.4259          
-#             Specificity : 0.9400          
-#          Pos Pred Value : 0.7187          
-#          Neg Pred Value : 0.8198          
-#              Prevalence : 0.2647          
-#          Detection Rate : 0.1127          
-#    Detection Prevalence : 0.1569          
-#       Balanced Accuracy : 0.6830          
+#             Sensitivity : 0.25926
+#             Specificity : 0.94667
+#          Pos Pred Value : 0.63636
+#          Neg Pred Value : 0.78022
+#              Prevalence : 0.26471
+#          Detection Rate : 0.06863
+#    Detection Prevalence : 0.10784
+#       Balanced Accuracy : 0.60296
 # 
-#        'Positive' Class : 1 
+#        'Positive' Class : 1
 
 
-# The naive bayes model performs consistently well, with the performance of
-# the test data almost consistent with the training data
+# The naive bayes model performs consistently well
 
 
 # According to the above analysis, the glm model outperforms the naive bayes
-# model significantly - looking at AUC for the test data for each model:
-#     GLM AUC: 0.8754321
-#      NB AUC: 0.8091358
+# model significantly - looking at AUC for the train and test data for each
+# model in turn:
+#
+# Training Data:
+#       GLM AUC: 0.8526238
+#        NB AUC: 0.8150546
+#
+#     Test Data:
+#       GLM AUC: 0.8503704
+#        NB AUC: 0.8080247
+
 
 
 
@@ -491,17 +494,17 @@ summary(model_glm)
 # 
 # Coefficients:
 #             Estimate Std. Error z value Pr(>|z|)    
-# (Intercept) -1.56321    0.27013  -5.787 7.17e-09 ***
-# Recency_Max -0.15293    0.02264  -6.755 1.43e-11 ***
-# Bill_Total   0.14510    0.01671   8.682  < 2e-16 ***
+# (Intercept) -1.51016    0.27129  -5.567 2.60e-08 ***
+# Recency_Max -0.14170    0.02145  -6.606 3.94e-11 ***
+# Bill_Total   0.13504    0.01643   8.218  < 2e-16 ***
 # ---
 # Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 # 
 # (Dispersion parameter for binomial family taken to be 1)
 # 
 #     Null deviance: 552.02  on 478  degrees of freedom
-# Residual deviance: 415.48  on 476  degrees of freedom
-# AIC: 421.48
+# Residual deviance: 433.14  on 476  degrees of freedom
+# AIC: 439.14
 # 
 # Number of Fisher Scoring iterations: 5
 
@@ -516,7 +519,7 @@ abline(0, 1)
 
 auc <- performance(pred_glm, "auc")
 auc@y.values
-# 0.8223841
+# 0.8079837
 
 
 predY_glm <- as.factor(ifelse(predprob_glm > 0.5, 1, 0))
@@ -525,26 +528,26 @@ confusionMatrix(predY_glm, train$Success, positive = "1")
 # 
 #           Reference
 # Prediction   0   1
-#          0 328  77
-#          1  25  49
+#          0 327  83
+#          1  26  43
 # 
-#                Accuracy : 0.7871          
-#                  95% CI : (0.7476, 0.8229)
+#                Accuracy : 0.7724
+#                  95% CI : (0.7322, 0.8093)
 #     No Information Rate : 0.737           
-#     P-Value [Acc > NIR] : 0.006493        
+#     P-Value [Acc > NIR] : 0.04186
 # 
-#                   Kappa : 0.3667          
+#                   Kappa : 0.3132
 # 
-#  Mcnemar's Test P-Value : 4.424e-07       
+#  Mcnemar's Test P-Value : 8.148e-08
 # 
-#             Sensitivity : 0.3889          
-#             Specificity : 0.9292          
-#          Pos Pred Value : 0.6622          
-#          Neg Pred Value : 0.8099          
-#              Prevalence : 0.2630          
-#          Detection Rate : 0.1023          
-#    Detection Prevalence : 0.1545          
-#       Balanced Accuracy : 0.6590          
+#             Sensitivity : 0.34127
+#             Specificity : 0.92635
+#          Pos Pred Value : 0.62319
+#          Neg Pred Value : 0.79756
+#              Prevalence : 0.26305
+#          Detection Rate : 0.08977
+#    Detection Prevalence : 0.14405
+#       Balanced Accuracy : 0.63381
 # 
 #        'Positive' Class : 1
 
@@ -559,7 +562,7 @@ abline(0, 1)
 
 auc <- performance(pred_glm, "auc")
 auc@y.values
-# 0.8066667
+# 0.8390123
 
 
 predY_glm <- as.factor(ifelse(predprob_glm > 0.5, 1, 0))
@@ -568,26 +571,26 @@ confusionMatrix(predY_glm, test$Success, positive = "1")
 # 
 #           Reference
 # Prediction   0   1
-#          0 142  31
-#          1   8  23
+#          0 145  32
+#          1   5  22
 # 
-#                Accuracy : 0.8088          
-#                  95% CI : (0.7481, 0.8604)
-#     No Information Rate : 0.7353          
-#     P-Value [Acc > NIR] : 0.009029        
+#                Accuracy : 0.8186
+#                  95% CI : (0.7588, 0.869)
+#     No Information Rate : 0.7353
+#     P-Value [Acc > NIR] : 0.003397
 # 
-#                   Kappa : 0.4314          
+#                   Kappa : 0.4453
 # 
-#  Mcnemar's Test P-Value : 0.000427        
+#  Mcnemar's Test P-Value : 1.917e-05
 # 
-#             Sensitivity : 0.4259          
-#             Specificity : 0.9467          
-#          Pos Pred Value : 0.7419          
-#          Neg Pred Value : 0.8208          
-#              Prevalence : 0.2647          
-#          Detection Rate : 0.1127          
-#    Detection Prevalence : 0.1520          
-#       Balanced Accuracy : 0.6863          
+#             Sensitivity : 0.4074
+#             Specificity : 0.9667
+#          Pos Pred Value : 0.8148
+#          Neg Pred Value : 0.8192
+#              Prevalence : 0.2647
+#          Detection Rate : 0.1078
+#    Detection Prevalence : 0.1324
+#       Balanced Accuracy : 0.6870
 # 
 #        'Positive' Class : 1
 
@@ -604,7 +607,7 @@ model_svm
 #  SVM-Kernel:  linear 
 #        cost:  1 
 # 
-# Number of Support Vectors:  229
+# Number of Support Vectors:  241
 
 
 pred1 <- predict(model_svm, train, probability = TRUE)
@@ -619,7 +622,7 @@ abline(0, 1)
 
 auc <- performance(pred_svm, "auc")
 auc@y.values
-# 0.8225864
+# 0.8083097
 
 predY_svm <- as.factor(ifelse(pred2 > 0.5, 1, 0))
 confusionMatrix(predY_svm, train$Success, positive = "1")
@@ -627,26 +630,26 @@ confusionMatrix(predY_svm, train$Success, positive = "1")
 # 
 #           Reference
 # Prediction   0   1
-#          0 327  77
-#          1  26  49
+#          0 325  79
+#          1  28  47
 # 
-#                Accuracy : 0.785           
-#                  95% CI : (0.7454, 0.8209)
+#                Accuracy : 0.7766
+#                  95% CI : (0.7366, 0.8132)
 #     No Information Rate : 0.737           
-#     P-Value [Acc > NIR] : 0.008759        
+#     P-Value [Acc > NIR] : 0.02595
 # 
-#                   Kappa : 0.3624          
+#                   Kappa : 0.3376
 # 
-#  Mcnemar's Test P-Value : 8.365e-07       
+#  Mcnemar's Test P-Value : 1.34e-06
 # 
-#             Sensitivity : 0.3889          
-#             Specificity : 0.9263          
-#          Pos Pred Value : 0.6533          
-#          Neg Pred Value : 0.8094          
-#              Prevalence : 0.2630          
-#          Detection Rate : 0.1023          
-#    Detection Prevalence : 0.1566          
-#       Balanced Accuracy : 0.6576          
+#             Sensitivity : 0.37302
+#             Specificity : 0.92068
+#          Pos Pred Value : 0.62667
+#          Neg Pred Value : 0.80446
+#              Prevalence : 0.26305
+#          Detection Rate : 0.09812
+#    Detection Prevalence : 0.15658
+#       Balanced Accuracy : 0.64685
 # 
 #        'Positive' Class : 1
 
@@ -665,7 +668,7 @@ abline(0, 1)
 
 auc <- performance(pred_svm, "auc")
 auc@y.values
-# 0.807037
+# 0.8385185
 
 predY_svm <- as.factor(ifelse(pred2 > 0.5, 1, 0))
 confusionMatrix(predY_svm, test$Success, positive = "1")
@@ -673,26 +676,26 @@ confusionMatrix(predY_svm, test$Success, positive = "1")
 # 
 #           Reference
 # Prediction   0   1
-#          0 143  34
-#          1   7  20
+#          0 146  32
+#          1   4  22
 # 
-#                Accuracy : 0.799           
-#                  95% CI : (0.7374, 0.8517)
+#                Accuracy : 0.8235
+#                  95% CI : (0.7642, 0.8732)
 #     No Information Rate : 0.7353          
-#     P-Value [Acc > NIR] : 0.02138         
+#     P-Value [Acc > NIR] : 0.001991
 # 
-#                   Kappa : 0.3854          
+#                   Kappa : 0.4565
 # 
-#  Mcnemar's Test P-Value : 4.896e-05       
+#  Mcnemar's Test P-Value : 6.795e-06
 # 
-#             Sensitivity : 0.37037         
-#             Specificity : 0.95333         
-#          Pos Pred Value : 0.74074         
-#          Neg Pred Value : 0.80791         
-#              Prevalence : 0.26471         
-#          Detection Rate : 0.09804         
-#    Detection Prevalence : 0.13235         
-#       Balanced Accuracy : 0.66185         
+#             Sensitivity : 0.4074
+#             Specificity : 0.9733
+#          Pos Pred Value : 0.8462
+#          Neg Pred Value : 0.8202
+#              Prevalence : 0.2647
+#          Detection Rate : 0.1078
+#    Detection Prevalence : 0.1275
+#       Balanced Accuracy : 0.6904
 # 
 #        'Positive' Class : 1
 
@@ -702,9 +705,10 @@ confusionMatrix(predY_svm, test$Success, positive = "1")
 # model in turn:
 # 
 # Training Data:
-#       GLM AUC: 0.8223841
-#       SVM AUC: 0.8225864
+#       GLM AUC: 0.8079837
+#       SVM AUC: 0.8083097
 # 
 #     Test Data:
-#       GLM AUC: 0.8066667
-#       SVM AUC: 0.807037
+#       GLM AUC: 0.8390123
+#       SVM AUC: 0.8385185
+

@@ -37,7 +37,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 from statsmodels.formula.api import logit
 from statsmodels.stats.outliers_influence import variance_inflation_factor
@@ -53,6 +52,23 @@ warnings.filterwarnings("ignore", category = FutureWarning)
 
 import random
 random.seed(27041970)
+
+
+# %% 1 - function for plotting ROC curves
+def plot_roc_curve(fpr, tpr, auc, description = None):
+    plt.figure()
+
+    plt.plot(fpr, tpr, color = "darkorange", lw = 2, label = f"ROC curve (area = {auc:0.3f})")
+    plt.plot([0, 1], [0, 1], color = "navy", lw = 2, linestyle = "--")
+
+    plt.title(f"Receiver Operating Characteristic (ROC) Curve{f" - {description}" if description else ""}")
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+
+    plt.legend(loc = "lower right")
+    plt.axis("tight")
+
+    plt.show()
 
 
 # %% 1 - import data and check the head
@@ -116,7 +132,7 @@ data['AGE']    = pd.Categorical(data['AGE'])
 data.info()
 # <class 'pandas.core.frame.DataFrame'>
 # RangeIndex: 683 entries, 0 to 682
-# Data columns (total 9 columns):
+# Data columns (total 7 columns):
 #  #   Column           Non-Null Count  Dtype   
 # ---  ------           --------------  -----   
 #  0   Gender           683 non-null    category
@@ -126,9 +142,7 @@ data.info()
 #  4   Bill_Service     683 non-null    float64 
 #  5   Bill_Product     683 non-null    float64 
 #  6   Success          683 non-null    int64   
-#  7   Recency_Max      683 non-null    int64   
-#  8   Bill_Total       683 non-null    float64 
-# dtypes: category(2), float64(3), int64(4)
+# dtypes: category(2), float64(2), int64(3)
 # memory usage: 28.4 KB
 
 
@@ -276,12 +290,14 @@ sig_preds  = ["Recency_Service", "Recency_Product", "Bill_Service", "Bill_Produc
 data_dummy = pd.get_dummies(data)
 
 
-
 # %% 1 -
 X = data_dummy.loc[:, data_dummy.columns != 'Success']
 y = data_dummy.loc[:, 'Success']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 27041970)
+
+
+
 
 
 # %% 1 -
@@ -301,37 +317,25 @@ train_pred     = np.where(train_predprob[:, 1] > 0.5, 1, 0)
 # %% 1 -
 auc = roc_auc_score(y_train, train_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
-# AUC: 0.859
+# AUC: 0.841
 
 
 # %% 1 -
 fpr, tpr, _ = roc_curve(y_train, train_predprob[:, 1])
 
-plt.figure()
-
-plt.plot(fpr, tpr, color = "darkorange", lw = 2, label = f"ROC curve (area = {auc:0.3f})")
-plt.plot([0, 1], [0, 1], color = "navy", lw = 2, linestyle = "--")
-
-plt.title("Receiver Operating Characteristic (ROC) Curve - Logistic Regression")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-
-plt.legend(loc = "lower right")
-plt.axis("tight")
-
-plt.show()
+plot_roc_curve(fpr, tpr, auc, description = "Logistic Regression")
 
 
 # %% 1 -
 print(classification_report(y_train, train_pred))
 #               precision    recall  f1-score   support
 # 
-#            0       0.85      0.93      0.89       354
-#            1       0.73      0.53      0.61       124
+#            0       0.83      0.93      0.87       353
+#            1       0.69      0.46      0.55       125
 # 
-#     accuracy                           0.83       478
-#    macro avg       0.79      0.73      0.75       478
-# weighted avg       0.82      0.83      0.82       478
+#     accuracy                           0.80       478
+#    macro avg       0.76      0.69      0.71       478
+# weighted avg       0.79      0.80      0.79       478
 
 
 # %% 1 - 
@@ -346,37 +350,25 @@ test_pred     = np.where(test_predprob[:, 1] > 0.5, 1, 0)
 # %% 1 -
 auc = roc_auc_score(y_test, test_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
-# AUC: 0.834
+# AUC: 0.875
 
 
 # %% 1 -
 fpr, tpr, _ = roc_curve(y_test, test_predprob[:, 1])
 
-plt.figure()
-
-plt.plot(fpr, tpr, color = "darkorange", lw = 2, label = f"ROC curve (area = {auc:0.3f})")
-plt.plot([0, 1], [0, 1], color = "navy", lw = 2, linestyle = "--")
-
-plt.title("Receiver Operating Characteristic (ROC) Curve - Logistic Regression")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-
-plt.legend(loc = "lower right")
-plt.axis("tight")
-
-plt.show()
+plot_roc_curve(fpr, tpr, auc, description = "Logistic Regression")
 
 
 # %% 1 -
 print(classification_report(y_test, test_pred))
 #               precision    recall  f1-score   support
 # 
-#            0       0.81      0.93      0.87       149
-#            1       0.69      0.43      0.53        56
+#            0       0.86      0.93      0.89       150
+#            1       0.75      0.60      0.67        55
 # 
-#     accuracy                           0.79       205
-#    macro avg       0.75      0.68      0.70       205
-# weighted avg       0.78      0.79      0.77       205
+#     accuracy                           0.84       205
+#    macro avg       0.81      0.76      0.78       205
+# weighted avg       0.83      0.84      0.83       205
 
 
 # %%
@@ -404,37 +396,25 @@ train_pred     = np.where(train_predprob[:, 1] > 0.5, 1, 0)
 # %% 1 -
 auc = roc_auc_score(y_train, train_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
-# AUC: 0.835
+# AUC: 0.814
 
 
 # %% 1 -
 fpr, tpr, _ = roc_curve(y_train, train_predprob[:, 1])
 
-plt.figure()
-
-plt.plot(fpr, tpr, color = "darkorange", lw = 2, label = f"ROC curve (area = {auc:0.3f})")
-plt.plot([0, 1], [0, 1], color = "navy", lw = 2, linestyle = "--")
-
-plt.title("Receiver Operating Characteristic (ROC) Curve - Naive Bayes")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-
-plt.legend(loc = "lower right")
-plt.axis("tight")
-
-plt.show()
+plot_roc_curve(fpr, tpr, auc, description = "Naive Bayes")
 
 
 # %% 1 -
 print(classification_report(y_train, train_pred))
 #               precision    recall  f1-score   support
 # 
-#            0       0.89      0.77      0.82       354
-#            1       0.52      0.72      0.61       124
+#            0       0.86      0.76      0.81       353
+#            1       0.50      0.66      0.57       125
 # 
-#     accuracy                           0.76       478
-#    macro avg       0.70      0.74      0.72       478
-# weighted avg       0.79      0.76      0.77       478
+#     accuracy                           0.74       478
+#    macro avg       0.68      0.71      0.69       478
+# weighted avg       0.77      0.74      0.75       478
 
 
 # %% 1 -
@@ -449,51 +429,38 @@ test_pred     = np.where(test_predprob[:, 1] > 0.5, 1, 0)
 # %% 1 -
 auc = roc_auc_score(y_test, test_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
-# AUC: 0.796
+# AUC: 0.846
 
 
 # %% 1 -
 fpr, tpr, _ = roc_curve(y_test, test_predprob[:, 1])
 
-plt.figure()
-
-plt.plot(fpr, tpr, color = "darkorange", lw = 2, label = f"ROC curve (area = {auc:0.3f})")
-plt.plot([0, 1], [0, 1], color = "navy", lw = 2, linestyle = "--")
-
-plt.title("Receiver Operating Characteristic (ROC) Curve - Naive Bayes")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-
-plt.legend(loc = "lower right")
-plt.axis("tight")
-
-plt.show()
+plot_roc_curve(fpr, tpr, auc, description = "Naive Bayes")
 
 
 # %% 1 -
 print(classification_report(y_test, test_pred))
 #               precision    recall  f1-score   support
 # 
-#            0       0.86      0.74      0.79       149
-#            1       0.49      0.68      0.57        56
+#            0       0.91      0.76      0.83       150
+#            1       0.55      0.80      0.65        55
 # 
-#     accuracy                           0.72       205
-#    macro avg       0.68      0.71      0.68       205
-# weighted avg       0.76      0.72      0.73       205
+#     accuracy                           0.77       205
+#    macro avg       0.73      0.78      0.74       205
+# weighted avg       0.81      0.77      0.78       205
 
 
 # %%
 
-# The naive bayes model performs consistently well, with the performance of
-# the test data almost consistent with the training data
+# The naive bayes model performs consistently well
 
 
 # %%
 
 # According to the above analysis, the glm model outperforms the naive bayes
 # model significantly - looking at AUC for the test data for each model:
-#     GLM AUC: 0.840
-#      NB AUC: 0.807
+#     GLM AUC: 0.875
+#      NB AUC: 0.846
 
 
 
@@ -512,7 +479,7 @@ print(classification_report(y_test, test_pred))
 
 
 # For this exercise I have decided on the following ways of combining the data:
-#     1.  Bill_Total = Bill_Service + Bill_Product
+#     1. Bill_Total  = Bill_Service + Bill_Product
 #     2. Recency_Max = max(Recency_Service, Recency_Product)
 # I was considering adding both Recency values to get an indication of the
 # magnitude of both Recency values, but in the end went with the max value of
@@ -566,37 +533,25 @@ train_pred     = np.where(train_predprob[:, 1] > 0.5, 1, 0)
 # %% 1 -
 auc = roc_auc_score(y_train, train_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
-# AUC: 0.789
+# AUC: 0.805
 
 
 # %% 1 -
 fpr, tpr, _ = roc_curve(y_train, train_predprob[:, 1])
 
-plt.figure()
-
-plt.plot(fpr, tpr, color = "darkorange", lw = 2, label = f"ROC curve (area = {auc:0.3f})")
-plt.plot([0, 1], [0, 1], color = "navy", lw = 2, linestyle = "--")
-
-plt.title("Receiver Operating Characteristic (ROC) Curve - Logistic Regression")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-
-plt.legend(loc = "lower right")
-plt.axis("tight")
-
-plt.show()
+plot_roc_curve(fpr, tpr, auc, description = "Logistic Regression")
 
 
 # %% 1 -
 print(classification_report(y_train, train_pred))
 #               precision    recall  f1-score   support
 # 
-#            0       0.80      0.95      0.87       356
-#            1       0.67      0.32      0.43       122
+#            0       0.81      0.93      0.87       353
+#            1       0.66      0.38      0.48       125
 # 
 #     accuracy                           0.79       478
-#    macro avg       0.74      0.63      0.65       478
-# weighted avg       0.77      0.79      0.76       478
+#    macro avg       0.73      0.66      0.68       478
+# weighted avg       0.77      0.79      0.77       478
 
 
 # %% 1 - 
@@ -611,37 +566,30 @@ test_pred     = np.where(test_predprob[:, 1] > 0.5, 1, 0)
 # %% 1 -
 auc = roc_auc_score(y_test, test_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
-# AUC: 0.874
+# AUC: 0.843
 
 
 # %% 1 -
 fpr, tpr, _ = roc_curve(y_test, test_predprob[:, 1])
 
-plt.figure()
-
-plt.plot(fpr, tpr, color = "darkorange", lw = 2, label = f"ROC curve (area = {auc:0.3f})")
-plt.plot([0, 1], [0, 1], color = "navy", lw = 2, linestyle = "--")
-
-plt.title("Receiver Operating Characteristic (ROC) Curve - Logistic Regression")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-
-plt.legend(loc = "lower right")
-plt.axis("tight")
-
-plt.show()
+plot_roc_curve(fpr, tpr, auc, description = "Logistic Regression")
 
 
 # %% 1 -
 print(classification_report(y_test, test_pred))
 #               precision    recall  f1-score   support
 # 
-#            0       0.80      0.95      0.87       147
-#            1       0.74      0.40      0.52        58
+#            0       0.83      0.95      0.89       150
+#            1       0.78      0.45      0.57        55
 # 
-#     accuracy                           0.79       205
-#    macro avg       0.77      0.67      0.69       205
-# weighted avg       0.78      0.79      0.77       205
+#     accuracy                           0.82       205
+#    macro avg       0.80      0.70      0.73       205
+# weighted avg       0.81      0.82      0.80       205
+
+
+# %%
+
+# The glm model performs consistently well
 
 
 
@@ -664,37 +612,25 @@ train_pred     = np.where(train_predprob[:, 1] > 0.5, 1, 0)
 # %% 1 -
 auc = roc_auc_score(y_train, train_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
-# AUC: 0.790
+# AUC: 0.806
 
 
 # %% 1 -
 fpr, tpr, _ = roc_curve(y_train, train_predprob[:, 1])
 
-plt.figure()
-
-plt.plot(fpr, tpr, color = "darkorange", lw = 2, label = f"ROC curve (area = {auc:0.3f})")
-plt.plot([0, 1], [0, 1], color = "navy", lw = 2, linestyle = "--")
-
-plt.title("Receiver Operating Characteristic (ROC) Curve - SVM")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-
-plt.legend(loc = "lower right")
-plt.axis("tight")
-
-plt.show()
+plot_roc_curve(fpr, tpr, auc, description = "SVM")
 
 
 # %% 1 -
 print(classification_report(y_train, train_pred))
 #               precision    recall  f1-score   support
 # 
-#            0       0.80      0.95      0.87       356
-#            1       0.70      0.32      0.44       122
+#            0       0.80      0.93      0.86       353
+#            1       0.64      0.33      0.43       125
 # 
-#     accuracy                           0.79       478
-#    macro avg       0.75      0.64      0.65       478
-# weighted avg       0.78      0.79      0.76       478
+#     accuracy                           0.78       478
+#    macro avg       0.72      0.63      0.65       478
+# weighted avg       0.76      0.78      0.75       478
 
 
 # %% 1 -
@@ -709,37 +645,30 @@ test_pred     = np.where(test_predprob[:, 1] > 0.5, 1, 0)
 # %% 1 -
 auc = roc_auc_score(y_test, test_predprob[:, 1])
 print(f"AUC: {auc:.3f}")
-# AUC: 0.872
+# AUC: 0.844
 
 
 # %% 1 -
 fpr, tpr, _ = roc_curve(y_test, test_predprob[:, 1])
 
-plt.figure()
-
-plt.plot(fpr, tpr, color = "darkorange", lw = 2, label = f"ROC curve (area = {auc:0.3f})")
-plt.plot([0, 1], [0, 1], color = "navy", lw = 2, linestyle = "--")
-
-plt.title("Receiver Operating Characteristic (ROC) Curve - SVM")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-
-plt.legend(loc = "lower right")
-plt.axis("tight")
-
-plt.show()
+plot_roc_curve(fpr, tpr, auc, description = "SVM")
 
 
 # %% 1 -
 print(classification_report(y_test, test_pred))
 #               precision    recall  f1-score   support
 # 
-#            0       0.79      0.95      0.86       147
-#            1       0.74      0.34      0.47        58
+#            0       0.82      0.97      0.89       150
+#            1       0.82      0.42      0.55        55
 # 
-#     accuracy                           0.78       205
-#    macro avg       0.76      0.65      0.67       205
-# weighted avg       0.77      0.78      0.75       205
+#     accuracy                           0.82       205
+#    macro avg       0.82      0.69      0.72       205
+# weighted avg       0.82      0.82      0.80       205
+
+
+# %%
+
+# The svm model performs consistently well
 
 
 # %%
@@ -749,9 +678,9 @@ print(classification_report(y_test, test_pred))
 # model in turn:
 # 
 # Training Data:
-#       GLM AUC: 0.789
-#       SVM AUC: 0.790
+#       GLM AUC: 0.805
+#       SVM AUC: 0.806
 # 
 #     Test Data:
-#       GLM AUC: 0.874
-#       SVM AUC: 0.872
+#       GLM AUC: 0.843
+#       SVM AUC: 0.844
