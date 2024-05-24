@@ -30,12 +30,8 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "pyasyncore",
-  "pyasynchat",
-  "ipykernel",
   "numpy",
   "pandas",
-  # "scipy",
   "scipy>=1.6.1,<=1.11.4",
   "matplotlib",
   "seaborn",
@@ -49,7 +45,11 @@ dependencies = [
   "pmdarima",
   "radian",
   "hoggorm",
-  # "hoggorm==0.13.3",
+  "ipykernel",
+  "pyasyncore",
+  "pyasynchat",
+    # "spyder-kernels",
+  "spyder-kernels==3.0.0b5",
 ]
 
 [project.urls]
