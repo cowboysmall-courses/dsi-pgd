@@ -39,6 +39,7 @@ dependencies = [
   "scikit-learn",
   "scikit-plot",
   "statsmodels",
+  "mlxtend",
   "patsy",
   "yfinance",
   "arch",
@@ -50,6 +51,7 @@ dependencies = [
   "pyasynchat",
     # "spyder-kernels",
   "spyder-kernels==3.0.0b5",
+  "openpyxl",
 ]
 
 [project.urls]
