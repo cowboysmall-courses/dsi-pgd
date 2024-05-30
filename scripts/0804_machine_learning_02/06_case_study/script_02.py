@@ -169,12 +169,12 @@ rules[ (rules["lift"] >= 6) & (rules["confidence"] >= 0.8)]
 # 22       0.967949  
 
 
-# %% 1 - 
+# %% 1 -
 basket["ALARM CLOCK BAKELIKE GREEN"].sum()
 # 340.0
 
 
-# %% 1 - 
+# %% 1 -
 basket["ALARM CLOCK BAKELIKE RED"].sum()
 # 316.0
 
@@ -183,41 +183,39 @@ basket["ALARM CLOCK BAKELIKE RED"].sum()
 
 
 
-# %% 1 - 
+# %% 1 -
 basket2 = (data[data["Country"] == "Germany"]
            .groupby(["InvoiceNo", "Description"])["Quantity"]
            .sum().unstack().reset_index().fillna(0)
            .set_index("InvoiceNo"))
 
 
-# %% 1 - 
+# %% 1 -
 basket2_sets = basket2.map(encode_units)
 basket2_sets.drop("POSTAGE", inplace = True, axis = 1)
 
 
-# %% 1 - 
+# %% 1 -
 frequent_items2 = apriori(basket2_sets, min_support = 0.05, use_colnames = True)
 
 
-# %% 1 - 
+# %% 1 -
 rules2 = association_rules(frequent_items2, metric = "lift", min_threshold = 1)
 
 
-# %% 1 - 
-rules2[ (rules2["lift"] >= 4) & (rules2["confidence"] >= 0.5)]
+# %% 1 -
+rules2[(rules2["lift"] >= 4) & (rules2["confidence"] >= 0.5)]
 #                         antecedents                         consequents  \
-# 1   (PLASTERS IN TIN CIRCUS PARADE)  (PLASTERS IN TIN WOODLAND ANIMALS)   
-# 7        (PLASTERS IN TIN SPACEBOY)  (PLASTERS IN TIN WOODLAND ANIMALS)   
-# 11    (RED RETROSPOT CHARLOTTE BAG)            (WOODLAND CHARLOTTE BAG)   
+# 1   (PLASTERS IN TIN CIRCUS PARADE)  (PLASTERS IN TIN WOODLAND ANIMALS)
+# 7        (PLASTERS IN TIN SPACEBOY)  (PLASTERS IN TIN WOODLAND ANIMALS)
+# 11    (RED RETROSPOT CHARLOTTE BAG)            (WOODLAND CHARLOTTE BAG)
 
 #     antecedent support  consequent support   support  confidence      lift  \
-# 1             0.115974            0.137856  0.067834    0.584906  4.242887   
-# 7             0.107221            0.137856  0.061269    0.571429  4.145125   
-# 11            0.070022            0.126915  0.059081    0.843750  6.648168   
+# 1             0.115974            0.137856  0.067834    0.584906  4.242887
+# 7             0.107221            0.137856  0.061269    0.571429  4.145125
+# 11            0.070022            0.126915  0.059081    0.843750  6.648168
 
-#     leverage  conviction  zhangs_metric  
-# 1   0.051846    2.076984       0.864580  
-# 7   0.046488    2.011670       0.849877  
-# 11  0.050194    5.587746       0.913551  
-
-
+#     leverage  conviction  zhangs_metric
+# 1   0.051846    2.076984       0.864580
+# 7   0.046488    2.011670       0.849877
+# 11  0.050194    5.587746       0.913551
