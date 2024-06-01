@@ -38,6 +38,8 @@ dependencies = [
   "plotly",
   "scikit-learn",
   "scikit-plot",
+  "nltk",
+  "wordcloud",
   "statsmodels",
   "mlxtend",
   "patsy",
