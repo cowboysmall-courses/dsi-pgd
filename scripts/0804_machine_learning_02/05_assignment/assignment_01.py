@@ -48,8 +48,8 @@ from sklearn.metrics import classification_report, confusion_matrix, precision_s
 import warnings
 warnings.filterwarnings("ignore", category = FutureWarning)
 
-import random
-random.seed(27041970)
+# import random
+# random.seed(1024)
 
 
 
@@ -297,7 +297,7 @@ X_scaled = scaler.fit_transform(X)
 
 
 # %% 3 - 
-model_mlp = MLPClassifier(hidden_layer_sizes = (3,), max_iter=300)
+model_mlp = MLPClassifier(hidden_layer_sizes = (3, ), max_iter = 500)
 model_mlp.fit(X_scaled, y)
 
 
@@ -311,7 +311,7 @@ auc_mlp = roc_auc_score(y, y_prob_mlp[:, 1])
 
 # %% 3 -
 print(f"Neural Network AUC: {auc_mlp:.3f}")
-# Neural Network AUC: 0.864
+# Neural Network AUC: 0.851
 
 
 # %% 3 -
@@ -331,29 +331,29 @@ y_pred_mlp = np.where(y_prob_mlp[:, 1] > 0.5, 1, 0)
 
 # %% 3 - 
 print(confusion_matrix(y, y_pred_mlp, labels = [0, 1]))
-# [[471  32]
-#  [ 86  94]]
+# [[473  30]
+#  [100  80]]
 
 
 # %% 3 - 
 print(classification_report(y, y_pred_mlp))
 #               precision    recall  f1-score   support
 # 
-#            0       0.85      0.94      0.89       503
-#            1       0.75      0.52      0.61       180
+#            0       0.83      0.94      0.88       503
+#            1       0.73      0.44      0.55       180
 # 
-#     accuracy                           0.83       683
-#    macro avg       0.80      0.73      0.75       683
-# weighted avg       0.82      0.83      0.82       683
+#     accuracy                           0.81       683
+#    macro avg       0.78      0.69      0.72       683
+# weighted avg       0.80      0.81      0.79       683
 
 
 # %% 3 - 
 print(f" Neural Network Accuracy: {accuracy_score(y, y_pred_mlp)}")
 print(f"Neural Network Precision: {precision_score(y, y_pred_mlp)}")
 print(f"   Neural Network Recall: {recall_score(y, y_pred_mlp)}")
-#  Neural Network Accuracy: 0.8272327964860908
-# Neural Network Precision: 0.746031746031746
-#    Neural Network Recall: 0.5222222222222223
+#  Neural Network Accuracy: 0.8096632503660323
+# Neural Network Precision: 0.7272727272727273
+#    Neural Network Recall: 0.4444444444444444
 
 
 
@@ -390,7 +390,7 @@ plot_roc_curve(fpr_rf, tpr_rf, auc_rf, description = "Random Forest (CV)")
 
 # %% 4 -
 print(f"Random Forest (CV) AUC: {auc_rf:.3f}")
-# Random Forest (CV) AUC: 0.783
+# Random Forest (CV) AUC: 0.785
 
 
 
@@ -402,7 +402,7 @@ y_pred_rf = np.where(y_prob_rf[:, 1] > 0.5, 1, 0)
 
 # %% 4 - 
 print(confusion_matrix(y, y_pred_rf, labels = [0, 1]))
-# [[453  50]
+# [[456  47]
 #  [ 94  86]]
 
 
@@ -410,11 +410,11 @@ print(confusion_matrix(y, y_pred_rf, labels = [0, 1]))
 print(classification_report(y, y_pred_rf))
 #               precision    recall  f1-score   support
 # 
-#            0       0.83      0.90      0.86       503
-#            1       0.63      0.48      0.54       180
+#            0       0.83      0.91      0.87       503
+#            1       0.65      0.48      0.55       180
 # 
 #     accuracy                           0.79       683
-#    macro avg       0.73      0.69      0.70       683
+#    macro avg       0.74      0.69      0.71       683
 # weighted avg       0.78      0.79      0.78       683
 
 
@@ -422,6 +422,6 @@ print(classification_report(y, y_pred_rf))
 print(f" Random Forest (CV) Accuracy: {accuracy_score(y, y_pred_rf)}")
 print(f"Random Forest (CV) Precision: {precision_score(y, y_pred_rf)}")
 print(f"   Random Forest (CV) Recall: {recall_score(y, y_pred_rf)}")
-#  Random Forest (CV) Accuracy: 0.7891654465592972
-# Random Forest (CV) Precision: 0.6323529411764706
+#  Random Forest (CV) Accuracy: 0.7935578330893118
+# Random Forest (CV) Precision: 0.6466165413533834
 #    Random Forest (CV) Recall: 0.4777777777777778
