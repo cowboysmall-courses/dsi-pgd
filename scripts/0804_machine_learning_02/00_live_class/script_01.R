@@ -2,7 +2,7 @@
 library(partykit)
 
 
-data <- read.csv("./data/0704_machine_learning_01/00_live_class/BANK LOAN.csv", header = TRUE)
+data <- read.csv("./data/0804_machine_learning_02/00_live_class/BANK LOAN.csv", header = TRUE)
 head(data)
 #   SN AGE EMPLOY ADDRESS DEBTINC CREDDEBT OTHDEBT DEFAULTER
 # 1  1   3     17      12     9.3    11.36    5.01         1

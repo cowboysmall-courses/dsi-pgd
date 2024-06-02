@@ -11,7 +11,7 @@ from sklearn.metrics import classification_report, confusion_matrix, precision_s
 
 
 # %% 1 - import data and check the head
-data = pd.read_csv("./data/0704_machine_learning_01/00_live_class/BANK LOAN.csv")
+data = pd.read_csv("./data/0804_machine_learning_02/00_live_class/BANK LOAN.csv")
 data.head()
 #    SN  AGE  EMPLOY  ADDRESS  DEBTINC  CREDDEBT  OTHDEBT  DEFAULTER
 # 0   1    3      17       12      9.3     11.36     5.01          1
