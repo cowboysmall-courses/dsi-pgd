@@ -42,7 +42,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import cross_val_predict
+from sklearn.model_selection import cross_val_predict, cross_val_score
 from sklearn.metrics import classification_report, confusion_matrix, precision_score, recall_score, accuracy_score, roc_curve, roc_auc_score
 
 import warnings
@@ -126,33 +126,32 @@ data.info()
 # %% 1 - 
 data = data.drop(['SN'], axis = 1)
 
-data['Gender'] = pd.Categorical(np.where(data['Gender'] == 1, "Male", "Female"))
-data['AGE']    = pd.Categorical(data['AGE'])
+data['Gender']  = pd.Categorical(np.where(data['Gender'] == 1, "Male", "Female"))
+data['AGE']     = pd.Categorical(data['AGE'])
+data['Success'] = pd.Categorical(data['Success'])
 
 
 # %% 1 - 
-data_dummy = pd.get_dummies(data)
+data_dummy = pd.get_dummies(data, columns = ["Gender", "AGE"], drop_first = True)
 
 
 # %% 1 - 
 data_dummy.info()
 # <class 'pandas.core.frame.DataFrame'>
 # RangeIndex: 683 entries, 0 to 682
-# Data columns (total 10 columns):
-#  #   Column           Non-Null Count  Dtype  
-# ---  ------           --------------  -----  
-#  0   Recency_Service  683 non-null    int64  
-#  1   Recency_Product  683 non-null    int64  
-#  2   Bill_Service     683 non-null    float64
-#  3   Bill_Product     683 non-null    float64
-#  4   Success          683 non-null    int64  
-#  5   Gender_Female    683 non-null    bool   
-#  6   Gender_Male      683 non-null    bool   
-#  7   AGE_<=30         683 non-null    bool   
-#  8   AGE_<=45         683 non-null    bool   
-#  9   AGE_<=55         683 non-null    bool   
-# dtypes: bool(5), float64(2), int64(3)
-# memory usage: 30.1 KB
+# Data columns (total 8 columns):
+#  #   Column           Non-Null Count  Dtype   
+# ---  ------           --------------  -----   
+#  0   Recency_Service  683 non-null    int64   
+#  1   Recency_Product  683 non-null    int64   
+#  2   Bill_Service     683 non-null    float64 
+#  3   Bill_Product     683 non-null    float64 
+#  4   Success          683 non-null    category
+#  5   Gender_Male      683 non-null    bool    
+#  6   AGE_<=45         683 non-null    bool    
+#  7   AGE_<=55         683 non-null    bool    
+# dtypes: bool(3), category(1), float64(2), int64(2)
+# memory usage: 24.3 KB
 
 
 # %% 1 - 
@@ -248,6 +247,7 @@ plot_roc_curve(fpr_rf, tpr_rf, auc_rf, description = "Random Forest")
 
 
 
+# %% 2 -
 y_pred_rf = np.where(y_prob_rf[:, 1] > 0.5, 1, 0)
 
 
@@ -292,12 +292,12 @@ print(f"   Random Forest Recall: {recall_score(y, y_pred_rf)}")
 
 
 # %% 3 - 
-scaler   = MinMaxScaler()
+scaler   = MinMaxScaler( )
 X_scaled = scaler.fit_transform(X)
 
 
 # %% 3 - 
-model_mlp = MLPClassifier(hidden_layer_sizes = (3, ), max_iter = 500)
+model_mlp = MLPClassifier(hidden_layer_sizes = (3, ), max_iter = 1000)
 model_mlp.fit(X_scaled, y)
 
 
@@ -311,7 +311,7 @@ auc_mlp = roc_auc_score(y, y_prob_mlp[:, 1])
 
 # %% 3 -
 print(f"Neural Network AUC: {auc_mlp:.3f}")
-# Neural Network AUC: 0.851
+# Neural Network AUC: 0.855
 
 
 # %% 3 -
@@ -331,7 +331,7 @@ y_pred_mlp = np.where(y_prob_mlp[:, 1] > 0.5, 1, 0)
 
 # %% 3 - 
 print(confusion_matrix(y, y_pred_mlp, labels = [0, 1]))
-# [[473  30]
+# [[476  27]
 #  [100  80]]
 
 
@@ -339,20 +339,20 @@ print(confusion_matrix(y, y_pred_mlp, labels = [0, 1]))
 print(classification_report(y, y_pred_mlp))
 #               precision    recall  f1-score   support
 # 
-#            0       0.83      0.94      0.88       503
-#            1       0.73      0.44      0.55       180
+#            0       0.83      0.95      0.88       503
+#            1       0.75      0.44      0.56       180
 # 
 #     accuracy                           0.81       683
-#    macro avg       0.78      0.69      0.72       683
-# weighted avg       0.80      0.81      0.79       683
+#    macro avg       0.79      0.70      0.72       683
+# weighted avg       0.81      0.81      0.80       683
 
 
 # %% 3 - 
 print(f" Neural Network Accuracy: {accuracy_score(y, y_pred_mlp)}")
 print(f"Neural Network Precision: {precision_score(y, y_pred_mlp)}")
 print(f"   Neural Network Recall: {recall_score(y, y_pred_mlp)}")
-#  Neural Network Accuracy: 0.8096632503660323
-# Neural Network Precision: 0.7272727272727273
+#  Neural Network Accuracy: 0.8140556368960469
+# Neural Network Precision: 0.7476635514018691
 #    Neural Network Recall: 0.4444444444444444
 
 
@@ -367,61 +367,66 @@ print(f"   Neural Network Recall: {recall_score(y, y_pred_mlp)}")
 # %%
 
 # 4. Addendum - look at the Random Forest classifier performance - using cross
-#    validation to get a more acurate indication of the performance of the 
+#    validation - to get a more realistic indication of the performance of the 
 #    classifier
 
 
 # %% 4 - 
-model_rf  = RandomForestClassifier(n_estimators = 100, oob_score = True, max_features = "sqrt")
-y_prob_rf = cross_val_predict(model_rf, X, y, cv = 4, method = 'predict_proba')
+model_rf_cv  = RandomForestClassifier(n_estimators = 100, oob_score = True, max_features = "sqrt")
+scores_rf_cv = cross_val_score(model_rf_cv, X, y, cv = 5, scoring = 'roc_auc')
+print(f"Random Forest (CV) AUC: {scores_rf_cv.max():.3f}")
+# Random Forest (CV) AUC: 0.839
+
+
+# %% 4 - 
+model_rf_cv  = RandomForestClassifier(n_estimators = 100, oob_score = True, max_features = "sqrt")
+y_prob_rf_cv = cross_val_predict(model_rf_cv, X, y, cv = 5, method = 'predict_proba')
 
 
 # %% 4 -
-auc_rf = roc_auc_score(y, y_prob_rf[:, 1])
+auc_rf_cv = roc_auc_score(y, y_prob_rf_cv[:, 1])
 
 
 # %% 4 -
-fpr_rf, tpr_rf, _ = roc_curve(y, y_prob_rf[:, 1])
+print(f"Random Forest (CV) AUC: {auc_rf_cv:.3f}")
+# Random Forest (CV) AUC: 0.791
 
 
 # %% 4 -
-plot_roc_curve(fpr_rf, tpr_rf, auc_rf, description = "Random Forest (CV)")
+fpr_rf_cv, tpr_rf_cv, _ = roc_curve(y, y_prob_rf_cv[:, 1])
 
 
 # %% 4 -
-print(f"Random Forest (CV) AUC: {auc_rf:.3f}")
-# Random Forest (CV) AUC: 0.785
-
-
+plot_roc_curve(fpr_rf_cv, tpr_rf_cv, auc_rf_cv, description = "Random Forest (CV)")
 
 
 
 # %% 4 - 
-y_pred_rf = np.where(y_prob_rf[:, 1] > 0.5, 1, 0)
+y_pred_rf_cv = np.where(y_prob_rf_cv[:, 1] > 0.5, 1, 0)
 
 
 # %% 4 - 
-print(confusion_matrix(y, y_pred_rf, labels = [0, 1]))
-# [[456  47]
-#  [ 94  86]]
+print(confusion_matrix(y, y_pred_rf_cv, labels = [0, 1]))
+# [[458  45]
+#  [ 97  83]]
 
 
 # %% 4 - 
-print(classification_report(y, y_pred_rf))
+print(classification_report(y, y_pred_rf_cv))
 #               precision    recall  f1-score   support
 # 
 #            0       0.83      0.91      0.87       503
-#            1       0.65      0.48      0.55       180
+#            1       0.65      0.46      0.54       180
 # 
 #     accuracy                           0.79       683
-#    macro avg       0.74      0.69      0.71       683
+#    macro avg       0.74      0.69      0.70       683
 # weighted avg       0.78      0.79      0.78       683
 
 
 # %% 4 - 
-print(f" Random Forest (CV) Accuracy: {accuracy_score(y, y_pred_rf)}")
-print(f"Random Forest (CV) Precision: {precision_score(y, y_pred_rf)}")
-print(f"   Random Forest (CV) Recall: {recall_score(y, y_pred_rf)}")
-#  Random Forest (CV) Accuracy: 0.7935578330893118
-# Random Forest (CV) Precision: 0.6466165413533834
-#    Random Forest (CV) Recall: 0.4777777777777778
+print(f" Random Forest (CV) Accuracy: {accuracy_score(y, y_pred_rf_cv)}")
+print(f"Random Forest (CV) Precision: {precision_score(y, y_pred_rf_cv)}")
+print(f"   Random Forest (CV) Recall: {recall_score(y, y_pred_rf_cv)}")
+#  Random Forest (CV) Accuracy: 0.7920937042459737
+# Random Forest (CV) Precision: 0.6484375
+#    Random Forest (CV) Recall: 0.46111111111111114
