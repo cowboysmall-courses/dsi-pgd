@@ -374,8 +374,10 @@ print(f"   Neural Network Recall: {recall_score(y, y_pred_mlp)}")
 # %% 4 - 
 model_rf_cv  = RandomForestClassifier(n_estimators = 100, oob_score = True, max_features = "sqrt")
 scores_rf_cv = cross_val_score(model_rf_cv, X, y, cv = 5, scoring = 'roc_auc')
-print(f"Random Forest (CV) AUC: {scores_rf_cv.max():.3f}")
-# Random Forest (CV) AUC: 0.839
+print(f"Random Forest (CV) - mean AUC: {scores_rf_cv.mean():.3f}")
+print(f"Random Forest (CV) -  Max AUC: {scores_rf_cv.max():.3f}")
+# Random Forest (CV) - mean AUC: 0.788
+# Random Forest (CV) -  Max AUC: 0.847
 
 
 # %% 4 - 
@@ -430,3 +432,5 @@ print(f"   Random Forest (CV) Recall: {recall_score(y, y_pred_rf_cv)}")
 #  Random Forest (CV) Accuracy: 0.7920937042459737
 # Random Forest (CV) Precision: 0.6484375
 #    Random Forest (CV) Recall: 0.46111111111111114
+
+# %%
