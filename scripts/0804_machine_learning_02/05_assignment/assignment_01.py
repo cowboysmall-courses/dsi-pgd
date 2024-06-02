@@ -377,7 +377,7 @@ scores_rf_cv = cross_val_score(model_rf_cv, X, y, cv = 5, scoring = 'roc_auc')
 print(f"Random Forest (CV) - mean AUC: {scores_rf_cv.mean():.3f}")
 print(f"Random Forest (CV) -  Max AUC: {scores_rf_cv.max():.3f}")
 # Random Forest (CV) - mean AUC: 0.788
-# Random Forest (CV) -  Max AUC: 0.847
+# Random Forest (CV) -  nax AUC: 0.847
 
 
 # %% 4 - 
