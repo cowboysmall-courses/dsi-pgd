@@ -292,7 +292,7 @@ print(f"   Random Forest Recall: {recall_score(y, y_pred_rf)}")
 
 
 # %% 3 - 
-scaler   = MinMaxScaler( )
+scaler   = MinMaxScaler()
 X_scaled = scaler.fit_transform(X)
 
 
@@ -432,5 +432,3 @@ print(f"   Random Forest (CV) Recall: {recall_score(y, y_pred_rf_cv)}")
 #  Random Forest (CV) Accuracy: 0.7920937042459737
 # Random Forest (CV) Precision: 0.6484375
 #    Random Forest (CV) Recall: 0.46111111111111114
-
-# %%
