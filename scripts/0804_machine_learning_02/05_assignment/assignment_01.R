@@ -102,7 +102,6 @@ str(data)
 #  $ AGE_55         : int  0 0 0 0 0 0 0 0 0 0 ...
 
 
-# model_dt  <- partykit::ctree(Success ~ Gender + AGE + Recency_Service + Recency_Product + Bill_Service + Bill_Product, data = data)
 model_dt  <- rpart(Success ~ Gender + AGE + Recency_Service + Recency_Product + Bill_Service + Bill_Product, data = data, method = "class")
 y_pred_dt <- predict(model_dt, data, type = "prob")
 
