@@ -44,14 +44,22 @@ data$Cleaned_Review[1]
 # [1] "amber ladonna southwest parkway always warm welcoming always smile voice greet drivethru customer service always spot always get right smile actually give stars available"
 
 positive_reviews <- subset(data, Rating > 3)
-positive_reviews <- positive_reviews %>% dplyr::select(Cleaned_Review) %>% tidytext::unnest_tokens(word, Cleaned_Review) %>% dplyr::count(word, sort = TRUE) %>% ungroup()
+positive_reviews <- positive_reviews %>% 
+  dplyr::select(Cleaned_Review) %>% 
+  tidytext::unnest_tokens(word, Cleaned_Review) %>% 
+  dplyr::count(word, sort = TRUE) %>% 
+  ungroup()
 head(positive_reviews, 2)
 #      word  n
 # 1  always 60
 # 2 service 55
 
 negative_reviews <- subset(data, Rating < 3)
-negative_reviews <- negative_reviews %>% dplyr::select(Cleaned_Review) %>% tidytext::unnest_tokens(word, Cleaned_Review) %>% dplyr::count(word, sort = TRUE) %>% ungroup()
+negative_reviews <- negative_reviews %>% 
+  dplyr::select(Cleaned_Review) %>% 
+  tidytext::unnest_tokens(word, Cleaned_Review) %>% 
+  dplyr::count(word, sort = TRUE) %>% 
+  ungroup()
 head(negative_reviews, 2)
 #       word   n
 # 1 customer 236
@@ -69,7 +77,9 @@ data$Year  <- str_split(data$Date, ", ") %>% sapply(function(x) x[[2]])
 data$Year  <- as.numeric(data$Year)
 recentdata <- subset(data, Year > 2018)
 
-mean_scores_by_year <- recentdata %>% group_by(Year) %>% summarise(CScore = mean(Compound_Score))
+mean_scores_by_year <- recentdata %>% 
+  group_by(Year) %>% 
+  summarise(CScore = mean(Compound_Score))
 
 ggplot(data = mean_scores_by_year, aes(x = Year, y = CScore, fill = as.factor(Year))) +
   geom_bar(stat = "identity", position = "dodge") + 
