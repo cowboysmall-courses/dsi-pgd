@@ -76,7 +76,3 @@ inspect(rules[1:5])
 
 
 plot(rules, method = "graph", engine = "interactive")
-
-
-
-
