@@ -41,6 +41,7 @@ rules <- apriori(Groceries, parameter = list(supp = 0.001, conf = 0.8))
 # writing ... [410 rule(s)] done [0.00s].
 # creating S4 object  ... done [0.00s].
 
+
 options(digits = 2)
 inspect(rules[1:5])
 #     lhs                         rhs            support confidence coverage lift count
@@ -64,6 +65,7 @@ inspect(rules[1:5])
 
 
 rules <- apriori(Groceries, parameter = list(supp = 0.001, conf = 0.15, minlen = 2), appearance = list(default = "rhs", lhs = "whole milk"), control = list(verbose = FALSE))
+
 
 rules <- sort(rules, by = "confidence", decreasing = TRUE)
 inspect(rules[1:5])

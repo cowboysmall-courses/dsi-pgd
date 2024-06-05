@@ -23,7 +23,6 @@ par(mfrow = c(1, 1), xpd = NA)
 plot(rpart_c)
 text(rpart_c, splits = TRUE, use.n = TRUE, all = TRUE, cex = 0.75)
 
-
 rpart_inf <- rpart(DEFAULTER ~ AGE + EMPLOY + ADDRESS + DEBTINC + CREDDEBT + OTHDEBT, data = bankloan, method = "class", parms = list(split = "information"))
 
 par(mfrow = c(1, 1), xpd = NA)

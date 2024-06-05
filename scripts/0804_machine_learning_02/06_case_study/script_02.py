@@ -127,7 +127,7 @@ rules.head()
 
 
 # %% 1 - 
-rules[ (rules["lift"] >= 6) & (rules["confidence"] >= 0.8)]
+rules[(rules["lift"] >= 6) & (rules["confidence"] >= 0.8)]
 #                                           antecedents  \
 # 2                          (ALARM CLOCK BAKELIKE RED)   
 # 3                        (ALARM CLOCK BAKELIKE GREEN)   

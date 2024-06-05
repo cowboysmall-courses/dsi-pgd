@@ -80,7 +80,7 @@ confusionMatrix(test$predY, test$Exited, positive = "1")
 #          Detection Rate : 0.06769        
 #    Detection Prevalence : 0.10604        
 #       Balanced Accuracy : 0.64204        
-                                         
+#
 #        'Positive' Class : 1     
 
 

@@ -112,4 +112,3 @@ ggplot(df, aes(x = term, y = freq)) +
     xlab("Terms") +
     ylab("Count") +
     coord_flip()
-

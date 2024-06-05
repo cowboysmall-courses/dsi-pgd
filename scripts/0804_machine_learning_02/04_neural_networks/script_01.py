@@ -45,7 +45,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.30, rand
 
 
 # %% 1 - 
-classifier = MLPClassifier(hidden_layer_sizes = (3,), max_iter = 300, activation ='relu', solver = 'adam', random_state = 1)
+classifier = MLPClassifier(hidden_layer_sizes = (3, ), max_iter = 300, activation = 'relu', solver = 'adam', random_state = 1)
 classifier.fit(X_train, y_train)
 
 

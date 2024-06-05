@@ -46,10 +46,7 @@ data = data[~data["InvoiceNo"].str.contains("C")]
 
 
 # %% 1 - 
-basket = (data[data["Country"] == "France"]
-                  .groupby(["InvoiceNo", "Description"])["Quantity"]
-                  .sum().unstack().reset_index().fillna(0)
-                  .set_index("InvoiceNo"))
+basket = (data[data["Country"] == "France"].groupby(["InvoiceNo", "Description"])["Quantity"].sum().unstack().reset_index().fillna(0).set_index("InvoiceNo"))
 
 basket.head()
 

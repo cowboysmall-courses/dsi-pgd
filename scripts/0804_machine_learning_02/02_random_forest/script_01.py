@@ -148,5 +148,3 @@ plt.xlabel('Relative Importance')
 plt.yticks(range(len(indices)), [features[i] for i in indices])
 
 plt.show()
-
-

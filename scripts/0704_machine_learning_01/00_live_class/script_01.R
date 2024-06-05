@@ -37,4 +37,3 @@ table(y_test, y_pred)
 # y_test  0  1
 #      0 38 20
 #      1 15 43
-
