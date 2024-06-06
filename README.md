@@ -10,6 +10,7 @@ Coursework for the Data Science Institute's Data Science MSc Program
 
 - [Development](#Development)
 - [License](#license)
+- [Sublime Text Configs](#Sublime Text Configs)
 
 
 ## Development
@@ -26,12 +27,17 @@ once the shell is up and running you can execute some code:
 > python -m cowboysmall.some_tool 
 ```
 
+
 ## License
 
 any tools or scripts found within `dsi-msc` are distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
 
 
-## Sublime Text Config
+
+## Sublime Text Configs
+
+
+### General Settings
 
 ```json
 {
@@ -58,8 +64,25 @@ any tools or scripts found within `dsi-msc` are distributed under the terms of t
     "translate_tabs_to_spaces": true,
     "trim_trailing_white_space_on_save": "all",
     "word_wrap": false,
-    // "color_scheme": "Mariana.sublime-color-scheme",
     "index_files": true,
 }
 
 ```
+
+
+### SublimeLinter Settings
+
+```json
+{
+    "linters": {
+        "pycodestyle": {
+            "filter_errors": [
+                "E221", "E251", "E272", "E302", "E305", "E303", "E501",
+                "W291", "W391"
+            ]
+        }
+    }
+}
+
+```
+
