@@ -34,10 +34,10 @@ any tools or scripts found within `dsi-msc` are distributed under the terms of t
 
 
 
-## Sublime Text Configs
+## Development Tools Configs
 
 
-### General Settings
+### Sublime Text General Settings
 
 ```json
 {
@@ -70,7 +70,7 @@ any tools or scripts found within `dsi-msc` are distributed under the terms of t
 ```
 
 
-### SublimeLinter Settings
+### Sublime Text SublimeLinter Settings
 
 ```json
 {
