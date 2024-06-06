@@ -1,14 +1,12 @@
 
 # %% 0 - import libraries
-import nltk
-nltk.download('all', quiet = True)
-
-
-# %% 0 - import libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import itertools
+
+import nltk
+# nltk.download('all', quiet = True)
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize

@@ -77,7 +77,7 @@ any tools or scripts found within `dsi-msc` are distributed under the terms of t
     "linters": {
         "pycodestyle": {
             "filter_errors": [
-                "E221", "E251", "E272", "E302", "E305", "E303", "E501",
+                "E221", "E251", "E272", "E302", "E303", "E305", "E303", "E501",
                 "W291", "W391"
             ]
         }
