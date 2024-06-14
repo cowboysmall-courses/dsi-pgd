@@ -36,24 +36,31 @@ dependencies = [
   "matplotlib",
   "seaborn",
   "plotly",
+  "openpyxl",
+
   "scikit-learn",
   "scikit-plot",
-  "nltk",
-  "wordcloud",
   "statsmodels",
+  "hoggorm",
   "mlxtend",
   "patsy",
+  "formulaic",
+
+  "nltk",
+  "wordcloud",
+
   "yfinance",
   "arch",
   "pmdarima",
-  "radian",
-  "hoggorm",
+
+    # "spyder-kernels",
+  "spyder-kernels==3.0.0b5",
+
   "ipykernel",
   "pyasyncore",
   "pyasynchat",
-    # "spyder-kernels",
-  "spyder-kernels==3.0.0b5",
-  "openpyxl",
+
+  "radian",
 ]
 
 [project.urls]
