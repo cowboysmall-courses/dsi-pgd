@@ -184,7 +184,7 @@ mean_scores_by_year = recent.groupby("Year")["Compound_Score"].mean().reset_inde
 
 
 # %% 1 - 
-plt.figure(figsize=(10, 6))
+plt.figure(figsize = (10, 6))
 
 sns.barplot(x = "Year", y = "Compound_Score", data = mean_scores_by_year, palette = "viridis")
 
