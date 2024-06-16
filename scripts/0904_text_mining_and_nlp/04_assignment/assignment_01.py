@@ -18,8 +18,11 @@
 
 # %% 0 - import libraries
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import nltk
+
+from scipy.stats import pearsonr
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -81,18 +84,13 @@ data.head()
 
 
 # %% 1 - 
-text = data["Cleaned_Review"].str.cat(sep = " ")
+freq_dist = nltk.FreqDist(word_tokenize(data["Cleaned_Review"].str.cat(sep = " ")))
 
 
 
 # %% 1 - 
-freq_dist = nltk.FreqDist(word_tokenize(text))
-
-
-
-# %% 1 - 
-words = pd.DataFrame(freq_dist.items(), columns=["Word", "Freq"])
-print(words[words.Freq >= 6].sort_values("Freq", ascending = False))
+word_freq = pd.DataFrame(freq_dist.items(), columns=["Word", "Freq"])
+print(word_freq[word_freq.Freq >= 6].sort_values("Freq", ascending = False))
 #       Word  Freq
 # 68    film    10
 # 24    like     7
@@ -100,6 +98,83 @@ print(words[words.Freq >= 6].sort_values("Freq", ascending = False))
 # 238   make     7
 # 170   even     6
 # 360  movie     6
+
+
+
+# %% 1 - 
+def create_tdm(sentences, words):
+    lines = sentences.apply(lambda sentence: set(word_tokenize(sentence)))
+    rows  = len(words)
+    cols  = len(lines)
+
+    tdm = np.zeros((rows, cols))
+
+    for word in range(rows):
+        for line in range(cols):
+            tdm[word, line] = words[word] in lines[line]
+
+    return tdm
+
+
+
+# %% 1 - 
+def find_assocs(tdm, idx, min_correlation):
+    found = []
+
+    for row in range(tdm.shape[0]):
+        if row != idx:
+            cor, _ = pearsonr(tdm[idx], tdm[row])
+            if cor >= min_correlation:
+                found.append((row, round(cor, 2)))
+
+    return found
+
+
+
+# %% 1 - 
+words = sorted(list(set(word_tokenize(data["Cleaned_Review"].str.cat(sep = " ")))))
+tdm   = create_tdm(data["Cleaned_Review"], words)
+
+
+
+# %% 1 - 
+found = find_assocs(tdm, words.index("film"), 0.35)
+print("\n".join([f"{words[f[0]]:>10} -> {f[1]}" for f in found]))
+# biggest -> 0.42
+
+
+
+# %% 1 - 
+found = sorted(find_assocs(tdm, words.index("movie"), 0.35), key = lambda x: (-x[1], x[0]))
+print("\n".join([f"{words[f[0]]:>10} -> {f[1]}" for f in found]))
+#   mindfuck -> 0.56
+#   critique -> 0.39
+#     decent -> 0.39
+#    decided -> 0.39
+#  different -> 0.39
+#       edge -> 0.39
+# generation -> 0.39
+#     giving -> 0.39
+#    insight -> 0.39
+#       lazy -> 0.39
+#       mean -> 0.39
+#    melissa -> 0.39
+#    mightve -> 0.39
+#   offering -> 0.39
+#    package -> 0.39
+#      plain -> 0.39
+#   presents -> 0.39
+#   problems -> 0.39
+#    running -> 0.39
+#    showing -> 0.39
+#  somewhere -> 0.39
+#      sorta -> 0.39
+#      suits -> 0.39
+#    touches -> 0.39
+#         us -> 0.39
+#      video -> 0.39
+#    visions -> 0.39
+#       teen -> 0.36
 
 
 

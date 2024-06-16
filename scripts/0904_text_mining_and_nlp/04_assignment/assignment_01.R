@@ -79,7 +79,12 @@ findAssocs(tdm, "film", 0.35)
 # biggest     now 
 #    0.42    0.39
 
-
+findAssocs(tdm, "movie", 0.35)
+# $movie
+#   mindfuck      sorta   critique generation    package   presents    touches   problems       lazy       mean    melissa      plain    running    showing    visions  different     giving    insight   offering     decent    decided 
+#       0.56       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39 
+#       edge    mightve  somewhere      suits      video       teen 
+#       0.39       0.39       0.39       0.39       0.39       0.36
 
 
 
