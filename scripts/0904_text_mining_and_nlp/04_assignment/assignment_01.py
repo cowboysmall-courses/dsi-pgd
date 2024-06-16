@@ -20,6 +20,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 import nltk
 
 from scipy.stats import pearsonr
@@ -31,6 +32,16 @@ from wordcloud import WordCloud
 
 from string import punctuation, digits
 
+
+
+
+
+
+
+
+
+
+# 1. Import Textdata. Do the essential cleaning of the data.
 
 # %% 1 - 
 with open("./data/0904_text_mining_and_nlp/04_assignment/Textdata.txt") as file:
@@ -83,6 +94,15 @@ data.head()
 
 
 
+
+
+
+
+
+
+
+# 2. Find words with minimum frequency 6.
+
 # %% 1 - 
 freq_dist = nltk.FreqDist(word_tokenize(data["Cleaned_Review"].str.cat(sep = " ")))
 
@@ -90,16 +110,25 @@ freq_dist = nltk.FreqDist(word_tokenize(data["Cleaned_Review"].str.cat(sep = " "
 
 # %% 1 - 
 word_freq = pd.DataFrame(freq_dist.items(), columns=["Word", "Freq"])
-print(word_freq[word_freq.Freq >= 6].sort_values("Freq", ascending = False))
-#       Word  Freq
-# 68    film    10
-# 24    like     7
-# 66    dont     7
-# 238   make     7
-# 170   even     6
-# 360  movie     6
+print(word_freq[word_freq.Freq >= 6].sort_values("Freq", ascending = False).reset_index(drop = True))
+#     Word  Freq
+# 0   film    10
+# 1   like     7
+# 2   dont     7
+# 3   make     7
+# 4   even     6
+# 5  movie     6
 
 
+
+
+
+
+
+
+
+
+# 3. List words with at least 0.35 correlation with ‘film’.
 
 # %% 1 - 
 def create_tdm(sentences, words):
@@ -138,7 +167,7 @@ tdm   = create_tdm(data["Cleaned_Review"], words)
 
 
 # %% 1 - 
-found = find_assocs(tdm, words.index("film"), 0.35)
+found = sorted(find_assocs(tdm, words.index("film"), 0.35), key = lambda x: (-x[1], x[0]))
 print("\n".join([f"{words[f[0]]:>10} -> {f[1]}" for f in found]))
 # biggest -> 0.42
 
@@ -178,8 +207,18 @@ print("\n".join([f"{words[f[0]]:>10} -> {f[1]}" for f in found]))
 
 
 
+
+
+
+
+
+
+
+# 4. Create a wordcloud with words having minimum frequency 4. (Use any palette from RColorBrewer)
+
 # %% 1 - 
-words[words.Freq >= 4].sort_values("Freq", ascending = False).reset_index(drop = True)
+wf_sub = word_freq[word_freq.Freq >= 4].sort_values("Freq", ascending = False).reset_index(drop = True)
+print(wf_sub)
 #       Word  Freq
 # 0     film    10
 # 1     make     7
@@ -202,11 +241,48 @@ words[words.Freq >= 4].sort_values("Freq", ascending = False).reset_index(drop =
 
 
 # %% 1 - 
-wordcloud = WordCloud(width = 800, height = 400, background_color = "white").generate_from_frequencies(dict(words[words.Freq >= 4].values))
+wordcloud = WordCloud(width = 800, height = 400, background_color = "white").generate_from_frequencies(dict(wf_sub.values))
 
 plt.figure(figsize = (10, 5))
 plt.imshow(wordcloud, interpolation = "bilinear")
 plt.axis("off")
+
+plt.show()
+
+
+
+
+
+
+
+
+
+
+# 5. List the number of lines having sentiments ‘Sarcasm’, ‘Very Negative’ and ‘Very Positive’.
+
+
+
+
+
+
+
+
+
+
+# 6. Plot graph showing words occurring more than 3 times (Use tidytext package).
+
+# %% 1 - 
+wf_sub = wf_sub.sort_values("Freq", ascending = True)
+
+
+
+# %% 1 - 
+plt.figure(figsize = (10, 6))
+plt.barh(wf_sub.Word, wf_sub.Freq, color = "cadetblue")
+
+plt.title("Words Occurring More Than 3 Times")
+plt.ylabel('Word')
+plt.xlabel('Freq')
 
 plt.show()
 

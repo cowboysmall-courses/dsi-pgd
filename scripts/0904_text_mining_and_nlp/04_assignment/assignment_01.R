@@ -25,6 +25,11 @@ library(tidyverse)
 
 
 
+
+
+
+
+
 # 1. Import Textdata. Do the essential cleaning of the data.
 
 lines <- readLines("./data/0904_text_mining_and_nlp/04_assignment/Textdata.txt", skipNul = TRUE)
@@ -36,6 +41,7 @@ head(data)
 # 4                                                                                                                                the book ( or " graphic novel , " if you will ) is over 500 pages long and includes nearly 30 more that consist of nothing but footnotes . 
 # 5                                                                                                                                                                                                          in other words , don't dismiss this film because of its source . 
 # 6                                                                                                                              if you can get past the whole comic book thing , you might find another stumbling block in from hell's directors , albert and allen hughes .
+
 
 data$Cleaned_Review <- tolower(data$Review)
 data$Cleaned_Review <- removePunctuation(data$Cleaned_Review)
@@ -62,11 +68,21 @@ head(data)
 
 
 
+
+
+
+
+
 # 2. Find words with minimum frequency 6.
 
 tdm <- TermDocumentMatrix(data$Cleaned_Review)
 findFreqTerms(tdm, 6)
 # [1] "like"  "dont"  "film"  "even"  "make"  "movie"
+
+
+
+
+
 
 
 
@@ -79,6 +95,7 @@ findAssocs(tdm, "film", 0.35)
 # biggest     now 
 #    0.42    0.39
 
+
 findAssocs(tdm, "movie", 0.35)
 # $movie
 #   mindfuck      sorta   critique generation    package   presents    touches   problems       lazy       mean    melissa      plain    running    showing    visions  different     giving    insight   offering     decent    decided 
@@ -88,7 +105,24 @@ findAssocs(tdm, "movie", 0.35)
 
 
 
+
+
+
+
+
+
+
 # 4. Create a wordcloud with words having minimum frequency 4. (Use any palette from RColorBrewer)
+
+words <- data %>%
+  dplyr::select(Cleaned_Review) %>%
+  tidytext::unnest_tokens(Word, Cleaned_Review) %>%
+  dplyr::count(Word, sort = TRUE, name = "Freq") %>%
+  dplyr::filter(Freq >= 4) %>%
+  ungroup()
+
+wordcloud(words$Word, words$Freq, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+
 
 words <- data %>%
   dplyr::select(Cleaned_Review) %>%
@@ -102,15 +136,26 @@ wordcloud(words$Word, words$Freq, random.order = FALSE, min.freq = 4, colors = b
 
 
 
+
+
+
+
+
 # 5. List the number of lines having sentiments ‘Sarcasm’, ‘Very Negative’ and ‘Very Positive’.
 
 calculate_total_presence_sentiment(data$Review)
 # [1,] "Sarcasm" "Negative" "Very Negative" "Neutral" "Positive" "Very Positive"
 # [2,] "9"       "12"       "6"             "20"      "6"        "8"
 
+
 calculate_total_presence_sentiment(data$Cleaned_Review)
 # [1,] "Sarcasm" "Negative" "Very Negative" "Neutral" "Positive" "Very Positive"
 # [2,] "0"       "13"       "11"            "18"      "9"        "10"
+
+
+
+
+
 
 
 
@@ -122,8 +167,9 @@ words <- data %>%
   dplyr::select(Cleaned_Review) %>%
   tidytext::unnest_tokens(Word, Cleaned_Review) %>%
   dplyr::count(Word, sort = TRUE, name = "Freq") %>%
-  dplyr::filter(Freq > 3) %>%
+  dplyr::filter(Freq >= 4) %>%
   ungroup()
+
 
 ggplot(data = words, aes(x = reorder(Word, Freq), y = Freq, fill = Word)) + 
   geom_bar(stat = "identity") + 
