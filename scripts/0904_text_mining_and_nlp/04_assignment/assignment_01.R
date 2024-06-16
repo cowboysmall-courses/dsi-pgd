@@ -13,6 +13,9 @@
 #   6. Plot graph showing words occurring more than 3 times (Use tidytext package).
 
 
+
+
+
 library(tm)
 library(wordcloud)
 library(RSentiment)
@@ -25,7 +28,7 @@ library(tidyverse)
 # 1. Import Textdata. Do the essential cleaning of the data.
 
 lines <- readLines("./data/0904_text_mining_and_nlp/04_assignment/Textdata.txt", skipNul = TRUE)
-data  <- data.frame(Reviews = lines)
+data  <- data.frame(Review = lines)
 head(data)
 # 1 films adapted from comic books have had plenty of success , whether they're about superheroes ( batman , superman , spawn ) , or geared toward kids ( casper ) or the arthouse crowd ( ghost world ) , but there's never really been a comic book like from hell before . 
 # 2                                                                                              for starters , it was created by alan moore ( and eddie campbell ) , who brought the medium to a whole new level in the mid '80s with a 12-part series called the watchmen . 
@@ -35,11 +38,12 @@ head(data)
 # 6                                                                                                                              if you can get past the whole comic book thing , you might find another stumbling block in from hell's directors , albert and allen hughes .
 
 data$Cleaned_Review <- tolower(data$Review)
-data$Cleaned_Review <- removeWords(data$Cleaned_Review, stopwords("english"))
 data$Cleaned_Review <- removePunctuation(data$Cleaned_Review)
 data$Cleaned_Review <- removeNumbers(data$Cleaned_Review)
+data$Cleaned_Review <- removeWords(data$Cleaned_Review, stopwords("english"))
 data$Cleaned_Review <- str_squish(data$Cleaned_Review)
 head(data)
+#                                                                        Review
 # 1 films adapted from comic books have had plenty of success , whether they're about superheroes ( batman , superman , spawn ) , or geared toward kids ( casper ) or the arthouse crowd ( ghost world ) , but there's never really been a comic book like from hell before . 
 # 2                                                                                              for starters , it was created by alan moore ( and eddie campbell ) , who brought the medium to a whole new level in the mid '80s with a 12-part series called the watchmen . 
 # 3                                                                                                                    to say moore and campbell thoroughly researched the subject of jack the ripper would be like saying michael jackson is starting to look a little odd . 
@@ -62,7 +66,7 @@ head(data)
 
 tdm <- TermDocumentMatrix(data$Cleaned_Review)
 findFreqTerms(tdm, 6)
-# [1] "like"  "film"  "even"  "make"  "movie"
+# [1] "like"  "dont"  "film"  "even"  "make"  "movie"
 
 
 
@@ -83,11 +87,11 @@ findAssocs(tdm, "film", 0.35)
 
 words <- data %>%
   dplyr::select(Cleaned_Review) %>%
-  tidytext::unnest_tokens(word, Cleaned_Review) %>%
-  dplyr::count(word, sort = TRUE) %>%
+  tidytext::unnest_tokens(Word, Cleaned_Review) %>%
+  dplyr::count(Word, sort = TRUE, name = "Freq") %>%
   ungroup()
 
-wordcloud(words$word, words$n, random.order = FALSE, min.freq = 4, colors = brewer.pal(8, "Dark2"))
+wordcloud(words$Word, words$Freq, random.order = FALSE, min.freq = 4, colors = brewer.pal(8, "Dark2"))
 
 
 
@@ -111,12 +115,12 @@ calculate_total_presence_sentiment(data$Cleaned_Review)
 
 words <- data %>%
   dplyr::select(Cleaned_Review) %>%
-  tidytext::unnest_tokens(word, Cleaned_Review) %>%
-  dplyr::count(word, sort = TRUE) %>%
-  dplyr::filter(n > 3) %>%
+  tidytext::unnest_tokens(Word, Cleaned_Review) %>%
+  dplyr::count(Word, sort = TRUE, name = "Freq") %>%
+  dplyr::filter(Freq > 3) %>%
   ungroup()
 
-ggplot(data = words, aes(x = reorder(word, n), y = n, fill = word)) + 
+ggplot(data = words, aes(x = reorder(Word, Freq), y = Freq, fill = Word)) + 
   geom_bar(stat = "identity") + 
-  labs(title = "Words Occurring More Than 3 Times", x = "Word", y = "Count") +
+  labs(title = "Words Occurring More Than 3 Times", x = "Word", y = "Freq") +
   coord_flip()
