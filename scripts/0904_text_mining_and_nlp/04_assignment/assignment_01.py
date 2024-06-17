@@ -25,8 +25,11 @@ import nltk
 
 from scipy.stats import pearsonr
 
+from sklearn.feature_extraction.text import CountVectorizer
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 from wordcloud import WordCloud
 
@@ -131,22 +134,6 @@ print(word_freq[word_freq.Freq >= 6].sort_values("Freq", ascending = False).rese
 # 3. List words with at least 0.35 correlation with ‘film’.
 
 # %% 1 - 
-def create_tdm(sentences, words):
-    lines = sentences.apply(lambda sentence: set(word_tokenize(sentence)))
-    rows  = len(words)
-    cols  = len(lines)
-
-    tdm = np.zeros((rows, cols))
-
-    for word in range(rows):
-        for line in range(cols):
-            tdm[word, line] = words[word] in lines[line]
-
-    return tdm
-
-
-
-# %% 1 - 
 def find_assocs(tdm, idx, min_correlation):
     found = []
 
@@ -161,6 +148,22 @@ def find_assocs(tdm, idx, min_correlation):
 
 
 # %% 1 - 
+def create_tdm(sentences, words):
+    lines = sentences.apply(lambda sentence: word_tokenize(sentence))
+    rows  = len(words)
+    cols  = len(lines)
+
+    tdm = np.zeros((rows, cols))
+
+    for word in range(rows):
+        for line in range(cols):
+            tdm[word, line] += lines[line].count(words[word])
+
+    return tdm
+
+
+
+# %% 1 - 
 words = sorted(list(set(word_tokenize(data["Cleaned_Review"].str.cat(sep = " ")))))
 tdm   = create_tdm(data["Cleaned_Review"], words)
 
@@ -168,42 +171,93 @@ tdm   = create_tdm(data["Cleaned_Review"], words)
 
 # %% 1 - 
 found = sorted(find_assocs(tdm, words.index("film"), 0.35), key = lambda x: (-x[1], x[0]))
-print("\n".join([f"{words[f[0]]:>10} -> {f[1]}" for f in found]))
-# biggest -> 0.42
+print("\n".join([f"{words[f[0]]:>12} -> {f[1]}" for f in found]))
+#      biggest -> 0.42
 
 
 
 # %% 1 - 
 found = sorted(find_assocs(tdm, words.index("movie"), 0.35), key = lambda x: (-x[1], x[0]))
-print("\n".join([f"{words[f[0]]:>10} -> {f[1]}" for f in found]))
-#   mindfuck -> 0.56
-#   critique -> 0.39
-#     decent -> 0.39
-#    decided -> 0.39
-#  different -> 0.39
-#       edge -> 0.39
-# generation -> 0.39
-#     giving -> 0.39
-#    insight -> 0.39
-#       lazy -> 0.39
-#       mean -> 0.39
-#    melissa -> 0.39
-#    mightve -> 0.39
-#   offering -> 0.39
-#    package -> 0.39
-#      plain -> 0.39
-#   presents -> 0.39
-#   problems -> 0.39
-#    running -> 0.39
-#    showing -> 0.39
-#  somewhere -> 0.39
-#      sorta -> 0.39
-#      suits -> 0.39
-#    touches -> 0.39
-#         us -> 0.39
-#      video -> 0.39
-#    visions -> 0.39
-#       teen -> 0.36
+print("\n".join([f"{words[f[0]]:>12} -> {f[1]}" for f in found]))
+#     mindfuck -> 0.56
+#     critique -> 0.39
+#       decent -> 0.39
+#      decided -> 0.39
+#    different -> 0.39
+#         edge -> 0.39
+#   generation -> 0.39
+#       giving -> 0.39
+#      insight -> 0.39
+#         lazy -> 0.39
+#         mean -> 0.39
+#      melissa -> 0.39
+#      mightve -> 0.39
+#     offering -> 0.39
+#      package -> 0.39
+#        plain -> 0.39
+#     presents -> 0.39
+#     problems -> 0.39
+#      running -> 0.39
+#      showing -> 0.39
+#    somewhere -> 0.39
+#        sorta -> 0.39
+#        suits -> 0.39
+#      touches -> 0.39
+#           us -> 0.39
+#        video -> 0.39
+#      visions -> 0.39
+#         teen -> 0.36
+
+
+
+
+
+# %% 1 - 
+cv     = CountVectorizer()
+matrix = cv.fit_transform(data["Cleaned_Review"])
+
+words  = cv.get_feature_names_out().tolist()
+tdm    = np.array(matrix.todense()).T
+
+
+
+# %% 1 - 
+found = sorted(find_assocs(tdm, words.index("film"), 0.35), key = lambda x: (-x[1], x[0]))
+print("\n".join([f"{words[f[0]]:>12} -> {f[1]}" for f in found]))
+#      biggest -> 0.42
+
+
+# %% 1 - 
+found = sorted(find_assocs(tdm, words.index("movie"), 0.35), key = lambda x: (-x[1], x[0]))
+print("\n".join([f"{words[f[0]]:>12} -> {f[1]}" for f in found]))
+#     mindfuck -> 0.56
+#     critique -> 0.39
+#       decent -> 0.39
+#      decided -> 0.39
+#    different -> 0.39
+#         edge -> 0.39
+#   generation -> 0.39
+#       giving -> 0.39
+#      insight -> 0.39
+#         lazy -> 0.39
+#         mean -> 0.39
+#      melissa -> 0.39
+#      mightve -> 0.39
+#     offering -> 0.39
+#      package -> 0.39
+#        plain -> 0.39
+#     presents -> 0.39
+#     problems -> 0.39
+#      running -> 0.39
+#      showing -> 0.39
+#    somewhere -> 0.39
+#        sorta -> 0.39
+#        suits -> 0.39
+#      touches -> 0.39
+#           us -> 0.39
+#        video -> 0.39
+#      visions -> 0.39
+#         teen -> 0.36
 
 
 
@@ -243,7 +297,7 @@ print(wf_sub)
 # %% 1 - 
 wordcloud = WordCloud(width = 800, height = 400, background_color = "white").generate_from_frequencies(dict(wf_sub.values))
 
-plt.figure(figsize = (10, 5))
+plt.figure(figsize = (16, 8))
 plt.imshow(wordcloud, interpolation = "bilinear")
 plt.axis("off")
 
@@ -259,6 +313,102 @@ plt.show()
 
 
 # 5. List the number of lines having sentiments ‘Sarcasm’, ‘Very Negative’ and ‘Very Positive’.
+
+# %% 1 - 
+sid = SentimentIntensityAnalyzer()
+
+
+
+# %% 1 - 
+data["Sentiment_Scores"] = data["Cleaned_Review"].apply(lambda x: sid.polarity_scores(x))
+data.iloc[:, 2].head()
+# 0    {'neg': 0.19, 'neu': 0.632, 'pos': 0.178, 'com...
+# 1    {'neg': 0.0, 'neu': 0.882, 'pos': 0.118, 'comp...
+# 2    {'neg': 0.103, 'neu': 0.769, 'pos': 0.128, 'co...
+# 3    {'neg': 0.0, 'neu': 0.796, 'pos': 0.204, 'comp...
+# 4    {'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound...
+# Name: Sentiment_Scores, dtype: object
+
+
+
+# %% 1 - 
+data["Positive_Score"] = data["Sentiment_Scores"].apply(lambda x: x["pos"])
+data["Negative_Score"] = data["Sentiment_Scores"].apply(lambda x: x["neg"])
+data["Neutral_Score"]  = data["Sentiment_Scores"].apply(lambda x: x["neu"])
+data["Compound_Score"] = data["Sentiment_Scores"].apply(lambda x: x["compound"])
+data.iloc[:, 3:].head()
+#    Positive_Score  Negative_Score  Neutral_Score  Compound_Score
+# 0           0.178           0.190          0.632         -0.1119
+# 1           0.118           0.000          0.882          0.2500
+# 2           0.128           0.103          0.769          0.1263
+# 3           0.204           0.000          0.796          0.3182
+# 4           0.000           0.000          1.000          0.0000
+
+
+
+# %% 1 - 
+print(data["Positive_Score"].describe())
+# count    61.000000
+# mean      0.154016
+# std       0.179582
+# min       0.000000
+# 25%       0.000000
+# 50%       0.118000
+# 75%       0.231000
+# max       0.677000
+# Name: Positive_Score, dtype: float64
+
+
+
+# %% 1 - 
+print(data["Negative_Score"].describe())
+# count    61.000000
+# mean      0.119000
+# std       0.177921
+# min       0.000000
+# 25%       0.000000
+# 50%       0.000000
+# 75%       0.217000
+# max       0.756000
+# Name: Negative_Score, dtype: float64
+
+
+
+# %% 1 - 
+print(data["Compound_Score"].describe())
+# count    61.000000
+# mean      0.018243
+# std       0.446924
+# min      -0.897900
+# 25%      -0.227800
+# 50%       0.000000
+# 75%       0.340000
+# max       0.893400
+# Name: Compound_Score, dtype: float64
+
+
+
+# %% 1 - 
+data[(data["Positive_Score"] > data["Positive_Score"].quantile(0.75))].shape[0]
+# 15
+
+
+
+# %% 1 - 
+data[(data["Negative_Score"] > data["Positive_Score"].quantile(0.75))].shape[0]
+# 13
+
+
+
+# %% 1 - 
+data[(data["Compound_Score"] > data["Compound_Score"].quantile(0.75))].shape[0]
+# 15
+
+
+
+# %% 1 - 
+data[(data["Compound_Score"] < data["Compound_Score"].quantile(0.25))].shape[0]
+# 15
 
 
 
@@ -277,7 +427,8 @@ wf_sub = wf_sub.sort_values("Freq", ascending = True)
 
 
 # %% 1 - 
-plt.figure(figsize = (10, 6))
+plt.figure(figsize = (16, 8))
+
 plt.barh(wf_sub.Word, wf_sub.Freq, color = "cadetblue")
 
 plt.title("Words Occurring More Than 3 Times")
@@ -285,15 +436,3 @@ plt.ylabel('Word')
 plt.xlabel('Freq')
 
 plt.show()
-
-
-
-# %% 1 - 
-
-
-
-
-# %% 1 -
-
-
-
