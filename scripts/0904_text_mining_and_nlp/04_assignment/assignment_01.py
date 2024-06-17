@@ -45,7 +45,7 @@ from string import punctuation, digits
 
 # %% 1 - 
 with open("./data/0904_text_mining_and_nlp/04_assignment/Textdata.txt") as file:
-    lines = [line.rstrip() for line in file]
+    lines = [line.strip() for line in file]
 
 
 
