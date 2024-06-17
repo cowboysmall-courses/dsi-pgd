@@ -363,18 +363,9 @@ print(data["Compound_Score"].describe())
 
 
 # %% 1 - 
-data[(data["Compound_Score"] > data["Compound_Score"].quantile(0.75))].shape[0]
-# 15
-
-
-# %% 1 - 
 data[(data["Compound_Score"] > 0.5)].shape[0]
 # 9
 
-
-# %% 1 - 
-data[(data["Compound_Score"] < data["Compound_Score"].quantile(0.25))].shape[0]
-# 15
 
 
 # %% 1 - 
@@ -386,7 +377,6 @@ data[(data["Compound_Score"] < -0.5)].shape[0]
 # %% 1 - 
 data["Polarity_Score"]     = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.polarity)
 data["Subjectivity_Score"] = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.subjectivity)
-
 
 
 
