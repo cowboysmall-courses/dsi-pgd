@@ -31,6 +31,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
+from textblob import TextBlob
+
 from wordcloud import WordCloud
 
 from string import punctuation, digits
@@ -347,34 +349,6 @@ data.iloc[:, 3:].head()
 
 
 # %% 1 - 
-print(data["Positive_Score"].describe())
-# count    61.000000
-# mean      0.154016
-# std       0.179582
-# min       0.000000
-# 25%       0.000000
-# 50%       0.118000
-# 75%       0.231000
-# max       0.677000
-# Name: Positive_Score, dtype: float64
-
-
-
-# %% 1 - 
-print(data["Negative_Score"].describe())
-# count    61.000000
-# mean      0.119000
-# std       0.177921
-# min       0.000000
-# 25%       0.000000
-# 50%       0.000000
-# 75%       0.217000
-# max       0.756000
-# Name: Negative_Score, dtype: float64
-
-
-
-# %% 1 - 
 print(data["Compound_Score"].describe())
 # count    61.000000
 # mean      0.018243
@@ -389,27 +363,35 @@ print(data["Compound_Score"].describe())
 
 
 # %% 1 - 
-data[(data["Positive_Score"] > data["Positive_Score"].quantile(0.75))].shape[0]
-# 15
-
-
-
-# %% 1 - 
-data[(data["Negative_Score"] > data["Positive_Score"].quantile(0.75))].shape[0]
-# 13
-
-
-
-# %% 1 - 
 data[(data["Compound_Score"] > data["Compound_Score"].quantile(0.75))].shape[0]
 # 15
 
+
+# %% 1 - 
+data[(data["Compound_Score"] > 0.5)].shape[0]
+# 9
 
 
 # %% 1 - 
 data[(data["Compound_Score"] < data["Compound_Score"].quantile(0.25))].shape[0]
 # 15
 
+
+# %% 1 - 
+data[(data["Compound_Score"] < -0.5)].shape[0]
+# 7
+
+
+
+# %% 1 - 
+data["Polarity_Score"]     = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.polarity)
+data["Subjectivity_Score"] = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.subjectivity)
+
+
+
+
+# %% 1 - 
+data.iloc[:, 3:].head()
 
 
 
