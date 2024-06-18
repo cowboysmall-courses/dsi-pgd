@@ -404,7 +404,7 @@ plt.figure(figsize = (16, 8))
 plt.barh(wf_sub.Word, wf_sub.Freq, color = "cadetblue")
 
 plt.title("Words Occurring More Than 3 Times")
-plt.ylabel('Word')
-plt.xlabel('Freq')
+plt.ylabel("Word")
+plt.xlabel("Freq")
 
 plt.show()
