@@ -363,25 +363,79 @@ print(data["Compound_Score"].describe())
 
 
 # %% 1 - 
+data["Polarity_Score"]     = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.polarity)
+data["Subjectivity_Score"] = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.subjectivity)
+data.iloc[:, 7:].head()
+#    Polarity_Score  Subjectivity_Score
+# 0        0.141667            0.333333
+# 1        0.112121            0.284848
+# 2       -0.130208            0.295833
+# 3        0.016667            0.400000
+# 4        0.000000            0.000000
+
+
+
+# %% 1 - 
+print(data["Polarity_Score"].describe())
+# count    61.000000
+# mean      0.039241
+# std       0.209228
+# min      -0.750000
+# 25%      -0.045000
+# 50%       0.000000
+# 75%       0.125000
+# max       0.700000
+# Name: Polarity_Score, dtype: float64
+
+
+
+# %% 1 - 
+print(data["Subjectivity_Score"].describe())
+# count    61.000000
+# mean      0.370255
+# std       0.290676
+# min       0.000000
+# 25%       0.000000
+# 50%       0.388333
+# 75%       0.600000
+# max       1.000000
+# Name: Subjectivity_Score, dtype: float64
+
+
+
+# %% 1 - Very Positive
 data[(data["Compound_Score"] > 0.5)].shape[0]
 # 9
 
 
 
-# %% 1 - 
+# %% 1 - Very Negative
 data[(data["Compound_Score"] < -0.5)].shape[0]
 # 7
 
 
 
-# %% 1 - 
-data["Polarity_Score"]     = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.polarity)
-data["Subjectivity_Score"] = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.subjectivity)
+# %% 1 - Very Positive
+data[(data["Polarity_Score"] > 0.5)].shape[0]
+# 1
 
 
 
-# %% 1 - 
-data.iloc[:, 3:].head()
+# %% 1 - Very Negative
+data[(data["Polarity_Score"] < -0.5)].shape[0]
+# 1
+
+
+
+# %% 1 - Sarcasm (positive)
+data[(data["Polarity_Score"] > 0.5) & (data["Subjectivity_Score"] > 0.5)].shape[0]
+# 1
+
+
+# %% 1 - Sarcasm (negative)
+data[(data["Polarity_Score"] < -0.5) & (data["Subjectivity_Score"] > 0.5)].shape[0]
+# 1
+
 
 
 
