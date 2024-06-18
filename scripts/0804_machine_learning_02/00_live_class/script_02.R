@@ -11,6 +11,13 @@ set.seed(20240612)
 
 data <- read.csv("./data/0804_machine_learning_02/00_live_class/Bank Churn.csv")
 head(data)
+#   RowNumber CustomerId  Surname CreditScore Geography Gender Age Tenure   Balance NumOfProducts HasCrCard IsActiveMember EstimatedSalary Exited
+# 1         1   15634602 Hargrave         619    France Female  42      2      0.00             1         1              1       101348.88      1
+# 2         2   15647311     Hill         608     Spain Female  41      1  83807.86             1         0              1       112542.58      0
+# 3         3   15619304     Onio         502    France Female  42      8 159660.80             3         1              0       113931.57      1
+# 4         4   15701354     Boni         699    France Female  39      1      0.00             2         0              0        93826.63      0
+# 5         5   15737888 Mitchell         850     Spain Female  43      2 125510.82             1         1              1        79084.10      0
+# 6         6   15574012      Chu         645     Spain   Male  44      8 113755.78             2         1              0       149756.71      1
 
 
 data <- dummy_cols(data, select_columns = c("Geography", "Gender"), remove_first_dummy = TRUE) 
@@ -46,10 +53,24 @@ model <- neuralnet(Exited ~ CreditScore + Geography_Germany + Geography_Spain + 
 
 out_churn <- cbind(model$covariate, model$net.result[[1]])
 head(out_churn)
+#    CreditScore Geography_Germany Geography_Spain Gender_Male       Age Tenure   Balance NumOfProducts HasCrCard IsActiveMember EstimatedSalary           
+# 5        1.000                 0               1           0 0.3378378    0.2 0.5002462     0.0000000         1              1       0.3954004 0.13379941
+# 6        0.590                 0               1           1 0.3513514    0.8 0.4533944     0.3333333         1              0       0.7487972 0.18762400
+# 7        0.944                 0               0           1 0.4324324    0.7 0.0000000     0.3333333         1              1       0.0502609 0.02255485
+# 8        0.052                 1               0           0 0.1486486    0.4 0.4585397     1.0000000         1              0       0.5967335 0.99997441
+# 9        0.302                 0               0           1 0.3513514    0.4 0.5661704     0.3333333         0              1       0.3746804 0.11233128
+# 10       0.668                 0               0           1 0.1216216    0.2 0.5364883     0.0000000         1              1       0.3586050 0.03022403
 
 
 dimnames(out_churn) <- list(NULL, c("CreditScore", "Geography_Germany", "Geography_Spain", "Gender_Male", "Age", "Tenure", "Balance", "NumOfProducts", "HasCrCard", "IsActiveMember", "EstimatedSalary", "nn_output")) 
 head(out_churn)
+#      CreditScore Geography_Germany Geography_Spain Gender_Male       Age Tenure   Balance NumOfProducts HasCrCard IsActiveMember EstimatedSalary  nn_output
+# [1,]       1.000                 0               1           0 0.3378378    0.2 0.5002462     0.0000000         1              1       0.3954004 0.13379941
+# [2,]       0.590                 0               1           1 0.3513514    0.8 0.4533944     0.3333333         1              0       0.7487972 0.18762400
+# [3,]       0.944                 0               0           1 0.4324324    0.7 0.0000000     0.3333333         1              1       0.0502609 0.02255485
+# [4,]       0.052                 1               0           0 0.1486486    0.4 0.4585397     1.0000000         1              0       0.5967335 0.99997441
+# [5,]       0.302                 0               0           1 0.3513514    0.4 0.5661704     0.3333333         0              1       0.3746804 0.11233128
+# [6,]       0.668                 0               0           1 0.1216216    0.2 0.5364883     0.0000000         1              1       0.3586050 0.03022403
 
 
 plot(model, rep = "best")
@@ -104,6 +125,11 @@ perf   <- performance(pred, "tpr", "fpr")
 
 plot(perf) 
 abline(0, 1)
+
+
+auc <- performance(pred, "auc") 
+auc@y.values
+# 0.8411468
 
 
 testdata$predY <- as.factor(ifelse(prednn > 0.5, 1, 0)) 

@@ -47,13 +47,13 @@ dependencies = [
   "formulaic",
 
   "nltk",
+  "textblob",
   "wordcloud",
 
   "yfinance",
   "arch",
   "pmdarima",
 
-    # "spyder-kernels",
   "spyder-kernels==3.0.0b5",
 
   "ipykernel",
