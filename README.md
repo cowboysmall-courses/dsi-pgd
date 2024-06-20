@@ -1,6 +1,6 @@
-# MSc in Data Science
+# Post Graduate Diploma in Data Science
 
-Coursework for the Data Science Institute's Data Science MSc Program
+Coursework for the Data Science Institute's Data Science Post Graduate Diploma Program
 
 
 

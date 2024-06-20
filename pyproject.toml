@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 
 [project]
-name = "dsi-msc"
+name = "dsi-pgd"
 dynamic = ["version"]
 description = ''
 readme = "README.md"
@@ -64,9 +64,9 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/cowboysmall-research/dsi-msc#readme"
-Issues = "https://github.com/cowboysmall-research/dsi-msc/issues"
-Source = "https://github.com/cowboysmall-research/dsi-msc"
+Documentation = "https://github.com/cowboysmall-courses/dsi-pgd#readme"
+Issues = "https://github.com/cowboysmall-courses/dsi-pgd/issues"
+Source = "https://github.com/cowboysmall-courses/dsi-pgd"
 
 
 
@@ -205,8 +205,8 @@ omit = [
 ]
 
 [tool.coverage.paths]
-cowboysmall = ["src/cowboysmall", "*/dsi-msc/src/cowboysmall"]
-tests = ["tests", "*/dsi-msc/tests"]
+cowboysmall = ["src/cowboysmall", "*/dsi-pgd/src/cowboysmall"]
+tests = ["tests", "*/dsi-pgd/tests"]
 
 [tool.coverage.report]
 exclude_lines = [
