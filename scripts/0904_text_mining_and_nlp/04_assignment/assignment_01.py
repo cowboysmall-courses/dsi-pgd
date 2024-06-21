@@ -6,11 +6,10 @@
 # QUESTIONS:
 # 
 #   1. Import Textdata. Do the essential cleaning of the data.
-#   2. Find words with minimum frequency 6.
-#   3. List words with at least 0.35 correlation with ‘film’.
-#   4. Create a wordcloud with words having minimum frequency 4. (Use any palette from RColorBrewer)
-#   5. List the number of lines having sentiments ‘Sarcasm’, ‘Very Negative’ and ‘Very Positive’.
-#   6. Plot graph showing words occurring more than 3 times (Use tidytext package).
+#   2. Find top 20 words sorted by frequency.
+#   3. Create a wordcloud using the given data.
+#   4. List the number of lines having sentiments ‘Negative', 'Neutral’ and ‘Positive’.
+#   5. Plot bar graph showing top 15 words by frequency.
 
 
 
@@ -18,20 +17,12 @@
 
 # %% 0 - import libraries
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 import nltk
-
-from scipy.stats import pearsonr
-
-from sklearn.feature_extraction.text import CountVectorizer
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-
-from textblob import TextBlob
 
 from wordcloud import WordCloud
 
@@ -48,13 +39,13 @@ from string import punctuation, digits
 
 # 1. Import Textdata. Do the essential cleaning of the data.
 
-# %% 1 - 
+# %% 1 - read data line by line...
 with open("./data/0904_text_mining_and_nlp/04_assignment/Textdata.txt") as file:
     lines = [line.strip() for line in file]
 
 
 
-# %% 1 - 
+# %% 1 - create data frame from lines...
 data = pd.DataFrame(lines, columns= ["Review"])
 data.head()
 #                                               Review
@@ -66,7 +57,7 @@ data.head()
 
 
 
-# %% 1 - 
+# %% 1 - create function to clean the data...
 stop_words    = set(stopwords.words('english'))
 remove_punc   = str.maketrans('', '', punctuation)
 remove_digits = str.maketrans('', '', digits)
@@ -80,7 +71,7 @@ def preprocess(line):
 
 
 
-# %% 1 - 
+# %% 1 - clean the data and assign it to column...
 data["Cleaned_Review"] = data["Review"].apply(preprocess)
 data.head()
 #                                               Review  \
@@ -99,6 +90,8 @@ data.head()
 
 
 
+# %% 1 - aggregate all words into a single string - to be used later...
+words = data["Cleaned_Review"].str.cat(sep = " ")
 
 
 
@@ -106,23 +99,34 @@ data.head()
 
 
 
-# 2. Find words with minimum frequency 6.
 
-# %% 1 - 
-freq_dist = nltk.FreqDist(word_tokenize(data["Cleaned_Review"].str.cat(sep = " ")))
 
 
+# 2. Find top 20 words sorted by frequency.
 
-# %% 1 - 
-word_freq = pd.DataFrame(freq_dist.items(), columns=["Word", "Freq"])
-print(word_freq[word_freq.Freq >= 6].sort_values("Freq", ascending = False).reset_index(drop = True))
-#     Word  Freq
-# 0   film    10
-# 1   like     7
-# 2   dont     7
-# 3   make     7
-# 4   even     6
-# 5  movie     6
+# %% 1 - create frequency distribution object and find 20 most common words...
+freq_dist = nltk.FreqDist(word_tokenize(words))
+freq_dist.most_common(20)
+# [('film', 10),
+#  ('like', 7),
+#  ('dont', 7),
+#  ('make', 7),
+#  ('even', 6),
+#  ('movie', 6),
+#  ('comic', 5),
+#  ('get', 5),
+#  ('pretty', 5),
+#  ('films', 4),
+#  ('world', 4),
+#  ('really', 4),
+#  ('say', 4),
+#  ('little', 4),
+#  ('good', 4),
+#  ('see', 4),
+#  ('one', 4),
+#  ('teen', 4),
+#  ('book', 3),
+#  ('moore', 3)]
 
 
 
@@ -133,176 +137,17 @@ print(word_freq[word_freq.Freq >= 6].sort_values("Freq", ascending = False).rese
 
 
 
-# 3. List words with at least 0.35 correlation with ‘film’.
+# 3. Create a wordcloud using the given data.
 
-# %% 1 - 
-def find_assocs(tdm, idx, min_correlation):
-    found = []
+# %% 1 - create wordcloud from words...
+wordcloud = WordCloud(width = 800, height = 400, background_color = "white").generate(words)
 
-    for row in range(tdm.shape[0]):
-        if row != idx:
-            cor, _ = pearsonr(tdm[idx], tdm[row])
-            if cor >= min_correlation:
-                found.append((row, round(cor, 2)))
 
-    return found
 
-
-
-# %% 1 - 
-def create_tdm(sentences, words):
-    lines = sentences.apply(lambda sentence: word_tokenize(sentence))
-    rows  = len(words)
-    cols  = len(lines)
-
-    tdm = np.zeros((rows, cols))
-
-    for word in range(rows):
-        for line in range(cols):
-            tdm[word, line] += lines[line].count(words[word])
-
-    return tdm
-
-
-
-# %% 1 - 
-words = sorted(list(set(word_tokenize(data["Cleaned_Review"].str.cat(sep = " ")))))
-tdm   = create_tdm(data["Cleaned_Review"], words)
-
-
-
-# %% 1 - 
-found = sorted(find_assocs(tdm, words.index("film"), 0.35), key = lambda x: (-x[1], x[0]))
-print("\n".join([f"{words[f[0]]:>12} -> {f[1]}" for f in found]))
-#      biggest -> 0.42
-
-
-
-# %% 1 - 
-found = sorted(find_assocs(tdm, words.index("movie"), 0.35), key = lambda x: (-x[1], x[0]))
-print("\n".join([f"{words[f[0]]:>12} -> {f[1]}" for f in found]))
-#     mindfuck -> 0.56
-#     critique -> 0.39
-#       decent -> 0.39
-#      decided -> 0.39
-#    different -> 0.39
-#         edge -> 0.39
-#   generation -> 0.39
-#       giving -> 0.39
-#      insight -> 0.39
-#         lazy -> 0.39
-#         mean -> 0.39
-#      melissa -> 0.39
-#      mightve -> 0.39
-#     offering -> 0.39
-#      package -> 0.39
-#        plain -> 0.39
-#     presents -> 0.39
-#     problems -> 0.39
-#      running -> 0.39
-#      showing -> 0.39
-#    somewhere -> 0.39
-#        sorta -> 0.39
-#        suits -> 0.39
-#      touches -> 0.39
-#           us -> 0.39
-#        video -> 0.39
-#      visions -> 0.39
-#         teen -> 0.36
-
-
-
-
-
-# %% 1 - 
-cv     = CountVectorizer()
-matrix = cv.fit_transform(data["Cleaned_Review"])
-
-words  = cv.get_feature_names_out().tolist()
-tdm    = np.array(matrix.todense()).T
-
-
-
-# %% 1 - 
-found = sorted(find_assocs(tdm, words.index("film"), 0.35), key = lambda x: (-x[1], x[0]))
-print("\n".join([f"{words[f[0]]:>12} -> {f[1]}" for f in found]))
-#      biggest -> 0.42
-
-
-# %% 1 - 
-found = sorted(find_assocs(tdm, words.index("movie"), 0.35), key = lambda x: (-x[1], x[0]))
-print("\n".join([f"{words[f[0]]:>12} -> {f[1]}" for f in found]))
-#     mindfuck -> 0.56
-#     critique -> 0.39
-#       decent -> 0.39
-#      decided -> 0.39
-#    different -> 0.39
-#         edge -> 0.39
-#   generation -> 0.39
-#       giving -> 0.39
-#      insight -> 0.39
-#         lazy -> 0.39
-#         mean -> 0.39
-#      melissa -> 0.39
-#      mightve -> 0.39
-#     offering -> 0.39
-#      package -> 0.39
-#        plain -> 0.39
-#     presents -> 0.39
-#     problems -> 0.39
-#      running -> 0.39
-#      showing -> 0.39
-#    somewhere -> 0.39
-#        sorta -> 0.39
-#        suits -> 0.39
-#      touches -> 0.39
-#           us -> 0.39
-#        video -> 0.39
-#      visions -> 0.39
-#         teen -> 0.36
-
-
-
-
-
-
-
-
-
-
-# 4. Create a wordcloud with words having minimum frequency 4. (Use any palette from RColorBrewer)
-
-# %% 1 - 
-wf_sub = word_freq[word_freq.Freq >= 4].sort_values("Freq", ascending = False).reset_index(drop = True)
-print(wf_sub)
-#       Word  Freq
-# 0     film    10
-# 1     make     7
-# 2     like     7
-# 3     dont     7
-# 4    movie     6
-# 5     even     6
-# 6      get     5
-# 7    comic     5
-# 8   pretty     5
-# 9   little     4
-# 10     say     4
-# 11    good     4
-# 12  really     4
-# 13     see     4
-# 14     one     4
-# 15    teen     4
-# 16   world     4
-# 17   films     4
-
-
-# %% 1 - 
-wordcloud = WordCloud(width = 800, height = 400, background_color = "white").generate_from_frequencies(dict(wf_sub.values))
-
-plt.figure(figsize = (16, 8))
+# %% 1 - plot the wordcloud...
+plt.figure(figsize = (10, 5))
 plt.imshow(wordcloud, interpolation = "bilinear")
 plt.axis("off")
-
 plt.show()
 
 
@@ -314,14 +159,14 @@ plt.show()
 
 
 
-# 5. List the number of lines having sentiments ‘Sarcasm’, ‘Very Negative’ and ‘Very Positive’.
+# 4. List the number of lines having sentiments ‘Negative', 'Neutral’ and ‘Positive’.
 
-# %% 1 - 
+# %% 1 - create instance of sentiment intensity analyzer...
 sid = SentimentIntensityAnalyzer()
 
 
 
-# %% 1 - 
+# %% 1 - get sentiment scores...
 data["Sentiment_Scores"] = data["Cleaned_Review"].apply(lambda x: sid.polarity_scores(x))
 data.iloc[:, 2].head()
 # 0    {'neg': 0.19, 'neu': 0.632, 'pos': 0.178, 'com...
@@ -333,7 +178,7 @@ data.iloc[:, 2].head()
 
 
 
-# %% 1 - 
+# %% 1 - retrieve individual sentiment scores (we use compound scores)...
 data["Positive_Score"] = data["Sentiment_Scores"].apply(lambda x: x["pos"])
 data["Negative_Score"] = data["Sentiment_Scores"].apply(lambda x: x["neg"])
 data["Neutral_Score"]  = data["Sentiment_Scores"].apply(lambda x: x["neu"])
@@ -348,93 +193,21 @@ data.iloc[:, 3:].head()
 
 
 
-# %% 1 - 
-print(data["Compound_Score"].describe())
-# count    61.000000
-# mean      0.018243
-# std       0.446924
-# min      -0.897900
-# 25%      -0.227800
-# 50%       0.000000
-# 75%       0.340000
-# max       0.893400
-# Name: Compound_Score, dtype: float64
+# %% 1 - lines wirth sentiment 'Negative' ...
+data[(data["Compound_Score"] < 0)].shape[0]
+# 21
 
 
 
-# %% 1 - 
-data["Polarity_Score"]     = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.polarity)
-data["Subjectivity_Score"] = data["Cleaned_Review"].apply(lambda x: TextBlob(x).sentiment.subjectivity)
-data.iloc[:, 7:].head()
-#    Polarity_Score  Subjectivity_Score
-# 0        0.141667            0.333333
-# 1        0.112121            0.284848
-# 2       -0.130208            0.295833
-# 3        0.016667            0.400000
-# 4        0.000000            0.000000
+# %% 1 - lines wirth sentiment 'Neutral' ...
+data[(data["Compound_Score"] == 0)].shape[0]
+# 19
 
 
 
-# %% 1 - 
-print(data["Polarity_Score"].describe())
-# count    61.000000
-# mean      0.039241
-# std       0.209228
-# min      -0.750000
-# 25%      -0.045000
-# 50%       0.000000
-# 75%       0.125000
-# max       0.700000
-# Name: Polarity_Score, dtype: float64
-
-
-
-# %% 1 - 
-print(data["Subjectivity_Score"].describe())
-# count    61.000000
-# mean      0.370255
-# std       0.290676
-# min       0.000000
-# 25%       0.000000
-# 50%       0.388333
-# 75%       0.600000
-# max       1.000000
-# Name: Subjectivity_Score, dtype: float64
-
-
-
-# %% 1 - Very Positive
-data[(data["Compound_Score"] > 0.5)].shape[0]
-# 9
-
-
-
-# %% 1 - Very Negative
-data[(data["Compound_Score"] < -0.5)].shape[0]
-# 7
-
-
-
-# %% 1 - Very Positive
-data[(data["Polarity_Score"] > 0.5)].shape[0]
-# 1
-
-
-
-# %% 1 - Very Negative
-data[(data["Polarity_Score"] < -0.5)].shape[0]
-# 1
-
-
-
-# %% 1 - Sarcasm (positive)
-data[(data["Polarity_Score"] > 0.5) & (data["Subjectivity_Score"] > 0.5)].shape[0]
-# 1
-
-
-# %% 1 - Sarcasm (negative)
-data[(data["Polarity_Score"] < -0.5) & (data["Subjectivity_Score"] > 0.5)].shape[0]
-# 1
+# %% 1 - lines wirth sentiment 'Positive' ...
+data[(data["Compound_Score"] > 0)].shape[0]
+# 21
 
 
 
@@ -445,19 +218,20 @@ data[(data["Polarity_Score"] < -0.5) & (data["Subjectivity_Score"] > 0.5)].shape
 
 
 
-# 6. Plot graph showing words occurring more than 3 times (Use tidytext package).
+# 5. Plot bar graph showing top 15 words by frequency.
 
-# %% 1 - 
-wf_sub = wf_sub.sort_values("Freq", ascending = True)
+# %% 1 - create data frame with top 15 words, and their frequencies...
+word_freq = pd.DataFrame(freq_dist.most_common(15), columns=["Word", "Freq"])
+word_freq = word_freq.sort_values("Freq", ascending = True).reset_index(drop = True)
 
 
 
-# %% 1 - 
+# %% 1 - plot bar chart of 15 words by their frequencies...
 plt.figure(figsize = (16, 8))
 
-plt.barh(wf_sub.Word, wf_sub.Freq, color = "cadetblue")
+plt.barh(word_freq.Word, word_freq.Freq, color = "cadetblue")
 
-plt.title("Words Occurring More Than 3 Times")
+plt.title("Top 15 Words by Frequency")
 plt.ylabel("Word")
 plt.xlabel("Freq")
 

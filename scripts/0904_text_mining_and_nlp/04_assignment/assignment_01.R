@@ -96,14 +96,6 @@ findAssocs(tdm, "film", 0.35)
 #    0.42    0.39
 
 
-findAssocs(tdm, "movie", 0.35)
-# $movie
-#   mindfuck      sorta   critique generation    package   presents    touches   problems       lazy       mean    melissa      plain    running    showing    visions  different     giving    insight   offering     decent    decided 
-#       0.56       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39       0.39 
-#       edge    mightve  somewhere      suits      video       teen 
-#       0.39       0.39       0.39       0.39       0.39       0.36
-
-
 
 
 
@@ -167,7 +159,7 @@ words <- data %>%
   dplyr::select(Cleaned_Review) %>%
   tidytext::unnest_tokens(Word, Cleaned_Review) %>%
   dplyr::count(Word, sort = TRUE, name = "Freq") %>%
-  dplyr::filter(Freq >= 4) %>%
+  dplyr::filter(Freq > 3) %>%
   ungroup()
 
 
