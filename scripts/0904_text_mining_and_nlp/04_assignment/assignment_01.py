@@ -46,7 +46,7 @@ with open("./data/0904_text_mining_and_nlp/04_assignment/Textdata.txt") as file:
 
 
 # %% 1 - create data frame from lines...
-data = pd.DataFrame(lines, columns= ["Review"])
+data = pd.DataFrame(lines, columns = ["Review"])
 data.head()
 #                                               Review
 # 0  films adapted from comic books have had plenty...
