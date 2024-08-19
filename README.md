@@ -9,7 +9,7 @@ Coursework for the Data Science Institute's Data Science Post Graduate Diploma P
 **Table of Contents**
 
 - [Development](#Development)
-- [Development Tools Configs](#Development Tools Configs)
+- [Tools](#Tools)
 - [License](#license)
 
 
@@ -28,7 +28,7 @@ once the shell is up and running you can execute some code:
 ```
 
 
-## Development Tools Configs
+## Tools
 
 
 ### Sublime Text General Settings
