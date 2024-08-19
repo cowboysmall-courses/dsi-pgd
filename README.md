@@ -9,8 +9,8 @@ Coursework for the Data Science Institute's Data Science Post Graduate Diploma P
 **Table of Contents**
 
 - [Development](#Development)
+- [Development Tools Configs](#Development Tools Configs)
 - [License](#license)
-- [Sublime Text Configs](#Sublime Text Configs)
 
 
 ## Development
@@ -26,12 +26,6 @@ once the shell is up and running you can execute some code:
 ```console
 > python -m cowboysmall.some_tool 
 ```
-
-
-## License
-
-any tools or scripts found within `dsi-pgd` are distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
-
 
 
 ## Development Tools Configs
@@ -85,4 +79,9 @@ any tools or scripts found within `dsi-pgd` are distributed under the terms of t
 }
 
 ```
+
+
+## License
+
+any tools or scripts found within `dsi-pgd` are distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
 
