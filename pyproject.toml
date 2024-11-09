@@ -54,7 +54,7 @@ dependencies = [
   "arch",
   "pmdarima",
 
-  "spyder-kernels==3.0.0b5",
+  # "spyder-kernels==3.0.0b5",
 
   "ipykernel",
   "pyasyncore",
