@@ -26,13 +26,15 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
   "numpy",
   "pandas",
-  "scipy>=1.6.1,<=1.11.4",
+  # "scipy>=1.6.1,<=1.11.4",
+  "scipy",
   "matplotlib",
   "seaborn",
   "plotly",
@@ -52,7 +54,7 @@ dependencies = [
 
   "yfinance",
   "arch",
-  "pmdarima",
+  # "pmdarima",
 
   # "spyder-kernels==3.0.0b5",
 
@@ -98,7 +100,7 @@ cov = [
 ]
 
 [[tool.hatch.envs.all.matrix]]
-python = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+python = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 
 [tool.hatch.envs.lint]
 detached = true
